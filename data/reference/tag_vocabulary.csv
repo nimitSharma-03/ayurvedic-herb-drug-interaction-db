@@ -1,0 +1,17 @@
+tag,applies_to,description
+hypoglycemic,both,"Lowers blood glucose, or adds to the glucose-lowering effect of something else."
+antiplatelet,both,"Reduces platelet aggregation, so bleeding takes longer to stop."
+anticoagulant_effect,both,"Slows the clotting cascade itself, as distinct from platelet effects."
+hypotensive,both,"Lowers blood pressure, or adds to the blood-pressure-lowering effect of something else."
+bradycardic,both,Slows the heart rate or atrioventricular conduction.
+potassium_affecting,both,"Raises or lowers serum potassium, or is sensitive to potassium changes."
+diuretic,both,"Increases urine output, affecting fluid and electrolyte balance."
+sedative,both,Causes drowsiness or central nervous system depression.
+cyp_inhibitor,both,"Inhibits one or more cytochrome P450 enzymes, slowing clearance of their substrates."
+cyp_inducer,both,"Induces one or more cytochrome P450 enzymes, speeding clearance of their substrates."
+cyp_substrate,drug,"Cleared mainly by a cytochrome P450 enzyme, so its level moves when that enzyme is altered."
+pgp_modulator,both,Inhibits or induces P-glycoprotein transport.
+pgp_substrate,drug,"Transported by P-glycoprotein, so its level moves when that transporter is altered."
+narrow_therapeutic_index,drug,Small changes in blood level separate an ineffective dose from a toxic one.
+hepatotoxic_risk,both,Has reported associations with liver injury.
+thyroid_affecting,both,Reported to alter thyroid hormone levels or thyroid function.

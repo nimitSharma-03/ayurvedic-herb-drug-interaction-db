@@ -1,0 +1,37 @@
+rule_id,tag_a,tag_b,applies_to,reason_sentence,level
+rule-001,hypoglycemic,hypoglycemic,herb+drug,"Both lower blood sugar, so taken together they can push it lower than intended.",high
+rule-002,antiplatelet,anticoagulant_effect,herb+drug,"One makes platelets less sticky while the other slows clotting, so bleeding risk adds up.",high
+rule-003,antiplatelet,antiplatelet,herb+drug,"Both make platelets less sticky, so bruising and bleeding become more likely.",high
+rule-004,anticoagulant_effect,anticoagulant_effect,herb+drug,"Both slow the clotting process, so the risk of serious bleeding rises.",high
+rule-005,cyp_inhibitor,narrow_therapeutic_index,herb+drug,A small rise in a medicine with a narrow safety margin can reach a harmful level.,high
+rule-006,cyp_inducer,narrow_therapeutic_index,herb+drug,A small fall in a medicine with a narrow safety margin can leave it not working.,high
+rule-007,pgp_modulator,narrow_therapeutic_index,herb+drug,A transport change can shift the level of a medicine whose safe range is narrow.,high
+rule-008,cyp_inhibitor,cyp_substrate,herb+drug,Slowing the liver enzyme that clears the medicine can let its blood level climb.,high
+rule-009,cyp_inducer,cyp_substrate,herb+drug,Speeding up the liver enzyme that clears the medicine can let its blood level fall.,high
+rule-010,pgp_modulator,pgp_substrate,herb+drug,Altering the transporter that carries the medicine changes how much reaches the blood.,high
+rule-011,potassium_affecting,potassium_affecting,herb+drug,"Both shift potassium, and an abnormal potassium level disturbs the heart rhythm.",high
+rule-012,diuretic,potassium_affecting,herb+drug,Extra fluid loss alongside a potassium shift can leave potassium low enough to affect the heart.,high
+rule-013,hepatotoxic_risk,hepatotoxic_risk,herb+drug,"Both carry a reported risk of liver injury, so the liver is under more strain.",high
+rule-014,hypoglycemic,bradycardic,herb+drug,A slowed heart rate hides the racing-pulse warning sign of a low blood sugar.,high
+rule-015,bradycardic,bradycardic,herb+drug,"Both slow the heart rate, which can leave the pulse too slow.",high
+rule-016,hypotensive,hypotensive,herb+drug,"Both lower blood pressure, so dizziness or fainting from an excessive drop is more likely.",moderate
+rule-017,hypotensive,bradycardic,herb+drug,"One lowers blood pressure while the other slows the heart, which together can cause dizziness.",moderate
+rule-018,diuretic,hypotensive,herb+drug,Extra fluid loss on top of a blood-pressure medicine can cause dizziness or dehydration.,moderate
+rule-019,sedative,hypotensive,herb+drug,Drowsiness from one and a blood-pressure fall from the other together raise the risk of falls.,moderate
+rule-020,sedative,bradycardic,herb+drug,Drowsiness combined with a slowed heart rate can leave someone faint or very tired.,moderate
+rule-021,hypoglycemic,hypoglycemic,herb+herb,"Both lower blood sugar, so taking them together can push it lower than intended.",high
+rule-022,antiplatelet,antiplatelet,herb+herb,"Both make platelets less sticky, so bruising and bleeding become more likely.",high
+rule-023,hepatotoxic_risk,hepatotoxic_risk,herb+herb,"Both carry a reported risk of liver injury, so the liver is under more strain.",high
+rule-024,diuretic,potassium_affecting,herb+herb,Extra fluid loss alongside a potassium shift can leave potassium low.,high
+rule-025,hypotensive,hypotensive,herb+herb,"Both lower blood pressure, so dizziness from an excessive drop is more likely.",moderate
+rule-026,sedative,sedative,herb+herb,Two calming herbs together can cause more drowsiness than either alone.,moderate
+rule-027,sedative,hypotensive,herb+herb,Drowsiness alongside a blood-pressure fall raises the risk of dizziness and falls.,moderate
+rule-028,antiplatelet,anticoagulant_effect,drug+drug,"One makes platelets less sticky while the other slows clotting, so bleeding risk adds up.",high
+rule-029,antiplatelet,antiplatelet,drug+drug,"Both make platelets less sticky, so bruising and bleeding become more likely.",high
+rule-030,anticoagulant_effect,anticoagulant_effect,drug+drug,"Both slow the clotting process, so the risk of serious bleeding rises.",high
+rule-031,hypoglycemic,hypoglycemic,drug+drug,"Both lower blood sugar, so together they can push it lower than intended.",high
+rule-032,potassium_affecting,potassium_affecting,drug+drug,"Both shift potassium, and an abnormal potassium level disturbs the heart rhythm.",high
+rule-033,hypoglycemic,bradycardic,drug+drug,A slowed heart rate hides the racing-pulse warning sign of a low blood sugar.,high
+rule-034,bradycardic,bradycardic,drug+drug,"Both slow the heart rate, which can leave the pulse too slow.",high
+rule-035,hypotensive,hypotensive,drug+drug,"Both lower blood pressure, so dizziness or fainting from an excessive drop is more likely.",moderate
+rule-036,hypotensive,bradycardic,drug+drug,"One lowers blood pressure while the other slows the heart, which together can cause dizziness.",moderate

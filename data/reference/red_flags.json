@@ -1,0 +1,188 @@
+{
+  "version": "1",
+  "note": "Patterns are checked against the user's free text before anything else runs, and a match short-circuits the whole pipeline to an emergency response with no options listed. They are written to err towards triggering: a false alarm costs a wasted referral, a miss costs a delayed emergency. Patterns are case-insensitive Python regular expressions covering English and common Hinglish phrasing. Bare words that normally describe a past event ('stroke', 'heart attack') are deliberately absent, so a user describing their history is classified rather than sent to an emergency room.",
+  "emergency_number": {
+    "label": "National emergency number (India)",
+    "number": "112"
+  },
+  "additional_help": {
+    "suicidal_thoughts": {
+      "label": "Tele-MANAS mental health helpline (India)",
+      "number": "14416"
+    }
+  },
+  "categories": [
+    {
+      "id": "chest_pain",
+      "label": "Chest pain or chest pressure",
+      "message": "Chest pain or chest pressure can be a heart attack and needs emergency care now.",
+      "patterns": [
+        "\\bchest pain\\b",
+        "\\bchest pains\\b",
+        "\\bpain in (?:my |the )?chest\\b",
+        "\\bchest (?:is )?(?:hurt|hurting|hurts)\\b",
+        "\\b(?:tightness|heaviness|pressure|squeezing) in (?:my |the )?chest\\b",
+        "\\bchest (?:tightness|heaviness|pressure|discomfort)\\b",
+        "\\bcrushing (?:chest )?pain\\b",
+        "\\b(?:seene|seene?n|chhati|chaati|chati) (?:me|mein|m) dard\\b",
+        "\\bchest me(?:in)? dard\\b",
+        "\\bdard (?:seene|chhati) me\\b",
+        "\\bseene me(?:in)? (?:bhaari|bhari|jakdan|dabav)\\b"
+      ]
+    },
+    {
+      "id": "trouble_breathing",
+      "label": "Trouble breathing",
+      "message": "Trouble breathing needs emergency assessment now.",
+      "patterns": [
+        "\\b(?:can'?t|cant|can not|cannot|unable to|couldn'?t) breathe\\b",
+        "\\bdifficulty (?:in )?breathing\\b",
+        "\\btrouble breathing\\b",
+        "\\bstruggling to breathe\\b",
+        "\\bgasping\\b",
+        "\\bchoking\\b",
+        "\\b(?:severe|sudden) shortness of breath\\b",
+        "\\bshortness of breath at rest\\b",
+        "\\bbreathless at rest\\b",
+        "\\bsaans nahi(?:n)? aa ?rah\\w*\\b",
+        "\\bsaans lene me(?:in)? (?:takleef|taklif|dikkat|pareshani|problem)\\b",
+        "\\bsaans (?:ruk|band) (?:gayi|gaya|ho ?rah\\w*)\\b",
+        "\\bdam ghut\\w*\\b"
+      ]
+    },
+    {
+      "id": "fainting",
+      "label": "Fainting or loss of consciousness",
+      "message": "Fainting or losing consciousness needs emergency assessment now.",
+      "patterns": [
+        "\\bfainted\\b",
+        "\\bfainting\\b",
+        "\\bfeeling faint\\b",
+        "\\bpassed out\\b",
+        "\\bblacked out\\b",
+        "\\blost consciousness\\b",
+        "\\bunconscious\\b",
+        "\\bbehosh\\w*\\b",
+        "\\bchakkar (?:aakar|aa kar) gir\\w*\\b",
+        "\\bgir (?:gaya|gayi|pada|padi) (?:behosh|achanak)\\b",
+        "\\bhosh (?:kho|chala) gaya\\b"
+      ]
+    },
+    {
+      "id": "stroke_signs",
+      "label": "Signs of a stroke",
+      "message": "These can be signs of a stroke, where every minute counts. Get emergency care now.",
+      "patterns": [
+        "\\bface (?:is )?drooping\\b",
+        "\\bdroop(?:ing|ed)?(?: on)? one side\\b",
+        "\\bmouth (?:is )?(?:drooping|twisted) (?:to )?one side\\b",
+        "\\bslurred speech\\b",
+        "\\bspeech (?:is |has become )?slurred\\b",
+        "\\bsudden(?:ly)? (?:weak|weakness|numb|numbness|confus\\w*)\\b",
+        "\\b(?:weakness|numbness|paralysis) (?:on|in) one side\\b",
+        "\\bone side of (?:my |the )?(?:body|face) (?:is |has gone )?(?:weak|numb|limp)\\b",
+        "\\b(?:can'?t|cant|cannot|unable to) (?:speak|talk|lift my arm)\\b",
+        "\\barm (?:went|has gone) numb suddenly\\b",
+        "\\bvision (?:went|has gone|lost) (?:suddenly|in one eye)\\b",
+        "\\blakwa\\b",
+        "\\bfalij\\b",
+        "\\bmu(?:n|nh|h) tedha\\b",
+        "\\bek taraf (?:kamzori|kamjori|sunn|sun ho)\\b",
+        "\\bbol(?:na)? nahi(?:n)? pa ?rah\\w*\\b",
+        "\\bzaban lad(?:khada)?\\w*\\b"
+      ]
+    },
+    {
+      "id": "severe_bleeding",
+      "label": "Severe or uncontrolled bleeding",
+      "message": "Bleeding that is heavy or will not stop needs emergency care now.",
+      "patterns": [
+        "\\b(?:severe|heavy|uncontrolled|profuse) bleeding\\b",
+        "\\bbleeding (?:a lot|heavily|badly)\\b",
+        "\\bbleeding (?:that )?(?:won'?t|will not|doesn'?t|does not|is not) stop\\w*\\b",
+        "\\bbleeding non ?stop\\b",
+        "\\bblood (?:is )?not stopping\\b",
+        "\\bcan'?t stop (?:the )?bleeding\\b",
+        "\\bkhoon (?:band nahi(?:n)? ho ?rah\\w*|ruk nahi(?:n)? rah\\w*)\\b",
+        "\\bkhoon bahut (?:nikal|beh) rah\\w*\\b",
+        "\\bbahut khoon (?:nikal|beh) rah\\w*\\b"
+      ]
+    },
+    {
+      "id": "vomiting_blood",
+      "label": "Vomiting or coughing up blood",
+      "message": "Vomiting or coughing up blood needs emergency care now.",
+      "patterns": [
+        "\\bvomit(?:ing|ed)? blood\\b",
+        "\\bthrow(?:ing|n)? up blood\\b",
+        "\\bblood in (?:my |the )?vomit\\b",
+        "\\bcough(?:ing|ed)? up blood\\b",
+        "\\bblood (?:in|with) (?:my )?(?:sputum|phlegm)\\b",
+        "\\bh(?:a)?ematemesis\\b",
+        "\\bh(?:a)?emoptysis\\b",
+        "\\bkhoon ki ulti\\b",
+        "\\bulti me(?:in)? khoon\\b",
+        "\\bkhoon wali ulti\\b",
+        "\\bkhoon ki khansi\\b"
+      ]
+    },
+    {
+      "id": "black_stools",
+      "label": "Black stools or blood in the stool",
+      "message": "Black or bloody stools can mean bleeding inside the gut. Get emergency care now.",
+      "patterns": [
+        "\\bblack (?:and )?(?:tarry )?stool\\w*\\b",
+        "\\btarry stool\\w*\\b",
+        "\\bblack motions?\\b",
+        "\\bmel(?:a)?ena\\b",
+        "\\bblood in (?:my |the )?(?:stool|stools|motion|motions)\\b",
+        "\\bbleeding from (?:the )?(?:back passage|rectum)\\b",
+        "\\bkala(?:a)? (?:pakhana|paikhana|mal|tatti)\\b",
+        "\\bkale rang ka (?:mal|pakhana)\\b",
+        "\\b(?:pakhane|tatti|mal) me(?:in)? khoon\\b",
+        "\\bstool me(?:in)? khoon\\b"
+      ]
+    },
+    {
+      "id": "glycemic_emergency",
+      "label": "Dangerously high or low blood sugar with confusion",
+      "message": "A very high or very low blood sugar with confusion needs emergency care now.",
+      "patterns": [
+        "\\b(?:sugar|shugar|glucose)\\b[\\s\\S]{0,60}?\\b(?:confus\\w*|unconscious|behosh\\w*|seizure|convuls\\w*|fit aa\\w*|drowsy|not responding)\\b",
+        "\\b(?:confus\\w*|unconscious|behosh\\w*|seizure|convuls\\w*|not responding)\\b[\\s\\S]{0,60}?\\b(?:sugar|shugar|glucose)\\b",
+        "\\b(?:diabetic )?keto ?acidosis\\b",
+        "\\bdka\\b",
+        "\\b(?:sugar|shugar|glucose)\\b[\\s\\S]{0,25}?\\b[4-9][0-9]{2}\\b",
+        "\\b(?:sugar|shugar|glucose) (?:is |went |has gone )?(?:above|over|more than) ?[4-9][0-9]{2}\\b",
+        "\\b(?:very|extremely|dangerously) low (?:blood )?(?:sugar|shugar|glucose)\\b",
+        "\\b(?:sugar|shugar) (?:bahut |ekdum )?(?:kam|low|down) ho ?gay\\w*\\b",
+        "\\b(?:sugar|shugar) (?:bahut |ekdum )?(?:zyada|high) ho ?gay\\w*\\b[\\s\\S]{0,60}?\\b(?:behosh\\w*|confus\\w*|ulti)\\b"
+      ]
+    },
+    {
+      "id": "suicidal_thoughts",
+      "label": "Thoughts of suicide or self-harm",
+      "message": "Thoughts of ending your life deserve immediate support from a person, not a database. Please reach out now.",
+      "patterns": [
+        "\\bsuicid\\w*\\b",
+        "\\bkill (?:myself|my self)\\b",
+        "\\bend (?:my|this) life\\b",
+        "\\bend it all\\b",
+        "\\b(?:don'?t|do not|dont) want to (?:live|be alive)\\b",
+        "\\bwant to die\\b",
+        "\\bwish i (?:was|were) dead\\b",
+        "\\b(?:harm|hurt|cut) myself\\b",
+        "\\bself ?harm\\w*\\b",
+        "\\baatmahatya\\b",
+        "\\bkhudkhushi\\b",
+        "\\bkhud ?khushi\\b",
+        "\\bmar(?:ne)? ka (?:man|mann|dil) (?:kar|ho)\\w*\\b",
+        "\\bmar jaun\\w*\\b",
+        "\\bjeene ka (?:man|mann|dil) nahi\\w*\\b",
+        "\\bjeene ki (?:iccha|ichha) nahi\\w*\\b",
+        "\\bjindagi khatam kar\\w*\\b",
+        "\\bzindagi khatam kar\\w*\\b"
+      ]
+    }
+  ]
+}
