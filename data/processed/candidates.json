@@ -1,0 +1,842 @@
+[
+  {
+    "herb": "Ashwagandha",
+    "drug": "Insulin",
+    "source_pmid": "41694471",
+    "trigger_matched": "increased risk of",
+    "trigger_group": "risk_increase",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "latilobum (Maxim.) Kitamura by regulating lipid metabolism and insulin signaling in 3T3-L1 adipocytes. Obesity is a complex metabolic disorder characterized by excessive adipose tissue accumulation, dysregulated lipid metabolism, and insulin resistance, leading to an increased risk of metabolic disease. While Withania somnifera (AS) and Chrysanthemum zawadskii Herbich var. latilobum (Maxim.) Kitamura (C) have traditionally been used for their metabolic regulatory properties, their combined effects on adipogenesis, lipogenesis, lipolysis, and insulin signaling remain unexplored."
+  },
+  {
+    "herb": "Ashwagandha",
+    "drug": "Insulin",
+    "source_pmid": "40717151",
+    "trigger_matched": "increased risk of",
+    "trigger_group": "risk_increase",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "It is characterized by chronic hyperglycemia, insulin resistance, and systemic inflammation. T2DM is linked with an increased risk of terrible difficulties, including cardiovascular disease, neuropathy, and nephropathy. The developing proofs suggest that natural compounds such as Ashwagandha (Withania somnifera) may have therapeutic potential due to their anti-inflammatory, antioxidant, and glucose-regulating properties."
+  },
+  {
+    "herb": "Ashwagandha",
+    "drug": "Insulin",
+    "source_pmid": "39347326",
+    "trigger_matched": "synergy",
+    "trigger_group": "potentiation",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Evaluation of Lipid Profile Modulation by Berberis asiatica, Withania somnifera, and Their Synergy in Type 2 Diabetic Wistar Rats. Introduction Type 2 diabetes mellitus (T2DM) is a chronic metabolic disorder characterized by insulin resistance and hyperglycemia, leading to complications such as dyslipidemia, which increases cardiovascular risks."
+  },
+  {
+    "herb": "Turmeric",
+    "drug": "Metformin",
+    "source_pmid": "29518605",
+    "trigger_matched": "drug interaction",
+    "trigger_group": "general_interaction",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Herb-drug interaction of Nisha Amalaki and Curcuminoids with metformin in normal and diabetic condition: A disease system approach. Nisha Amalaki (NA), formulation with Curcuma longa Linn (Turmeric, Haridra, Nisha in Sanskrit; Family: Zingiberaceae) and Phyllanthus emblica Linn (Indian gooseberry, Amlaki in Sanskrit; Family: Phyllanthaceae) which is described for various diseases including diabetes in ayurvedic texts and Nighantus."
+  },
+  {
+    "herb": "Turmeric",
+    "drug": "Metformin",
+    "source_pmid": "29518605",
+    "trigger_matched": "herb-drug interaction",
+    "trigger_group": "general_interaction",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Herb-drug interaction of Nisha Amalaki and Curcuminoids with metformin in normal and diabetic condition: A disease system approach. Nisha Amalaki (NA), formulation with Curcuma longa Linn (Turmeric, Haridra, Nisha in Sanskrit; Family: Zingiberaceae) and Phyllanthus emblica Linn (Indian gooseberry, Amlaki in Sanskrit; Family: Phyllanthaceae) which is described for various diseases including diabetes in ayurvedic texts and Nighantus."
+  },
+  {
+    "herb": "Turmeric",
+    "drug": "Insulin",
+    "source_pmid": "42523609",
+    "trigger_matched": "synergistic",
+    "trigger_group": "potentiation",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Standardized curcumin formulations in type 2 diabetes mellitus: a precision adjunct strategy targeting bioavailability, glycemic control, and immunometabolic inflammation. Type 2 diabetes mellitus is increasingly conceptualized as an immunometabolic disorder in which hyperglycemia, insulin resistance, oxidative stress, and chronic low-grade inflammation interact synergistically to accelerate vascular and end-organ complications. Curcumin, the principal polyphenolic constituent of Curcuma longa, has attracted sustained scientific interest as an adjunct intervention given its putative effects on glycemic regulation, inflammatory signaling, and redox homeostasis."
+  },
+  {
+    "herb": "Turmeric",
+    "drug": "Insulin",
+    "source_pmid": "39980351",
+    "trigger_matched": "synergy",
+    "trigger_group": "potentiation",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Evaluation of polyherbal synergy against diabetes: in-vitro analysis. To evaluate the anti-diabetic properties of a polyherbal formulation consisting of Curcuma longa, Emblica officinalis, and Trigonella foenum-graecum through in-vitro assays, and investigate its synergistic effects on glucose metabolism, lipid metabolism, and insulin function."
+  },
+  {
+    "herb": "Turmeric",
+    "drug": "Insulin",
+    "source_pmid": "39980351",
+    "trigger_matched": "synergistic",
+    "trigger_group": "potentiation",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Evaluation of polyherbal synergy against diabetes: in-vitro analysis. To evaluate the anti-diabetic properties of a polyherbal formulation consisting of Curcuma longa, Emblica officinalis, and Trigonella foenum-graecum through in-vitro assays, and investigate its synergistic effects on glucose metabolism, lipid metabolism, and insulin function. The polyherbal extract was prepared using methanol, water, and methanol-water as solvents."
+  },
+  {
+    "herb": "Turmeric",
+    "drug": "Digoxin",
+    "source_pmid": "23064285",
+    "trigger_matched": "drug interaction",
+    "trigger_group": "general_interaction",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "P-glycoprotein mediated efflux in Caco-2 cell monolayers: the influence of herbals on digoxin transport. Several herbal medicines are concomitantly used with conventional medicines with a resultant increase in the recognition of herb-drug interactions. The phytomedicines Vernonia amygdalina Delile (VA), family Asteraceae; Azadiractha indica A. Juss (NL), family Meliaceae; Morinda lucida Benth (MLB), family Rubiaceae; Cymbopogon citratus Stapf (LG), family Poaceae; Curcuma longa L. (CUR), family Zingiberaceae; Carica papaya L. (CP), family Caricaceae and Tapinanthus sessilifolius Blume (ML), family Loranthaceae are used in African traditional medicine for the treatment of malaria."
+  },
+  {
+    "herb": "Turmeric",
+    "drug": "Digoxin",
+    "source_pmid": "23064285",
+    "trigger_matched": "herb-drug interaction",
+    "trigger_group": "general_interaction",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "P-glycoprotein mediated efflux in Caco-2 cell monolayers: the influence of herbals on digoxin transport. Several herbal medicines are concomitantly used with conventional medicines with a resultant increase in the recognition of herb-drug interactions. The phytomedicines Vernonia amygdalina Delile (VA), family Asteraceae; Azadiractha indica A. Juss (NL), family Meliaceae; Morinda lucida Benth (MLB), family Rubiaceae; Cymbopogon citratus Stapf (LG), family Poaceae; Curcuma longa L. (CUR), family Zingiberaceae; Carica papaya L. (CP), family Caricaceae and Tapinanthus sessilifolius Blume (ML), family Loranthaceae are used in African traditional medicine for the treatment of malaria."
+  },
+  {
+    "herb": "Turmeric",
+    "drug": "Amlodipine",
+    "source_pmid": "34958609",
+    "trigger_matched": "drug interaction",
+    "trigger_group": "general_interaction",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Herb-drug interaction: pharmacokinetics and pharmacodynamics of anti-hypertensive drug amlodipine besylate in presence of Lepidium sativum and Curcuma longa. Effects of Lepidium sativum and Curcuma longa were investigated on pharmacokinetics and pharmacodynamics of antihypertensive drug (amlodipine).Hypertensive rats were treated with amlodipine, Lepidium sativum, Lepidium sativum + amlodipine, Curcuma longa and Curcuma longa + amlodipine, and their blood pressures were measured."
+  },
+  {
+    "herb": "Turmeric",
+    "drug": "Amlodipine",
+    "source_pmid": "34958609",
+    "trigger_matched": "herb-drug interaction",
+    "trigger_group": "general_interaction",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Herb-drug interaction: pharmacokinetics and pharmacodynamics of anti-hypertensive drug amlodipine besylate in presence of Lepidium sativum and Curcuma longa. Effects of Lepidium sativum and Curcuma longa were investigated on pharmacokinetics and pharmacodynamics of antihypertensive drug (amlodipine).Hypertensive rats were treated with amlodipine, Lepidium sativum, Lepidium sativum + amlodipine, Curcuma longa and Curcuma longa + amlodipine, and their blood pressures were measured."
+  },
+  {
+    "herb": "Licorice",
+    "drug": "Warfarin",
+    "source_pmid": "10675182",
+    "trigger_matched": "potentiation",
+    "trigger_group": "potentiation",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs."
+  },
+  {
+    "herb": "Licorice",
+    "drug": "Warfarin",
+    "source_pmid": "10675182",
+    "trigger_matched": "increased risk of",
+    "trigger_group": "risk_increase",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs."
+  },
+  {
+    "herb": "Licorice",
+    "drug": "Warfarin",
+    "source_pmid": "10675182",
+    "trigger_matched": "drug interaction",
+    "trigger_group": "general_interaction",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs."
+  },
+  {
+    "herb": "Licorice",
+    "drug": "Warfarin",
+    "source_pmid": "10675182",
+    "trigger_matched": "herb-drug interaction",
+    "trigger_group": "general_interaction",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs."
+  },
+  {
+    "herb": "Licorice",
+    "drug": "Digoxin",
+    "source_pmid": "10675182",
+    "trigger_matched": "potentiation",
+    "trigger_group": "potentiation",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs."
+  },
+  {
+    "herb": "Licorice",
+    "drug": "Digoxin",
+    "source_pmid": "10675182",
+    "trigger_matched": "increased risk of",
+    "trigger_group": "risk_increase",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs."
+  },
+  {
+    "herb": "Licorice",
+    "drug": "Digoxin",
+    "source_pmid": "10675182",
+    "trigger_matched": "drug interaction",
+    "trigger_group": "general_interaction",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs."
+  },
+  {
+    "herb": "Licorice",
+    "drug": "Digoxin",
+    "source_pmid": "10675182",
+    "trigger_matched": "herb-drug interaction",
+    "trigger_group": "general_interaction",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs."
+  },
+  {
+    "herb": "Amla",
+    "drug": "Metformin",
+    "source_pmid": "29518605",
+    "trigger_matched": "drug interaction",
+    "trigger_group": "general_interaction",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Herb-drug interaction of Nisha Amalaki and Curcuminoids with metformin in normal and diabetic condition: A disease system approach. Nisha Amalaki (NA), formulation with Curcuma longa Linn (Turmeric, Haridra, Nisha in Sanskrit; Family: Zingiberaceae) and Phyllanthus emblica Linn (Indian gooseberry, Amlaki in Sanskrit; Family: Phyllanthaceae) which is described for various diseases including diabetes in ayurvedic texts and Nighantus."
+  },
+  {
+    "herb": "Amla",
+    "drug": "Metformin",
+    "source_pmid": "29518605",
+    "trigger_matched": "herb-drug interaction",
+    "trigger_group": "general_interaction",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Herb-drug interaction of Nisha Amalaki and Curcuminoids with metformin in normal and diabetic condition: A disease system approach. Nisha Amalaki (NA), formulation with Curcuma longa Linn (Turmeric, Haridra, Nisha in Sanskrit; Family: Zingiberaceae) and Phyllanthus emblica Linn (Indian gooseberry, Amlaki in Sanskrit; Family: Phyllanthaceae) which is described for various diseases including diabetes in ayurvedic texts and Nighantus."
+  },
+  {
+    "herb": "Amla",
+    "drug": "Insulin",
+    "source_pmid": "39980351",
+    "trigger_matched": "synergy",
+    "trigger_group": "potentiation",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Evaluation of polyherbal synergy against diabetes: in-vitro analysis. To evaluate the anti-diabetic properties of a polyherbal formulation consisting of Curcuma longa, Emblica officinalis, and Trigonella foenum-graecum through in-vitro assays, and investigate its synergistic effects on glucose metabolism, lipid metabolism, and insulin function."
+  },
+  {
+    "herb": "Amla",
+    "drug": "Insulin",
+    "source_pmid": "39980351",
+    "trigger_matched": "synergistic",
+    "trigger_group": "potentiation",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Evaluation of polyherbal synergy against diabetes: in-vitro analysis. To evaluate the anti-diabetic properties of a polyherbal formulation consisting of Curcuma longa, Emblica officinalis, and Trigonella foenum-graecum through in-vitro assays, and investigate its synergistic effects on glucose metabolism, lipid metabolism, and insulin function. The polyherbal extract was prepared using methanol, water, and methanol-water as solvents."
+  },
+  {
+    "herb": "Bibhitaki",
+    "drug": "Insulin",
+    "source_pmid": "19723351",
+    "trigger_matched": "potentiate",
+    "trigger_group": "potentiation",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "The aim of the present study was to investigate the efficacy and mode of action of Terminalia bellirica used traditionally for the treatment of diabetes in India. T. bellirica aqueous extract stimulated basal insulin output and potentiated glucose-stimulated insulin secretion concentration-dependently in the clonal pancreatic beta-cell line, BRIN-BD11 (P < 0.001). The insulin-secretory activity of the plant extract was abolished in the absence of extracellular Ca2+ and by inhibitors of cellular Ca2+ uptake, diazoxide and verapamil (P < 0.001; n 8)."
+  },
+  {
+    "herb": "Arjuna",
+    "drug": "Metoprolol",
+    "source_pmid": "26891872",
+    "trigger_matched": "drug interaction",
+    "trigger_group": "general_interaction",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "T. arjuna bark extract has been reported to play a significant role as a cardiac stimulant for its beneficial effects in angina. Herb - drug interactions (HDI) are one of the most important clinical concerns in the concomitant consumption of herbs and prescription drugs. Our study was to investigate the in vitro CYP2D inhibition potential of Terminalia arjuna (T. arjuna) extracts in rat liver microsomes and to study the influence of aqueous bark extract of T. arjuna on the oral pharmacokinetics and pharmacodynamics of metoprolol succinate in rats."
+  },
+  {
+    "herb": "Arjuna",
+    "drug": "Metoprolol",
+    "source_pmid": "26891872",
+    "trigger_matched": "drug interaction",
+    "trigger_group": "general_interaction",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Pharmacodynamic studies reveal a significant reduction in therapeutic activity of metoprolol succinate on co-administration with aqueous bark extract of T. arjuna. Based on our in vitro and in vivo findings and until further clinical drug interaction experiments are conducted, the co-administration of drugs, especially those primarily cleared via CYP2D catalyzed metabolism, with T. arjuna extracts should be done with caution."
+  },
+  {
+    "herb": "Ginger",
+    "drug": "Warfarin",
+    "source_pmid": "22292789",
+    "trigger_matched": "plasma concentration",
+    "trigger_group": "pharmacokinetic",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Common herbal medicines that interact with drugs include St John's wort (Hypericum perforatum), ginkgo (Ginkgo biloba), ginger (Zingiber officinale), ginseng (Panax ginseng), and garlic (Allium sativum). For example, St John's wort significantly reduced the area under the plasma concentration-time curve (AUC) and blood concentrations of cyclosporine, midazolam, tacrolimus, amitriptyline, digoxin, indinavir, warfarin, phenprocoumon and theophylline. The common drugs that interact with herbal medicines include warfarin, midazolam, digoxin, amitriptyline, indinavir, cyclosporine, tacrolimus and irinotecan."
+  },
+  {
+    "herb": "Ginger",
+    "drug": "Warfarin",
+    "source_pmid": "21919844",
+    "trigger_matched": "cytochrome p450",
+    "trigger_group": "pharmacokinetic",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Drugs that have a high potential to interact with herbal medicines usually have a narrow therapeutic index, including warfarin, digoxin, cyclosporine, tacrolimus, amitriptyline, midazolam, indinavir, and irinotecan. Many of them are substrates of cytochrome P450s (CYPs) and/or P-glycoprotein (P-gp). Herbal medicines that are reported to interact with drugs include garlic (Allium sativum), ginger (Zingiber officinale), ginkgo (Ginkgo biloba), ginseng (Panax ginseng), and St. John's wort (Hypericum perforatum)."
+  },
+  {
+    "herb": "Ginger",
+    "drug": "Warfarin",
+    "source_pmid": "21919844",
+    "trigger_matched": "plasma concentration",
+    "trigger_group": "pharmacokinetic",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Herbal medicines that are reported to interact with drugs include garlic (Allium sativum), ginger (Zingiber officinale), ginkgo (Ginkgo biloba), ginseng (Panax ginseng), and St. John's wort (Hypericum perforatum). For example, garlic has been shown to increase the clotting time and international normalized ratio (INR) of warfarin, cause hypoglycaemia when taken with chlorpropamide, and reduce the area under the plasma concentration-time curve (AUC) and maximum concentration of saquinavir in humans. Similarly, case reports have demonstrated that ginkgo may potentiate bleeding when combined with warfarin or aspirin, increases blood pressure when combined with thiazide diuretics, and has even led to a coma when combined with trazodone, a serotonin antagonist and reuptake inhibitor used to treat depression."
+  },
+  {
+    "herb": "Ginger",
+    "drug": "Aspirin",
+    "source_pmid": "21919844",
+    "trigger_matched": "plasma concentration",
+    "trigger_group": "pharmacokinetic",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Herbal medicines that are reported to interact with drugs include garlic (Allium sativum), ginger (Zingiber officinale), ginkgo (Ginkgo biloba), ginseng (Panax ginseng), and St. John's wort (Hypericum perforatum). For example, garlic has been shown to increase the clotting time and international normalized ratio (INR) of warfarin, cause hypoglycaemia when taken with chlorpropamide, and reduce the area under the plasma concentration-time curve (AUC) and maximum concentration of saquinavir in humans. Similarly, case reports have demonstrated that ginkgo may potentiate bleeding when combined with warfarin or aspirin, increases blood pressure when combined with thiazide diuretics, and has even led to a coma when combined with trazodone, a serotonin antagonist and reuptake inhibitor used to treat depression."
+  },
+  {
+    "herb": "Ginger",
+    "drug": "Insulin",
+    "source_pmid": "41306340",
+    "trigger_matched": "increases the risk",
+    "trigger_group": "risk_increase",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Herbal Combination of Angelica gigas, Zingiber officinale, and Aconitum carmichaeli Alleviates High Fat Diet-Induced Non-Alcoholic Fatty Liver Disease in Mice Through NRF2-Mediated Regulation of Adipogenesis and Non-Shivering Thermogenesis. Obesity is a complex metabolic disorder characterized by excessive fat accumulation and is closely associated with non-alcoholic fatty liver disease (NAFLD), a condition that increases the risk of metabolic complications such as insulin resistance, type 2 diabetes, and cardiovascular diseases. JI017 is a recently optimized multi-herbal formula composed of Angelica gigas, Zingiber officinale , and processed Aconitum carmichaeli."
+  },
+  {
+    "herb": "Ginger",
+    "drug": "Insulin",
+    "source_pmid": "28793909",
+    "trigger_matched": "potentiates",
+    "trigger_group": "potentiation",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "[6]-Gingerol, from Zingiber officinale, potentiates GLP-1 mediated glucose-stimulated insulin secretion pathway in pancreatic β-cells and increases RAB8/RAB10-regulated membrane presentation of GLUT4 transporters in skeletal muscle to improve hyperglycemia in Leprdb/db type 2 diabetic mice. [6]-Gingerol, a major component of Zingiber officinale, was previously reported to ameliorate hyperglycemia in type 2 diabetic mice."
+  },
+  {
+    "herb": "Ginger",
+    "drug": "Insulin",
+    "source_pmid": "28793909",
+    "trigger_matched": "potentiate",
+    "trigger_group": "potentiation",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "[6]-Gingerol, from Zingiber officinale, potentiates GLP-1 mediated glucose-stimulated insulin secretion pathway in pancreatic β-cells and increases RAB8/RAB10-regulated membrane presentation of GLUT4 transporters in skeletal muscle to improve hyperglycemia in Leprdb/db type 2 diabetic mice. [6]-Gingerol, a major component of Zingiber officinale, was previously reported to ameliorate hyperglycemia in type 2 diabetic mice."
+  },
+  {
+    "herb": "Ginger",
+    "drug": "Digoxin",
+    "source_pmid": "22292789",
+    "trigger_matched": "plasma concentration",
+    "trigger_group": "pharmacokinetic",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Common herbal medicines that interact with drugs include St John's wort (Hypericum perforatum), ginkgo (Ginkgo biloba), ginger (Zingiber officinale), ginseng (Panax ginseng), and garlic (Allium sativum). For example, St John's wort significantly reduced the area under the plasma concentration-time curve (AUC) and blood concentrations of cyclosporine, midazolam, tacrolimus, amitriptyline, digoxin, indinavir, warfarin, phenprocoumon and theophylline. The common drugs that interact with herbal medicines include warfarin, midazolam, digoxin, amitriptyline, indinavir, cyclosporine, tacrolimus and irinotecan."
+  },
+  {
+    "herb": "Ginger",
+    "drug": "Digoxin",
+    "source_pmid": "21919844",
+    "trigger_matched": "cytochrome p450",
+    "trigger_group": "pharmacokinetic",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Drugs that have a high potential to interact with herbal medicines usually have a narrow therapeutic index, including warfarin, digoxin, cyclosporine, tacrolimus, amitriptyline, midazolam, indinavir, and irinotecan. Many of them are substrates of cytochrome P450s (CYPs) and/or P-glycoprotein (P-gp). Herbal medicines that are reported to interact with drugs include garlic (Allium sativum), ginger (Zingiber officinale), ginkgo (Ginkgo biloba), ginseng (Panax ginseng), and St. John's wort (Hypericum perforatum)."
+  },
+  {
+    "herb": "Garlic",
+    "drug": "Warfarin",
+    "source_pmid": "22292789",
+    "trigger_matched": "plasma concentration",
+    "trigger_group": "pharmacokinetic",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Common herbal medicines that interact with drugs include St John's wort (Hypericum perforatum), ginkgo (Ginkgo biloba), ginger (Zingiber officinale), ginseng (Panax ginseng), and garlic (Allium sativum). For example, St John's wort significantly reduced the area under the plasma concentration-time curve (AUC) and blood concentrations of cyclosporine, midazolam, tacrolimus, amitriptyline, digoxin, indinavir, warfarin, phenprocoumon and theophylline. The common drugs that interact with herbal medicines include warfarin, midazolam, digoxin, amitriptyline, indinavir, cyclosporine, tacrolimus and irinotecan."
+  },
+  {
+    "herb": "Garlic",
+    "drug": "Warfarin",
+    "source_pmid": "21919844",
+    "trigger_matched": "cytochrome p450",
+    "trigger_group": "pharmacokinetic",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Drugs that have a high potential to interact with herbal medicines usually have a narrow therapeutic index, including warfarin, digoxin, cyclosporine, tacrolimus, amitriptyline, midazolam, indinavir, and irinotecan. Many of them are substrates of cytochrome P450s (CYPs) and/or P-glycoprotein (P-gp). Herbal medicines that are reported to interact with drugs include garlic (Allium sativum), ginger (Zingiber officinale), ginkgo (Ginkgo biloba), ginseng (Panax ginseng), and St. John's wort (Hypericum perforatum)."
+  },
+  {
+    "herb": "Garlic",
+    "drug": "Warfarin",
+    "source_pmid": "21919844",
+    "trigger_matched": "plasma concentration",
+    "trigger_group": "pharmacokinetic",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Herbal medicines that are reported to interact with drugs include garlic (Allium sativum), ginger (Zingiber officinale), ginkgo (Ginkgo biloba), ginseng (Panax ginseng), and St. John's wort (Hypericum perforatum). For example, garlic has been shown to increase the clotting time and international normalized ratio (INR) of warfarin, cause hypoglycaemia when taken with chlorpropamide, and reduce the area under the plasma concentration-time curve (AUC) and maximum concentration of saquinavir in humans. Similarly, case reports have demonstrated that ginkgo may potentiate bleeding when combined with warfarin or aspirin, increases blood pressure when combined with thiazide diuretics, and has even led to a coma when combined with trazodone, a serotonin antagonist and reuptake inhibitor used to treat depression."
+  },
+  {
+    "herb": "Garlic",
+    "drug": "Warfarin",
+    "source_pmid": "19719333",
+    "trigger_matched": "may interact",
+    "trigger_group": "general_interaction",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Ginseng (Panax ginseng) may interact with phenelzine and warfarin. Kava (Piper methysticum) increases the clearance of chlorzoxazone (a CYP2E1 substrate) and may interact with alprazolam, levodopa and paroxetine. Garlic (Allium sativum) interacts with chlorpropamide, fluindione, ritonavir and warfarin; it also reduces plasma concentrations of chlorzoxazone (a CYP2E1 probe)."
+  },
+  {
+    "herb": "Garlic",
+    "drug": "Warfarin",
+    "source_pmid": "19719333",
+    "trigger_matched": "plasma concentration",
+    "trigger_group": "pharmacokinetic",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Kava (Piper methysticum) increases the clearance of chlorzoxazone (a CYP2E1 substrate) and may interact with alprazolam, levodopa and paroxetine. Garlic (Allium sativum) interacts with chlorpropamide, fluindione, ritonavir and warfarin; it also reduces plasma concentrations of chlorzoxazone (a CYP2E1 probe). Echinacea might affect the clearance of caffeine (a CYP1A2 probe) and midazolam (a CYP3A4 probe)."
+  },
+  {
+    "herb": "Garlic",
+    "drug": "Warfarin",
+    "source_pmid": "19719333",
+    "trigger_matched": "interacts with",
+    "trigger_group": "general_interaction",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Kava (Piper methysticum) increases the clearance of chlorzoxazone (a CYP2E1 substrate) and may interact with alprazolam, levodopa and paroxetine. Garlic (Allium sativum) interacts with chlorpropamide, fluindione, ritonavir and warfarin; it also reduces plasma concentrations of chlorzoxazone (a CYP2E1 probe). Echinacea might affect the clearance of caffeine (a CYP1A2 probe) and midazolam (a CYP3A4 probe)."
+  },
+  {
+    "herb": "Garlic",
+    "drug": "Warfarin",
+    "source_pmid": "19719333",
+    "trigger_matched": "cyp3a4",
+    "trigger_group": "pharmacokinetic",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Garlic (Allium sativum) interacts with chlorpropamide, fluindione, ritonavir and warfarin; it also reduces plasma concentrations of chlorzoxazone (a CYP2E1 probe). Echinacea might affect the clearance of caffeine (a CYP1A2 probe) and midazolam (a CYP3A4 probe). No interactions have been reported for saw palmetto (Serenoa repens)."
+  },
+  {
+    "herb": "Garlic",
+    "drug": "Warfarin",
+    "source_pmid": "15916450",
+    "trigger_matched": "plasma concentration",
+    "trigger_group": "pharmacokinetic",
+    "negated": true,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Cases have been published reporting enhanced anticoagulation and bleeding when patients on long-term warfarin therapy also took Salvia miltiorrhiza (danshen). Allium sativum (garlic) decreased the area under the plasma concentration-time curve (AUC) and maximum plasma concentration of saquinavir, but not ritonavir and paracetamol (acetaminophen), in volunteers. A. sativum increased the clotting time and international normalised ratio of warfarin and caused hypoglycaemia when taken with chlorpropamide."
+  },
+  {
+    "herb": "Garlic",
+    "drug": "Warfarin",
+    "source_pmid": "10675182",
+    "trigger_matched": "potentiation",
+    "trigger_group": "potentiation",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs."
+  },
+  {
+    "herb": "Garlic",
+    "drug": "Warfarin",
+    "source_pmid": "10675182",
+    "trigger_matched": "increased risk of",
+    "trigger_group": "risk_increase",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs."
+  },
+  {
+    "herb": "Garlic",
+    "drug": "Warfarin",
+    "source_pmid": "10675182",
+    "trigger_matched": "drug interaction",
+    "trigger_group": "general_interaction",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs."
+  },
+  {
+    "herb": "Garlic",
+    "drug": "Warfarin",
+    "source_pmid": "10675182",
+    "trigger_matched": "herb-drug interaction",
+    "trigger_group": "general_interaction",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs."
+  },
+  {
+    "herb": "Garlic",
+    "drug": "Aspirin",
+    "source_pmid": "21919844",
+    "trigger_matched": "plasma concentration",
+    "trigger_group": "pharmacokinetic",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Herbal medicines that are reported to interact with drugs include garlic (Allium sativum), ginger (Zingiber officinale), ginkgo (Ginkgo biloba), ginseng (Panax ginseng), and St. John's wort (Hypericum perforatum). For example, garlic has been shown to increase the clotting time and international normalized ratio (INR) of warfarin, cause hypoglycaemia when taken with chlorpropamide, and reduce the area under the plasma concentration-time curve (AUC) and maximum concentration of saquinavir in humans. Similarly, case reports have demonstrated that ginkgo may potentiate bleeding when combined with warfarin or aspirin, increases blood pressure when combined with thiazide diuretics, and has even led to a coma when combined with trazodone, a serotonin antagonist and reuptake inhibitor used to treat depression."
+  },
+  {
+    "herb": "Garlic",
+    "drug": "Insulin",
+    "source_pmid": "23426539",
+    "trigger_matched": "synergistic",
+    "trigger_group": "potentiation",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "The dried bulbs of Allium sativum (Garlic) and leaves of Lagerstroemia speciosa (Banaba) are used as medicinal food for the treatment of diabetes and other ailments. The present study was undertaken to ascertain whether the combination of both garlic and banaba extract produces synergistic therapeutic effect in diabetic state. In the in vitro studies, the effect of standardized aqueous extract of Allium sativum (ASE), methanolic extract of Lagerstroemia speciosa (LSE) and their mixture (1:1 ratio), DIA-2 on insulin stimulated glucose uptake in 3T3-L1 cells, erythrocyte sorbitol accumulation and protein glycation were evaluated."
+  },
+  {
+    "herb": "Garlic",
+    "drug": "Digoxin",
+    "source_pmid": "22292789",
+    "trigger_matched": "plasma concentration",
+    "trigger_group": "pharmacokinetic",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Common herbal medicines that interact with drugs include St John's wort (Hypericum perforatum), ginkgo (Ginkgo biloba), ginger (Zingiber officinale), ginseng (Panax ginseng), and garlic (Allium sativum). For example, St John's wort significantly reduced the area under the plasma concentration-time curve (AUC) and blood concentrations of cyclosporine, midazolam, tacrolimus, amitriptyline, digoxin, indinavir, warfarin, phenprocoumon and theophylline. The common drugs that interact with herbal medicines include warfarin, midazolam, digoxin, amitriptyline, indinavir, cyclosporine, tacrolimus and irinotecan."
+  },
+  {
+    "herb": "Garlic",
+    "drug": "Digoxin",
+    "source_pmid": "21919844",
+    "trigger_matched": "cytochrome p450",
+    "trigger_group": "pharmacokinetic",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Drugs that have a high potential to interact with herbal medicines usually have a narrow therapeutic index, including warfarin, digoxin, cyclosporine, tacrolimus, amitriptyline, midazolam, indinavir, and irinotecan. Many of them are substrates of cytochrome P450s (CYPs) and/or P-glycoprotein (P-gp). Herbal medicines that are reported to interact with drugs include garlic (Allium sativum), ginger (Zingiber officinale), ginkgo (Ginkgo biloba), ginseng (Panax ginseng), and St. John's wort (Hypericum perforatum)."
+  },
+  {
+    "herb": "Garlic",
+    "drug": "Digoxin",
+    "source_pmid": "10675182",
+    "trigger_matched": "potentiation",
+    "trigger_group": "potentiation",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs."
+  },
+  {
+    "herb": "Garlic",
+    "drug": "Digoxin",
+    "source_pmid": "10675182",
+    "trigger_matched": "increased risk of",
+    "trigger_group": "risk_increase",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs."
+  },
+  {
+    "herb": "Garlic",
+    "drug": "Digoxin",
+    "source_pmid": "10675182",
+    "trigger_matched": "drug interaction",
+    "trigger_group": "general_interaction",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs."
+  },
+  {
+    "herb": "Garlic",
+    "drug": "Digoxin",
+    "source_pmid": "10675182",
+    "trigger_matched": "herb-drug interaction",
+    "trigger_group": "general_interaction",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs."
+  },
+  {
+    "herb": "Fenugreek",
+    "drug": "Insulin",
+    "source_pmid": "39980351",
+    "trigger_matched": "synergy",
+    "trigger_group": "potentiation",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Evaluation of polyherbal synergy against diabetes: in-vitro analysis. To evaluate the anti-diabetic properties of a polyherbal formulation consisting of Curcuma longa, Emblica officinalis, and Trigonella foenum-graecum through in-vitro assays, and investigate its synergistic effects on glucose metabolism, lipid metabolism, and insulin function."
+  },
+  {
+    "herb": "Fenugreek",
+    "drug": "Insulin",
+    "source_pmid": "39980351",
+    "trigger_matched": "synergistic",
+    "trigger_group": "potentiation",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Evaluation of polyherbal synergy against diabetes: in-vitro analysis. To evaluate the anti-diabetic properties of a polyherbal formulation consisting of Curcuma longa, Emblica officinalis, and Trigonella foenum-graecum through in-vitro assays, and investigate its synergistic effects on glucose metabolism, lipid metabolism, and insulin function. The polyherbal extract was prepared using methanol, water, and methanol-water as solvents."
+  },
+  {
+    "herb": "Fenugreek",
+    "drug": "Insulin",
+    "source_pmid": "33298044",
+    "trigger_matched": "potentiates",
+    "trigger_group": "potentiation",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "4-Hydroxyisoleucine (4-HIL) is an active ingredient extracted from Trigonella foenum-graecum L., a Chinese traditional herbal medicine, which exerts the efficacy of anti-obesity and anti-diabetes. We previously reported that 4-HIL potentiates anti-inflammatory and anti-insulin resistance effects through down-regulation of TNF-α and TNF-α converting enzyme (TACE) in 3 T3-L1 adipocytes and HepG2 cells. In the present study, we further investigate the effects and mechanisms of 4-HIL on obesity-induced inflammation in RAW264.7 macrophages and 3 T3-L1 adipocytes co-culture system."
+  },
+  {
+    "herb": "Fenugreek",
+    "drug": "Insulin",
+    "source_pmid": "33298044",
+    "trigger_matched": "potentiate",
+    "trigger_group": "potentiation",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "4-Hydroxyisoleucine (4-HIL) is an active ingredient extracted from Trigonella foenum-graecum L., a Chinese traditional herbal medicine, which exerts the efficacy of anti-obesity and anti-diabetes. We previously reported that 4-HIL potentiates anti-inflammatory and anti-insulin resistance effects through down-regulation of TNF-α and TNF-α converting enzyme (TACE) in 3 T3-L1 adipocytes and HepG2 cells. In the present study, we further investigate the effects and mechanisms of 4-HIL on obesity-induced inflammation in RAW264.7 macrophages and 3 T3-L1 adipocytes co-culture system."
+  },
+  {
+    "herb": "Karela",
+    "drug": "Insulin",
+    "source_pmid": "40306528",
+    "trigger_matched": "synergistic",
+    "trigger_group": "potentiation",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Synergistic action of a Momordica charantia-abundant peptide with insulin regulates blood glucose metabolism in db/db mice via a novel second-hit mechanism on insulin receptor activation. Diabetes is a global health challenge, often managed with insulin therapy."
+  },
+  {
+    "herb": "Karela",
+    "drug": "Insulin",
+    "source_pmid": "38500279",
+    "trigger_matched": "potentiation",
+    "trigger_group": "potentiation",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "A systematic literature search was conducted to identify relevant studies exploring the mechanisms of action, various formulations, and clinical outcomes of herbal nanoformulations in diabetes management. Herbal nanoformulations exert their anti-diabetic effects through multiple mechanisms, including enhanced bioavailability, improved tissue targeting, and potentiation of insulin signaling pathways. Various herbal ingredients, such as bitter melon, fenugreek, and Gymnema sylvestre, have been encapsulated into nanocarriers, like liposomes, polymeric nanoparticles, and solid lipid nanoparticles, to enhance their therapeutic potential."
+  },
+  {
+    "herb": "Karela",
+    "drug": "Insulin",
+    "source_pmid": "36641593",
+    "trigger_matched": "synergistic",
+    "trigger_group": "potentiation",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Modulation of Insulin Resistance by Silybum marianum Leaves, and its Synergistic Efficacy with Gymnema sylvestre, Momordica charantia, Trigonella-foenum graecum Against Protein Tyrosine Phosphatase 1B. Prolonged insulin resistance is considered one of the reasons for Type 2 Diabetes Mellitus."
+  },
+  {
+    "herb": "Gymnema",
+    "drug": "Insulin",
+    "source_pmid": "38500279",
+    "trigger_matched": "potentiation",
+    "trigger_group": "potentiation",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "A systematic literature search was conducted to identify relevant studies exploring the mechanisms of action, various formulations, and clinical outcomes of herbal nanoformulations in diabetes management. Herbal nanoformulations exert their anti-diabetic effects through multiple mechanisms, including enhanced bioavailability, improved tissue targeting, and potentiation of insulin signaling pathways. Various herbal ingredients, such as bitter melon, fenugreek, and Gymnema sylvestre, have been encapsulated into nanocarriers, like liposomes, polymeric nanoparticles, and solid lipid nanoparticles, to enhance their therapeutic potential."
+  },
+  {
+    "herb": "Gymnema",
+    "drug": "Insulin",
+    "source_pmid": "36641593",
+    "trigger_matched": "synergistic",
+    "trigger_group": "potentiation",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Modulation of Insulin Resistance by Silybum marianum Leaves, and its Synergistic Efficacy with Gymnema sylvestre, Momordica charantia, Trigonella-foenum graecum Against Protein Tyrosine Phosphatase 1B. Prolonged insulin resistance is considered one of the reasons for Type 2 Diabetes Mellitus."
+  },
+  {
+    "herb": "Gymnema",
+    "drug": "Amlodipine",
+    "source_pmid": "29042257",
+    "trigger_matched": "cyp3a4",
+    "trigger_group": "pharmacokinetic",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "In vivo pharmacokinetic interaction by ethanolic extract of Gymnema sylvestre with CYP2C9 (Tolbutamide), CYP3A4 (Amlodipine) and CYP1A2 (Phenacetin) in rats. Gymnema sylvestre (GS) is a medicinal herb used for diabetes mellitus (DM)."
+  },
+  {
+    "herb": "Gymnema",
+    "drug": "Amlodipine",
+    "source_pmid": "29042257",
+    "trigger_matched": "cyp2c9",
+    "trigger_group": "pharmacokinetic",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "In vivo pharmacokinetic interaction by ethanolic extract of Gymnema sylvestre with CYP2C9 (Tolbutamide), CYP3A4 (Amlodipine) and CYP1A2 (Phenacetin) in rats. Gymnema sylvestre (GS) is a medicinal herb used for diabetes mellitus (DM)."
+  },
+  {
+    "herb": "Giloy",
+    "drug": "Insulin",
+    "source_pmid": "37315995",
+    "trigger_matched": "antagonistic",
+    "trigger_group": "antagonism",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Hyperandrogenism, insulin resistance, and estrogen dominance are the prime defining traits of women with polycystic ovarian syndrome which disrupts hormonal, adrenal, or ovarian functions resulting in impaired folliculogenesis and excess androgen production. The purpose of this study is to identify an appropriate bioactive antagonistic ligand from isoquinoline alkaloids [palmatine (PAL), jatrorrhizine (JAT), magnoflorine (MAG) and berberine (BBR)] from stems of Tinospora cordifolia. Phytocomponents inhibit/prevent androgenic, estrogenic, and steroidogenic receptors, insulin binding, and resultant hyperandrogenism."
+  },
+  {
+    "herb": "Shankhpushpi",
+    "drug": "Warfarin",
+    "source_pmid": "10675182",
+    "trigger_matched": "potentiation",
+    "trigger_group": "potentiation",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs."
+  },
+  {
+    "herb": "Shankhpushpi",
+    "drug": "Warfarin",
+    "source_pmid": "10675182",
+    "trigger_matched": "increased risk of",
+    "trigger_group": "risk_increase",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs."
+  },
+  {
+    "herb": "Shankhpushpi",
+    "drug": "Warfarin",
+    "source_pmid": "10675182",
+    "trigger_matched": "drug interaction",
+    "trigger_group": "general_interaction",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs."
+  },
+  {
+    "herb": "Shankhpushpi",
+    "drug": "Warfarin",
+    "source_pmid": "10675182",
+    "trigger_matched": "herb-drug interaction",
+    "trigger_group": "general_interaction",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs."
+  },
+  {
+    "herb": "Shankhpushpi",
+    "drug": "Digoxin",
+    "source_pmid": "10675182",
+    "trigger_matched": "potentiation",
+    "trigger_group": "potentiation",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs."
+  },
+  {
+    "herb": "Shankhpushpi",
+    "drug": "Digoxin",
+    "source_pmid": "10675182",
+    "trigger_matched": "increased risk of",
+    "trigger_group": "risk_increase",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs."
+  },
+  {
+    "herb": "Shankhpushpi",
+    "drug": "Digoxin",
+    "source_pmid": "10675182",
+    "trigger_matched": "drug interaction",
+    "trigger_group": "general_interaction",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs."
+  },
+  {
+    "herb": "Shankhpushpi",
+    "drug": "Digoxin",
+    "source_pmid": "10675182",
+    "trigger_matched": "herb-drug interaction",
+    "trigger_group": "general_interaction",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs."
+  },
+  {
+    "herb": "Pippali",
+    "drug": "Warfarin",
+    "source_pmid": "42066825",
+    "trigger_matched": "potential interaction",
+    "trigger_group": "general_interaction",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Probable interaction between warfarin and a toothache solution containing Piper longum L. leading to ischemic stroke: a case report. Both warfarin and Chinese patent medicine (CPM) are frequently prescribed medications that may have a potential interaction that can go unnoticed. To report a clinical case of a probable interaction between warfarin and a toothache solution containing Piper longum L., which led to ischemic stroke."
+  },
+  {
+    "herb": "Pippali",
+    "drug": "Warfarin",
+    "source_pmid": "42066825",
+    "trigger_matched": "potential interaction",
+    "trigger_group": "general_interaction",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Causal assessment showed a probable interaction between the interaction of warfarin and a toothache solution containing Piper longum and the ischemic stroke. The potential interaction between warfarin and Piper longum should be recognized to prevent adverse outcomes in patients receiving warfarin therapy."
+  },
+  {
+    "herb": "Pippali",
+    "drug": "Warfarin",
+    "source_pmid": "38807873",
+    "trigger_matched": "cytochrome p450",
+    "trigger_group": "pharmacokinetic",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Warfarin, a widely prescribed anticoagulant, is highly effective for various coagulation disorders. However, its efficacy is limited by a narrow therapeutic index and frequent drug interactions, especially those involving metabolism by Cytochrome P450 (CYP450) enzymes. Piperine, found in black and long pepper, possesses blood-thinning properties and has been observed to inhibit CYP3A and CYP2C enzymes linked to warfarin metabolism."
+  },
+  {
+    "herb": "Pippali",
+    "drug": "Warfarin",
+    "source_pmid": "38807873",
+    "trigger_matched": "drug interaction",
+    "trigger_group": "general_interaction",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Warfarin, a widely prescribed anticoagulant, is highly effective for various coagulation disorders. However, its efficacy is limited by a narrow therapeutic index and frequent drug interactions, especially those involving metabolism by Cytochrome P450 (CYP450) enzymes. Piperine, found in black and long pepper, possesses blood-thinning properties and has been observed to inhibit CYP3A and CYP2C enzymes linked to warfarin metabolism."
+  },
+  {
+    "herb": "Black pepper",
+    "drug": "Digoxin",
+    "source_pmid": "15916450",
+    "trigger_matched": "plasma concentration",
+    "trigger_group": "pharmacokinetic",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Silybum marianum (milk thistle) decreased the trough concentrations of indinavir in humans. Piperine from black (Piper nigrum Linn) and long (P. longum Linn) peppers increased the AUC of phenytoin, propranolol and theophylline in healthy volunteers and plasma concentrations of rifamipicin (rifampin) in patients with pulmonary tuberculosis. Eleutheroccus senticosus (Siberian ginseng) increased the serum concentration of digoxin, but did not alter the pharmacokinetics of dextromethorphan and alprazolam in humans."
+  },
+  {
+    "herb": "Moringa",
+    "drug": "Insulin",
+    "source_pmid": "36293262",
+    "trigger_matched": "synergistic",
+    "trigger_group": "potentiation",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "Ultrasonic-Cellulase Synergistic Extraction of Crude Polysaccharides from Moringa oleifera Leaves and Alleviation of Insulin Resistance in HepG2 Cells. Moringa oleifera leaves (MOL) are a new food resource, rich in functional factors."
+  },
+  {
+    "herb": "Aloe vera",
+    "drug": "Insulin",
+    "source_pmid": "28160765",
+    "trigger_matched": "potential interaction",
+    "trigger_group": "general_interaction",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "The study found potential drug-herb interactions in 4 (50%) of the CAM consumers. Moderate potential interactions were found between Aloe vera and diuretics; Aloe vera and insulin; pyridoxine and calcium-channel blockers and diuretics; and niacin and statins. Those interactions had the potential to result in hypoglycemia, hyperglycemia, hypokalemia, and lower blood pressure."
+  },
+  {
+    "herb": "Kalmegh",
+    "drug": "Insulin",
+    "source_pmid": "41519973",
+    "trigger_matched": "may interact",
+    "trigger_group": "general_interaction",
+    "negated": false,
+    "confidence": "auto_extracted",
+    "evidence_sentence": "The newly described CIRDD and IROD clusters of Type 2 Diabetes represent clinically meaningful phenotypes, yet no subtype-specific molecular or omics datasets currently exist to define their mechanisms. This study introduces a predictive extrapolation framework to infer how phytocompounds from Andrographis paniculata may interact with these subtypes by mapping established pathways of insulin resistance, β-cell dysfunction, and obesity-driven inflammation onto CIRDD- and IROD-relevant axes. From the broader T2DM network, ten hub proteins (INS, AKT1, TNF, IL6, MMP9, and others) were prioritized based on functional importance and subsequently assigned to each subtype according to their documented physiological roles."
+  }
+]
