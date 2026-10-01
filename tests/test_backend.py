@@ -560,18 +560,32 @@ class MedicineInteractionsListTest(BackendTestCase):
 
 
 class HealthTopicTest(BackendTestCase):
-    def test_topic_listing_reports_absence_of_data(self):
+    def test_topic_listing_reports_the_loaded_topics(self):
+        """Topic data is now derived from the knowledge reference files.
+
+        This test previously asserted the table was empty, which was true while
+        the project held no sourced indication data. data/reference/herb_uses.csv
+        and data/reference/drug_indications.csv now supply it, and hdi/seed.py
+        projects one topic per supported condition. The guarantee that mattered
+        -- that an *absence* of data never reads as "nothing applies" -- is kept
+        in EmptyTopicDataTest below, which builds a database with no knowledge
+        files at all.
+        """
         status, payload = self.get("/health-topics")
         self.assertEqual(status, 200)
-        self.assertFalse(payload["has_topic_data"])
-        self.assertEqual(payload["topics"], [])
+        self.assertTrue(payload["has_topic_data"])
+        self.assertEqual(len(payload["topics"]), 6)
+        self.assertIn("Type 2 diabetes", [t["topic"] for t in payload["topics"]])
 
-    def test_topic_lookup_reports_no_data_rather_than_an_empty_answer(self):
-        """Absence of indication data must not read as 'nothing applies'."""
+    def test_an_unsupported_topic_is_not_found_rather_than_no_data(self):
+        """With data loaded, an unknown topic is a miss, not a missing table.
+
+        The two states stay distinct: "we hold topic data and this is not in it"
+        is a different answer from "we hold no topic data at all".
+        """
         status, payload = self.get("/health-topics/lookup", topic="joint pain")
         self.assertEqual(status, 200)
-        self.assertEqual(payload["status"], topics.STATUS_NO_DATA)
-        self.assertIn("health_topics.csv", payload["note"])
+        self.assertEqual(payload["status"], topics.STATUS_NOT_FOUND)
         self.assertEqual(payload["traditional_use"], [])
 
     def test_topic_response_separates_use_types(self):
@@ -811,7 +825,9 @@ class ExtensionPointTest(unittest.TestCase):
 
         status, payload = api.handle("GET", "/health-topics", {}, db_path=target)
         self.assertTrue(payload["has_topic_data"])
-        self.assertEqual(payload["topics"], [{"topic": "Test Topic", "medicine_count": 2}])
+        # The derived condition topics are there too, so the fixture row is one
+        # entry among them rather than the only one.
+        self.assertIn({"topic": "Test Topic", "medicine_count": 2}, payload["topics"])
 
     def test_unknown_topic_returns_not_found_when_data_exists(self):
         target, _ = self._build_with(
@@ -831,6 +847,60 @@ class ExtensionPointTest(unittest.TestCase):
             topics_rows="Test Topic,Ashwagandha,cures_everything,x,strong,fixture,,2026-01-01\n"
         )
         self.assertTrue(any("use_type" in p for p in summary["problems"]))
+
+
+class EmptyTopicDataTest(unittest.TestCase):
+    """With no knowledge files, a topic lookup must still say so explicitly.
+
+    This is the guarantee HealthTopicTest used to carry while the project held no
+    indication data: an empty table reports `no_topic_data` and explains how to
+    populate it, rather than returning empty lists that would read as "nothing
+    applies to this topic". The code path has to keep working, because a
+    deployment can be built before the knowledge files are in place.
+    """
+
+    def test_a_build_with_no_knowledge_files_reports_no_topic_data(self):
+        tmpdir = Path(tempfile.mkdtemp(prefix="hdi-notopics-"))
+        self.addCleanup(shutil.rmtree, tmpdir, ignore_errors=True)
+        target = tmpdir / "empty.db"
+        absent = tmpdir / "absent.csv"
+
+        with mock.patch.object(seed, "CONDITIONS_CSV", absent), \
+                mock.patch.object(seed, "HERB_USES_CSV", absent), \
+                mock.patch.object(seed, "DRUG_INDICATIONS_CSV", absent), \
+                mock.patch.object(seed, "HEALTH_TOPICS_CSV", absent):
+            seed.build(db_path=target, verbose=False)
+
+        status, payload = api.handle("GET", "/health-topics", {}, db_path=target)
+        self.assertEqual(status, 200)
+        self.assertFalse(payload["has_topic_data"])
+        self.assertEqual(payload["topics"], [])
+
+        status, payload = api.handle(
+            "GET", "/health-topics/lookup", {"topic": ["joint pain"]}, db_path=target
+        )
+        self.assertEqual(status, 200)
+        self.assertEqual(payload["status"], topics.STATUS_NO_DATA)
+        self.assertIn("health_topics.csv", payload["note"])
+        self.assertEqual(payload["traditional_use"], [])
+
+    def test_recommend_reports_an_unseeded_knowledge_layer_as_unavailable(self):
+        """A 503, not an out_of_scope: the build is incomplete, not the question."""
+        tmpdir = Path(tempfile.mkdtemp(prefix="hdi-noknowledge-"))
+        self.addCleanup(shutil.rmtree, tmpdir, ignore_errors=True)
+        target = tmpdir / "empty.db"
+        absent = tmpdir / "absent.csv"
+
+        with mock.patch.object(seed, "CONDITIONS_CSV", absent), \
+                mock.patch.object(seed, "HERB_USES_CSV", absent), \
+                mock.patch.object(seed, "DRUG_INDICATIONS_CSV", absent):
+            seed.build(db_path=target, verbose=False)
+
+        status, payload = api.handle(
+            "POST", "/recommend", {}, {"text": "my sugar is high"}, db_path=target
+        )
+        self.assertEqual(status, 503)
+        self.assertEqual(payload["error"]["code"], "knowledge_unavailable")
 
 
 class HttpServerTest(unittest.TestCase):
