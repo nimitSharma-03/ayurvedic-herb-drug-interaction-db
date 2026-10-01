@@ -1,1 +1,75 @@
-medicine_name,alias,alias_type
+medicine_name,alias,alias_type,source_type,source_note
+Warfarin,Warfarin sodium,generic_name,fetched_source,openFDA SPL label generic_name field (data/raw/openfda_labels.json)
+Warfarin,Coumadin,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Warfarin,Jantoven,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Warfarin,Warf,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Warfarin,Uniwarfin,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Heparin,Heparin sodium,generic_name,fetched_source,openFDA SPL label generic_name field (data/raw/openfda_labels.json)
+Heparin,Unfractionated heparin,synonym,general_knowledge,established chemical or pharmacopoeial synonym
+Heparin,UFH,abbreviation,general_knowledge,standard clinical abbreviation for unfractionated heparin
+Aspirin,Acetylsalicylic acid,synonym,general_knowledge,established chemical or pharmacopoeial synonym
+Aspirin,ASA,abbreviation,general_knowledge,standard clinical abbreviation for acetylsalicylic acid
+Aspirin,Ecosprin,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Aspirin,Disprin,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Aspirin,Loprin,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Aspirin,Bayer Aspirin,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Clopidogrel,Clopidogrel bisulfate,generic_name,fetched_source,openFDA SPL label generic_name field (data/raw/openfda_labels.json)
+Clopidogrel,Plavix,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Clopidogrel,Deplatt,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Clopidogrel,Clopilet,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Clopidogrel,Clavix,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Metformin,Metformin hydrochloride,generic_name,fetched_source,openFDA SPL label generic_name field (data/raw/openfda_labels.json)
+Metformin,Metformin HCl,synonym,general_knowledge,established chemical or pharmacopoeial synonym
+Metformin,Dimethylbiguanide,synonym,general_knowledge,established chemical or pharmacopoeial synonym
+Metformin,Glucophage,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Metformin,Glycomet,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Metformin,Obimet,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Metformin,Riomet,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Glimepiride,Amaryl,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Glimepiride,Glimy,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Insulin,Insulin human,generic_name,fetched_source,openFDA SPL label generic_name field (data/raw/openfda_labels.json)
+Insulin,Human insulin,synonym,general_knowledge,established chemical or pharmacopoeial synonym
+Insulin,Regular insulin,synonym,general_knowledge,established chemical or pharmacopoeial synonym
+Insulin,Soluble insulin,synonym,general_knowledge,established chemical or pharmacopoeial synonym
+Insulin,Humulin,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Insulin,Huminsulin,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Insulin,Novolin,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Insulin,Actrapid,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Insulin,Insulatard,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Insulin,Mixtard,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Insulin,Insugen,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Insulin,Lantus,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response; insulin glargine, an analogue of the generic Insulin row"
+Insulin,Basalog,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response; insulin glargine, an analogue of the generic Insulin row"
+Insulin,Glaritus,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response; insulin glargine, an analogue of the generic Insulin row"
+Insulin,Humalog,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response; insulin lispro, an analogue of the generic Insulin row"
+Insulin,NovoRapid,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response; insulin aspart, an analogue of the generic Insulin row"
+Pioglitazone,Pioglitazone hydrochloride,generic_name,fetched_source,openFDA SPL label generic_name field (data/raw/openfda_labels.json)
+Pioglitazone,Actos,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Pioglitazone,Pioz,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Digoxin,Lanoxin,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Atenolol,Tenormin,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Atenolol,Aten,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Atenolol,Tenolol,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Atenolol,Betacard,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Metoprolol,Metoprolol tartrate,generic_name,fetched_source,openFDA SPL label generic_name field (data/raw/openfda_labels.json)
+Metoprolol,Metoprolol succinate,synonym,general_knowledge,established chemical or pharmacopoeial synonym
+Metoprolol,Lopressor,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Metoprolol,Toprol XL,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Metoprolol,Betaloc,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Metoprolol,Seloken,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Metoprolol,Metolar,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Amlodipine,Amlodipine besylate,generic_name,fetched_source,openFDA SPL label generic_name field (data/raw/openfda_labels.json)
+Amlodipine,Norvasc,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Amlodipine,Amlopres,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Amlodipine,Stamlo,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Amlodipine,Amlovas,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Losartan,Losartan potassium,generic_name,fetched_source,openFDA SPL label generic_name field (data/raw/openfda_labels.json)
+Losartan,Cozaar,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Losartan,Losar,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Losartan,Repace,brand_name,general_knowledge,"widely marketed trade name; recorded for input matching only, never emitted in a response"
+Ashwagandha,Ashvagandha,synonym,general_knowledge,common transliteration variant
+Ashwagandha,Aswagandha,synonym,general_knowledge,common transliteration variant
+Giloy,Giloe,synonym,general_knowledge,common transliteration variant
+Garlic,Lasun,synonym,general_knowledge,common transliteration variant of Lashuna
+Ginger,Saunth,synonym,general_knowledge,Hindi name for dried ginger
+Sarpagandha,Sarpgandha,synonym,general_knowledge,common transliteration variant
