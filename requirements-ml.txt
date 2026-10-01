@@ -1,0 +1,39 @@
+# Training and evaluation only. Install this when you want to regenerate the
+# dataset, retrain the condition classifier, or rebuild the evaluation report:
+#
+#     python -m pip install -r requirements-ml.txt
+#     python ml/make_dataset.py
+#     python ml/train.py
+#     python ml/evaluate.py
+#
+# The API never imports any of this. hdi/classify.py reads the exported JSON
+# artifact and does the arithmetic with the standard library, so serving stays
+# dependency-free (docs/BACKEND_API.md) and requirements.txt is unchanged.
+# tests/test_classifier.py skips its scikit-learn parity tests cleanly when
+# these are absent.
+#
+# Pinned from `python -m pip freeze` in the virtual environment the shipped
+# artifact was trained in. Retraining with different versions can move the
+# coefficients, so the parity tolerance in tests/test_classifier.py is the check
+# that hdi/classify.py still agrees with whatever you trained.
+
+scikit-learn==1.9.1
+scipy==1.17.1
+numpy==1.26.4
+joblib==1.6.0
+
+# Only for the confusion-matrix PNG in ml/reports/. ml/evaluate.py writes the
+# matrix as CSV and the report regardless, and says in the report when the
+# figure could not be produced, so this one is genuinely optional.
+matplotlib==3.11.2
+
+# Transitive, pinned so a fresh install reproduces the environment above.
+threadpoolctl==3.7.0
+contourpy==1.3.3
+cycler==0.12.1
+fonttools==4.66.1
+kiwisolver==1.5.1
+packaging==26.3
+pillow==12.3.0
+pyparsing==3.3.3
+python-dateutil==2.9.0.post0

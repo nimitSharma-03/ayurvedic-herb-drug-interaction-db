@@ -1,0 +1,8 @@
+true_class,atrial_fibrillation,heart_failure,hypertension,secondary_cardiovascular_prevention,type_2_diabetes,venous_thromboembolism,out_of_scope,multiple_conditions
+atrial_fibrillation,33,1,0,1,0,0,2,11
+heart_failure,1,41,0,0,0,0,0,6
+hypertension,0,0,40,0,0,0,2,6
+secondary_cardiovascular_prevention,0,0,0,42,0,0,0,6
+type_2_diabetes,0,0,0,0,39,0,0,9
+venous_thromboembolism,0,0,0,0,0,40,0,8
+out_of_scope,1,3,0,4,0,3,35,2
