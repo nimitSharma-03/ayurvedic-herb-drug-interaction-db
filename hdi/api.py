@@ -20,7 +20,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlsplit
 
-from hdi import catalog, db, interactions, topics
+from hdi import catalog, db, interactions, knowledge, recommend, topics
 
 DEFAULT_HOST = "127.0.0.1"
 DEFAULT_PORT = 8000
@@ -33,6 +33,12 @@ _VALID_STATUSES = {
 }
 _VALID_PAIR_KINDS = {"ayurvedic_allopathic", "ayurvedic_ayurvedic", "allopathic_allopathic"}
 _TRUTHY = {"1", "true", "yes", "on"}
+
+_RECOMMEND_FIELDS = {"text", "current_medicines", "cautions", "condition_ids"}
+
+# A missing classifier artifact or an unseeded knowledge layer is a deployment
+# problem, not a bad request, so these two become 503 rather than 400.
+_RECOMMEND_UNAVAILABLE_CODES = {"classifier_unavailable", "knowledge_unavailable"}
 
 
 class _HttpError(Exception):
@@ -160,6 +166,8 @@ def _route(method, path, params, body, conn):
                 "GET /interactions/documented",
                 "GET /health-topics",
                 "GET /health-topics/lookup?topic=",
+                "GET /conditions",
+                "POST /recommend",
             ],
         }
 
@@ -179,7 +187,57 @@ def _route(method, path, params, body, conn):
     if head == "health-topics":
         return _route_topics(method, segments, params, conn)
 
+    if head == "conditions" and len(segments) == 1:
+        _allow(method, "GET")
+        return 200, {
+            "count": len(knowledge.list_conditions(conn)),
+            "results": knowledge.list_conditions(conn),
+            "note": (
+                "The conditions this database covers, derived from what its 13 conventional "
+                "drugs and 3 drug classes are recorded for. Anything else is out of scope."
+            ),
+        }
+
+    if head == "recommend" and len(segments) == 1:
+        return _route_recommend(method, body, conn)
+
     raise _HttpError(404, "not_found", f"No route for {path!r}.")
+
+
+def _route_recommend(method, body, conn):
+    """POST /recommend. Validates the request shape, then calls the service.
+
+    No medical logic here: the route checks that the body is an object with the
+    field types it claims, and hands off to hdi.recommend. Field-level validation
+    (length limits, unknown condition ids) belongs to the service, which raises
+    RequestError, so the same rules apply however the service is called.
+    """
+    _allow(method, "POST")
+    if body is None:
+        body = {}
+    if not isinstance(body, dict):
+        raise _HttpError(400, "invalid_body", "Request body must be a JSON object.")
+
+    unknown = sorted(set(body) - _RECOMMEND_FIELDS)
+    if unknown:
+        raise _HttpError(
+            400, "invalid_body",
+            f"Unknown field(s) in request body: {unknown}. "
+            f"Allowed: {sorted(_RECOMMEND_FIELDS)}.",
+        )
+
+    try:
+        payload = recommend.recommend(
+            conn,
+            text=body.get("text"),
+            current_medicines=body.get("current_medicines"),
+            cautions=body.get("cautions"),
+            condition_ids=body.get("condition_ids"),
+        )
+    except recommend.RequestError as exc:
+        status = 503 if exc.code in _RECOMMEND_UNAVAILABLE_CODES else 400
+        raise _HttpError(status, exc.code, exc.message, **exc.extra)
+    return 200, payload
 
 
 def _allow(method, *allowed):

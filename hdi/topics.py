@@ -5,11 +5,16 @@ associated with a topic, tagged by whether that association is conventional
 use, traditional Ayurvedic use, or use with modern evidence behind it. It does
 not rank, recommend, diagnose, or suggest a dose.
 
-The backing table is populated from data/reference/health_topics.csv, which
-ships with headers only: this project holds no sourced indication data, and
-generating any would be fabricated medical information. A topic query
-therefore currently returns no_topic_data rather than an empty "nothing helps
-this" answer, which would be a claim of its own.
+The backing table is derived by hdi/seed.py from data/reference/herb_uses.csv
+and data/reference/drug_indications.csv, one topic per supported condition, plus
+any extra rows in data/reference/health_topics.csv. With no rows loaded at all a
+lookup returns no_topic_data rather than an empty "nothing helps this" answer,
+which would be a claim of its own.
+
+A topic is looked up by its own name or by any lay wording in
+data/reference/conditions.csv, so "sugar" and "sugar ki bimari" both reach the
+type 2 diabetes rows. Resolution goes through the stored synonym table only;
+nothing is matched on similarity.
 """
 
 from hdi.normalize import normalize_name
@@ -43,6 +48,28 @@ def list_topics(conn):
     ]
 
 
+def resolve_topic_key(conn, normalized):
+    """Map a lay wording onto the topic key actually stored, if it is one.
+
+    An exact match on a stored topic wins outright: a topic someone added to
+    health_topics.csv by hand is never redirected to a condition that happens to
+    list the same wording as a synonym.
+    """
+    stored = conn.execute(
+        "SELECT 1 FROM health_topic_map WHERE normalized_topic = ? LIMIT 1", (normalized,)
+    ).fetchone()
+    if stored:
+        return normalized
+
+    row = conn.execute(
+        "SELECT c.normalized_name FROM condition_synonyms s "
+        "JOIN conditions c ON c.condition_id = s.condition_id "
+        "WHERE s.normalized_synonym = ? ORDER BY c.condition_id LIMIT 1",
+        (normalized,),
+    ).fetchone()
+    return row["normalized_name"] if row else normalized
+
+
 def lookup_topic(conn, topic):
     """Medicines a source associates with a topic, grouped by kind of use.
 
@@ -66,6 +93,8 @@ def lookup_topic(conn, topic):
             ),
             "disclaimer": DISCLAIMER,
         }, None
+
+    normalized = resolve_topic_key(conn, normalized)
 
     rows = conn.execute(
         "SELECT t.use_type, t.description, t.evidence_level, t.source, t.source_url, "

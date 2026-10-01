@@ -63,6 +63,15 @@ CATEGORY_FILTERS = {
 MAX_SEARCH_LIMIT = 100
 DEFAULT_SEARCH_LIMIT = 20
 
+# Alias types that resolve an input but are never echoed back.
+#
+# Brand names are recorded so a user can type what is printed on their strip
+# (data/reference/medicine_aliases.csv), but printing one would name a
+# commercial product in a health answer, which docs/RECOMMEND_API.md forbids
+# outright. Resolution and search still use them -- only the public projection
+# drops them, so a brand query returns the medicine without the brand string.
+PRIVATE_ALIAS_TYPES = ("brand_name",)
+
 
 def _like_pattern(value, mode):
     """Build a LIKE pattern with user wildcards escaped.
@@ -73,14 +82,24 @@ def _like_pattern(value, mode):
     return f"{escaped}%" if mode == "prefix" else f"%{escaped}%"
 
 
-def aliases_for(conn, medicine_id):
+def aliases_for(conn, medicine_id, include_private=False):
+    """Public alias list for a medicine.
+
+    Brand names are excluded unless explicitly asked for, so no response body
+    carries one (see PRIVATE_ALIAS_TYPES). include_private exists for the
+    resolver's own diagnostics and for tests, not for a route.
+    """
+    sql = (
+        "SELECT alias, alias_type FROM medicine_aliases WHERE medicine_id = ?"
+    )
+    params = [medicine_id]
+    if not include_private:
+        sql += f" AND alias_type NOT IN ({', '.join('?' * len(PRIVATE_ALIAS_TYPES))})"
+        params += list(PRIVATE_ALIAS_TYPES)
+    sql += " ORDER BY alias_type, alias"
     return [
         {"alias": r["alias"], "alias_type": r["alias_type"]}
-        for r in conn.execute(
-            "SELECT alias, alias_type FROM medicine_aliases WHERE medicine_id = ? "
-            "ORDER BY alias_type, alias",
-            (medicine_id,),
-        )
+        for r in conn.execute(sql, params)
     ]
 
 
@@ -125,6 +144,44 @@ def resolve_medicine(conn, query):
     if len(matches) > 1:
         return None, ("ambiguous", matches)
     return None, "medicine_not_found"
+
+
+def resolve_drug_class(conn, query):
+    """Resolve a lay or Hinglish class name to a drug class, or None.
+
+    "blood thinner" and "sugar ki dawa" name a whole class rather than one
+    medicine, so they cannot resolve through medicine_aliases. Tried only after
+    resolve_medicine has failed, so a real medicine name is never downgraded to
+    its class.
+    """
+    normalized = normalize_name(query)
+    if not normalized:
+        return None
+    matches = [
+        r["drug_class"]
+        for r in conn.execute(
+            "SELECT DISTINCT drug_class FROM class_aliases WHERE normalized_alias = ? "
+            "ORDER BY drug_class",
+            (normalized,),
+        )
+    ]
+    if len(matches) == 1:
+        return matches[0]
+    row = conn.execute(
+        "SELECT DISTINCT drug_class FROM medicines WHERE drug_class IS NOT NULL "
+        "AND LOWER(drug_class) = ?",
+        (normalized,),
+    ).fetchone()
+    return row["drug_class"] if row else None
+
+
+def medicines_in_class(conn, drug_class):
+    return [
+        r["id"]
+        for r in conn.execute(
+            "SELECT id FROM medicines WHERE drug_class = ? ORDER BY name", (drug_class,)
+        )
+    ]
 
 
 def search_medicines(conn, query, category="all", limit=DEFAULT_SEARCH_LIMIT):
