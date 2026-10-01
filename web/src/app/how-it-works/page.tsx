@@ -322,7 +322,7 @@ function SourceBar({ knowledge }: { knowledge: StatsResponse["knowledge"] }) {
           </li>
         ))}
       </ul>
-      <p className="mt-4 text-sm text+[var(--color-ink-2)] text-[var(--color-ink-2)]">
+      <p className="mt-4 text-sm text-[var(--color-ink-2)]">
         {knowledge.combination_rules} tag-pair rules over {knowledge.tags} pharmacological
         tags produce the mechanism-based cautions. A rule is reasoning about what two
         substances do, never a published finding, and it is labelled that way every time

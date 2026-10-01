@@ -458,7 +458,7 @@ repository is a real user describing a real problem.
 python -m pip install -r requirements-ml.txt
 python ml/make_dataset.py      # -> ml/data/train.jsonl, ml/data/test.jsonl
 python ml/train.py             # -> ml/artifacts/condition_classifier.{json,joblib}
-python ml/evaluate.py          # -> ml/reports/eval.md, confusion_matrix.{csv,png}
+python ml/evaluate.py          # -> ml/reports/eval.md, metrics.json, confusion matrix
 ```
 
 All three use fixed seeds, so the chain is reproducible from a clean checkout;

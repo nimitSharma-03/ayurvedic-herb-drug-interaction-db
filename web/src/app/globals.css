@@ -95,6 +95,26 @@
     line-height: 1.2;
   }
 
+  /*
+    Several values this database returns are single unbroken tokens: a set_id
+    from a drug label, an evidence basis like
+    abstracts_screened_no_interaction_language_found, a PMID list. `anywhere`
+    rather than `break-word` because only `anywhere` is counted when a grid or
+    flex track works out its minimum width, and without that a 47-character
+    identifier widens its column past a phone screen.
+  */
+  p,
+  dt,
+  dd,
+  li,
+  summary,
+  h1,
+  h2,
+  h3,
+  h4 {
+    overflow-wrap: anywhere;
+  }
+
   :focus-visible {
     outline: 2px solid var(--color-herb);
     outline-offset: 2px;

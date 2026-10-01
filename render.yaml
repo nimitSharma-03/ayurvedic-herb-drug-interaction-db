@@ -1,0 +1,61 @@
+# Render blueprint: the API and the web front end.
+#
+# Two services. The API builds its own database at deploy time from the files in
+# this repository, so there is nothing to upload and no database to provision --
+# the whole thing is derived from the curated CSV and JSON already committed
+# here (docs/BACKEND_API.md, "Seeding").
+#
+# Order matters once: the web service needs the API's URL, and the API needs the
+# web service's URL in ALLOWED_ORIGINS before the browser will be allowed to
+# call it. docs/DEPLOY.md walks through that, click by click.
+#
+# Both services are declared on the free plan, which sleeps after inactivity.
+# The first request after a sleep takes a while and the web page will report the
+# database server as not responding until the API wakes.
+
+services:
+  - type: web
+    name: hdi-api
+    runtime: python
+    plan: free
+    region: singapore
+    branch: main
+    buildCommand: pip install -r requirements.txt && python -m hdi.seed
+    startCommand: python -m hdi.api
+    healthCheckPath: /health
+    autoDeployTrigger: commit
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.9"
+      # The API must listen on every interface for the platform to reach it.
+      - key: HOST
+        value: 0.0.0.0
+      # PORT is assigned by the platform; hdi/api.py reads it from the
+      # environment. It is declared here so the dashboard shows where it comes
+      # from, and left without a value so the platform's own value wins.
+      - key: PORT
+        sync: false
+      # The browser origins allowed to call this API: the web service's URL.
+      # Set it after the web service exists; see docs/DEPLOY.md. An origin that
+      # is not on this list gets no CORS header, so the browser refuses the
+      # response.
+      - key: ALLOWED_ORIGINS
+        sync: false
+
+  - type: web
+    name: hdi-web
+    runtime: node
+    plan: free
+    region: singapore
+    branch: main
+    rootDir: web
+    buildCommand: npm ci && npm run build
+    startCommand: npm run start
+    autoDeployTrigger: commit
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      # Read in the browser as well as on the server, so it has to be the API's
+      # public URL, not an internal hostname. Set it to the API service's URL.
+      - key: NEXT_PUBLIC_API_URL
+        sync: false

@@ -6,6 +6,7 @@ answers four kinds of question:
 - what is this medicine? (Ayurvedic/herbal and allopathic/conventional)
 - do these two medicines have a documented interaction?
 - what interacts with this medicine?
+- how much evidence is behind all of this? (`GET /stats`)
 - given a health problem described in plain text, what options exist and what
   should not be combined? (`POST /recommend` — see
   [RECOMMEND_API.md](RECOMMEND_API.md))
@@ -376,6 +377,13 @@ name, drug class, uses (conventional and traditional, separately), evidence
 level, safety fields, sources, `data_completeness`, and an interaction count by
 status. Internal columns are not exposed.
 
+It also returns `recorded_uses`: the rows from `medicine_uses` for this
+medicine, each with its condition, evidence level, pros, cons, cautions,
+`source_type`, `source_note` and `reviewed`. The detail columns above are NULL
+for every medicine by design, so these are the only sourced uses this project
+holds, and a client showing a medicine needs both. An empty list means no file
+here sources a use for it.
+
 404 with `code: medicine_not_found` for an unknown id.
 
 ### `GET /medicines/{id}/interactions`
@@ -440,6 +448,45 @@ instructions). The last is deliberately not an empty result, which would imply
 
 The supported conditions for `/recommend`, with each one's related drug classes.
 Derived from the frozen reference tables; anything else is out of scope.
+
+### `GET /stats`
+
+Counted facts about the pipeline, the scope, the knowledge rows and the
+classifier, for a client that wants to display real numbers.
+
+Every figure is a `COUNT(*)` or the length of a list in a file on disk, computed
+on each request by `hdi/stats.py`. Nothing is written down twice, so a count
+here cannot drift from the data it describes.
+
+```json
+{
+  "literature": {
+    "pairs_searched": 520, "abstracts_harvested": 1240,
+    "distinct_pmids_harvested": 988, "candidate_sentences": 84,
+    "evidence_rows": 84,
+    "verdicts": {"confirmed": 28, "rejected": 52, "unclear": 4},
+    "documented_pairs": 10,
+    "result_states": {"interaction_found": 10, "...": 0},
+    "no_finding_basis": {"abstracts_screened_nothing_found": 145, "...": 0},
+    "distinct_pmids_cited": 29
+  },
+  "scope": {"medicines": 53, "herbs": 40, "drugs": 13, "drug_classes": 3, "...": 0},
+  "knowledge": {"rows": 48, "by_source_type": [], "reviewed_rows": 0, "...": 0},
+  "classifier": {"macro_f1_test": 0.876, "per_class": [], "...": 0},
+  "classifier_note": null,
+  "database": {"built_at": "...", "...": "..."},
+  "note": "Every count here is read from this repository's own files ..."
+}
+```
+
+`classifier` is read from `ml/reports/metrics.json`, which `ml/evaluate.py`
+writes in the same pass as `eval.md` so the two cannot disagree. In a checkout
+where the evaluation has not been run it is `null` and `classifier_note` says
+what to run — which is a different answer from a zero, and deliberately so.
+
+The two raw files it reads are a few megabytes between them, so they are parsed
+once and cached against their size and modification time. A file that is absent
+is reported as `null` rather than as a count of nothing.
 
 ### `POST /recommend`
 
@@ -540,9 +587,34 @@ Re-seed after changing any reference or curated file.
 
 ## Environment variables
 
-The backend requires none. `scripts/collect_abstracts.py` (the harvest stage,
-not on the API path) reads `NCBI_EMAIL` and `NCBI_API_KEY` from `.env`; see
-`.env.example`.
+The backend requires none; all three below have working defaults.
+
+| Variable | Default | What it does |
+|---|---|---|
+| `HOST` | `127.0.0.1` | Listen address. A host that expects `0.0.0.0` sets this. |
+| `PORT` | `8000` | Listen port. A host that assigns a port sets this; a value that is not a number falls back and says so on stderr. |
+| `ALLOWED_ORIGINS` | `http://localhost:3000` | Comma-separated browser origins allowed to call this API. |
+
+`--host` and `--port` still win over the environment.
+
+`scripts/collect_abstracts.py` (the harvest stage, not on the API path) reads
+`NCBI_EMAIL` and `NCBI_API_KEY` from `.env`; see `.env.example`.
+
+### CORS
+
+An origin on `ALLOWED_ORIGINS` gets `Access-Control-Allow-Origin` back; an
+origin that is not on it gets no such header, so the browser refuses the
+response itself. The list is never reflected blindly and `*` is not the default,
+though `*` on the list does allow any origin — this API serves nothing per-user
+and carries no credential, so that is a configuration choice rather than a hole.
+
+`Vary: Origin` is always sent, so a cache in front of this cannot hand one
+origin's allowed response to another. `OPTIONS` is answered with 204 for any
+path, without touching the database: a preflight asks whether the browser may
+send the real request, and the real request is the one that gets routed and
+validated. Error responses carry the CORS headers too — otherwise a browser
+would hide a 400 and the client would see a network failure instead of the
+message the API actually sent.
 
 ## Module map
 
@@ -560,7 +632,8 @@ not on the API path) reads `NCBI_EMAIL` and `NCBI_API_KEY` from `.env`; see
 | `hdi/safety.py` | red-flag screening and caution flags |
 | `hdi/classify.py` | condition classifier inference, standard library only |
 | `hdi/recommend.py` | the recommendation service |
-| `hdi/api.py` | routing, validation, JSON responses, HTTP server |
+| `hdi/stats.py` | counted facts about the pipeline, the scope and the classifier |
+| `hdi/api.py` | routing, validation, CORS, JSON responses, HTTP server |
 | `ml/make_dataset.py` | builds the synthetic classifier dataset |
 | `ml/train.py` | trains and exports the classifier |
 | `ml/evaluate.py` | per-class metrics, macro-F1, confusion matrix, report |
@@ -570,3 +643,4 @@ not on the API path) reads `NCBI_EMAIL` and `NCBI_API_KEY` from `.env`; see
 | `tests/test_reference_data.py` | reference validation, seeded knowledge, topics |
 | `tests/test_recommend.py` | `/recommend` scenarios, output rules, service isolation |
 | `tests/test_classifier.py` | dataset hygiene, artifact shape, scikit-learn parity |
+| `tests/test_stats_and_cors.py` | `/stats`, CORS, `HOST`/`PORT`, `recorded_uses` |

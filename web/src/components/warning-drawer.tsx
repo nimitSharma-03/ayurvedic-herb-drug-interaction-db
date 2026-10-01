@@ -156,10 +156,22 @@ export function WarningDrawer({
             <h3 className="text-sm font-semibold text-[var(--color-ink-2)]">
               Pairs in this row
             </h3>
+            {/*
+              A pair can be returned more than once: a medicine that is both an
+              option here and something the reader already takes is checked on
+              both of those grounds. Listing it twice reads as a mistake, so it
+              is listed once and the number of checks is stated.
+            */}
             <ul className="mt-2 flex flex-col gap-1 text-sm">
-              {group.warnings.map((warning, index) => (
-                <li key={`${warning.medicine_a}-${warning.medicine_b}-${index}`}>
-                  {warning.medicine_a} and {warning.medicine_b}
+              {pairsFor(group).map((pair) => (
+                <li key={pair.label}>
+                  {pair.label}
+                  {pair.times > 1 ? (
+                    <span className="text-[var(--color-ink-2)]">
+                      {" "}
+                      (checked {pair.times} times)
+                    </span>
+                  ) : null}
                 </li>
               ))}
             </ul>
@@ -168,6 +180,21 @@ export function WarningDrawer({
       ) : null}
     </Sheet>
   );
+}
+
+/**
+ * The distinct pairs behind a row, with how many times each was checked.
+ *
+ * The counts still add up to every warning in the group, so nothing is dropped
+ * -- only said once instead of twice.
+ */
+function pairsFor(group: WarningGroup): { label: string; times: number }[] {
+  const counts = new Map<string, number>();
+  for (const warning of group.warnings) {
+    const label = `${warning.medicine_a} and ${warning.medicine_b}`;
+    counts.set(label, (counts.get(label) ?? 0) + 1);
+  }
+  return [...counts].map(([label, times]) => ({ label, times }));
 }
 
 function Detail({ label, value }: { label: string; value: string | null }) {

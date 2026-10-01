@@ -30,7 +30,7 @@ The reference set is frozen at 40 Ayurvedic herbs, 3 conventional drug classes, 
 - `docs/` — curation guide and backend API reference
 - `tests/` — extraction, backend, reference-data, recommendation and classifier suites
 - `notes/` — working notes and curation logs
-- `web/` — front-end for browsing the database (added later)
+- `web/` — the front end: browsing, lookup and the recommendation interface
 
 ## Setup
 
@@ -79,6 +79,7 @@ Provenance for everything else, including the rows deliberately left out, is in
 | Validate reference files | `python -m hdi.validate_reference` | exits non-zero on a problem |
 | Build query database | `python -m hdi.seed` | `data/processed/hdi.db` |
 | Serve the API | `python -m hdi.api` | `http://127.0.0.1:8000` |
+| Serve the front end | `cd web && npm run dev` | `http://localhost:3000` |
 
 Condition classifier (training only; the API does not need these):
 
@@ -108,6 +109,7 @@ GET  /medicines/{id}/interactions?category=allopathic
 GET  /interactions/check?medicine_a=Garlic&medicine_b=Warfarin
 GET  /health-topics/lookup?topic=sugar
 GET  /conditions
+GET  /stats
 POST /recommend
 ```
 
@@ -150,6 +152,47 @@ needs no dependencies, no API key and no network access.
 
 Full reference, including the real classifier metrics and what still needs expert
 review: [docs/RECOMMEND_API.md](docs/RECOMMEND_API.md).
+
+## Front end
+
+A browsing and lookup interface over the API, in `web/`. It holds no medical
+content of its own: every medicine name, use, caution, interaction, count and
+score it shows was read out of an API response, and its tests fail the build if
+any of them is written into a source file.
+
+Two terminals, because they are two services.
+
+```
+python -m hdi.seed          # once, or after changing a reference file
+python -m hdi.api           # terminal 1: http://127.0.0.1:8000
+```
+
+```
+cd web
+npm install                 # once
+npm run dev                 # terminal 2: http://localhost:3000
+```
+
+For a production build, `npm run build` then `npm run start`. The API reads
+`HOST`, `PORT` and `ALLOWED_ORIGINS` from the environment; the front end reads
+`NEXT_PUBLIC_API_URL`, which defaults to `http://127.0.0.1:8000`.
+
+```
+cd web
+npm run lint          # ESLint
+npm run typecheck     # tsc --noEmit
+npm test              # unit tests
+npm run build         # production build
+npm run e2e           # end-to-end, against a running backend
+```
+
+The end-to-end suite drives a browser against the real API and the real
+database; nothing is stubbed. Install its browser once with
+`npx playwright install chromium`.
+
+Structure, design tokens, environment variables, decisions and limitations:
+[docs/FRONTEND.md](docs/FRONTEND.md). Deploying both services:
+[docs/DEPLOY.md](docs/DEPLOY.md).
 
 ## Tests
 
