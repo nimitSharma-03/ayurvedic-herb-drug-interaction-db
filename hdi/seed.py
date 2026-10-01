@@ -11,12 +11,18 @@ Sources, in order of authority:
 
   data/reference/herbs.csv            40 Ayurvedic herbs (frozen scope)
   data/reference/drug_classes.csv     13 conventional drugs in 3 classes (frozen scope)
-  data/reference/medicine_aliases.csv optional extra alias rows
+  data/reference/medicine_aliases.csv extra alias rows, including brand names
+  data/reference/class_aliases.csv     lay and Hinglish names for a drug class
   data/processed/verified_interactions.json  curator-confirmed interactions
   data/processed/curation_sheet.csv    full curator verdict set
   data/raw/raw_abstracts.json         harvested corpus (screening denominator)
   data/raw/raw_abstracts.progress.json which pairs were actually searched
-  data/reference/health_topics.csv    optional topic associations
+  data/reference/conditions.csv        supported conditions and lay synonyms
+  data/reference/tag_vocabulary.csv    the closed tag vocabulary
+  data/reference/herb_uses.csv         herb -> condition, with pros and cons
+  data/reference/drug_indications.csv  drug -> condition, with pros and cons
+  data/reference/combination_rules.csv tag-pair mechanism cautions
+  data/reference/health_topics.csv    optional extra topic associations
 
 Fields with no value in any of those files are stored NULL. This script does
 not fill gaps: no interaction, adverse effect, contraindication, indication,
@@ -37,7 +43,13 @@ ROOT = Path(__file__).resolve().parent.parent
 HERBS_CSV = ROOT / "data" / "reference" / "herbs.csv"
 DRUG_CLASSES_CSV = ROOT / "data" / "reference" / "drug_classes.csv"
 ALIASES_CSV = ROOT / "data" / "reference" / "medicine_aliases.csv"
+CLASS_ALIASES_CSV = ROOT / "data" / "reference" / "class_aliases.csv"
 HEALTH_TOPICS_CSV = ROOT / "data" / "reference" / "health_topics.csv"
+CONDITIONS_CSV = ROOT / "data" / "reference" / "conditions.csv"
+TAG_VOCABULARY_CSV = ROOT / "data" / "reference" / "tag_vocabulary.csv"
+HERB_USES_CSV = ROOT / "data" / "reference" / "herb_uses.csv"
+DRUG_INDICATIONS_CSV = ROOT / "data" / "reference" / "drug_indications.csv"
+COMBINATION_RULES_CSV = ROOT / "data" / "reference" / "combination_rules.csv"
 VERIFIED_JSON = ROOT / "data" / "processed" / "verified_interactions.json"
 CURATION_SHEET_CSV = ROOT / "data" / "processed" / "curation_sheet.csv"
 RAW_ABSTRACTS_JSON = ROOT / "data" / "raw" / "raw_abstracts.json"
@@ -507,6 +519,314 @@ def insert_interactions(conn, interactions, evidence):
     )
 
 
+# Maps the three-level evidence vocabulary used by the knowledge CSVs onto the
+# project's existing evidence_level vocabulary (hdi.db.EVIDENCE_LEVELS), which
+# health_topic_map shares with the interaction table.
+#
+# 'clinical' lands on 'limited', not 'moderate': the clinical rows here rest on
+# single small trials or reviews of small trials, which is what 'limited' means
+# elsewhere in this project. Animal work is 'insufficient' as grounds for a
+# human use, however clean the experiment.
+USE_EVIDENCE_TO_PROJECT_LEVEL = {
+    "traditional": "traditional",
+    "preclinical": "insufficient",
+    "clinical": "limited",
+}
+
+# A herb use with no human or animal study behind it is traditional_use; one
+# with either is evidence_supported_use. A drug's labelled indication is
+# conventional_use. Keeping the three apart is why the column exists.
+HERB_EVIDENCE_TO_USE_TYPE = {
+    "traditional": "traditional_use",
+    "preclinical": "evidence_supported_use",
+    "clinical": "evidence_supported_use",
+}
+
+SOURCE_TYPES = ("fetched_source", "repo_abstract", "general_knowledge")
+
+
+def _split_tags(value):
+    return [t.strip() for t in (value or "").split(";") if t.strip()]
+
+
+def load_class_aliases(conn, known_classes):
+    """Lay and Hinglish names for a whole drug class."""
+    if not CLASS_ALIASES_CSV.exists():
+        return 0, []
+    added, problems = 0, []
+    with open(CLASS_ALIASES_CSV, newline="", encoding="utf-8") as f:
+        for lineno, row in enumerate(csv.DictReader(f), start=2):
+            drug_class = (row.get("drug_class") or "").strip()
+            alias = (row.get("alias") or "").strip()
+            if not drug_class and not alias:
+                continue
+            if drug_class not in known_classes:
+                problems.append(
+                    f"{CLASS_ALIASES_CSV.name} line {lineno}: unknown drug class {drug_class!r}"
+                )
+                continue
+            normalized = normalize_name(alias)
+            if not normalized:
+                problems.append(f"{CLASS_ALIASES_CSV.name} line {lineno}: empty alias")
+                continue
+            source_type = (row.get("source_type") or "general_knowledge").strip()
+            if source_type not in SOURCE_TYPES:
+                problems.append(
+                    f"{CLASS_ALIASES_CSV.name} line {lineno}: bad source_type {source_type!r}"
+                )
+                continue
+            conn.execute(
+                "INSERT OR IGNORE INTO class_aliases "
+                "(drug_class, alias, normalized_alias, source_type, source_note) "
+                "VALUES (?, ?, ?, ?, ?)",
+                (drug_class, alias, normalized, source_type,
+                 (row.get("source_note") or "").strip() or None),
+            )
+            added += 1
+    return added, problems
+
+
+def load_conditions(conn, known_classes):
+    """Supported conditions and their lay synonyms."""
+    if not CONDITIONS_CSV.exists():
+        return 0, 0, []
+    conditions, synonyms, problems = 0, 0, []
+    with open(CONDITIONS_CSV, newline="", encoding="utf-8") as f:
+        for lineno, row in enumerate(csv.DictReader(f), start=2):
+            condition_id = (row.get("condition_id") or "").strip()
+            name = (row.get("name") or "").strip()
+            if not condition_id:
+                continue
+            classes = [c.strip() for c in (row.get("drug_class") or "").split(";") if c.strip()]
+            unknown = [c for c in classes if c not in known_classes]
+            if unknown:
+                problems.append(
+                    f"{CONDITIONS_CSV.name} line {lineno}: unknown drug class(es) {unknown}"
+                )
+                continue
+            if not classes:
+                problems.append(
+                    f"{CONDITIONS_CSV.name} line {lineno}: no drug class for {condition_id!r}"
+                )
+                continue
+            conn.execute(
+                "INSERT INTO conditions (condition_id, name, normalized_name, drug_classes) "
+                "VALUES (?, ?, ?, ?)",
+                (condition_id, name, normalize_name(name), db.dump_list(classes)),
+            )
+            conditions += 1
+
+            # The condition's own name resolves as well as its lay wordings, so
+            # a caller can look up either.
+            for synonym in [name] + [
+                s.strip() for s in (row.get("synonyms") or "").split(";") if s.strip()
+            ]:
+                normalized = normalize_name(synonym)
+                if not normalized:
+                    continue
+                cursor = conn.execute(
+                    "INSERT OR IGNORE INTO condition_synonyms "
+                    "(condition_id, synonym, normalized_synonym) VALUES (?, ?, ?)",
+                    (condition_id, synonym, normalized),
+                )
+                synonyms += cursor.rowcount if cursor.rowcount > 0 else 0
+    return conditions, synonyms, problems
+
+
+def load_tag_vocabulary(conn):
+    if not TAG_VOCABULARY_CSV.exists():
+        return 0, []
+    added, problems = 0, []
+    with open(TAG_VOCABULARY_CSV, newline="", encoding="utf-8") as f:
+        for lineno, row in enumerate(csv.DictReader(f), start=2):
+            tag = (row.get("tag") or "").strip()
+            if not tag:
+                continue
+            applies_to = (row.get("applies_to") or "").strip()
+            if applies_to not in ("herb", "drug", "both"):
+                problems.append(
+                    f"{TAG_VOCABULARY_CSV.name} line {lineno}: bad applies_to {applies_to!r}"
+                )
+                continue
+            conn.execute(
+                "INSERT OR IGNORE INTO tag_vocabulary (tag, applies_to, description) "
+                "VALUES (?, ?, ?)",
+                (tag, applies_to, (row.get("description") or "").strip()),
+            )
+            added += 1
+    return added, problems
+
+
+def load_uses(conn, by_normalized, path, name_column, use_kind, summary_column,
+              known_conditions, known_tags):
+    """Load herb_uses.csv or drug_indications.csv into medicine_uses.
+
+    Both files have the same shape apart from the name of the medicine column,
+    the name of the summary column, and whether side effects are listed, so one
+    loader handles both. Rows naming an unknown medicine, condition or tag are
+    reported and skipped rather than coerced: a silently dropped tag would mean
+    a combination rule never fires.
+    """
+    if not path.exists():
+        return 0, []
+    added, problems = 0, []
+    with open(path, newline="", encoding="utf-8") as f:
+        for lineno, row in enumerate(csv.DictReader(f), start=2):
+            medicine_name = (row.get(name_column) or "").strip()
+            condition_id = (row.get("condition_id") or "").strip()
+            if not medicine_name and not condition_id:
+                continue
+
+            target = by_normalized.get(normalize_name(medicine_name))
+            if target is None:
+                problems.append(
+                    f"{path.name} line {lineno}: unknown medicine {medicine_name!r}"
+                )
+                continue
+            if condition_id not in known_conditions:
+                problems.append(
+                    f"{path.name} line {lineno}: unknown condition {condition_id!r}"
+                )
+                continue
+
+            evidence_level = (row.get("evidence_level") or "").strip()
+            if use_kind == "conventional_use":
+                # A labelled indication is clinical by construction: it exists
+                # because a regulator accepted trial evidence for it.
+                evidence_level = "clinical"
+            if evidence_level not in USE_EVIDENCE_TO_PROJECT_LEVEL:
+                problems.append(
+                    f"{path.name} line {lineno}: bad evidence_level {evidence_level!r}"
+                )
+                continue
+
+            tags = _split_tags(row.get("tags"))
+            unknown = [t for t in tags if t not in known_tags]
+            if unknown:
+                problems.append(
+                    f"{path.name} line {lineno}: tag(s) outside tag_vocabulary.csv: {unknown}"
+                )
+                continue
+
+            source_type = (row.get("source_type") or "").strip()
+            if source_type not in SOURCE_TYPES:
+                problems.append(
+                    f"{path.name} line {lineno}: bad source_type {source_type!r}"
+                )
+                continue
+            if (row.get("reviewed") or "false").strip().lower() not in ("false", "0", ""):
+                problems.append(
+                    f"{path.name} line {lineno}: reviewed must be false; nothing here has "
+                    f"had clinical review"
+                )
+                continue
+
+            side_effects = _split_tags(row.get("common_side_effects"))
+            conn.execute(
+                "INSERT OR IGNORE INTO medicine_uses "
+                "(medicine_id, condition_id, use_kind, summary, evidence_level, pros, cons, "
+                " common_side_effects, cautions, tags, source_type, source_note, reviewed) "
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0)",
+                (
+                    target, condition_id, use_kind,
+                    (row.get(summary_column) or "").strip(),
+                    evidence_level,
+                    (row.get("pros") or "").strip(),
+                    (row.get("cons") or "").strip(),
+                    db.dump_list(side_effects),
+                    (row.get("cautions") or "").strip(),
+                    db.dump_list(tags),
+                    source_type,
+                    (row.get("source_note") or "").strip(),
+                ),
+            )
+            for tag in tags:
+                conn.execute(
+                    "INSERT OR IGNORE INTO medicine_tags (medicine_id, tag) VALUES (?, ?)",
+                    (target, tag),
+                )
+            added += 1
+    return added, problems
+
+
+def load_combination_rules(conn, known_tags):
+    if not COMBINATION_RULES_CSV.exists():
+        return 0, []
+    added, problems = 0, []
+    with open(COMBINATION_RULES_CSV, newline="", encoding="utf-8") as f:
+        for lineno, row in enumerate(csv.DictReader(f), start=2):
+            rule_id = (row.get("rule_id") or "").strip()
+            if not rule_id:
+                continue
+            tag_a = (row.get("tag_a") or "").strip()
+            tag_b = (row.get("tag_b") or "").strip()
+            unknown = [t for t in (tag_a, tag_b) if t not in known_tags]
+            if unknown:
+                problems.append(
+                    f"{COMBINATION_RULES_CSV.name} line {lineno}: tag(s) outside "
+                    f"tag_vocabulary.csv: {unknown}"
+                )
+                continue
+            applies_to = (row.get("applies_to") or "").strip()
+            if applies_to not in ("herb+drug", "herb+herb", "drug+drug"):
+                problems.append(
+                    f"{COMBINATION_RULES_CSV.name} line {lineno}: bad applies_to {applies_to!r}"
+                )
+                continue
+            level = (row.get("level") or "").strip()
+            if level not in ("high", "moderate", "low"):
+                problems.append(
+                    f"{COMBINATION_RULES_CSV.name} line {lineno}: bad level {level!r}"
+                )
+                continue
+            conn.execute(
+                "INSERT OR IGNORE INTO combination_rules "
+                "(rule_id, tag_a, tag_b, applies_to, reason_sentence, level) "
+                "VALUES (?, ?, ?, ?, ?, ?)",
+                (rule_id, tag_a, tag_b, applies_to,
+                 (row.get("reason_sentence") or "").strip(), level),
+            )
+            added += 1
+    return added, problems
+
+
+def derive_health_topics(conn):
+    """Project medicine_uses onto health_topic_map, one topic per condition.
+
+    The topic table predates this data and its endpoints are already live, so
+    filling it is a derivation rather than new surface. Nothing is invented
+    here: every row restates a medicine_uses row, carries that row's source, and
+    lands in the use_type bucket its evidence level earns.
+    """
+    rows = conn.execute(
+        "SELECT u.medicine_id, u.use_kind, u.summary, u.evidence_level, u.source_type, "
+        "       u.source_note, c.name AS topic "
+        "FROM medicine_uses u JOIN conditions c ON c.condition_id = u.condition_id "
+        "ORDER BY c.name, u.medicine_id"
+    ).fetchall()
+
+    added = 0
+    for row in rows:
+        if row["use_kind"] == "conventional_use":
+            use_type = "conventional_use"
+        else:
+            use_type = HERB_EVIDENCE_TO_USE_TYPE[row["evidence_level"]]
+        conn.execute(
+            "INSERT OR IGNORE INTO health_topic_map (topic, normalized_topic, medicine_id, "
+            "use_type, description, evidence_level, source, source_url, last_verified) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?, NULL, ?)",
+            (
+                row["topic"], normalize_name(row["topic"]), row["medicine_id"], use_type,
+                row["summary"],
+                USE_EVIDENCE_TO_PROJECT_LEVEL[row["evidence_level"]],
+                f"{row['source_type']}: {row['source_note']}",
+                file_date(HERB_USES_CSV) if HERB_USES_CSV.exists() else None,
+            ),
+        )
+        added += 1
+    return added
+
+
 def load_health_topics(conn, by_normalized):
     """Apply optional topic associations from data/reference/health_topics.csv.
 
@@ -564,6 +884,9 @@ def build(db_path=db.DB_PATH, verbose=True):
         n_aliases = insert_aliases(conn, medicines)
         n_extra, alias_problems = load_extra_aliases(conn, by_normalized)
 
+        known_classes = {m["drug_class"] for m in medicines if m.get("drug_class")}
+        n_class_aliases, class_alias_problems = load_class_aliases(conn, known_classes)
+
         curated = load_curated_pairs()
         verified = load_verified_rows()
         searched, abstract_counts = load_corpus_pairs()
@@ -572,7 +895,28 @@ def build(db_path=db.DB_PATH, verbose=True):
         )
         insert_interactions(conn, interactions, evidence)
 
-        n_topics, topic_problems = load_health_topics(conn, by_normalized)
+        # The knowledge layer, in dependency order: tags before the rows that
+        # reference them, conditions before the uses that point at them.
+        n_tags, tag_problems = load_tag_vocabulary(conn)
+        known_tags = {r["tag"] for r in conn.execute("SELECT tag FROM tag_vocabulary")}
+        n_conditions, n_synonyms, condition_problems = load_conditions(conn, known_classes)
+        known_conditions = {
+            r["condition_id"] for r in conn.execute("SELECT condition_id FROM conditions")
+        }
+
+        n_herb_uses, herb_use_problems = load_uses(
+            conn, by_normalized, HERB_USES_CSV, "herb", "traditional_use",
+            "traditional_use", known_conditions, known_tags,
+        )
+        n_drug_uses, drug_use_problems = load_uses(
+            conn, by_normalized, DRUG_INDICATIONS_CSV, "drug", "conventional_use",
+            "what_its_for", known_conditions, known_tags,
+        )
+        n_rules, rule_problems = load_combination_rules(conn, known_tags)
+
+        n_derived_topics = derive_health_topics(conn)
+        n_extra_topics, topic_problems = load_health_topics(conn, by_normalized)
+        n_topics = n_derived_topics + n_extra_topics
 
         status_counts = {
             r["status"]: r["n"]
@@ -582,12 +926,22 @@ def build(db_path=db.DB_PATH, verbose=True):
             "built_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
             "medicines": str(len(medicines)),
             "aliases": str(n_aliases + n_extra),
+            "class_aliases": str(n_class_aliases),
             "interactions": str(len(interactions)),
             "evidence_rows": str(len(evidence)),
             "health_topic_rows": str(n_topics),
+            "conditions": str(n_conditions),
+            "condition_synonyms": str(n_synonyms),
+            "tags": str(n_tags),
+            "medicine_uses": str(n_herb_uses + n_drug_uses),
+            "combination_rules": str(n_rules),
             "herbs_csv_verified": file_date(HERBS_CSV),
             "drug_classes_csv_verified": file_date(DRUG_CLASSES_CSV),
         }
+        for source_type, n in conn.execute(
+            "SELECT source_type, COUNT(*) AS n FROM medicine_uses GROUP BY source_type"
+        ):
+            meta[f"uses_{source_type}"] = str(n)
         meta.update({f"status_{k}": str(v) for k, v in status_counts.items()})
         conn.executemany(
             "INSERT OR REPLACE INTO seed_metadata (key, value) VALUES (?, ?)",
@@ -605,9 +959,25 @@ def build(db_path=db.DB_PATH, verbose=True):
         for status, n in sorted(status_counts.items()):
             say(f"    {status}: {n}")
         say(f"  evidence rows: {len(evidence)}")
-        say(f"  health-topic rows: {n_topics}")
+        say(f"  class aliases: {n_class_aliases}")
+        say(f"  conditions: {n_conditions} ({n_synonyms} synonyms)")
+        say(f"  tags: {n_tags}")
+        say(f"  medicine uses: {n_herb_uses} herb + {n_drug_uses} drug")
+        for row in conn.execute(
+            "SELECT source_type, COUNT(*) AS n FROM medicine_uses "
+            "GROUP BY source_type ORDER BY source_type"
+        ):
+            say(f"    {row['source_type']}: {row['n']}")
+        say(f"  combination rules: {n_rules}")
+        say(f"  health-topic rows: {n_derived_topics} derived + {n_extra_topics} from "
+            f"{HEALTH_TOPICS_CSV.name}")
 
-        for problem in alias_problems + topic_problems + mismatches:
+        problems = (
+            alias_problems + class_alias_problems + tag_problems + condition_problems
+            + herb_use_problems + drug_use_problems + rule_problems + topic_problems
+            + mismatches
+        )
+        for problem in problems:
             say(f"  ! {problem}")
         for alias, n in collisions:
             say(f"  ! ambiguous alias {alias!r} resolves to {n} medicines "
@@ -618,7 +988,12 @@ def build(db_path=db.DB_PATH, verbose=True):
             "interactions": len(interactions),
             "evidence": len(evidence),
             "status_counts": status_counts,
-            "problems": alias_problems + topic_problems + mismatches,
+            "conditions": n_conditions,
+            "tags": n_tags,
+            "medicine_uses": n_herb_uses + n_drug_uses,
+            "combination_rules": n_rules,
+            "health_topic_rows": n_topics,
+            "problems": problems,
             "collisions": collisions,
         }
     finally:
