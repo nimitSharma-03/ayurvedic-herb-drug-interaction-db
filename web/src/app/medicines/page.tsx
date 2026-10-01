@@ -1,0 +1,41 @@
+import type { Metadata } from "next";
+
+import { ApiUnreachable } from "@/components/api-unreachable";
+import { MedicineBrowser } from "@/components/medicine-browser";
+import { api, asApiError } from "@/lib/api";
+import type { MedicineListResponse } from "@/lib/types";
+
+export const metadata: Metadata = {
+  title: "Medicines",
+  description:
+    "Browse every Ayurvedic herb and conventional drug this database covers, with a herb or drug filter and a search.",
+};
+
+export default async function MedicinesPage() {
+  let list: MedicineListResponse;
+  try {
+    // One request for the whole catalogue. The scope is frozen and small, so
+    // filtering and searching in the browser is instant and needs no round
+    // trip; the backend's own ranked search still backs the box on the home
+    // page, where a reader is typing a name rather than scanning a list.
+    list = await api.medicines({ limit: 100 });
+  } catch (error) {
+    return (
+      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+        <ApiUnreachable error={asApiError(error)} what="the medicine list" />
+      </div>
+    );
+  }
+
+  return (
+    <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+      <h1 className="text-3xl sm:text-4xl">Medicines in this database</h1>
+      <p className="mt-3 max-w-2xl text-[var(--color-ink-2)]">
+        {list.count} in all. The set is fixed: a herb or a drug that is not here is
+        outside what this project covers, and nothing is added on the fly.
+      </p>
+
+      <MedicineBrowser medicines={list.results} />
+    </div>
+  );
+}

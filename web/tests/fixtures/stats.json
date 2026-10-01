@@ -102,7 +102,7 @@
       "health_topic_rows": 48
     },
     "classifier": {
-      "model": "TF-IDF (word 1-2 grams, sublinear tf, l2) + one-vs-rest logistic regression with balanced class weights",
+      "model": "TF-IDF over word unigrams and bigrams (sublinear tf, l2) plus one-vs-rest logistic regression with balanced class weights",
       "test_set": "ml/data/test.jsonl",
       "test_set_is_synthetic": true,
       "test_set_caveat": "Both splits were written by hand in ml/make_dataset.py from disjoint template and phrase pools, so these scores measure generalization from one set of invented phrasings to another. They overstate real-world performance, and the model has never seen a real user's words.",

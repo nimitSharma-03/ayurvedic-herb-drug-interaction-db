@@ -148,9 +148,12 @@ def metrics_payload(
     """
     labels, columns, matrix = confusion_parts
     return {
+        # Worded as "unigrams and bigrams" rather than "1-2 grams", which a
+        # consumer scanning its own output for dosing text reads as a quantity
+        # next to a unit. The model is the same one either way.
         "model": (
-            "TF-IDF (word 1-2 grams, sublinear tf, l2) + one-vs-rest logistic "
-            "regression with balanced class weights"
+            "TF-IDF over word unigrams and bigrams (sublinear tf, l2) plus "
+            "one-vs-rest logistic regression with balanced class weights"
         ),
         "test_set": "ml/data/test.jsonl",
         "test_set_is_synthetic": True,

@@ -79,7 +79,7 @@ export function MedicineSearch({ autoFocus = false }: { autoFocus?: boolean }) {
             active >= 0 && results[active] ? `${listId}-${results[active].id}` : undefined
           }
           value={query}
-          placeholder="Ashwagandha, Haldi, Indian Ginseng, Metformin"
+          placeholder="Type a herb or a medicine name"
           onChange={(event) => {
             setQuery(event.target.value);
             setOpen(true);
