@@ -1,0 +1,11 @@
+.env
+venv/
+__pycache__/
+*.pyc
+.vscode/
+node_modules/
+.next/
+.DS_Store
+
+# Derived query layer, rebuilt from the reference/curated files by `python -m hdi.seed`.
+data/processed/hdi.db
