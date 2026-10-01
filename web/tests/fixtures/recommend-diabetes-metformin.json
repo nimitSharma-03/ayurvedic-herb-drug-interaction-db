@@ -1,0 +1,1671 @@
+{
+  "request": {
+    "method": "POST",
+    "path": "/recommend",
+    "body": {
+      "text": "my sugar is high",
+      "current_medicines": [
+        "Metformin"
+      ]
+    }
+  },
+  "status": 200,
+  "response": {
+    "status": "results",
+    "disclaimer": "This is information, not medical advice. It is generated from a research database that has not been reviewed by a clinician, and it is not a prescription or a diagnosis. Talk to a doctor or pharmacist before taking anything here, and do not start or stop a prescribed medicine on the basis of this response.",
+    "detected_conditions": [
+      {
+        "condition_id": "type_2_diabetes",
+        "confidence": 0.9933,
+        "source": "classifier",
+        "name": "Type 2 diabetes"
+      }
+    ],
+    "ayurvedic_options": [
+      {
+        "medicine_id": "herb-aloe-vera",
+        "name": "Aloe vera",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "scientific_name": "Aloe vera",
+        "drug_class": null,
+        "use_kind": "traditional_use",
+        "evidence_level": "clinical",
+        "pros": "A randomised placebo-controlled trial reported lower blood glucose and cholesterol.",
+        "cons": "One small trial only; the bitter latex is a harsh laxative; gel quality varies widely.",
+        "cautions": "Laxative latex can lower potassium; the gel adds to sugar-lowering medicines.",
+        "source_type": "repo_abstract",
+        "source_note": "PMID 22198821 (randomised double-blind placebo-controlled trial in type 2 diabetes)",
+        "uses": "Traditional use of ghritakumari gel for digestion, skin and metabolic complaints.",
+        "common_side_effects": [],
+        "tags": [
+          "hypoglycemic",
+          "potassium_affecting"
+        ],
+        "reviewed": false,
+        "condition_id": "type_2_diabetes",
+        "condition_name": "Type 2 diabetes"
+      },
+      {
+        "medicine_id": "herb-cinnamon",
+        "name": "Cinnamon",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "scientific_name": "Cinnamomum verum",
+        "drug_class": null,
+        "use_kind": "traditional_use",
+        "evidence_level": "clinical",
+        "pros": "Common spice; a review of randomised trials reports modest falls in blood glucose.",
+        "cons": "Trial results conflict and the effect is small; cassia types carry a coumarin liver risk.",
+        "cautions": "Adds to sugar-lowering medicines; true cinnamon is preferred over cassia bark.",
+        "source_type": "repo_abstract",
+        "source_note": "PMID 19930003 (review of randomised controlled trials)",
+        "uses": "Traditional use of twak as a warming digestive and metabolic spice.",
+        "common_side_effects": [],
+        "tags": [
+          "hypoglycemic"
+        ],
+        "reviewed": false,
+        "condition_id": "type_2_diabetes",
+        "condition_name": "Type 2 diabetes"
+      },
+      {
+        "medicine_id": "herb-karela",
+        "name": "Karela",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "scientific_name": "Momordica charantia",
+        "drug_class": null,
+        "use_kind": "traditional_use",
+        "evidence_level": "clinical",
+        "pros": "Long traditional record for blood sugar; small human studies report lower glucose.",
+        "cons": "Human studies are small and mixed; very bitter; can upset the stomach.",
+        "cautions": "Adds to the sugar-lowering effect of diabetes medicines; watch for low-sugar symptoms.",
+        "source_type": "repo_abstract",
+        "source_note": "PMID 15521566 (human NIDDM study of hypoglycemic effect alongside oral antidiabetic drugs); PMID 19904502",
+        "uses": "Classical use of bitter gourd fruit for prameha, the sugar-related disease group.",
+        "common_side_effects": [],
+        "tags": [
+          "hypoglycemic"
+        ],
+        "reviewed": false,
+        "condition_id": "type_2_diabetes",
+        "condition_name": "Type 2 diabetes"
+      },
+      {
+        "medicine_id": "herb-amla",
+        "name": "Amla",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "scientific_name": "Phyllanthus emblica",
+        "drug_class": null,
+        "use_kind": "traditional_use",
+        "evidence_level": "preclinical",
+        "pros": "Common food fruit with a long rasayana record; animal work shows antihyperglycaemic effect.",
+        "cons": "Human evidence for blood sugar is thin; sour taste; can loosen stools.",
+        "cautions": "May add to sugar-lowering medicines; a human study shows added antiplatelet effect.",
+        "source_type": "repo_abstract",
+        "source_note": "PMID 21394805 and PMID 19761040 (glycaemic, animal); antiplatelet tag from PMID 24291054, a human study alongside clopidogrel and aspirin",
+        "uses": "Classical rasayana fruit, used in Triphala and recorded for prameha.",
+        "common_side_effects": [],
+        "tags": [
+          "hypoglycemic",
+          "antiplatelet"
+        ],
+        "reviewed": false,
+        "condition_id": "type_2_diabetes",
+        "condition_name": "Type 2 diabetes"
+      },
+      {
+        "medicine_id": "herb-fenugreek",
+        "name": "Fenugreek",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "scientific_name": "Trigonella foenum-graecum",
+        "drug_class": null,
+        "use_kind": "traditional_use",
+        "evidence_level": "preclinical",
+        "pros": "Widely used as food and medicine; animal studies show lower glucose and lipids.",
+        "cons": "Human trials are small; causes wind, loose stools and a maple-like body odour.",
+        "cautions": "Adds to sugar-lowering medicines; large amounts are avoided in pregnancy.",
+        "source_type": "repo_abstract",
+        "source_note": "PMID 17392143; PMID 20448850",
+        "uses": "Traditional use of methi seed for prameha and for digestion.",
+        "common_side_effects": [],
+        "tags": [
+          "hypoglycemic"
+        ],
+        "reviewed": false,
+        "condition_id": "type_2_diabetes",
+        "condition_name": "Type 2 diabetes"
+      },
+      {
+        "medicine_id": "herb-garlic",
+        "name": "Garlic",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "scientific_name": "Allium sativum",
+        "drug_class": null,
+        "use_kind": "traditional_use",
+        "evidence_level": "preclinical",
+        "pros": "Common food; animal studies report modest falls in blood glucose.",
+        "cons": "The effect on sugar is small and inconsistent in people; strong smell.",
+        "cautions": "Raises bleeding risk with blood thinners; a documented warfarin interaction exists.",
+        "source_type": "repo_abstract",
+        "source_note": "PMID 16801983 (glycaemic); warfarin interaction curator-confirmed in this project (PMID 10675182, 19719333, 21919844)",
+        "uses": "Classical use of lashuna as a warming herb for vata and circulatory complaints.",
+        "common_side_effects": [],
+        "tags": [
+          "hypoglycemic",
+          "antiplatelet",
+          "hypotensive",
+          "cyp_inducer"
+        ],
+        "reviewed": false,
+        "condition_id": "type_2_diabetes",
+        "condition_name": "Type 2 diabetes"
+      },
+      {
+        "medicine_id": "herb-giloy",
+        "name": "Giloy",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "scientific_name": "Tinospora cordifolia",
+        "drug_class": null,
+        "use_kind": "traditional_use",
+        "evidence_level": "preclinical",
+        "pros": "Long classical record; animal studies show lower glucose and better insulin sensitivity.",
+        "cons": "No good human trials for blood sugar; liver injury has been reported with some products.",
+        "cautions": "Reported liver injury cases; avoid alongside other medicines that stress the liver.",
+        "source_type": "repo_abstract",
+        "source_note": "PMID 1529024 and PMID 19520137 (glycaemic, animal); the hepatotoxic_risk tag rests on published Indian case series and is general knowledge, not on an abstract in this corpus",
+        "uses": "Classical rasayana, guduchi, recorded for prameha and for fevers.",
+        "common_side_effects": [],
+        "tags": [
+          "hypoglycemic",
+          "hepatotoxic_risk"
+        ],
+        "reviewed": false,
+        "condition_id": "type_2_diabetes",
+        "condition_name": "Type 2 diabetes"
+      },
+      {
+        "medicine_id": "herb-gymnema",
+        "name": "Gymnema",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "scientific_name": "Gymnema sylvestre",
+        "drug_class": null,
+        "use_kind": "traditional_use",
+        "evidence_level": "preclinical",
+        "pros": "Strong traditional record; animal studies show lower glucose and better insulin response.",
+        "cons": "Human evidence is limited; may blunt sweet taste; product strength varies.",
+        "cautions": "Adds to sugar-lowering medicines, so low-sugar episodes are possible.",
+        "source_type": "repo_abstract",
+        "source_note": "PMID 23852298; PMID 23569923",
+        "uses": "Classical use of gurmar leaf for prameha; the Hindi name means sugar destroyer.",
+        "common_side_effects": [],
+        "tags": [
+          "hypoglycemic"
+        ],
+        "reviewed": false,
+        "condition_id": "type_2_diabetes",
+        "condition_name": "Type 2 diabetes"
+      },
+      {
+        "medicine_id": "herb-moringa",
+        "name": "Moringa",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "scientific_name": "Moringa oleifera",
+        "drug_class": null,
+        "use_kind": "traditional_use",
+        "evidence_level": "preclinical",
+        "pros": "Nutritious leaf eaten as a vegetable; animal studies show better glucose tolerance.",
+        "cons": "Human evidence is limited; large amounts can loosen the stools.",
+        "cautions": "May add to both sugar-lowering and blood-pressure-lowering medicines.",
+        "source_type": "repo_abstract",
+        "source_note": "PMID 26124050 and PMID 29175792 (glycaemic); blood-pressure tag from PMID 32412306",
+        "uses": "Traditional use of shigru leaf and pod as food and as a metabolic tonic.",
+        "common_side_effects": [],
+        "tags": [
+          "hypoglycemic",
+          "hypotensive"
+        ],
+        "reviewed": false,
+        "condition_id": "type_2_diabetes",
+        "condition_name": "Type 2 diabetes"
+      },
+      {
+        "medicine_id": "herb-neem",
+        "name": "Neem",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "scientific_name": "Azadirachta indica",
+        "drug_class": null,
+        "use_kind": "traditional_use",
+        "evidence_level": "preclinical",
+        "pros": "Long traditional use; animal work shows the leaf extract lowers blood glucose.",
+        "cons": "Human evidence is absent; very bitter; the seed oil is toxic, especially to children.",
+        "cautions": "Adds to sugar-lowering medicines; neem oil must never be given to infants or children.",
+        "source_type": "repo_abstract",
+        "source_note": "PMID 10617075; PMID 19389871",
+        "uses": "Classical use of nimba as a bitter herb for prameha, skin disease and fevers.",
+        "common_side_effects": [],
+        "tags": [
+          "hypoglycemic"
+        ],
+        "reviewed": false,
+        "condition_id": "type_2_diabetes",
+        "condition_name": "Type 2 diabetes"
+      },
+      {
+        "medicine_id": "herb-turmeric",
+        "name": "Turmeric",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "scientific_name": "Curcuma longa",
+        "drug_class": null,
+        "use_kind": "traditional_use",
+        "evidence_level": "preclinical",
+        "pros": "Everyday kitchen spice; animal and early human work suggests better glucose control.",
+        "cons": "Curcumin is poorly absorbed alone; evidence is early; can irritate the stomach.",
+        "cautions": "May slow breakdown of other medicines; a documented interaction with metformin exists.",
+        "source_type": "repo_abstract",
+        "source_note": "PMID 29518605 (curator-confirmed metformin interaction in this project); antiplatelet tag from PMID 16112857 and PMID 20158382",
+        "uses": "Classical use of haridra for prameha, inflammation and skin disorders.",
+        "common_side_effects": [],
+        "tags": [
+          "hypoglycemic",
+          "antiplatelet",
+          "cyp_inhibitor",
+          "pgp_modulator"
+        ],
+        "reviewed": false,
+        "condition_id": "type_2_diabetes",
+        "condition_name": "Type 2 diabetes"
+      }
+    ],
+    "allopathic_options": [
+      {
+        "medicine_id": "drug-glimepiride",
+        "name": "Glimepiride",
+        "category": "allopathic",
+        "medicine_type": "drug",
+        "scientific_name": null,
+        "drug_class": "Antidiabetics",
+        "use_kind": "conventional_use",
+        "evidence_level": "clinical",
+        "pros": "Lowers blood sugar quickly and is inexpensive.",
+        "cons": "Real risk of low blood sugar, especially if meals are missed; can add weight.",
+        "cautions": "Not for type 1 diabetes; skipping meals can cause dangerous low blood sugar.",
+        "source_type": "fetched_source",
+        "source_note": "openFDA SPL label, set_id 0003458f-352a-46fa-9d99-230daa76ae29 effective 20241113 (data/raw/openfda_labels.json)",
+        "uses": "Prompting the pancreas to release more insulin in type 2 diabetes.",
+        "common_side_effects": [
+          "low blood sugar",
+          "weight gain",
+          "nausea",
+          "rarely a drop in red blood cells"
+        ],
+        "tags": [
+          "hypoglycemic",
+          "cyp_substrate"
+        ],
+        "reviewed": false,
+        "condition_id": "type_2_diabetes",
+        "condition_name": "Type 2 diabetes"
+      },
+      {
+        "medicine_id": "drug-insulin",
+        "name": "Insulin",
+        "category": "allopathic",
+        "medicine_type": "drug",
+        "scientific_name": null,
+        "drug_class": "Antidiabetics",
+        "use_kind": "conventional_use",
+        "evidence_level": "clinical",
+        "pros": "Works for anyone and can be adjusted precisely; essential when tablets are not enough.",
+        "cons": "Injections and monitoring are needed; low blood sugar is the main hazard.",
+        "cautions": "Must not be used during a low-sugar episode; never share a pen or needle.",
+        "source_type": "fetched_source",
+        "source_note": "openFDA SPL label, set_id b60e8dd0-1d48-4dc9-87fd-e14675255e8c effective 20260701 (data/raw/openfda_labels.json)",
+        "uses": "Replacing or supplementing the body's own insulin to control blood sugar.",
+        "common_side_effects": [
+          "low blood sugar",
+          "weight gain",
+          "injection-site reactions",
+          "low potassium"
+        ],
+        "tags": [
+          "hypoglycemic",
+          "potassium_affecting"
+        ],
+        "reviewed": false,
+        "condition_id": "type_2_diabetes",
+        "condition_name": "Type 2 diabetes"
+      },
+      {
+        "medicine_id": "drug-metformin",
+        "name": "Metformin",
+        "category": "allopathic",
+        "medicine_type": "drug",
+        "scientific_name": null,
+        "drug_class": "Antidiabetics",
+        "use_kind": "conventional_use",
+        "evidence_level": "clinical",
+        "pros": "First-choice tablet; long safety record; does not usually cause low sugar on its own.",
+        "cons": "Stomach upset is common at first; cannot be used with poor kidney function.",
+        "cautions": "Carries a lactic acidosis warning; not used when kidney function is severely reduced.",
+        "source_type": "fetched_source",
+        "source_note": "openFDA SPL label, set_id 011de1a5-1ac0-4831-9e8d-26ec79ba2205 effective 20240821 (data/raw/openfda_labels.json)",
+        "uses": "Lowering blood sugar in type 2 diabetes, alongside diet and exercise.",
+        "common_side_effects": [
+          "nausea",
+          "diarrhoea",
+          "metallic taste",
+          "low vitamin B12 over time"
+        ],
+        "tags": [
+          "hypoglycemic"
+        ],
+        "reviewed": false,
+        "condition_id": "type_2_diabetes",
+        "condition_name": "Type 2 diabetes"
+      },
+      {
+        "medicine_id": "drug-pioglitazone",
+        "name": "Pioglitazone",
+        "category": "allopathic",
+        "medicine_type": "drug",
+        "scientific_name": null,
+        "drug_class": "Antidiabetics",
+        "use_kind": "conventional_use",
+        "evidence_level": "clinical",
+        "pros": "Improves insulin sensitivity and keeps working over a long period.",
+        "cons": "Causes fluid retention and weight gain; can worsen heart failure; raises fracture risk.",
+        "cautions": "Carries a heart failure warning and must not be started in moderate or severe heart failure.",
+        "source_type": "fetched_source",
+        "source_note": "openFDA SPL label, set_id 0331400c-b163-4856-bfb0-965470247cb3 effective 20250517 (data/raw/openfda_labels.json)",
+        "uses": "Making the body's tissues respond better to its own insulin.",
+        "common_side_effects": [
+          "fluid retention",
+          "weight gain",
+          "swollen ankles",
+          "bone fractures"
+        ],
+        "tags": [
+          "hypoglycemic",
+          "cyp_substrate",
+          "hepatotoxic_risk"
+        ],
+        "reviewed": false,
+        "condition_id": "type_2_diabetes",
+        "condition_name": "Type 2 diabetes"
+      }
+    ],
+    "combination_warnings": [
+      {
+        "level": "literature_verified",
+        "label": "Literature-verified",
+        "medicine_a": "Amla",
+        "medicine_b": "Metformin",
+        "reason": "Curated PubMed evidence records general_interaction interaction language for Amla and Metformin in 1 abstract(s) (PMID 29518605), each confirmed by manual curator review.",
+        "severity": "minor",
+        "against_current_medicine": true,
+        "citations": [
+          {
+            "pmid": "29518605",
+            "evidence_sentence": "Herb-drug interaction of Nisha Amalaki and Curcuminoids with metformin in normal and diabetic condition: A disease system approach. Nisha Amalaki (NA), formulation with Curcuma longa Linn (Turmeric, Haridra, Nisha in Sanskrit; Family: Zingiberaceae) and Phyllanthus emblica Linn (Indian gooseberry, Amlaki in Sanskrit; Family: Phyllanthaceae) which is described for various diseases including diabetes in ayurvedic texts and Nighantus.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/29518605/"
+          }
+        ],
+        "rules": []
+      },
+      {
+        "level": "literature_verified",
+        "label": "Literature-verified",
+        "medicine_a": "Turmeric",
+        "medicine_b": "Metformin",
+        "reason": "Curated PubMed evidence records general_interaction interaction language for Turmeric and Metformin in 1 abstract(s) (PMID 29518605), each confirmed by manual curator review.",
+        "severity": "minor",
+        "against_current_medicine": true,
+        "citations": [
+          {
+            "pmid": "29518605",
+            "evidence_sentence": "Herb-drug interaction of Nisha Amalaki and Curcuminoids with metformin in normal and diabetic condition: A disease system approach. Nisha Amalaki (NA), formulation with Curcuma longa Linn (Turmeric, Haridra, Nisha in Sanskrit; Family: Zingiberaceae) and Phyllanthus emblica Linn (Indian gooseberry, Amlaki in Sanskrit; Family: Phyllanthaceae) which is described for various diseases including diabetes in ayurvedic texts and Nighantus.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/29518605/"
+          }
+        ],
+        "rules": []
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Aloe vera",
+        "medicine_b": "Metformin",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": true,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Cinnamon",
+        "medicine_b": "Metformin",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": true,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Fenugreek",
+        "medicine_b": "Metformin",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": true,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Garlic",
+        "medicine_b": "Metformin",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": true,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Giloy",
+        "medicine_b": "Metformin",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": true,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Glimepiride",
+        "medicine_b": "Metformin",
+        "reason": "Both lower blood sugar, so together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": true,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-031",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Gymnema",
+        "medicine_b": "Metformin",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": true,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Insulin",
+        "medicine_b": "Metformin",
+        "reason": "Both lower blood sugar, so together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": true,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-031",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Karela",
+        "medicine_b": "Metformin",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": true,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Moringa",
+        "medicine_b": "Metformin",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": true,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Neem",
+        "medicine_b": "Metformin",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": true,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Pioglitazone",
+        "medicine_b": "Metformin",
+        "reason": "Both lower blood sugar, so together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": true,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-031",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "literature_verified",
+        "label": "Literature-verified",
+        "medicine_a": "Aloe vera",
+        "medicine_b": "Insulin",
+        "reason": "Curated PubMed evidence records general_interaction interaction language for Aloe vera and Insulin in 1 abstract(s) (PMID 28160765), each confirmed by manual curator review.",
+        "severity": "minor",
+        "against_current_medicine": false,
+        "citations": [
+          {
+            "pmid": "28160765",
+            "evidence_sentence": "The study found potential drug-herb interactions in 4 (50%) of the CAM consumers. Moderate potential interactions were found between Aloe vera and diuretics; Aloe vera and insulin; pyridoxine and calcium-channel blockers and diuretics; and niacin and statins. Those interactions had the potential to result in hypoglycemia, hyperglycemia, hypokalemia, and lower blood pressure.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/28160765/"
+          }
+        ],
+        "rules": []
+      },
+      {
+        "level": "literature_verified",
+        "label": "Literature-verified",
+        "medicine_a": "Amla",
+        "medicine_b": "Metformin",
+        "reason": "Curated PubMed evidence records general_interaction interaction language for Amla and Metformin in 1 abstract(s) (PMID 29518605), each confirmed by manual curator review.",
+        "severity": "minor",
+        "against_current_medicine": false,
+        "citations": [
+          {
+            "pmid": "29518605",
+            "evidence_sentence": "Herb-drug interaction of Nisha Amalaki and Curcuminoids with metformin in normal and diabetic condition: A disease system approach. Nisha Amalaki (NA), formulation with Curcuma longa Linn (Turmeric, Haridra, Nisha in Sanskrit; Family: Zingiberaceae) and Phyllanthus emblica Linn (Indian gooseberry, Amlaki in Sanskrit; Family: Phyllanthaceae) which is described for various diseases including diabetes in ayurvedic texts and Nighantus.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/29518605/"
+          }
+        ],
+        "rules": []
+      },
+      {
+        "level": "literature_verified",
+        "label": "Literature-verified",
+        "medicine_a": "Karela",
+        "medicine_b": "Insulin",
+        "reason": "Curated PubMed evidence records potentiation interaction language for Karela and Insulin in 1 abstract(s) (PMID 40306528), each confirmed by manual curator review.",
+        "severity": "minor",
+        "against_current_medicine": false,
+        "citations": [
+          {
+            "pmid": "40306528",
+            "evidence_sentence": "Synergistic action of a Momordica charantia-abundant peptide with insulin regulates blood glucose metabolism in db/db mice via a novel second-hit mechanism on insulin receptor activation. Diabetes is a global health challenge, often managed with insulin therapy.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/40306528/"
+          }
+        ],
+        "rules": []
+      },
+      {
+        "level": "literature_verified",
+        "label": "Literature-verified",
+        "medicine_a": "Turmeric",
+        "medicine_b": "Metformin",
+        "reason": "Curated PubMed evidence records general_interaction interaction language for Turmeric and Metformin in 1 abstract(s) (PMID 29518605), each confirmed by manual curator review.",
+        "severity": "minor",
+        "against_current_medicine": false,
+        "citations": [
+          {
+            "pmid": "29518605",
+            "evidence_sentence": "Herb-drug interaction of Nisha Amalaki and Curcuminoids with metformin in normal and diabetic condition: A disease system approach. Nisha Amalaki (NA), formulation with Curcuma longa Linn (Turmeric, Haridra, Nisha in Sanskrit; Family: Zingiberaceae) and Phyllanthus emblica Linn (Indian gooseberry, Amlaki in Sanskrit; Family: Phyllanthaceae) which is described for various diseases including diabetes in ayurvedic texts and Nighantus.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/29518605/"
+          }
+        ],
+        "rules": []
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Aloe vera",
+        "medicine_b": "Glimepiride",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Aloe vera",
+        "medicine_b": "Metformin",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Aloe vera",
+        "medicine_b": "Pioglitazone",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Amla",
+        "medicine_b": "Glimepiride",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Amla",
+        "medicine_b": "Insulin",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Amla",
+        "medicine_b": "Pioglitazone",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Cinnamon",
+        "medicine_b": "Glimepiride",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Cinnamon",
+        "medicine_b": "Insulin",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Cinnamon",
+        "medicine_b": "Metformin",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Cinnamon",
+        "medicine_b": "Pioglitazone",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Fenugreek",
+        "medicine_b": "Glimepiride",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Fenugreek",
+        "medicine_b": "Insulin",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Fenugreek",
+        "medicine_b": "Metformin",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Fenugreek",
+        "medicine_b": "Pioglitazone",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Garlic",
+        "medicine_b": "Glimepiride",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended. Speeding up the liver enzyme that clears the medicine can let its blood level fall.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          },
+          {
+            "rule_id": "rule-009",
+            "tags": [
+              "cyp_inducer",
+              "cyp_substrate"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Garlic",
+        "medicine_b": "Insulin",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Garlic",
+        "medicine_b": "Metformin",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Garlic",
+        "medicine_b": "Pioglitazone",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended. Speeding up the liver enzyme that clears the medicine can let its blood level fall.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          },
+          {
+            "rule_id": "rule-009",
+            "tags": [
+              "cyp_inducer",
+              "cyp_substrate"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Giloy",
+        "medicine_b": "Glimepiride",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Giloy",
+        "medicine_b": "Insulin",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Giloy",
+        "medicine_b": "Metformin",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Giloy",
+        "medicine_b": "Pioglitazone",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended. Both carry a reported risk of liver injury, so the liver is under more strain.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          },
+          {
+            "rule_id": "rule-013",
+            "tags": [
+              "hepatotoxic_risk",
+              "hepatotoxic_risk"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Gymnema",
+        "medicine_b": "Glimepiride",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Gymnema",
+        "medicine_b": "Insulin",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Gymnema",
+        "medicine_b": "Metformin",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Gymnema",
+        "medicine_b": "Pioglitazone",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Karela",
+        "medicine_b": "Glimepiride",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Karela",
+        "medicine_b": "Metformin",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Karela",
+        "medicine_b": "Pioglitazone",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Moringa",
+        "medicine_b": "Glimepiride",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Moringa",
+        "medicine_b": "Insulin",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Moringa",
+        "medicine_b": "Metformin",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Moringa",
+        "medicine_b": "Pioglitazone",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Neem",
+        "medicine_b": "Glimepiride",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Neem",
+        "medicine_b": "Insulin",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Neem",
+        "medicine_b": "Metformin",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Neem",
+        "medicine_b": "Pioglitazone",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Turmeric",
+        "medicine_b": "Glimepiride",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended. Slowing the liver enzyme that clears the medicine can let its blood level climb.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          },
+          {
+            "rule_id": "rule-008",
+            "tags": [
+              "cyp_inhibitor",
+              "cyp_substrate"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Turmeric",
+        "medicine_b": "Insulin",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Turmeric",
+        "medicine_b": "Pioglitazone",
+        "reason": "Both lower blood sugar, so taken together they can push it lower than intended. Slowing the liver enzyme that clears the medicine can let its blood level climb.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-001",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          },
+          {
+            "rule_id": "rule-008",
+            "tags": [
+              "cyp_inhibitor",
+              "cyp_substrate"
+            ],
+            "level": "high"
+          }
+        ]
+      }
+    ],
+    "combination_summary": {
+      "pairs_checked": 58,
+      "warnings_listed": 58,
+      "pairs_with_no_finding_not_listed": 0,
+      "note": "Checked: every suggested herb against every suggested drug, and every suggestion against each medicine you said you already take. Suggestion pairs with no documented interaction and no mechanism rule are counted here rather than listed. Absence of a listing is not a safety claim."
+    },
+    "caution_notes": [
+      "Metformin is listed as an option below and you have said you already take it. Do not add a second source of it.",
+      "Conditions were detected by a classifier trained on synthetic phrasings, so it can misread wording nobody anticipated. Check the detected conditions before relying on the options."
+    ],
+    "current_medicines": {
+      "resolved": [
+        {
+          "query": "Metformin",
+          "medicine_id": "drug-metformin",
+          "name": "Metformin",
+          "medicine_type": "drug",
+          "category": "allopathic",
+          "drug_class": "Antidiabetics",
+          "resolved_as": "medicine"
+        }
+      ],
+      "drug_classes": [],
+      "unresolved": [],
+      "ambiguous": []
+    },
+    "evidence_note": "Every option here is unreviewed research data: `reviewed` is false on all of them and `source_type` says where each came from. Only warnings with level 'literature_verified' rest on a published finding."
+  }
+}

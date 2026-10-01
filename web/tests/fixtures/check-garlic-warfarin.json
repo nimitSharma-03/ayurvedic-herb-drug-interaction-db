@@ -1,0 +1,167 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/interactions/check?medicine_a=Garlic&medicine_b=Warfarin",
+    "body": null
+  },
+  "status": 200,
+  "response": {
+    "id": "int-garlic-warfarin",
+    "pair_kind": "ayurvedic_allopathic",
+    "status": "interaction_found",
+    "interaction_type": "risk_increase",
+    "severity": "moderate",
+    "severity_basis": "derived_from_curated_trigger_group",
+    "description": "Curated PubMed evidence records risk_increase interaction language for Garlic and Warfarin in 4 abstract(s) (PMID 10675182, 15916450, 19719333, 21919844), each confirmed by manual curator review.",
+    "mechanism": null,
+    "clinical_significance": null,
+    "recommended_action": null,
+    "evidence_level": "moderate",
+    "evidence_basis": "10 curator-confirmed sentence(s) across 4 distinct PMID(s); 'moderate' requires at least 3 distinct PMIDs, otherwise 'limited'",
+    "source": "curator_confirmed_from_pubmed_abstracts; data/processed/verified_interactions.json",
+    "source_url": null,
+    "last_verified": "2026-09-30",
+    "medicine_a": {
+      "id": "herb-garlic",
+      "name": "Garlic",
+      "category": "ayurvedic",
+      "medicine_type": "herb",
+      "generic_name": null,
+      "scientific_name": "Allium sativum",
+      "drug_class": null
+    },
+    "medicine_b": {
+      "id": "drug-warfarin",
+      "name": "Warfarin",
+      "category": "allopathic",
+      "medicine_type": "drug",
+      "generic_name": "Warfarin",
+      "scientific_name": null,
+      "drug_class": "Anticoagulants"
+    },
+    "interaction_found": true,
+    "evidence": [
+      {
+        "pmid": "10675182",
+        "trigger_matched": "increased risk of",
+        "trigger_group": "risk_increase",
+        "negated": false,
+        "confidence": "human_verified",
+        "verdict": "confirmed",
+        "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs.",
+        "source_url": "https://pubmed.ncbi.nlm.nih.gov/10675182/"
+      },
+      {
+        "pmid": "10675182",
+        "trigger_matched": "potentiation",
+        "trigger_group": "potentiation",
+        "negated": false,
+        "confidence": "human_verified",
+        "verdict": "confirmed",
+        "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs.",
+        "source_url": "https://pubmed.ncbi.nlm.nih.gov/10675182/"
+      },
+      {
+        "pmid": "10675182",
+        "trigger_matched": "drug interaction",
+        "trigger_group": "general_interaction",
+        "negated": false,
+        "confidence": "human_verified",
+        "verdict": "confirmed",
+        "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs.",
+        "source_url": "https://pubmed.ncbi.nlm.nih.gov/10675182/"
+      },
+      {
+        "pmid": "10675182",
+        "trigger_matched": "herb-drug interaction",
+        "trigger_group": "general_interaction",
+        "negated": false,
+        "confidence": "human_verified",
+        "verdict": "confirmed",
+        "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs.",
+        "source_url": "https://pubmed.ncbi.nlm.nih.gov/10675182/"
+      },
+      {
+        "pmid": "15916450",
+        "trigger_matched": "plasma concentration",
+        "trigger_group": "pharmacokinetic",
+        "negated": true,
+        "confidence": "human_verified",
+        "verdict": "confirmed",
+        "evidence_sentence": "Cases have been published reporting enhanced anticoagulation and bleeding when patients on long-term warfarin therapy also took Salvia miltiorrhiza (danshen). Allium sativum (garlic) decreased the area under the plasma concentration-time curve (AUC) and maximum plasma concentration of saquinavir, but not ritonavir and paracetamol (acetaminophen), in volunteers. A. sativum increased the clotting time and international normalised ratio of warfarin and caused hypoglycaemia when taken with chlorpropamide.",
+        "source_url": "https://pubmed.ncbi.nlm.nih.gov/15916450/"
+      },
+      {
+        "pmid": "19719333",
+        "trigger_matched": "plasma concentration",
+        "trigger_group": "pharmacokinetic",
+        "negated": false,
+        "confidence": "human_verified",
+        "verdict": "confirmed",
+        "evidence_sentence": "Kava (Piper methysticum) increases the clearance of chlorzoxazone (a CYP2E1 substrate) and may interact with alprazolam, levodopa and paroxetine. Garlic (Allium sativum) interacts with chlorpropamide, fluindione, ritonavir and warfarin; it also reduces plasma concentrations of chlorzoxazone (a CYP2E1 probe). Echinacea might affect the clearance of caffeine (a CYP1A2 probe) and midazolam (a CYP3A4 probe).",
+        "source_url": "https://pubmed.ncbi.nlm.nih.gov/19719333/"
+      },
+      {
+        "pmid": "19719333",
+        "trigger_matched": "cyp3a4",
+        "trigger_group": "pharmacokinetic",
+        "negated": false,
+        "confidence": "human_verified",
+        "verdict": "confirmed",
+        "evidence_sentence": "Garlic (Allium sativum) interacts with chlorpropamide, fluindione, ritonavir and warfarin; it also reduces plasma concentrations of chlorzoxazone (a CYP2E1 probe). Echinacea might affect the clearance of caffeine (a CYP1A2 probe) and midazolam (a CYP3A4 probe). No interactions have been reported for saw palmetto (Serenoa repens).",
+        "source_url": "https://pubmed.ncbi.nlm.nih.gov/19719333/"
+      },
+      {
+        "pmid": "19719333",
+        "trigger_matched": "may interact",
+        "trigger_group": "general_interaction",
+        "negated": false,
+        "confidence": "human_verified",
+        "verdict": "confirmed",
+        "evidence_sentence": "Ginseng (Panax ginseng) may interact with phenelzine and warfarin. Kava (Piper methysticum) increases the clearance of chlorzoxazone (a CYP2E1 substrate) and may interact with alprazolam, levodopa and paroxetine. Garlic (Allium sativum) interacts with chlorpropamide, fluindione, ritonavir and warfarin; it also reduces plasma concentrations of chlorzoxazone (a CYP2E1 probe).",
+        "source_url": "https://pubmed.ncbi.nlm.nih.gov/19719333/"
+      },
+      {
+        "pmid": "19719333",
+        "trigger_matched": "interacts with",
+        "trigger_group": "general_interaction",
+        "negated": false,
+        "confidence": "human_verified",
+        "verdict": "confirmed",
+        "evidence_sentence": "Kava (Piper methysticum) increases the clearance of chlorzoxazone (a CYP2E1 substrate) and may interact with alprazolam, levodopa and paroxetine. Garlic (Allium sativum) interacts with chlorpropamide, fluindione, ritonavir and warfarin; it also reduces plasma concentrations of chlorzoxazone (a CYP2E1 probe). Echinacea might affect the clearance of caffeine (a CYP1A2 probe) and midazolam (a CYP3A4 probe).",
+        "source_url": "https://pubmed.ncbi.nlm.nih.gov/19719333/"
+      },
+      {
+        "pmid": "21919844",
+        "trigger_matched": "plasma concentration",
+        "trigger_group": "pharmacokinetic",
+        "negated": false,
+        "confidence": "human_verified",
+        "verdict": "confirmed",
+        "evidence_sentence": "Herbal medicines that are reported to interact with drugs include garlic (Allium sativum), ginger (Zingiber officinale), ginkgo (Ginkgo biloba), ginseng (Panax ginseng), and St. John's wort (Hypericum perforatum). For example, garlic has been shown to increase the clotting time and international normalized ratio (INR) of warfarin, cause hypoglycaemia when taken with chlorpropamide, and reduce the area under the plasma concentration-time curve (AUC) and maximum concentration of saquinavir in humans. Similarly, case reports have demonstrated that ginkgo may potentiate bleeding when combined with warfarin or aspirin, increases blood pressure when combined with thiazide diuretics, and has even led to a coma when combined with trazodone, a serotonin antagonist and reuptake inhibitor used to treat depression.",
+        "source_url": "https://pubmed.ncbi.nlm.nih.gov/21919844/"
+      },
+      {
+        "pmid": "21919844",
+        "trigger_matched": "cytochrome p450",
+        "trigger_group": "pharmacokinetic",
+        "negated": false,
+        "confidence": "auto_extracted",
+        "verdict": "unclear",
+        "evidence_sentence": "Drugs that have a high potential to interact with herbal medicines usually have a narrow therapeutic index, including warfarin, digoxin, cyclosporine, tacrolimus, amitriptyline, midazolam, indinavir, and irinotecan. Many of them are substrates of cytochrome P450s (CYPs) and/or P-glycoprotein (P-gp). Herbal medicines that are reported to interact with drugs include garlic (Allium sativum), ginger (Zingiber officinale), ginkgo (Ginkgo biloba), ginseng (Panax ginseng), and St. John's wort (Hypericum perforatum).",
+        "source_url": "https://pubmed.ncbi.nlm.nih.gov/21919844/"
+      },
+      {
+        "pmid": "22292789",
+        "trigger_matched": "plasma concentration",
+        "trigger_group": "pharmacokinetic",
+        "negated": false,
+        "confidence": "auto_extracted",
+        "verdict": "rejected",
+        "evidence_sentence": "Common herbal medicines that interact with drugs include St John's wort (Hypericum perforatum), ginkgo (Ginkgo biloba), ginger (Zingiber officinale), ginseng (Panax ginseng), and garlic (Allium sativum). For example, St John's wort significantly reduced the area under the plasma concentration-time curve (AUC) and blood concentrations of cyclosporine, midazolam, tacrolimus, amitriptyline, digoxin, indinavir, warfarin, phenprocoumon and theophylline. The common drugs that interact with herbal medicines include warfarin, midazolam, digoxin, amitriptyline, indinavir, cyclosporine, tacrolimus and irinotecan.",
+        "source_url": "https://pubmed.ncbi.nlm.nih.gov/22292789/"
+      }
+    ],
+    "disclaimer": "This database reports interactions documented in curated PubMed literature. It is informational only, is not a substitute for professional medical advice, and does not provide diagnoses, dosages or treatment recommendations. Absence of a documented interaction is not evidence of safety."
+  }
+}

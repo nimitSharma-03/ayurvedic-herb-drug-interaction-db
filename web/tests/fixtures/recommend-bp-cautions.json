@@ -1,0 +1,1350 @@
+{
+  "request": {
+    "method": "POST",
+    "path": "/recommend",
+    "body": {
+      "text": "blood pressure is high",
+      "current_medicines": [
+        "Haldi",
+        "blood thinner"
+      ],
+      "cautions": {
+        "pregnant_or_breastfeeding": true,
+        "under_18": false,
+        "kidney_or_liver_disease": true
+      }
+    }
+  },
+  "status": 200,
+  "response": {
+    "status": "results",
+    "disclaimer": "This is information, not medical advice. It is generated from a research database that has not been reviewed by a clinician, and it is not a prescription or a diagnosis. Talk to a doctor or pharmacist before taking anything here, and do not start or stop a prescribed medicine on the basis of this response.",
+    "detected_conditions": [
+      {
+        "condition_id": "hypertension",
+        "confidence": 0.9994,
+        "source": "classifier",
+        "name": "High blood pressure"
+      }
+    ],
+    "ayurvedic_options": [
+      {
+        "medicine_id": "herb-garlic",
+        "name": "Garlic",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "scientific_name": "Allium sativum",
+        "drug_class": null,
+        "use_kind": "traditional_use",
+        "evidence_level": "clinical",
+        "pros": "Food-grade herb; trials and reviews report a small fall in blood pressure.",
+        "cons": "The fall is modest; smell and stomach upset are common complaints.",
+        "cautions": "Adds to blood-pressure medicines and raises bleeding risk with blood thinners.",
+        "source_type": "repo_abstract",
+        "source_note": "PMID 11834913 (review of herbs and supplements in cardiovascular disease)",
+        "uses": "Classical use of lashuna for circulatory complaints.",
+        "common_side_effects": [],
+        "tags": [
+          "hypotensive",
+          "antiplatelet",
+          "hypoglycemic",
+          "cyp_inducer"
+        ],
+        "reviewed": false,
+        "condition_id": "hypertension",
+        "condition_name": "High blood pressure"
+      },
+      {
+        "medicine_id": "herb-arjuna",
+        "name": "Arjuna",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "scientific_name": "Terminalia arjuna",
+        "drug_class": null,
+        "use_kind": "traditional_use",
+        "evidence_level": "preclinical",
+        "pros": "Traditional cardiac tonic; animal work supports a cardiovascular effect.",
+        "cons": "Blood-pressure evidence in people is very limited and indirect.",
+        "cautions": "May add to the effect of blood-pressure-lowering medicines.",
+        "source_type": "repo_abstract",
+        "source_note": "PMID 23001577; PMID 9505018",
+        "uses": "Classical use of arjuna bark for hridroga, the heart-disease group.",
+        "common_side_effects": [],
+        "tags": [
+          "hypotensive"
+        ],
+        "reviewed": false,
+        "condition_id": "hypertension",
+        "condition_name": "High blood pressure"
+      },
+      {
+        "medicine_id": "herb-moringa",
+        "name": "Moringa",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "scientific_name": "Moringa oleifera",
+        "drug_class": null,
+        "use_kind": "traditional_use",
+        "evidence_level": "preclinical",
+        "pros": "Edible leaf; animal studies report lower blood pressure in metabolic syndrome models.",
+        "cons": "No human blood-pressure trials, so the size of any effect is unknown.",
+        "cautions": "May add to blood-pressure-lowering and sugar-lowering medicines.",
+        "source_type": "repo_abstract",
+        "source_note": "PMID 32412306; PMID 34700271",
+        "uses": "Traditional use of shigru as food and as a metabolic tonic.",
+        "common_side_effects": [],
+        "tags": [
+          "hypotensive",
+          "hypoglycemic"
+        ],
+        "reviewed": false,
+        "condition_id": "hypertension",
+        "condition_name": "High blood pressure"
+      },
+      {
+        "medicine_id": "herb-jatamansi",
+        "name": "Jatamansi",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "scientific_name": "Nardostachys jatamansi",
+        "drug_class": null,
+        "use_kind": "traditional_use",
+        "evidence_level": "traditional",
+        "pros": "Traditional calming herb, used where tension and poor sleep drive blood pressure.",
+        "cons": "No human blood-pressure evidence; the record is mainly as a sedative.",
+        "cautions": "Adds to drowsiness from other medicines and may add to blood-pressure lowering.",
+        "source_type": "general_knowledge",
+        "source_note": "classical Ayurvedic materia medica for Nardostachys jatamansi; this project's abstract corpus holds no cardiovascular study of it",
+        "uses": "Classical use of jatamansi as a calming herb for the mind and the heart.",
+        "common_side_effects": [],
+        "tags": [
+          "sedative",
+          "hypotensive"
+        ],
+        "reviewed": false,
+        "condition_id": "hypertension",
+        "condition_name": "High blood pressure"
+      },
+      {
+        "medicine_id": "herb-punarnava",
+        "name": "Punarnava",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "scientific_name": "Boerhavia diffusa",
+        "drug_class": null,
+        "use_kind": "traditional_use",
+        "evidence_level": "traditional",
+        "pros": "Long traditional record as a gentle diuretic where fluid is retained.",
+        "cons": "No human blood-pressure trials; the basis is tradition alone.",
+        "cautions": "A diuretic effect can disturb fluid and potassium balance alongside heart medicines.",
+        "source_type": "general_knowledge",
+        "source_note": "classical Ayurvedic materia medica for Boerhavia diffusa; this project's abstract corpus holds no cardiovascular study of it",
+        "uses": "Classical use of punarnava as a diuretic for shotha, fluid swelling.",
+        "common_side_effects": [],
+        "tags": [
+          "diuretic",
+          "potassium_affecting",
+          "hypotensive"
+        ],
+        "reviewed": false,
+        "condition_id": "hypertension",
+        "condition_name": "High blood pressure"
+      },
+      {
+        "medicine_id": "herb-sarpagandha",
+        "name": "Sarpagandha",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "scientific_name": "Rauvolfia serpentina",
+        "drug_class": null,
+        "use_kind": "traditional_use",
+        "evidence_level": "traditional",
+        "pros": "The best known classical Ayurvedic herb for high blood pressure.",
+        "cons": "Causes marked drowsiness, slow pulse, nasal stuffiness and low mood.",
+        "cautions": "Avoid if there is depression; adds strongly to blood-pressure and heart-rate-lowering medicines.",
+        "source_type": "general_knowledge",
+        "source_note": "classical Ayurvedic materia medica for Rauvolfia serpentina, plus its well-established pharmacology; this project's abstract corpus holds no study of it",
+        "uses": "Classical use of Indian snakeroot for raktagata vata and for unmada, mental agitation.",
+        "common_side_effects": [],
+        "tags": [
+          "hypotensive",
+          "sedative",
+          "bradycardic"
+        ],
+        "reviewed": false,
+        "condition_id": "hypertension",
+        "condition_name": "High blood pressure"
+      }
+    ],
+    "allopathic_options": [
+      {
+        "medicine_id": "drug-amlodipine",
+        "name": "Amlodipine",
+        "category": "allopathic",
+        "medicine_type": "drug",
+        "scientific_name": null,
+        "drug_class": "Cardiovascular",
+        "use_kind": "conventional_use",
+        "evidence_level": "clinical",
+        "pros": "Once-daily, well tolerated, and works well in Indian and older populations.",
+        "cons": "Commonly causes ankle swelling; does not slow the heart rate.",
+        "cautions": "Ankle swelling can be mistaken for heart failure; tell the doctor if it appears.",
+        "source_type": "fetched_source",
+        "source_note": "openFDA SPL label, set_id 003dd1ec-16f8-4f96-b6a8-c4689d35892a effective 20260420 (data/raw/openfda_labels.json)",
+        "uses": "Relaxing the blood vessels so blood pressure falls.",
+        "common_side_effects": [
+          "ankle swelling",
+          "flushing",
+          "headache",
+          "tiredness"
+        ],
+        "tags": [
+          "hypotensive",
+          "cyp_substrate"
+        ],
+        "reviewed": false,
+        "condition_id": "hypertension",
+        "condition_name": "High blood pressure"
+      },
+      {
+        "medicine_id": "drug-atenolol",
+        "name": "Atenolol",
+        "category": "allopathic",
+        "medicine_type": "drug",
+        "scientific_name": null,
+        "drug_class": "Cardiovascular",
+        "use_kind": "conventional_use",
+        "evidence_level": "clinical",
+        "pros": "Lowers blood pressure and the stroke and heart attack risk that comes with it.",
+        "cons": "Causes tiredness and cold hands; can mask the warning signs of low blood sugar.",
+        "cautions": "Not for people with a very slow pulse or heart block; never stop it abruptly.",
+        "source_type": "fetched_source",
+        "source_note": "openFDA SPL label, set_id 09b21985-1818-449d-9b29-98f733cf7b9f effective 20241126 (data/raw/openfda_labels.json)",
+        "uses": "Lowering blood pressure by slowing the heart and reducing its workload.",
+        "common_side_effects": [
+          "tiredness",
+          "cold hands and feet",
+          "slow pulse",
+          "dizziness"
+        ],
+        "tags": [
+          "hypotensive",
+          "bradycardic"
+        ],
+        "reviewed": false,
+        "condition_id": "hypertension",
+        "condition_name": "High blood pressure"
+      },
+      {
+        "medicine_id": "drug-losartan",
+        "name": "Losartan",
+        "category": "allopathic",
+        "medicine_type": "drug",
+        "scientific_name": null,
+        "drug_class": "Cardiovascular",
+        "use_kind": "conventional_use",
+        "evidence_level": "clinical",
+        "pros": "Well tolerated, protects the kidneys in diabetes, and rarely causes cough.",
+        "cons": "Can raise potassium and reduce kidney function; needs blood tests.",
+        "cautions": "Carries a fetal toxicity warning and must be stopped if pregnancy occurs.",
+        "source_type": "fetched_source",
+        "source_note": "openFDA SPL label, set_id 021cd76a-b093-4704-8410-5e7d01e20a54 effective 20260827 (data/raw/openfda_labels.json)",
+        "uses": "Blocking a hormone that tightens blood vessels, so blood pressure falls.",
+        "common_side_effects": [
+          "dizziness",
+          "nasal congestion",
+          "back pain",
+          "raised potassium"
+        ],
+        "tags": [
+          "hypotensive",
+          "potassium_affecting",
+          "cyp_substrate"
+        ],
+        "reviewed": false,
+        "condition_id": "hypertension",
+        "condition_name": "High blood pressure"
+      },
+      {
+        "medicine_id": "drug-metoprolol",
+        "name": "Metoprolol",
+        "category": "allopathic",
+        "medicine_type": "drug",
+        "scientific_name": null,
+        "drug_class": "Cardiovascular",
+        "use_kind": "conventional_use",
+        "evidence_level": "clinical",
+        "pros": "Lowers blood pressure and the stroke and heart attack risk that comes with it.",
+        "cons": "Causes tiredness and dizziness; can mask the warning signs of low blood sugar.",
+        "cautions": "Not for severe slow pulse, heart block or uncontrolled heart failure; never stop abruptly.",
+        "source_type": "fetched_source",
+        "source_note": "openFDA SPL label, set_id 00940cc5-d2eb-4841-9138-de97d7b1c674 effective 20260727 (data/raw/openfda_labels.json)",
+        "uses": "Lowering blood pressure by slowing the heart and reducing its workload.",
+        "common_side_effects": [
+          "tiredness",
+          "dizziness",
+          "slow pulse",
+          "cold hands and feet"
+        ],
+        "tags": [
+          "hypotensive",
+          "bradycardic",
+          "cyp_substrate"
+        ],
+        "reviewed": false,
+        "condition_id": "hypertension",
+        "condition_name": "High blood pressure"
+      }
+    ],
+    "combination_warnings": [
+      {
+        "level": "literature_verified",
+        "label": "Literature-verified",
+        "medicine_a": "Amlodipine",
+        "medicine_b": "Turmeric",
+        "reason": "Curated PubMed evidence records general_interaction interaction language for Turmeric and Amlodipine in 1 abstract(s) (PMID 34958609), each confirmed by manual curator review.",
+        "severity": "minor",
+        "against_current_medicine": true,
+        "citations": [
+          {
+            "pmid": "34958609",
+            "evidence_sentence": "Herb-drug interaction: pharmacokinetics and pharmacodynamics of anti-hypertensive drug amlodipine besylate in presence of Lepidium sativum and Curcuma longa. Effects of Lepidium sativum and Curcuma longa were investigated on pharmacokinetics and pharmacodynamics of antihypertensive drug (amlodipine).Hypertensive rats were treated with amlodipine, Lepidium sativum, Lepidium sativum + amlodipine, Curcuma longa and Curcuma longa + amlodipine, and their blood pressures were measured.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/34958609/"
+          }
+        ],
+        "rules": []
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Atenolol",
+        "medicine_b": "Turmeric",
+        "reason": "A slowed heart rate hides the racing-pulse warning sign of a low blood sugar.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": true,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-014",
+            "tags": [
+              "bradycardic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Garlic",
+        "medicine_b": "Turmeric",
+        "reason": "Both lower blood sugar, so taking them together can push it lower than intended. Both make platelets less sticky, so bruising and bleeding become more likely.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": true,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-021",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          },
+          {
+            "rule_id": "rule-022",
+            "tags": [
+              "antiplatelet",
+              "antiplatelet"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Losartan",
+        "medicine_b": "Turmeric",
+        "reason": "Slowing the liver enzyme that clears the medicine can let its blood level climb.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": true,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-008",
+            "tags": [
+              "cyp_inhibitor",
+              "cyp_substrate"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Metoprolol",
+        "medicine_b": "Turmeric",
+        "reason": "Slowing the liver enzyme that clears the medicine can let its blood level climb. A slowed heart rate hides the racing-pulse warning sign of a low blood sugar.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": true,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-008",
+            "tags": [
+              "cyp_inhibitor",
+              "cyp_substrate"
+            ],
+            "level": "high"
+          },
+          {
+            "rule_id": "rule-014",
+            "tags": [
+              "bradycardic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Moringa",
+        "medicine_b": "Turmeric",
+        "reason": "Both lower blood sugar, so taking them together can push it lower than intended.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": true,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-021",
+            "tags": [
+              "hypoglycemic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "insufficient_evidence",
+        "label": "Insufficient evidence",
+        "medicine_a": "Arjuna",
+        "medicine_b": "Turmeric",
+        "reason": "No evidence has been collected for this pair and no mechanism rule applies, so there is no basis to say whether they interact.",
+        "severity": null,
+        "against_current_medicine": true,
+        "citations": [],
+        "rules": []
+      },
+      {
+        "level": "insufficient_evidence",
+        "label": "Insufficient evidence",
+        "medicine_a": "Jatamansi",
+        "medicine_b": "Turmeric",
+        "reason": "No evidence has been collected for this pair and no mechanism rule applies, so there is no basis to say whether they interact.",
+        "severity": null,
+        "against_current_medicine": true,
+        "citations": [],
+        "rules": []
+      },
+      {
+        "level": "insufficient_evidence",
+        "label": "Insufficient evidence",
+        "medicine_a": "Punarnava",
+        "medicine_b": "Turmeric",
+        "reason": "No evidence has been collected for this pair and no mechanism rule applies, so there is no basis to say whether they interact.",
+        "severity": null,
+        "against_current_medicine": true,
+        "citations": [],
+        "rules": []
+      },
+      {
+        "level": "insufficient_evidence",
+        "label": "Insufficient evidence",
+        "medicine_a": "Sarpagandha",
+        "medicine_b": "Turmeric",
+        "reason": "No evidence has been collected for this pair and no mechanism rule applies, so there is no basis to say whether they interact.",
+        "severity": null,
+        "against_current_medicine": true,
+        "citations": [],
+        "rules": []
+      },
+      {
+        "level": "literature_verified",
+        "label": "Literature-verified",
+        "medicine_a": "Arjuna",
+        "medicine_b": "Metoprolol",
+        "reason": "Curated PubMed evidence records general_interaction interaction language for Arjuna and Metoprolol in 1 abstract(s) (PMID 26891872), each confirmed by manual curator review.",
+        "severity": "minor",
+        "against_current_medicine": false,
+        "citations": [
+          {
+            "pmid": "26891872",
+            "evidence_sentence": "T. arjuna bark extract has been reported to play a significant role as a cardiac stimulant for its beneficial effects in angina. Herb - drug interactions (HDI) are one of the most important clinical concerns in the concomitant consumption of herbs and prescription drugs. Our study was to investigate the in vitro CYP2D inhibition potential of Terminalia arjuna (T. arjuna) extracts in rat liver microsomes and to study the influence of aqueous bark extract of T. arjuna on the oral pharmacokinetics and pharmacodynamics of metoprolol succinate in rats.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/26891872/"
+          },
+          {
+            "pmid": "26891872",
+            "evidence_sentence": "Pharmacodynamic studies reveal a significant reduction in therapeutic activity of metoprolol succinate on co-administration with aqueous bark extract of T. arjuna. Based on our in vitro and in vivo findings and until further clinical drug interaction experiments are conducted, the co-administration of drugs, especially those primarily cleared via CYP2D catalyzed metabolism, with T. arjuna extracts should be done with caution.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/26891872/"
+          }
+        ],
+        "rules": []
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Garlic",
+        "medicine_b": "Amlodipine",
+        "reason": "Speeding up the liver enzyme that clears the medicine can let its blood level fall. Both lower blood pressure, so dizziness or fainting from an excessive drop is more likely.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-009",
+            "tags": [
+              "cyp_inducer",
+              "cyp_substrate"
+            ],
+            "level": "high"
+          },
+          {
+            "rule_id": "rule-016",
+            "tags": [
+              "hypotensive",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Garlic",
+        "medicine_b": "Atenolol",
+        "reason": "A slowed heart rate hides the racing-pulse warning sign of a low blood sugar. Both lower blood pressure, so dizziness or fainting from an excessive drop is more likely. One lowers blood pressure while the other slows the heart, which together can cause dizziness.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-014",
+            "tags": [
+              "bradycardic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          },
+          {
+            "rule_id": "rule-016",
+            "tags": [
+              "hypotensive",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          },
+          {
+            "rule_id": "rule-017",
+            "tags": [
+              "bradycardic",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Garlic",
+        "medicine_b": "Losartan",
+        "reason": "Speeding up the liver enzyme that clears the medicine can let its blood level fall. Both lower blood pressure, so dizziness or fainting from an excessive drop is more likely.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-009",
+            "tags": [
+              "cyp_inducer",
+              "cyp_substrate"
+            ],
+            "level": "high"
+          },
+          {
+            "rule_id": "rule-016",
+            "tags": [
+              "hypotensive",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Garlic",
+        "medicine_b": "Metoprolol",
+        "reason": "Speeding up the liver enzyme that clears the medicine can let its blood level fall. A slowed heart rate hides the racing-pulse warning sign of a low blood sugar. Both lower blood pressure, so dizziness or fainting from an excessive drop is more likely. One lowers blood pressure while the other slows the heart, which together can cause dizziness.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-009",
+            "tags": [
+              "cyp_inducer",
+              "cyp_substrate"
+            ],
+            "level": "high"
+          },
+          {
+            "rule_id": "rule-014",
+            "tags": [
+              "bradycardic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          },
+          {
+            "rule_id": "rule-016",
+            "tags": [
+              "hypotensive",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          },
+          {
+            "rule_id": "rule-017",
+            "tags": [
+              "bradycardic",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Moringa",
+        "medicine_b": "Atenolol",
+        "reason": "A slowed heart rate hides the racing-pulse warning sign of a low blood sugar. Both lower blood pressure, so dizziness or fainting from an excessive drop is more likely. One lowers blood pressure while the other slows the heart, which together can cause dizziness.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-014",
+            "tags": [
+              "bradycardic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          },
+          {
+            "rule_id": "rule-016",
+            "tags": [
+              "hypotensive",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          },
+          {
+            "rule_id": "rule-017",
+            "tags": [
+              "bradycardic",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Moringa",
+        "medicine_b": "Metoprolol",
+        "reason": "A slowed heart rate hides the racing-pulse warning sign of a low blood sugar. Both lower blood pressure, so dizziness or fainting from an excessive drop is more likely. One lowers blood pressure while the other slows the heart, which together can cause dizziness.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-014",
+            "tags": [
+              "bradycardic",
+              "hypoglycemic"
+            ],
+            "level": "high"
+          },
+          {
+            "rule_id": "rule-016",
+            "tags": [
+              "hypotensive",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          },
+          {
+            "rule_id": "rule-017",
+            "tags": [
+              "bradycardic",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Punarnava",
+        "medicine_b": "Losartan",
+        "reason": "Both shift potassium, and an abnormal potassium level disturbs the heart rhythm. Extra fluid loss alongside a potassium shift can leave potassium low enough to affect the heart. Both lower blood pressure, so dizziness or fainting from an excessive drop is more likely. Extra fluid loss on top of a blood-pressure medicine can cause dizziness or dehydration.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-011",
+            "tags": [
+              "potassium_affecting",
+              "potassium_affecting"
+            ],
+            "level": "high"
+          },
+          {
+            "rule_id": "rule-012",
+            "tags": [
+              "diuretic",
+              "potassium_affecting"
+            ],
+            "level": "high"
+          },
+          {
+            "rule_id": "rule-016",
+            "tags": [
+              "hypotensive",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          },
+          {
+            "rule_id": "rule-018",
+            "tags": [
+              "diuretic",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Sarpagandha",
+        "medicine_b": "Atenolol",
+        "reason": "Both slow the heart rate, which can leave the pulse too slow. Both lower blood pressure, so dizziness or fainting from an excessive drop is more likely. One lowers blood pressure while the other slows the heart, which together can cause dizziness. Drowsiness from one and a blood-pressure fall from the other together raise the risk of falls. Drowsiness combined with a slowed heart rate can leave someone faint or very tired.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-015",
+            "tags": [
+              "bradycardic",
+              "bradycardic"
+            ],
+            "level": "high"
+          },
+          {
+            "rule_id": "rule-016",
+            "tags": [
+              "hypotensive",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          },
+          {
+            "rule_id": "rule-017",
+            "tags": [
+              "bradycardic",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          },
+          {
+            "rule_id": "rule-019",
+            "tags": [
+              "hypotensive",
+              "sedative"
+            ],
+            "level": "moderate"
+          },
+          {
+            "rule_id": "rule-020",
+            "tags": [
+              "bradycardic",
+              "sedative"
+            ],
+            "level": "moderate"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Sarpagandha",
+        "medicine_b": "Metoprolol",
+        "reason": "Both slow the heart rate, which can leave the pulse too slow. Both lower blood pressure, so dizziness or fainting from an excessive drop is more likely. One lowers blood pressure while the other slows the heart, which together can cause dizziness. Drowsiness from one and a blood-pressure fall from the other together raise the risk of falls. Drowsiness combined with a slowed heart rate can leave someone faint or very tired.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-015",
+            "tags": [
+              "bradycardic",
+              "bradycardic"
+            ],
+            "level": "high"
+          },
+          {
+            "rule_id": "rule-016",
+            "tags": [
+              "hypotensive",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          },
+          {
+            "rule_id": "rule-017",
+            "tags": [
+              "bradycardic",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          },
+          {
+            "rule_id": "rule-019",
+            "tags": [
+              "hypotensive",
+              "sedative"
+            ],
+            "level": "moderate"
+          },
+          {
+            "rule_id": "rule-020",
+            "tags": [
+              "bradycardic",
+              "sedative"
+            ],
+            "level": "moderate"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Arjuna",
+        "medicine_b": "Amlodipine",
+        "reason": "Both lower blood pressure, so dizziness or fainting from an excessive drop is more likely.",
+        "severity": null,
+        "caution_level": "moderate",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-016",
+            "tags": [
+              "hypotensive",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Arjuna",
+        "medicine_b": "Atenolol",
+        "reason": "Both lower blood pressure, so dizziness or fainting from an excessive drop is more likely. One lowers blood pressure while the other slows the heart, which together can cause dizziness.",
+        "severity": null,
+        "caution_level": "moderate",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-016",
+            "tags": [
+              "hypotensive",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          },
+          {
+            "rule_id": "rule-017",
+            "tags": [
+              "bradycardic",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Arjuna",
+        "medicine_b": "Losartan",
+        "reason": "Both lower blood pressure, so dizziness or fainting from an excessive drop is more likely.",
+        "severity": null,
+        "caution_level": "moderate",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-016",
+            "tags": [
+              "hypotensive",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Jatamansi",
+        "medicine_b": "Amlodipine",
+        "reason": "Both lower blood pressure, so dizziness or fainting from an excessive drop is more likely. Drowsiness from one and a blood-pressure fall from the other together raise the risk of falls.",
+        "severity": null,
+        "caution_level": "moderate",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-016",
+            "tags": [
+              "hypotensive",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          },
+          {
+            "rule_id": "rule-019",
+            "tags": [
+              "hypotensive",
+              "sedative"
+            ],
+            "level": "moderate"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Jatamansi",
+        "medicine_b": "Atenolol",
+        "reason": "Both lower blood pressure, so dizziness or fainting from an excessive drop is more likely. One lowers blood pressure while the other slows the heart, which together can cause dizziness. Drowsiness from one and a blood-pressure fall from the other together raise the risk of falls. Drowsiness combined with a slowed heart rate can leave someone faint or very tired.",
+        "severity": null,
+        "caution_level": "moderate",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-016",
+            "tags": [
+              "hypotensive",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          },
+          {
+            "rule_id": "rule-017",
+            "tags": [
+              "bradycardic",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          },
+          {
+            "rule_id": "rule-019",
+            "tags": [
+              "hypotensive",
+              "sedative"
+            ],
+            "level": "moderate"
+          },
+          {
+            "rule_id": "rule-020",
+            "tags": [
+              "bradycardic",
+              "sedative"
+            ],
+            "level": "moderate"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Jatamansi",
+        "medicine_b": "Losartan",
+        "reason": "Both lower blood pressure, so dizziness or fainting from an excessive drop is more likely. Drowsiness from one and a blood-pressure fall from the other together raise the risk of falls.",
+        "severity": null,
+        "caution_level": "moderate",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-016",
+            "tags": [
+              "hypotensive",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          },
+          {
+            "rule_id": "rule-019",
+            "tags": [
+              "hypotensive",
+              "sedative"
+            ],
+            "level": "moderate"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Jatamansi",
+        "medicine_b": "Metoprolol",
+        "reason": "Both lower blood pressure, so dizziness or fainting from an excessive drop is more likely. One lowers blood pressure while the other slows the heart, which together can cause dizziness. Drowsiness from one and a blood-pressure fall from the other together raise the risk of falls. Drowsiness combined with a slowed heart rate can leave someone faint or very tired.",
+        "severity": null,
+        "caution_level": "moderate",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-016",
+            "tags": [
+              "hypotensive",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          },
+          {
+            "rule_id": "rule-017",
+            "tags": [
+              "bradycardic",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          },
+          {
+            "rule_id": "rule-019",
+            "tags": [
+              "hypotensive",
+              "sedative"
+            ],
+            "level": "moderate"
+          },
+          {
+            "rule_id": "rule-020",
+            "tags": [
+              "bradycardic",
+              "sedative"
+            ],
+            "level": "moderate"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Moringa",
+        "medicine_b": "Amlodipine",
+        "reason": "Both lower blood pressure, so dizziness or fainting from an excessive drop is more likely.",
+        "severity": null,
+        "caution_level": "moderate",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-016",
+            "tags": [
+              "hypotensive",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Moringa",
+        "medicine_b": "Losartan",
+        "reason": "Both lower blood pressure, so dizziness or fainting from an excessive drop is more likely.",
+        "severity": null,
+        "caution_level": "moderate",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-016",
+            "tags": [
+              "hypotensive",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Punarnava",
+        "medicine_b": "Amlodipine",
+        "reason": "Both lower blood pressure, so dizziness or fainting from an excessive drop is more likely. Extra fluid loss on top of a blood-pressure medicine can cause dizziness or dehydration.",
+        "severity": null,
+        "caution_level": "moderate",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-016",
+            "tags": [
+              "hypotensive",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          },
+          {
+            "rule_id": "rule-018",
+            "tags": [
+              "diuretic",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Punarnava",
+        "medicine_b": "Atenolol",
+        "reason": "Both lower blood pressure, so dizziness or fainting from an excessive drop is more likely. One lowers blood pressure while the other slows the heart, which together can cause dizziness. Extra fluid loss on top of a blood-pressure medicine can cause dizziness or dehydration.",
+        "severity": null,
+        "caution_level": "moderate",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-016",
+            "tags": [
+              "hypotensive",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          },
+          {
+            "rule_id": "rule-017",
+            "tags": [
+              "bradycardic",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          },
+          {
+            "rule_id": "rule-018",
+            "tags": [
+              "diuretic",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Punarnava",
+        "medicine_b": "Metoprolol",
+        "reason": "Both lower blood pressure, so dizziness or fainting from an excessive drop is more likely. One lowers blood pressure while the other slows the heart, which together can cause dizziness. Extra fluid loss on top of a blood-pressure medicine can cause dizziness or dehydration.",
+        "severity": null,
+        "caution_level": "moderate",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-016",
+            "tags": [
+              "hypotensive",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          },
+          {
+            "rule_id": "rule-017",
+            "tags": [
+              "bradycardic",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          },
+          {
+            "rule_id": "rule-018",
+            "tags": [
+              "diuretic",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Sarpagandha",
+        "medicine_b": "Amlodipine",
+        "reason": "Both lower blood pressure, so dizziness or fainting from an excessive drop is more likely. One lowers blood pressure while the other slows the heart, which together can cause dizziness. Drowsiness from one and a blood-pressure fall from the other together raise the risk of falls.",
+        "severity": null,
+        "caution_level": "moderate",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-016",
+            "tags": [
+              "hypotensive",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          },
+          {
+            "rule_id": "rule-017",
+            "tags": [
+              "bradycardic",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          },
+          {
+            "rule_id": "rule-019",
+            "tags": [
+              "hypotensive",
+              "sedative"
+            ],
+            "level": "moderate"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Sarpagandha",
+        "medicine_b": "Losartan",
+        "reason": "Both lower blood pressure, so dizziness or fainting from an excessive drop is more likely. One lowers blood pressure while the other slows the heart, which together can cause dizziness. Drowsiness from one and a blood-pressure fall from the other together raise the risk of falls.",
+        "severity": null,
+        "caution_level": "moderate",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-016",
+            "tags": [
+              "hypotensive",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          },
+          {
+            "rule_id": "rule-017",
+            "tags": [
+              "bradycardic",
+              "hypotensive"
+            ],
+            "level": "moderate"
+          },
+          {
+            "rule_id": "rule-019",
+            "tags": [
+              "hypotensive",
+              "sedative"
+            ],
+            "level": "moderate"
+          }
+        ]
+      }
+    ],
+    "combination_summary": {
+      "pairs_checked": 44,
+      "warnings_listed": 34,
+      "pairs_with_no_finding_not_listed": 0,
+      "note": "Checked: every suggested herb against every suggested drug, and every suggestion against each medicine you said you already take. Suggestion pairs with no documented interaction and no mechanism rule are counted here rather than listed. Absence of a listing is not a safety claim."
+    },
+    "caution_notes": [
+      "You have said you are pregnant or breastfeeding. Many herbs and several of these medicines are not suitable then, and this database holds no pregnancy-specific safety data. Check every item with a doctor or pharmacist before taking it.",
+      "You have said there is kidney or liver disease. Both organs clear medicines and herbs from the body, so reduced function can turn an ordinary amount into too much. Every item here needs a doctor's review in that situation.",
+      "You named a group of medicines rather than a specific one: Anticoagulants. Only cautions that hold for every medicine in the group are shown.",
+      "Conditions were detected by a classifier trained on synthetic phrasings, so it can misread wording nobody anticipated. Check the detected conditions before relying on the options."
+    ],
+    "current_medicines": {
+      "resolved": [
+        {
+          "query": "Haldi",
+          "medicine_id": "herb-turmeric",
+          "name": "Turmeric",
+          "medicine_type": "herb",
+          "category": "ayurvedic",
+          "drug_class": null,
+          "resolved_as": "medicine"
+        }
+      ],
+      "drug_classes": [
+        {
+          "query": "blood thinner",
+          "drug_class": "Anticoagulants",
+          "resolved_as": "drug_class",
+          "members": [
+            "Aspirin",
+            "Clopidogrel",
+            "Heparin",
+            "Warfarin"
+          ]
+        }
+      ],
+      "unresolved": [],
+      "ambiguous": []
+    },
+    "evidence_note": "Every option here is unreviewed research data: `reviewed` is false on all of them and `source_type` says where each came from. Only warnings with level 'literature_verified' rest on a published finding."
+  }
+}

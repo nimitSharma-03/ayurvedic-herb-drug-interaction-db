@@ -1,0 +1,228 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/health-topics/lookup?topic=sugar",
+    "body": null
+  },
+  "status": 200,
+  "response": {
+    "topic": "sugar",
+    "status": "topic_found",
+    "disclaimer": "Topic associations are informational records drawn from cited sources. They are not treatment recommendations, are not personalized, and include no dosage guidance. Traditional use is reported as tradition, not as clinical proof.",
+    "conventional_use": [
+      {
+        "medicine": {
+          "id": "drug-glimepiride",
+          "name": "Glimepiride",
+          "category": "allopathic",
+          "medicine_type": "drug"
+        },
+        "use_type": "conventional_use",
+        "description": "Prompting the pancreas to release more insulin in type 2 diabetes.",
+        "evidence_level": "limited",
+        "source": "fetched_source: openFDA SPL label, set_id 0003458f-352a-46fa-9d99-230daa76ae29 effective 20241113 (data/raw/openfda_labels.json)",
+        "source_url": null,
+        "last_verified": "2026-10-01"
+      },
+      {
+        "medicine": {
+          "id": "drug-insulin",
+          "name": "Insulin",
+          "category": "allopathic",
+          "medicine_type": "drug"
+        },
+        "use_type": "conventional_use",
+        "description": "Replacing or supplementing the body's own insulin to control blood sugar.",
+        "evidence_level": "limited",
+        "source": "fetched_source: openFDA SPL label, set_id b60e8dd0-1d48-4dc9-87fd-e14675255e8c effective 20260701 (data/raw/openfda_labels.json)",
+        "source_url": null,
+        "last_verified": "2026-10-01"
+      },
+      {
+        "medicine": {
+          "id": "drug-metformin",
+          "name": "Metformin",
+          "category": "allopathic",
+          "medicine_type": "drug"
+        },
+        "use_type": "conventional_use",
+        "description": "Lowering blood sugar in type 2 diabetes, alongside diet and exercise.",
+        "evidence_level": "limited",
+        "source": "fetched_source: openFDA SPL label, set_id 011de1a5-1ac0-4831-9e8d-26ec79ba2205 effective 20240821 (data/raw/openfda_labels.json)",
+        "source_url": null,
+        "last_verified": "2026-10-01"
+      },
+      {
+        "medicine": {
+          "id": "drug-pioglitazone",
+          "name": "Pioglitazone",
+          "category": "allopathic",
+          "medicine_type": "drug"
+        },
+        "use_type": "conventional_use",
+        "description": "Making the body's tissues respond better to its own insulin.",
+        "evidence_level": "limited",
+        "source": "fetched_source: openFDA SPL label, set_id 0331400c-b163-4856-bfb0-965470247cb3 effective 20250517 (data/raw/openfda_labels.json)",
+        "source_url": null,
+        "last_verified": "2026-10-01"
+      }
+    ],
+    "traditional_use": [],
+    "evidence_supported_use": [
+      {
+        "medicine": {
+          "id": "herb-aloe-vera",
+          "name": "Aloe vera",
+          "category": "ayurvedic",
+          "medicine_type": "herb"
+        },
+        "use_type": "evidence_supported_use",
+        "description": "Traditional use of ghritakumari gel for digestion, skin and metabolic complaints.",
+        "evidence_level": "limited",
+        "source": "repo_abstract: PMID 22198821 (randomised double-blind placebo-controlled trial in type 2 diabetes)",
+        "source_url": null,
+        "last_verified": "2026-10-01"
+      },
+      {
+        "medicine": {
+          "id": "herb-amla",
+          "name": "Amla",
+          "category": "ayurvedic",
+          "medicine_type": "herb"
+        },
+        "use_type": "evidence_supported_use",
+        "description": "Classical rasayana fruit, used in Triphala and recorded for prameha.",
+        "evidence_level": "insufficient",
+        "source": "repo_abstract: PMID 21394805 and PMID 19761040 (glycaemic, animal); antiplatelet tag from PMID 24291054, a human study alongside clopidogrel and aspirin",
+        "source_url": null,
+        "last_verified": "2026-10-01"
+      },
+      {
+        "medicine": {
+          "id": "herb-cinnamon",
+          "name": "Cinnamon",
+          "category": "ayurvedic",
+          "medicine_type": "herb"
+        },
+        "use_type": "evidence_supported_use",
+        "description": "Traditional use of twak as a warming digestive and metabolic spice.",
+        "evidence_level": "limited",
+        "source": "repo_abstract: PMID 19930003 (review of randomised controlled trials)",
+        "source_url": null,
+        "last_verified": "2026-10-01"
+      },
+      {
+        "medicine": {
+          "id": "herb-fenugreek",
+          "name": "Fenugreek",
+          "category": "ayurvedic",
+          "medicine_type": "herb"
+        },
+        "use_type": "evidence_supported_use",
+        "description": "Traditional use of methi seed for prameha and for digestion.",
+        "evidence_level": "insufficient",
+        "source": "repo_abstract: PMID 17392143; PMID 20448850",
+        "source_url": null,
+        "last_verified": "2026-10-01"
+      },
+      {
+        "medicine": {
+          "id": "herb-garlic",
+          "name": "Garlic",
+          "category": "ayurvedic",
+          "medicine_type": "herb"
+        },
+        "use_type": "evidence_supported_use",
+        "description": "Classical use of lashuna as a warming herb for vata and circulatory complaints.",
+        "evidence_level": "insufficient",
+        "source": "repo_abstract: PMID 16801983 (glycaemic); warfarin interaction curator-confirmed in this project (PMID 10675182, 19719333, 21919844)",
+        "source_url": null,
+        "last_verified": "2026-10-01"
+      },
+      {
+        "medicine": {
+          "id": "herb-giloy",
+          "name": "Giloy",
+          "category": "ayurvedic",
+          "medicine_type": "herb"
+        },
+        "use_type": "evidence_supported_use",
+        "description": "Classical rasayana, guduchi, recorded for prameha and for fevers.",
+        "evidence_level": "insufficient",
+        "source": "repo_abstract: PMID 1529024 and PMID 19520137 (glycaemic, animal); the hepatotoxic_risk tag rests on published Indian case series and is general knowledge, not on an abstract in this corpus",
+        "source_url": null,
+        "last_verified": "2026-10-01"
+      },
+      {
+        "medicine": {
+          "id": "herb-gymnema",
+          "name": "Gymnema",
+          "category": "ayurvedic",
+          "medicine_type": "herb"
+        },
+        "use_type": "evidence_supported_use",
+        "description": "Classical use of gurmar leaf for prameha; the Hindi name means sugar destroyer.",
+        "evidence_level": "insufficient",
+        "source": "repo_abstract: PMID 23852298; PMID 23569923",
+        "source_url": null,
+        "last_verified": "2026-10-01"
+      },
+      {
+        "medicine": {
+          "id": "herb-karela",
+          "name": "Karela",
+          "category": "ayurvedic",
+          "medicine_type": "herb"
+        },
+        "use_type": "evidence_supported_use",
+        "description": "Classical use of bitter gourd fruit for prameha, the sugar-related disease group.",
+        "evidence_level": "limited",
+        "source": "repo_abstract: PMID 15521566 (human NIDDM study of hypoglycemic effect alongside oral antidiabetic drugs); PMID 19904502",
+        "source_url": null,
+        "last_verified": "2026-10-01"
+      },
+      {
+        "medicine": {
+          "id": "herb-moringa",
+          "name": "Moringa",
+          "category": "ayurvedic",
+          "medicine_type": "herb"
+        },
+        "use_type": "evidence_supported_use",
+        "description": "Traditional use of shigru leaf and pod as food and as a metabolic tonic.",
+        "evidence_level": "insufficient",
+        "source": "repo_abstract: PMID 26124050 and PMID 29175792 (glycaemic); blood-pressure tag from PMID 32412306",
+        "source_url": null,
+        "last_verified": "2026-10-01"
+      },
+      {
+        "medicine": {
+          "id": "herb-neem",
+          "name": "Neem",
+          "category": "ayurvedic",
+          "medicine_type": "herb"
+        },
+        "use_type": "evidence_supported_use",
+        "description": "Classical use of nimba as a bitter herb for prameha, skin disease and fevers.",
+        "evidence_level": "insufficient",
+        "source": "repo_abstract: PMID 10617075; PMID 19389871",
+        "source_url": null,
+        "last_verified": "2026-10-01"
+      },
+      {
+        "medicine": {
+          "id": "herb-turmeric",
+          "name": "Turmeric",
+          "category": "ayurvedic",
+          "medicine_type": "herb"
+        },
+        "use_type": "evidence_supported_use",
+        "description": "Classical use of haridra for prameha, inflammation and skin disorders.",
+        "evidence_level": "insufficient",
+        "source": "repo_abstract: PMID 29518605 (curator-confirmed metformin interaction in this project); antiplatelet tag from PMID 16112857 and PMID 20158382",
+        "source_url": null,
+        "last_verified": "2026-10-01"
+      }
+    ]
+  }
+}

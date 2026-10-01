@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/medicines/search?q=Paracetamol",
+    "body": null
+  },
+  "status": 200,
+  "response": {
+    "query": "Paracetamol",
+    "category": "all",
+    "count": 0,
+    "results": []
+  }
+}

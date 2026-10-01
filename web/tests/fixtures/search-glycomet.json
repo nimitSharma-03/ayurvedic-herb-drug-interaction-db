@@ -1,0 +1,26 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/medicines/search?q=Glycomet",
+    "body": null
+  },
+  "status": 200,
+  "response": {
+    "query": "Glycomet",
+    "category": "all",
+    "count": 1,
+    "results": [
+      {
+        "id": "drug-metformin",
+        "name": "Metformin",
+        "category": "allopathic",
+        "medicine_type": "drug",
+        "generic_name": "Metformin",
+        "scientific_name": null,
+        "drug_class": "Antidiabetics",
+        "evidence_level": null,
+        "matched_on": "exact_alias"
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/medicines/search?q=haldi",
+    "body": null
+  },
+  "status": 200,
+  "response": {
+    "query": "haldi",
+    "category": "all",
+    "count": 1,
+    "results": [
+      {
+        "id": "herb-turmeric",
+        "name": "Turmeric",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Curcuma longa",
+        "drug_class": null,
+        "evidence_level": null,
+        "matched_on": "exact_alias"
+      }
+    ]
+  }
+}

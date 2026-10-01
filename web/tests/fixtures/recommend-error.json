@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "POST",
+    "path": "/recommend",
+    "body": {}
+  },
+  "status": 400,
+  "response": {
+    "error": {
+      "code": "missing_parameter",
+      "message": "Field 'text' is required."
+    }
+  }
+}

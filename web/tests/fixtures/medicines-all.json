@@ -1,0 +1,493 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/medicines?limit=100",
+    "body": null
+  },
+  "status": 200,
+  "response": {
+    "count": 53,
+    "category": "all",
+    "limit": 100,
+    "offset": 0,
+    "results": [
+      {
+        "id": "herb-aloe-vera",
+        "name": "Aloe vera",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Aloe vera",
+        "drug_class": null
+      },
+      {
+        "id": "herb-amla",
+        "name": "Amla",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Phyllanthus emblica",
+        "drug_class": null
+      },
+      {
+        "id": "drug-amlodipine",
+        "name": "Amlodipine",
+        "category": "allopathic",
+        "medicine_type": "drug",
+        "generic_name": "Amlodipine",
+        "scientific_name": null,
+        "drug_class": "Cardiovascular"
+      },
+      {
+        "id": "herb-arjuna",
+        "name": "Arjuna",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Terminalia arjuna",
+        "drug_class": null
+      },
+      {
+        "id": "herb-ashoka",
+        "name": "Ashoka",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Saraca asoca",
+        "drug_class": null
+      },
+      {
+        "id": "herb-ashwagandha",
+        "name": "Ashwagandha",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Withania somnifera",
+        "drug_class": null
+      },
+      {
+        "id": "drug-aspirin",
+        "name": "Aspirin",
+        "category": "allopathic",
+        "medicine_type": "drug",
+        "generic_name": "Aspirin",
+        "scientific_name": null,
+        "drug_class": "Anticoagulants"
+      },
+      {
+        "id": "drug-atenolol",
+        "name": "Atenolol",
+        "category": "allopathic",
+        "medicine_type": "drug",
+        "generic_name": "Atenolol",
+        "scientific_name": null,
+        "drug_class": "Cardiovascular"
+      },
+      {
+        "id": "herb-bhringraj",
+        "name": "Bhringraj",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Eclipta prostrata",
+        "drug_class": null
+      },
+      {
+        "id": "herb-bhumi-amla",
+        "name": "Bhumi Amla",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Phyllanthus niruri",
+        "drug_class": null
+      },
+      {
+        "id": "herb-bibhitaki",
+        "name": "Bibhitaki",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Terminalia bellirica",
+        "drug_class": null
+      },
+      {
+        "id": "herb-black-pepper",
+        "name": "Black pepper",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Piper nigrum",
+        "drug_class": null
+      },
+      {
+        "id": "herb-boswellia",
+        "name": "Boswellia",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Boswellia serrata",
+        "drug_class": null
+      },
+      {
+        "id": "herb-brahmi",
+        "name": "Brahmi",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Bacopa monnieri",
+        "drug_class": null
+      },
+      {
+        "id": "herb-cinnamon",
+        "name": "Cinnamon",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Cinnamomum verum",
+        "drug_class": null
+      },
+      {
+        "id": "drug-clopidogrel",
+        "name": "Clopidogrel",
+        "category": "allopathic",
+        "medicine_type": "drug",
+        "generic_name": "Clopidogrel",
+        "scientific_name": null,
+        "drug_class": "Anticoagulants"
+      },
+      {
+        "id": "drug-digoxin",
+        "name": "Digoxin",
+        "category": "allopathic",
+        "medicine_type": "drug",
+        "generic_name": "Digoxin",
+        "scientific_name": null,
+        "drug_class": "Cardiovascular"
+      },
+      {
+        "id": "herb-fenugreek",
+        "name": "Fenugreek",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Trigonella foenum-graecum",
+        "drug_class": null
+      },
+      {
+        "id": "herb-garlic",
+        "name": "Garlic",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Allium sativum",
+        "drug_class": null
+      },
+      {
+        "id": "herb-giloy",
+        "name": "Giloy",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Tinospora cordifolia",
+        "drug_class": null
+      },
+      {
+        "id": "herb-ginger",
+        "name": "Ginger",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Zingiber officinale",
+        "drug_class": null
+      },
+      {
+        "id": "drug-glimepiride",
+        "name": "Glimepiride",
+        "category": "allopathic",
+        "medicine_type": "drug",
+        "generic_name": "Glimepiride",
+        "scientific_name": null,
+        "drug_class": "Antidiabetics"
+      },
+      {
+        "id": "herb-guggul",
+        "name": "Guggul",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Commiphora wightii",
+        "drug_class": null
+      },
+      {
+        "id": "herb-gymnema",
+        "name": "Gymnema",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Gymnema sylvestre",
+        "drug_class": null
+      },
+      {
+        "id": "herb-haritaki",
+        "name": "Haritaki",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Terminalia chebula",
+        "drug_class": null
+      },
+      {
+        "id": "drug-heparin",
+        "name": "Heparin",
+        "category": "allopathic",
+        "medicine_type": "drug",
+        "generic_name": "Heparin",
+        "scientific_name": null,
+        "drug_class": "Anticoagulants"
+      },
+      {
+        "id": "drug-insulin",
+        "name": "Insulin",
+        "category": "allopathic",
+        "medicine_type": "drug",
+        "generic_name": "Insulin",
+        "scientific_name": null,
+        "drug_class": "Antidiabetics"
+      },
+      {
+        "id": "herb-jatamansi",
+        "name": "Jatamansi",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Nardostachys jatamansi",
+        "drug_class": null
+      },
+      {
+        "id": "herb-kalmegh",
+        "name": "Kalmegh",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Andrographis paniculata",
+        "drug_class": null
+      },
+      {
+        "id": "herb-kantakari",
+        "name": "Kantakari",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Solanum virginianum",
+        "drug_class": null
+      },
+      {
+        "id": "herb-karela",
+        "name": "Karela",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Momordica charantia",
+        "drug_class": null
+      },
+      {
+        "id": "herb-kutki",
+        "name": "Kutki",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Picrorhiza kurroa",
+        "drug_class": null
+      },
+      {
+        "id": "herb-licorice",
+        "name": "Licorice",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Glycyrrhiza glabra",
+        "drug_class": null
+      },
+      {
+        "id": "drug-losartan",
+        "name": "Losartan",
+        "category": "allopathic",
+        "medicine_type": "drug",
+        "generic_name": "Losartan",
+        "scientific_name": null,
+        "drug_class": "Cardiovascular"
+      },
+      {
+        "id": "herb-manjistha",
+        "name": "Manjistha",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Rubia cordifolia",
+        "drug_class": null
+      },
+      {
+        "id": "drug-metformin",
+        "name": "Metformin",
+        "category": "allopathic",
+        "medicine_type": "drug",
+        "generic_name": "Metformin",
+        "scientific_name": null,
+        "drug_class": "Antidiabetics"
+      },
+      {
+        "id": "drug-metoprolol",
+        "name": "Metoprolol",
+        "category": "allopathic",
+        "medicine_type": "drug",
+        "generic_name": "Metoprolol",
+        "scientific_name": null,
+        "drug_class": "Cardiovascular"
+      },
+      {
+        "id": "herb-moringa",
+        "name": "Moringa",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Moringa oleifera",
+        "drug_class": null
+      },
+      {
+        "id": "herb-neem",
+        "name": "Neem",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Azadirachta indica",
+        "drug_class": null
+      },
+      {
+        "id": "drug-pioglitazone",
+        "name": "Pioglitazone",
+        "category": "allopathic",
+        "medicine_type": "drug",
+        "generic_name": "Pioglitazone",
+        "scientific_name": null,
+        "drug_class": "Antidiabetics"
+      },
+      {
+        "id": "herb-pippali",
+        "name": "Pippali",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Piper longum",
+        "drug_class": null
+      },
+      {
+        "id": "herb-psyllium",
+        "name": "Psyllium",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Plantago ovata",
+        "drug_class": null
+      },
+      {
+        "id": "herb-punarnava",
+        "name": "Punarnava",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Boerhavia diffusa",
+        "drug_class": null
+      },
+      {
+        "id": "herb-sarpagandha",
+        "name": "Sarpagandha",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Rauvolfia serpentina",
+        "drug_class": null
+      },
+      {
+        "id": "herb-senna",
+        "name": "Senna",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Senna alexandrina",
+        "drug_class": null
+      },
+      {
+        "id": "herb-shankhpushpi",
+        "name": "Shankhpushpi",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Convolvulus pluricaulis",
+        "drug_class": null
+      },
+      {
+        "id": "herb-shatavari",
+        "name": "Shatavari",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Asparagus racemosus",
+        "drug_class": null
+      },
+      {
+        "id": "herb-tulsi",
+        "name": "Tulsi",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Ocimum tenuiflorum",
+        "drug_class": null
+      },
+      {
+        "id": "herb-turmeric",
+        "name": "Turmeric",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Curcuma longa",
+        "drug_class": null
+      },
+      {
+        "id": "herb-vacha",
+        "name": "Vacha",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Acorus calamus",
+        "drug_class": null
+      },
+      {
+        "id": "herb-vasaka",
+        "name": "Vasaka",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Justicia adhatoda",
+        "drug_class": null
+      },
+      {
+        "id": "herb-vidanga",
+        "name": "Vidanga",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Embelia ribes",
+        "drug_class": null
+      },
+      {
+        "id": "drug-warfarin",
+        "name": "Warfarin",
+        "category": "allopathic",
+        "medicine_type": "drug",
+        "generic_name": "Warfarin",
+        "scientific_name": null,
+        "drug_class": "Anticoagulants"
+      }
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/interactions/check?medicine_a=Haldi&medicine_b=Turmeric",
+    "body": null
+  },
+  "status": 400,
+  "response": {
+    "error": {
+      "code": "identical_medicine",
+      "message": "medicine_a and medicine_b resolve to the same medicine; an interaction requires two different medicines.",
+      "medicine_id": "herb-turmeric"
+    }
+  }
+}

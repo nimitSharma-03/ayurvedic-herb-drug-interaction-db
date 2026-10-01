@@ -1,0 +1,38 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/health-topics",
+    "body": null
+  },
+  "status": 200,
+  "response": {
+    "has_topic_data": true,
+    "topics": [
+      {
+        "topic": "Atrial fibrillation (irregular heartbeat)",
+        "medicine_count": 5
+      },
+      {
+        "topic": "Blood clot in a vein (DVT or pulmonary embolism)",
+        "medicine_count": 5
+      },
+      {
+        "topic": "Heart failure",
+        "medicine_count": 4
+      },
+      {
+        "topic": "High blood pressure",
+        "medicine_count": 10
+      },
+      {
+        "topic": "Prevention of a further heart attack or stroke",
+        "medicine_count": 9
+      },
+      {
+        "topic": "Type 2 diabetes",
+        "medicine_count": 15
+      }
+    ],
+    "disclaimer": "Topic associations are informational records drawn from cited sources. They are not treatment recommendations, are not personalized, and include no dosage guidance. Traditional use is reported as tradition, not as clinical proof."
+  }
+}

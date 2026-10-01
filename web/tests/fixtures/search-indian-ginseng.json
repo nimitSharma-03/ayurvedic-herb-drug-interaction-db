@@ -1,0 +1,26 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/medicines/search?q=Indian%20Ginseng",
+    "body": null
+  },
+  "status": 200,
+  "response": {
+    "query": "Indian Ginseng",
+    "category": "all",
+    "count": 1,
+    "results": [
+      {
+        "id": "herb-ashwagandha",
+        "name": "Ashwagandha",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Withania somnifera",
+        "drug_class": null,
+        "evidence_level": null,
+        "matched_on": "exact_alias"
+      }
+    ]
+  }
+}

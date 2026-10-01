@@ -1,0 +1,192 @@
+{
+  "check-garlic-warfarin": {
+    "method": "GET",
+    "path": "/interactions/check?medicine_a=Garlic&medicine_b=Warfarin",
+    "status": 200
+  },
+  "check-herb-herb": {
+    "method": "GET",
+    "path": "/interactions/check?medicine_a=Turmeric&medicine_b=Ashwagandha",
+    "status": 200
+  },
+  "check-identical": {
+    "method": "GET",
+    "path": "/interactions/check?medicine_a=Haldi&medicine_b=Turmeric",
+    "status": 400
+  },
+  "check-metformin-turmeric": {
+    "method": "GET",
+    "path": "/interactions/check?medicine_a=Metformin&medicine_b=Turmeric",
+    "status": 200
+  },
+  "check-not-found": {
+    "method": "GET",
+    "path": "/interactions/check?medicine_a=Paracetamol&medicine_b=Turmeric",
+    "status": 404
+  },
+  "check-turmeric-metformin": {
+    "method": "GET",
+    "path": "/interactions/check?medicine_a=Turmeric&medicine_b=Metformin",
+    "status": 200
+  },
+  "conditions": {
+    "method": "GET",
+    "path": "/conditions",
+    "status": 200
+  },
+  "documented": {
+    "method": "GET",
+    "path": "/interactions/documented",
+    "status": 200
+  },
+  "health": {
+    "method": "GET",
+    "path": "/health",
+    "status": 200
+  },
+  "health-topics": {
+    "method": "GET",
+    "path": "/health-topics",
+    "status": 200
+  },
+  "interactions-turmeric": {
+    "method": "GET",
+    "path": "/medicines/herb-turmeric/interactions?include_evidence=true&limit=50",
+    "status": 200
+  },
+  "interactions-warfarin": {
+    "method": "GET",
+    "path": "/medicines/drug-warfarin/interactions?include_evidence=true&limit=50",
+    "status": 200
+  },
+  "medicine-ashwagandha": {
+    "method": "GET",
+    "path": "/medicines/herb-ashwagandha",
+    "status": 200
+  },
+  "medicine-metformin": {
+    "method": "GET",
+    "path": "/medicines/drug-metformin",
+    "status": 200
+  },
+  "medicine-not-found": {
+    "method": "GET",
+    "path": "/medicines/herb-nope",
+    "status": 404
+  },
+  "medicine-turmeric": {
+    "method": "GET",
+    "path": "/medicines/herb-turmeric",
+    "status": 200
+  },
+  "medicine-warfarin": {
+    "method": "GET",
+    "path": "/medicines/drug-warfarin",
+    "status": 200
+  },
+  "medicines-all": {
+    "method": "GET",
+    "path": "/medicines?limit=100",
+    "status": 200
+  },
+  "medicines-allopathic": {
+    "method": "GET",
+    "path": "/medicines?category=allopathic&limit=100",
+    "status": 200
+  },
+  "medicines-ayurvedic": {
+    "method": "GET",
+    "path": "/medicines?category=ayurvedic&limit=100",
+    "status": 200
+  },
+  "recommend-bp-cautions": {
+    "method": "POST",
+    "path": "/recommend",
+    "status": 200
+  },
+  "recommend-by-condition": {
+    "method": "POST",
+    "path": "/recommend",
+    "status": 200
+  },
+  "recommend-clot-warfarin": {
+    "method": "POST",
+    "path": "/recommend",
+    "status": 200
+  },
+  "recommend-diabetes-metformin": {
+    "method": "POST",
+    "path": "/recommend",
+    "status": 200
+  },
+  "recommend-diabetes-plain": {
+    "method": "POST",
+    "path": "/recommend",
+    "status": 200
+  },
+  "recommend-emergency": {
+    "method": "POST",
+    "path": "/recommend",
+    "status": 200
+  },
+  "recommend-error": {
+    "method": "POST",
+    "path": "/recommend",
+    "status": 400
+  },
+  "recommend-out-of-scope": {
+    "method": "POST",
+    "path": "/recommend",
+    "status": 200
+  },
+  "recommend-suicidal": {
+    "method": "POST",
+    "path": "/recommend",
+    "status": 200
+  },
+  "recommend-unknown-condition": {
+    "method": "POST",
+    "path": "/recommend",
+    "status": 400
+  },
+  "root": {
+    "method": "GET",
+    "path": "/",
+    "status": 200
+  },
+  "search-ashwagandha": {
+    "method": "GET",
+    "path": "/medicines/search?q=ashwagandha",
+    "status": 200
+  },
+  "search-empty": {
+    "method": "GET",
+    "path": "/medicines/search?q=Paracetamol",
+    "status": 200
+  },
+  "search-glycomet": {
+    "method": "GET",
+    "path": "/medicines/search?q=Glycomet",
+    "status": 200
+  },
+  "search-haldi": {
+    "method": "GET",
+    "path": "/medicines/search?q=haldi",
+    "status": 200
+  },
+  "search-indian-ginseng": {
+    "method": "GET",
+    "path": "/medicines/search?q=Indian%20Ginseng",
+    "status": 200
+  },
+  "search-met": {
+    "method": "GET",
+    "path": "/medicines/search?q=met",
+    "status": 200
+  },
+  "topic-sugar": {
+    "method": "GET",
+    "path": "/health-topics/lookup?topic=sugar",
+    "status": 200
+  }
+}

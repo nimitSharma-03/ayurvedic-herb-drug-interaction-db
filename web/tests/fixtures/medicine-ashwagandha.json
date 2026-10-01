@@ -1,0 +1,79 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/medicines/herb-ashwagandha",
+    "body": null
+  },
+  "status": 200,
+  "response": {
+    "id": "herb-ashwagandha",
+    "name": "Ashwagandha",
+    "category": "ayurvedic",
+    "medicine_type": "herb",
+    "generic_name": null,
+    "scientific_name": "Withania somnifera",
+    "drug_class": null,
+    "description": null,
+    "evidence_level": null,
+    "pregnancy_information": null,
+    "breastfeeding_information": null,
+    "active_ingredients": [],
+    "common_uses": [],
+    "traditional_uses": [],
+    "side_effects": [],
+    "contraindications": [],
+    "precautions": [],
+    "aliases": [
+      {
+        "alias": "Withania somnifera",
+        "alias_type": "scientific_name"
+      },
+      {
+        "alias": "Asgandh",
+        "alias_type": "synonym"
+      },
+      {
+        "alias": "Ashvagandha",
+        "alias_type": "synonym"
+      },
+      {
+        "alias": "Aswagandha",
+        "alias_type": "synonym"
+      },
+      {
+        "alias": "Indian Ginseng",
+        "alias_type": "synonym"
+      },
+      {
+        "alias": "Winter Cherry",
+        "alias_type": "synonym"
+      }
+    ],
+    "sources": [
+      {
+        "source": "data/reference/herbs.csv (project reference table, frozen scope)",
+        "source_url": null,
+        "last_verified": "2026-09-16"
+      }
+    ],
+    "data_completeness": {
+      "documented_fields": [],
+      "undocumented_fields": [
+        "description",
+        "common_uses",
+        "traditional_uses",
+        "side_effects",
+        "contraindications",
+        "precautions",
+        "pregnancy_information",
+        "breastfeeding_information",
+        "active_ingredients",
+        "evidence_level"
+      ],
+      "note": "Undocumented fields are absent from this project's sources. An empty value means no information was available, not a negative finding."
+    },
+    "interaction_summary": {
+      "no_documented_interaction": 13
+    }
+  }
+}

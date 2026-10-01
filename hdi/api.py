@@ -10,20 +10,37 @@ exercise handle() directly, and one end-to-end test drives a real socket.
 Routes only validate input, call a service in hdi.catalog / hdi.interactions /
 hdi.topics, and shape the response; no medical logic lives here. Every lookup
 is a database read: no model, network call or LLM is on the request path.
+
+Three things here are deployment concerns rather than API surface:
+
+  HOST / PORT        read from the environment, so a host that assigns a port
+                     can start this without arguments. The CLI flags still win.
+  ALLOWED_ORIGINS    a comma-separated allow-list for browser clients. An origin
+                     not on the list gets no CORS header back, so the browser
+                     refuses the response; the list is never reflected blindly
+                     and '*' is not the default.
+  GET /stats         counted facts about the pipeline, the scope and the
+                     classifier, for a client that wants to show real numbers.
 """
 
 import argparse
 import json
+import os
 import sys
 import traceback
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlsplit
 
-from hdi import catalog, db, interactions, knowledge, recommend, topics
+from hdi import catalog, db, interactions, knowledge, recommend, stats, topics
 
 DEFAULT_HOST = "127.0.0.1"
 DEFAULT_PORT = 8000
+DEFAULT_ALLOWED_ORIGINS = "http://localhost:3000"
+
+CORS_MAX_AGE = "86400"
+_CORS_METHODS = "GET, POST, OPTIONS"
+_CORS_HEADERS = "Content-Type"
 
 _VALID_CATEGORIES = set(catalog.CATEGORY_FILTERS)
 _VALID_STATUSES = {
@@ -39,6 +56,72 @@ _RECOMMEND_FIELDS = {"text", "current_medicines", "cautions", "condition_ids"}
 # A missing classifier artifact or an unseeded knowledge layer is a deployment
 # problem, not a bad request, so these two become 503 rather than 400.
 _RECOMMEND_UNAVAILABLE_CODES = {"classifier_unavailable", "knowledge_unavailable"}
+
+
+def allowed_origins(raw=None):
+    """Parse ALLOWED_ORIGINS into a list, falling back to the dev default.
+
+    Blank entries are dropped and a trailing slash is trimmed, because an Origin
+    header never carries one and a config line copied from a browser's address
+    bar usually does.
+    """
+    if raw is None:
+        raw = os.environ.get("ALLOWED_ORIGINS", DEFAULT_ALLOWED_ORIGINS)
+    origins = []
+    for part in raw.split(","):
+        value = part.strip().rstrip("/")
+        if value and value not in origins:
+            origins.append(value)
+    return origins
+
+
+def cors_headers(origin, origins=None):
+    """CORS headers to add for this request's Origin, or {} for none.
+
+    An origin that is not on the allow-list gets nothing back rather than a
+    rejection: the browser then blocks the response itself, which is the whole
+    mechanism. '*' on the list allows any origin, and is reported as '*' rather
+    than echoed, since this API serves no credentials and nothing per-user.
+
+    Vary: Origin is always set, so a cache in front of this cannot serve one
+    origin's allowed response to another origin.
+    """
+    headers = {"Vary": "Origin"}
+    if origins is None:
+        origins = allowed_origins()
+    if not origin:
+        return headers
+    normalized = origin.strip().rstrip("/")
+    if "*" in origins:
+        headers["Access-Control-Allow-Origin"] = "*"
+    elif normalized in origins:
+        headers["Access-Control-Allow-Origin"] = origin
+    else:
+        return headers
+    headers["Access-Control-Allow-Methods"] = _CORS_METHODS
+    headers["Access-Control-Allow-Headers"] = _CORS_HEADERS
+    headers["Access-Control-Max-Age"] = CORS_MAX_AGE
+    return headers
+
+
+def env_host(default=DEFAULT_HOST):
+    return os.environ.get("HOST", "").strip() or default
+
+
+def env_port(default=DEFAULT_PORT):
+    """PORT from the environment, or the default when unset or not a number.
+
+    A host that assigns the port sets this. A malformed value falls back rather
+    than crashing the process at boot, and says so on stderr.
+    """
+    raw = os.environ.get("PORT", "").strip()
+    if not raw:
+        return default
+    try:
+        return int(raw)
+    except ValueError:
+        print(f"Ignoring PORT={raw!r}: not a number. Using {default}.", file=sys.stderr)
+        return default
 
 
 class _HttpError(Exception):
@@ -167,6 +250,7 @@ def _route(method, path, params, body, conn):
                 "GET /health-topics",
                 "GET /health-topics/lookup?topic=",
                 "GET /conditions",
+                "GET /stats",
                 "POST /recommend",
             ],
         }
@@ -177,6 +261,10 @@ def _route(method, path, params, body, conn):
         _allow(method, "GET")
         meta = {r["key"]: r["value"] for r in conn.execute("SELECT key, value FROM seed_metadata")}
         return 200, {"status": "ok", "database": meta}
+
+    if head == "stats" and len(segments) == 1:
+        _allow(method, "GET")
+        return 200, stats.stats(conn)
 
     if head == "medicines":
         return _route_medicines(method, segments, params, conn)
@@ -285,6 +373,13 @@ def _route_medicines(method, segments, params, conn):
             raise _HttpError(
                 404, db.STATUS_MEDICINE_NOT_FOUND, f"No medicine with id {medicine_id!r}."
             )
+        # Added alongside the existing projection, not inside it: the detail
+        # columns are NULL for every medicine (docs/BACKEND_API.md, "What is and
+        # is not populated"), while the use rows the knowledge layer holds are
+        # the only sourced uses, pros, cons and cautions this project has. A
+        # client showing a medicine needs both, and `reviewed` is false on every
+        # row here as it is everywhere else.
+        detail["recorded_uses"] = knowledge.uses_for_medicine(conn, medicine_id)
         return 200, detail
 
     if len(segments) == 3 and segments[2] == "interactions":
@@ -415,21 +510,39 @@ class _Handler(BaseHTTPRequestHandler):
     server_version = "ayurveda-hdi"
     db_path = None
     quiet = False
+    origins = None
+
+    def _send(self, status, encoded):
+        self.send_response(status)
+        self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Content-Length", str(len(encoded)))
+        for name, value in cors_headers(self.headers.get("Origin"), self.origins).items():
+            self.send_header(name, value)
+        self.end_headers()
+        self.wfile.write(encoded)
 
     def _respond(self, method, body=None):
         parsed = urlsplit(self.path)
         status, payload = handle(
             method, parsed.path, parse_qs(parsed.query), body, self.db_path
         )
-        encoded = json.dumps(payload, indent=2, ensure_ascii=False).encode("utf-8")
-        self.send_response(status)
-        self.send_header("Content-Type", "application/json; charset=utf-8")
-        self.send_header("Content-Length", str(len(encoded)))
-        self.end_headers()
-        self.wfile.write(encoded)
+        self._send(status, json.dumps(payload, indent=2, ensure_ascii=False).encode("utf-8"))
 
     def do_GET(self):
         self._respond("GET")
+
+    def do_OPTIONS(self):
+        """Preflight. Answered without touching the database or a service.
+
+        204 whatever the path: a preflight asks whether the browser may send the
+        real request, and the real request is what gets routed and validated.
+        An origin that is not allowed simply receives no allow header.
+        """
+        self.send_response(204)
+        self.send_header("Content-Length", "0")
+        for name, value in cors_headers(self.headers.get("Origin"), self.origins).items():
+            self.send_header(name, value)
+        self.end_headers()
 
     def do_POST(self):
         length = int(self.headers.get("Content-Length") or 0)
@@ -437,14 +550,17 @@ class _Handler(BaseHTTPRequestHandler):
         try:
             body = json.loads(raw.decode("utf-8")) if raw else {}
         except (UnicodeDecodeError, json.JSONDecodeError):
-            encoded = json.dumps(
-                {"error": {"code": "invalid_body", "message": "Request body must be valid JSON."}}
-            ).encode("utf-8")
-            self.send_response(400)
-            self.send_header("Content-Type", "application/json; charset=utf-8")
-            self.send_header("Content-Length", str(len(encoded)))
-            self.end_headers()
-            self.wfile.write(encoded)
+            self._send(
+                400,
+                json.dumps(
+                    {
+                        "error": {
+                            "code": "invalid_body",
+                            "message": "Request body must be valid JSON.",
+                        }
+                    }
+                ).encode("utf-8"),
+            )
             return
         self._respond("POST", body)
 
@@ -453,17 +569,33 @@ class _Handler(BaseHTTPRequestHandler):
             super().log_message(fmt, *args)
 
 
-def make_server(host=DEFAULT_HOST, port=DEFAULT_PORT, db_path=None, quiet=False):
-    handler = type("_BoundHandler", (_Handler,), {"db_path": db_path, "quiet": quiet})
+def make_server(host=DEFAULT_HOST, port=DEFAULT_PORT, db_path=None, quiet=False, origins=None):
+    handler = type(
+        "_BoundHandler",
+        (_Handler,),
+        {
+            "db_path": db_path,
+            "quiet": quiet,
+            "origins": allowed_origins() if origins is None else origins,
+        },
+    )
     return ThreadingHTTPServer((host, port), handler)
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--host", default=DEFAULT_HOST)
-    parser.add_argument("--port", type=int, default=DEFAULT_PORT)
+    parser.add_argument(
+        "--host", default=None, help="Listen address (default: $HOST, else 127.0.0.1)"
+    )
+    parser.add_argument(
+        "--port", type=int, default=None, help="Listen port (default: $PORT, else 8000)"
+    )
     parser.add_argument("--db", default=None, help="Database path (default: data/processed/hdi.db)")
     args = parser.parse_args()
+
+    host = args.host or env_host()
+    port = args.port or env_port()
+    origins = allowed_origins()
 
     if not Path(args.db or db.DB_PATH).exists():
         print(
@@ -472,8 +604,9 @@ def main():
         )
         return 1
 
-    server = make_server(args.host, args.port, args.db)
-    print(f"Serving on http://{args.host}:{args.port} (Ctrl+C to stop)")
+    server = make_server(host, port, args.db, origins=origins)
+    print(f"Serving on http://{host}:{port} (Ctrl+C to stop)")
+    print(f"Browser origins allowed: {', '.join(origins) or '(none)'}")
     try:
         server.serve_forever()
     except KeyboardInterrupt:

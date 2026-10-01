@@ -1,0 +1,46 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/interactions/check?medicine_a=Turmeric&medicine_b=Ashwagandha",
+    "body": null
+  },
+  "status": 200,
+  "response": {
+    "id": null,
+    "medicine_a": {
+      "id": "herb-turmeric",
+      "name": "Turmeric",
+      "category": "ayurvedic",
+      "medicine_type": "herb",
+      "generic_name": null,
+      "scientific_name": "Curcuma longa",
+      "drug_class": null
+    },
+    "medicine_b": {
+      "id": "herb-ashwagandha",
+      "name": "Ashwagandha",
+      "category": "ayurvedic",
+      "medicine_type": "herb",
+      "generic_name": null,
+      "scientific_name": "Withania somnifera",
+      "drug_class": null
+    },
+    "pair_kind": "ayurvedic_ayurvedic",
+    "status": "insufficient_evidence",
+    "interaction_found": null,
+    "interaction_type": null,
+    "severity": "insufficient_evidence",
+    "severity_basis": null,
+    "description": "No evidence has been collected for Turmeric and Ashwagandha. The available sources are not sufficient to determine whether an interaction exists.",
+    "mechanism": null,
+    "clinical_significance": null,
+    "recommended_action": null,
+    "evidence_level": "insufficient",
+    "evidence_basis": "pair is outside the harvested literature corpus, which covers Ayurvedic-herb x conventional-drug pairs from the project's frozen reference tables",
+    "source": null,
+    "source_url": null,
+    "last_verified": null,
+    "evidence": [],
+    "disclaimer": "This database reports interactions documented in curated PubMed literature. It is informational only, is not a substitute for professional medical advice, and does not provide diagnoses, dosages or treatment recommendations. Absence of a documented interaction is not evidence of safety."
+  }
+}

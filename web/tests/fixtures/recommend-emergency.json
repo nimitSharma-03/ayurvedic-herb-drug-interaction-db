@@ -1,0 +1,31 @@
+{
+  "request": {
+    "method": "POST",
+    "path": "/recommend",
+    "body": {
+      "text": "I have chest pain"
+    }
+  },
+  "status": 200,
+  "response": {
+    "status": "emergency",
+    "disclaimer": "This is information, not medical advice. It is generated from a research database that has not been reviewed by a clinician, and it is not a prescription or a diagnosis. Talk to a doctor or pharmacist before taking anything here, and do not start or stop a prescribed medicine on the basis of this response.",
+    "red_flags": [
+      {
+        "category": "chest_pain",
+        "label": "Chest pain or chest pressure",
+        "message": "Chest pain or chest pressure can be a heart attack and needs emergency care now."
+      }
+    ],
+    "message": "What you described may be a medical emergency. This is not the place to look for options right now.",
+    "actions": [
+      "Call 112 now (National emergency number (India)), or get to the nearest emergency department.",
+      "Do not wait to look up herbs or medicines, and do not change any prescribed medicine on your own."
+    ],
+    "detected_conditions": [],
+    "ayurvedic_options": [],
+    "allopathic_options": [],
+    "combination_warnings": [],
+    "caution_notes": []
+  }
+}

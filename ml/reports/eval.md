@@ -58,6 +58,9 @@ single-label row goes when the classifier asserted more than one condition.
 | `venous_thromboembolism` | 0 | 0 | 0 | 0 | 0 | 40 | 0 | 8 |
 | `out_of_scope` | 1 | 3 | 0 | 4 | 0 | 3 | 35 | 2 |
 
+Every number above is also written machine-readably to `metrics.json`, which is
+what `GET /stats` serves. Nothing re-derives these scores from this prose.
+
 Also written as data in `confusion_matrix.csv`, and as a figure in `confusion_matrix.png`.
 
 ## Multi-condition rows

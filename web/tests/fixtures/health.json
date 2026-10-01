@@ -1,0 +1,33 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/health",
+    "body": null
+  },
+  "status": 200,
+  "response": {
+    "status": "ok",
+    "database": {
+      "aliases": "208",
+      "built_at": "2026-10-01T20:14:22+00:00",
+      "class_aliases": "31",
+      "combination_rules": "36",
+      "condition_synonyms": "102",
+      "conditions": "6",
+      "drug_classes_csv_verified": "2026-09-16",
+      "evidence_rows": "84",
+      "health_topic_rows": "48",
+      "herbs_csv_verified": "2026-09-16",
+      "interactions": "520",
+      "medicine_uses": "48",
+      "medicines": "53",
+      "status_insufficient_evidence": "3",
+      "status_interaction_found": "10",
+      "status_no_documented_interaction": "507",
+      "tags": "16",
+      "uses_fetched_source": "19",
+      "uses_general_knowledge": "8",
+      "uses_repo_abstract": "21"
+    }
+  }
+}

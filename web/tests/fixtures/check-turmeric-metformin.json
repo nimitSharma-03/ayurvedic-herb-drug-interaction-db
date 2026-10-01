@@ -1,0 +1,67 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/interactions/check?medicine_a=Turmeric&medicine_b=Metformin",
+    "body": null
+  },
+  "status": 200,
+  "response": {
+    "id": "int-turmeric-metformin",
+    "pair_kind": "ayurvedic_allopathic",
+    "status": "interaction_found",
+    "interaction_type": "general_interaction",
+    "severity": "minor",
+    "severity_basis": "derived_from_curated_trigger_group",
+    "description": "Curated PubMed evidence records general_interaction interaction language for Turmeric and Metformin in 1 abstract(s) (PMID 29518605), each confirmed by manual curator review.",
+    "mechanism": null,
+    "clinical_significance": null,
+    "recommended_action": null,
+    "evidence_level": "limited",
+    "evidence_basis": "2 curator-confirmed sentence(s) across 1 distinct PMID(s); 'moderate' requires at least 3 distinct PMIDs, otherwise 'limited'",
+    "source": "curator_confirmed_from_pubmed_abstracts; data/processed/verified_interactions.json",
+    "source_url": null,
+    "last_verified": "2026-09-30",
+    "medicine_a": {
+      "id": "herb-turmeric",
+      "name": "Turmeric",
+      "category": "ayurvedic",
+      "medicine_type": "herb",
+      "generic_name": null,
+      "scientific_name": "Curcuma longa",
+      "drug_class": null
+    },
+    "medicine_b": {
+      "id": "drug-metformin",
+      "name": "Metformin",
+      "category": "allopathic",
+      "medicine_type": "drug",
+      "generic_name": "Metformin",
+      "scientific_name": null,
+      "drug_class": "Antidiabetics"
+    },
+    "interaction_found": true,
+    "evidence": [
+      {
+        "pmid": "29518605",
+        "trigger_matched": "drug interaction",
+        "trigger_group": "general_interaction",
+        "negated": false,
+        "confidence": "human_verified",
+        "verdict": "confirmed",
+        "evidence_sentence": "Herb-drug interaction of Nisha Amalaki and Curcuminoids with metformin in normal and diabetic condition: A disease system approach. Nisha Amalaki (NA), formulation with Curcuma longa Linn (Turmeric, Haridra, Nisha in Sanskrit; Family: Zingiberaceae) and Phyllanthus emblica Linn (Indian gooseberry, Amlaki in Sanskrit; Family: Phyllanthaceae) which is described for various diseases including diabetes in ayurvedic texts and Nighantus.",
+        "source_url": "https://pubmed.ncbi.nlm.nih.gov/29518605/"
+      },
+      {
+        "pmid": "29518605",
+        "trigger_matched": "herb-drug interaction",
+        "trigger_group": "general_interaction",
+        "negated": false,
+        "confidence": "human_verified",
+        "verdict": "confirmed",
+        "evidence_sentence": "Herb-drug interaction of Nisha Amalaki and Curcuminoids with metformin in normal and diabetic condition: A disease system approach. Nisha Amalaki (NA), formulation with Curcuma longa Linn (Turmeric, Haridra, Nisha in Sanskrit; Family: Zingiberaceae) and Phyllanthus emblica Linn (Indian gooseberry, Amlaki in Sanskrit; Family: Phyllanthaceae) which is described for various diseases including diabetes in ayurvedic texts and Nighantus.",
+        "source_url": "https://pubmed.ncbi.nlm.nih.gov/29518605/"
+      }
+    ],
+    "disclaimer": "This database reports interactions documented in curated PubMed literature. It is informational only, is not a substitute for professional medical advice, and does not provide diagnoses, dosages or treatment recommendations. Absence of a documented interaction is not evidence of safety."
+  }
+}

@@ -1,0 +1,725 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/interactions/documented",
+    "body": null
+  },
+  "status": 200,
+  "response": {
+    "pair_kind": null,
+    "count": 10,
+    "results": [
+      {
+        "id": "int-garlic-warfarin",
+        "pair_kind": "ayurvedic_allopathic",
+        "status": "interaction_found",
+        "interaction_type": "risk_increase",
+        "severity": "moderate",
+        "severity_basis": "derived_from_curated_trigger_group",
+        "description": "Curated PubMed evidence records risk_increase interaction language for Garlic and Warfarin in 4 abstract(s) (PMID 10675182, 15916450, 19719333, 21919844), each confirmed by manual curator review.",
+        "mechanism": null,
+        "clinical_significance": null,
+        "recommended_action": null,
+        "evidence_level": "moderate",
+        "evidence_basis": "10 curator-confirmed sentence(s) across 4 distinct PMID(s); 'moderate' requires at least 3 distinct PMIDs, otherwise 'limited'",
+        "source": "curator_confirmed_from_pubmed_abstracts; data/processed/verified_interactions.json",
+        "source_url": null,
+        "last_verified": "2026-09-30",
+        "medicine_a": {
+          "id": "drug-warfarin",
+          "name": "Warfarin",
+          "category": "allopathic",
+          "medicine_type": "drug",
+          "generic_name": "Warfarin",
+          "scientific_name": null,
+          "drug_class": "Anticoagulants"
+        },
+        "medicine_b": {
+          "id": "herb-garlic",
+          "name": "Garlic",
+          "category": "ayurvedic",
+          "medicine_type": "herb",
+          "generic_name": null,
+          "scientific_name": "Allium sativum",
+          "drug_class": null
+        },
+        "interaction_found": true,
+        "evidence": [
+          {
+            "pmid": "10675182",
+            "trigger_matched": "increased risk of",
+            "trigger_group": "risk_increase",
+            "negated": false,
+            "confidence": "human_verified",
+            "verdict": "confirmed",
+            "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/10675182/"
+          },
+          {
+            "pmid": "10675182",
+            "trigger_matched": "potentiation",
+            "trigger_group": "potentiation",
+            "negated": false,
+            "confidence": "human_verified",
+            "verdict": "confirmed",
+            "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/10675182/"
+          },
+          {
+            "pmid": "10675182",
+            "trigger_matched": "drug interaction",
+            "trigger_group": "general_interaction",
+            "negated": false,
+            "confidence": "human_verified",
+            "verdict": "confirmed",
+            "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/10675182/"
+          },
+          {
+            "pmid": "10675182",
+            "trigger_matched": "herb-drug interaction",
+            "trigger_group": "general_interaction",
+            "negated": false,
+            "confidence": "human_verified",
+            "verdict": "confirmed",
+            "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/10675182/"
+          },
+          {
+            "pmid": "15916450",
+            "trigger_matched": "plasma concentration",
+            "trigger_group": "pharmacokinetic",
+            "negated": true,
+            "confidence": "human_verified",
+            "verdict": "confirmed",
+            "evidence_sentence": "Cases have been published reporting enhanced anticoagulation and bleeding when patients on long-term warfarin therapy also took Salvia miltiorrhiza (danshen). Allium sativum (garlic) decreased the area under the plasma concentration-time curve (AUC) and maximum plasma concentration of saquinavir, but not ritonavir and paracetamol (acetaminophen), in volunteers. A. sativum increased the clotting time and international normalised ratio of warfarin and caused hypoglycaemia when taken with chlorpropamide.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/15916450/"
+          },
+          {
+            "pmid": "19719333",
+            "trigger_matched": "plasma concentration",
+            "trigger_group": "pharmacokinetic",
+            "negated": false,
+            "confidence": "human_verified",
+            "verdict": "confirmed",
+            "evidence_sentence": "Kava (Piper methysticum) increases the clearance of chlorzoxazone (a CYP2E1 substrate) and may interact with alprazolam, levodopa and paroxetine. Garlic (Allium sativum) interacts with chlorpropamide, fluindione, ritonavir and warfarin; it also reduces plasma concentrations of chlorzoxazone (a CYP2E1 probe). Echinacea might affect the clearance of caffeine (a CYP1A2 probe) and midazolam (a CYP3A4 probe).",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/19719333/"
+          },
+          {
+            "pmid": "19719333",
+            "trigger_matched": "cyp3a4",
+            "trigger_group": "pharmacokinetic",
+            "negated": false,
+            "confidence": "human_verified",
+            "verdict": "confirmed",
+            "evidence_sentence": "Garlic (Allium sativum) interacts with chlorpropamide, fluindione, ritonavir and warfarin; it also reduces plasma concentrations of chlorzoxazone (a CYP2E1 probe). Echinacea might affect the clearance of caffeine (a CYP1A2 probe) and midazolam (a CYP3A4 probe). No interactions have been reported for saw palmetto (Serenoa repens).",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/19719333/"
+          },
+          {
+            "pmid": "19719333",
+            "trigger_matched": "may interact",
+            "trigger_group": "general_interaction",
+            "negated": false,
+            "confidence": "human_verified",
+            "verdict": "confirmed",
+            "evidence_sentence": "Ginseng (Panax ginseng) may interact with phenelzine and warfarin. Kava (Piper methysticum) increases the clearance of chlorzoxazone (a CYP2E1 substrate) and may interact with alprazolam, levodopa and paroxetine. Garlic (Allium sativum) interacts with chlorpropamide, fluindione, ritonavir and warfarin; it also reduces plasma concentrations of chlorzoxazone (a CYP2E1 probe).",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/19719333/"
+          },
+          {
+            "pmid": "19719333",
+            "trigger_matched": "interacts with",
+            "trigger_group": "general_interaction",
+            "negated": false,
+            "confidence": "human_verified",
+            "verdict": "confirmed",
+            "evidence_sentence": "Kava (Piper methysticum) increases the clearance of chlorzoxazone (a CYP2E1 substrate) and may interact with alprazolam, levodopa and paroxetine. Garlic (Allium sativum) interacts with chlorpropamide, fluindione, ritonavir and warfarin; it also reduces plasma concentrations of chlorzoxazone (a CYP2E1 probe). Echinacea might affect the clearance of caffeine (a CYP1A2 probe) and midazolam (a CYP3A4 probe).",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/19719333/"
+          },
+          {
+            "pmid": "21919844",
+            "trigger_matched": "plasma concentration",
+            "trigger_group": "pharmacokinetic",
+            "negated": false,
+            "confidence": "human_verified",
+            "verdict": "confirmed",
+            "evidence_sentence": "Herbal medicines that are reported to interact with drugs include garlic (Allium sativum), ginger (Zingiber officinale), ginkgo (Ginkgo biloba), ginseng (Panax ginseng), and St. John's wort (Hypericum perforatum). For example, garlic has been shown to increase the clotting time and international normalized ratio (INR) of warfarin, cause hypoglycaemia when taken with chlorpropamide, and reduce the area under the plasma concentration-time curve (AUC) and maximum concentration of saquinavir in humans. Similarly, case reports have demonstrated that ginkgo may potentiate bleeding when combined with warfarin or aspirin, increases blood pressure when combined with thiazide diuretics, and has even led to a coma when combined with trazodone, a serotonin antagonist and reuptake inhibitor used to treat depression.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/21919844/"
+          },
+          {
+            "pmid": "21919844",
+            "trigger_matched": "cytochrome p450",
+            "trigger_group": "pharmacokinetic",
+            "negated": false,
+            "confidence": "auto_extracted",
+            "verdict": "unclear",
+            "evidence_sentence": "Drugs that have a high potential to interact with herbal medicines usually have a narrow therapeutic index, including warfarin, digoxin, cyclosporine, tacrolimus, amitriptyline, midazolam, indinavir, and irinotecan. Many of them are substrates of cytochrome P450s (CYPs) and/or P-glycoprotein (P-gp). Herbal medicines that are reported to interact with drugs include garlic (Allium sativum), ginger (Zingiber officinale), ginkgo (Ginkgo biloba), ginseng (Panax ginseng), and St. John's wort (Hypericum perforatum).",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/21919844/"
+          },
+          {
+            "pmid": "22292789",
+            "trigger_matched": "plasma concentration",
+            "trigger_group": "pharmacokinetic",
+            "negated": false,
+            "confidence": "auto_extracted",
+            "verdict": "rejected",
+            "evidence_sentence": "Common herbal medicines that interact with drugs include St John's wort (Hypericum perforatum), ginkgo (Ginkgo biloba), ginger (Zingiber officinale), ginseng (Panax ginseng), and garlic (Allium sativum). For example, St John's wort significantly reduced the area under the plasma concentration-time curve (AUC) and blood concentrations of cyclosporine, midazolam, tacrolimus, amitriptyline, digoxin, indinavir, warfarin, phenprocoumon and theophylline. The common drugs that interact with herbal medicines include warfarin, midazolam, digoxin, amitriptyline, indinavir, cyclosporine, tacrolimus and irinotecan.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/22292789/"
+          }
+        ],
+        "disclaimer": "This database reports interactions documented in curated PubMed literature. It is informational only, is not a substitute for professional medical advice, and does not provide diagnoses, dosages or treatment recommendations. Absence of a documented interaction is not evidence of safety."
+      },
+      {
+        "id": "int-gymnema-amlodipine",
+        "pair_kind": "ayurvedic_allopathic",
+        "status": "interaction_found",
+        "interaction_type": "pharmacokinetic",
+        "severity": "moderate",
+        "severity_basis": "derived_from_curated_trigger_group",
+        "description": "Curated PubMed evidence records pharmacokinetic interaction language for Gymnema and Amlodipine in 1 abstract(s) (PMID 29042257), each confirmed by manual curator review.",
+        "mechanism": null,
+        "clinical_significance": null,
+        "recommended_action": null,
+        "evidence_level": "limited",
+        "evidence_basis": "2 curator-confirmed sentence(s) across 1 distinct PMID(s); 'moderate' requires at least 3 distinct PMIDs, otherwise 'limited'",
+        "source": "curator_confirmed_from_pubmed_abstracts; data/processed/verified_interactions.json",
+        "source_url": null,
+        "last_verified": "2026-09-30",
+        "medicine_a": {
+          "id": "drug-amlodipine",
+          "name": "Amlodipine",
+          "category": "allopathic",
+          "medicine_type": "drug",
+          "generic_name": "Amlodipine",
+          "scientific_name": null,
+          "drug_class": "Cardiovascular"
+        },
+        "medicine_b": {
+          "id": "herb-gymnema",
+          "name": "Gymnema",
+          "category": "ayurvedic",
+          "medicine_type": "herb",
+          "generic_name": null,
+          "scientific_name": "Gymnema sylvestre",
+          "drug_class": null
+        },
+        "interaction_found": true,
+        "evidence": [
+          {
+            "pmid": "29042257",
+            "trigger_matched": "cyp3a4",
+            "trigger_group": "pharmacokinetic",
+            "negated": false,
+            "confidence": "human_verified",
+            "verdict": "confirmed",
+            "evidence_sentence": "In vivo pharmacokinetic interaction by ethanolic extract of Gymnema sylvestre with CYP2C9 (Tolbutamide), CYP3A4 (Amlodipine) and CYP1A2 (Phenacetin) in rats. Gymnema sylvestre (GS) is a medicinal herb used for diabetes mellitus (DM).",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/29042257/"
+          },
+          {
+            "pmid": "29042257",
+            "trigger_matched": "cyp2c9",
+            "trigger_group": "pharmacokinetic",
+            "negated": false,
+            "confidence": "human_verified",
+            "verdict": "confirmed",
+            "evidence_sentence": "In vivo pharmacokinetic interaction by ethanolic extract of Gymnema sylvestre with CYP2C9 (Tolbutamide), CYP3A4 (Amlodipine) and CYP1A2 (Phenacetin) in rats. Gymnema sylvestre (GS) is a medicinal herb used for diabetes mellitus (DM).",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/29042257/"
+          }
+        ],
+        "disclaimer": "This database reports interactions documented in curated PubMed literature. It is informational only, is not a substitute for professional medical advice, and does not provide diagnoses, dosages or treatment recommendations. Absence of a documented interaction is not evidence of safety."
+      },
+      {
+        "id": "int-pippali-warfarin",
+        "pair_kind": "ayurvedic_allopathic",
+        "status": "interaction_found",
+        "interaction_type": "pharmacokinetic",
+        "severity": "moderate",
+        "severity_basis": "derived_from_curated_trigger_group",
+        "description": "Curated PubMed evidence records pharmacokinetic interaction language for Pippali and Warfarin in 2 abstract(s) (PMID 38807873, 42066825), each confirmed by manual curator review.",
+        "mechanism": null,
+        "clinical_significance": null,
+        "recommended_action": null,
+        "evidence_level": "limited",
+        "evidence_basis": "4 curator-confirmed sentence(s) across 2 distinct PMID(s); 'moderate' requires at least 3 distinct PMIDs, otherwise 'limited'",
+        "source": "curator_confirmed_from_pubmed_abstracts; data/processed/verified_interactions.json",
+        "source_url": null,
+        "last_verified": "2026-09-30",
+        "medicine_a": {
+          "id": "drug-warfarin",
+          "name": "Warfarin",
+          "category": "allopathic",
+          "medicine_type": "drug",
+          "generic_name": "Warfarin",
+          "scientific_name": null,
+          "drug_class": "Anticoagulants"
+        },
+        "medicine_b": {
+          "id": "herb-pippali",
+          "name": "Pippali",
+          "category": "ayurvedic",
+          "medicine_type": "herb",
+          "generic_name": null,
+          "scientific_name": "Piper longum",
+          "drug_class": null
+        },
+        "interaction_found": true,
+        "evidence": [
+          {
+            "pmid": "38807873",
+            "trigger_matched": "cytochrome p450",
+            "trigger_group": "pharmacokinetic",
+            "negated": false,
+            "confidence": "human_verified",
+            "verdict": "confirmed",
+            "evidence_sentence": "Warfarin, a widely prescribed anticoagulant, is highly effective for various coagulation disorders. However, its efficacy is limited by a narrow therapeutic index and frequent drug interactions, especially those involving metabolism by Cytochrome P450 (CYP450) enzymes. Piperine, found in black and long pepper, possesses blood-thinning properties and has been observed to inhibit CYP3A and CYP2C enzymes linked to warfarin metabolism.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/38807873/"
+          },
+          {
+            "pmid": "38807873",
+            "trigger_matched": "drug interaction",
+            "trigger_group": "general_interaction",
+            "negated": false,
+            "confidence": "human_verified",
+            "verdict": "confirmed",
+            "evidence_sentence": "Warfarin, a widely prescribed anticoagulant, is highly effective for various coagulation disorders. However, its efficacy is limited by a narrow therapeutic index and frequent drug interactions, especially those involving metabolism by Cytochrome P450 (CYP450) enzymes. Piperine, found in black and long pepper, possesses blood-thinning properties and has been observed to inhibit CYP3A and CYP2C enzymes linked to warfarin metabolism.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/38807873/"
+          },
+          {
+            "pmid": "42066825",
+            "trigger_matched": "potential interaction",
+            "trigger_group": "general_interaction",
+            "negated": false,
+            "confidence": "human_verified",
+            "verdict": "confirmed",
+            "evidence_sentence": "Probable interaction between warfarin and a toothache solution containing Piper longum L. leading to ischemic stroke: a case report. Both warfarin and Chinese patent medicine (CPM) are frequently prescribed medications that may have a potential interaction that can go unnoticed. To report a clinical case of a probable interaction between warfarin and a toothache solution containing Piper longum L., which led to ischemic stroke.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/42066825/"
+          },
+          {
+            "pmid": "42066825",
+            "trigger_matched": "potential interaction",
+            "trigger_group": "general_interaction",
+            "negated": false,
+            "confidence": "human_verified",
+            "verdict": "confirmed",
+            "evidence_sentence": "Causal assessment showed a probable interaction between the interaction of warfarin and a toothache solution containing Piper longum and the ischemic stroke. The potential interaction between warfarin and Piper longum should be recognized to prevent adverse outcomes in patients receiving warfarin therapy.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/42066825/"
+          }
+        ],
+        "disclaimer": "This database reports interactions documented in curated PubMed literature. It is informational only, is not a substitute for professional medical advice, and does not provide diagnoses, dosages or treatment recommendations. Absence of a documented interaction is not evidence of safety."
+      },
+      {
+        "id": "int-aloe-vera-insulin",
+        "pair_kind": "ayurvedic_allopathic",
+        "status": "interaction_found",
+        "interaction_type": "general_interaction",
+        "severity": "minor",
+        "severity_basis": "derived_from_curated_trigger_group",
+        "description": "Curated PubMed evidence records general_interaction interaction language for Aloe vera and Insulin in 1 abstract(s) (PMID 28160765), each confirmed by manual curator review.",
+        "mechanism": null,
+        "clinical_significance": null,
+        "recommended_action": null,
+        "evidence_level": "limited",
+        "evidence_basis": "1 curator-confirmed sentence(s) across 1 distinct PMID(s); 'moderate' requires at least 3 distinct PMIDs, otherwise 'limited'",
+        "source": "curator_confirmed_from_pubmed_abstracts; data/processed/verified_interactions.json",
+        "source_url": null,
+        "last_verified": "2026-09-30",
+        "medicine_a": {
+          "id": "drug-insulin",
+          "name": "Insulin",
+          "category": "allopathic",
+          "medicine_type": "drug",
+          "generic_name": "Insulin",
+          "scientific_name": null,
+          "drug_class": "Antidiabetics"
+        },
+        "medicine_b": {
+          "id": "herb-aloe-vera",
+          "name": "Aloe vera",
+          "category": "ayurvedic",
+          "medicine_type": "herb",
+          "generic_name": null,
+          "scientific_name": "Aloe vera",
+          "drug_class": null
+        },
+        "interaction_found": true,
+        "evidence": [
+          {
+            "pmid": "28160765",
+            "trigger_matched": "potential interaction",
+            "trigger_group": "general_interaction",
+            "negated": false,
+            "confidence": "human_verified",
+            "verdict": "confirmed",
+            "evidence_sentence": "The study found potential drug-herb interactions in 4 (50%) of the CAM consumers. Moderate potential interactions were found between Aloe vera and diuretics; Aloe vera and insulin; pyridoxine and calcium-channel blockers and diuretics; and niacin and statins. Those interactions had the potential to result in hypoglycemia, hyperglycemia, hypokalemia, and lower blood pressure.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/28160765/"
+          }
+        ],
+        "disclaimer": "This database reports interactions documented in curated PubMed literature. It is informational only, is not a substitute for professional medical advice, and does not provide diagnoses, dosages or treatment recommendations. Absence of a documented interaction is not evidence of safety."
+      },
+      {
+        "id": "int-amla-metformin",
+        "pair_kind": "ayurvedic_allopathic",
+        "status": "interaction_found",
+        "interaction_type": "general_interaction",
+        "severity": "minor",
+        "severity_basis": "derived_from_curated_trigger_group",
+        "description": "Curated PubMed evidence records general_interaction interaction language for Amla and Metformin in 1 abstract(s) (PMID 29518605), each confirmed by manual curator review.",
+        "mechanism": null,
+        "clinical_significance": null,
+        "recommended_action": null,
+        "evidence_level": "limited",
+        "evidence_basis": "2 curator-confirmed sentence(s) across 1 distinct PMID(s); 'moderate' requires at least 3 distinct PMIDs, otherwise 'limited'",
+        "source": "curator_confirmed_from_pubmed_abstracts; data/processed/verified_interactions.json",
+        "source_url": null,
+        "last_verified": "2026-09-30",
+        "medicine_a": {
+          "id": "drug-metformin",
+          "name": "Metformin",
+          "category": "allopathic",
+          "medicine_type": "drug",
+          "generic_name": "Metformin",
+          "scientific_name": null,
+          "drug_class": "Antidiabetics"
+        },
+        "medicine_b": {
+          "id": "herb-amla",
+          "name": "Amla",
+          "category": "ayurvedic",
+          "medicine_type": "herb",
+          "generic_name": null,
+          "scientific_name": "Phyllanthus emblica",
+          "drug_class": null
+        },
+        "interaction_found": true,
+        "evidence": [
+          {
+            "pmid": "29518605",
+            "trigger_matched": "drug interaction",
+            "trigger_group": "general_interaction",
+            "negated": false,
+            "confidence": "human_verified",
+            "verdict": "confirmed",
+            "evidence_sentence": "Herb-drug interaction of Nisha Amalaki and Curcuminoids with metformin in normal and diabetic condition: A disease system approach. Nisha Amalaki (NA), formulation with Curcuma longa Linn (Turmeric, Haridra, Nisha in Sanskrit; Family: Zingiberaceae) and Phyllanthus emblica Linn (Indian gooseberry, Amlaki in Sanskrit; Family: Phyllanthaceae) which is described for various diseases including diabetes in ayurvedic texts and Nighantus.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/29518605/"
+          },
+          {
+            "pmid": "29518605",
+            "trigger_matched": "herb-drug interaction",
+            "trigger_group": "general_interaction",
+            "negated": false,
+            "confidence": "human_verified",
+            "verdict": "confirmed",
+            "evidence_sentence": "Herb-drug interaction of Nisha Amalaki and Curcuminoids with metformin in normal and diabetic condition: A disease system approach. Nisha Amalaki (NA), formulation with Curcuma longa Linn (Turmeric, Haridra, Nisha in Sanskrit; Family: Zingiberaceae) and Phyllanthus emblica Linn (Indian gooseberry, Amlaki in Sanskrit; Family: Phyllanthaceae) which is described for various diseases including diabetes in ayurvedic texts and Nighantus.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/29518605/"
+          }
+        ],
+        "disclaimer": "This database reports interactions documented in curated PubMed literature. It is informational only, is not a substitute for professional medical advice, and does not provide diagnoses, dosages or treatment recommendations. Absence of a documented interaction is not evidence of safety."
+      },
+      {
+        "id": "int-arjuna-metoprolol",
+        "pair_kind": "ayurvedic_allopathic",
+        "status": "interaction_found",
+        "interaction_type": "general_interaction",
+        "severity": "minor",
+        "severity_basis": "derived_from_curated_trigger_group",
+        "description": "Curated PubMed evidence records general_interaction interaction language for Arjuna and Metoprolol in 1 abstract(s) (PMID 26891872), each confirmed by manual curator review.",
+        "mechanism": null,
+        "clinical_significance": null,
+        "recommended_action": null,
+        "evidence_level": "limited",
+        "evidence_basis": "2 curator-confirmed sentence(s) across 1 distinct PMID(s); 'moderate' requires at least 3 distinct PMIDs, otherwise 'limited'",
+        "source": "curator_confirmed_from_pubmed_abstracts; data/processed/verified_interactions.json",
+        "source_url": null,
+        "last_verified": "2026-09-30",
+        "medicine_a": {
+          "id": "drug-metoprolol",
+          "name": "Metoprolol",
+          "category": "allopathic",
+          "medicine_type": "drug",
+          "generic_name": "Metoprolol",
+          "scientific_name": null,
+          "drug_class": "Cardiovascular"
+        },
+        "medicine_b": {
+          "id": "herb-arjuna",
+          "name": "Arjuna",
+          "category": "ayurvedic",
+          "medicine_type": "herb",
+          "generic_name": null,
+          "scientific_name": "Terminalia arjuna",
+          "drug_class": null
+        },
+        "interaction_found": true,
+        "evidence": [
+          {
+            "pmid": "26891872",
+            "trigger_matched": "drug interaction",
+            "trigger_group": "general_interaction",
+            "negated": false,
+            "confidence": "human_verified",
+            "verdict": "confirmed",
+            "evidence_sentence": "T. arjuna bark extract has been reported to play a significant role as a cardiac stimulant for its beneficial effects in angina. Herb - drug interactions (HDI) are one of the most important clinical concerns in the concomitant consumption of herbs and prescription drugs. Our study was to investigate the in vitro CYP2D inhibition potential of Terminalia arjuna (T. arjuna) extracts in rat liver microsomes and to study the influence of aqueous bark extract of T. arjuna on the oral pharmacokinetics and pharmacodynamics of metoprolol succinate in rats.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/26891872/"
+          },
+          {
+            "pmid": "26891872",
+            "trigger_matched": "drug interaction",
+            "trigger_group": "general_interaction",
+            "negated": false,
+            "confidence": "human_verified",
+            "verdict": "confirmed",
+            "evidence_sentence": "Pharmacodynamic studies reveal a significant reduction in therapeutic activity of metoprolol succinate on co-administration with aqueous bark extract of T. arjuna. Based on our in vitro and in vivo findings and until further clinical drug interaction experiments are conducted, the co-administration of drugs, especially those primarily cleared via CYP2D catalyzed metabolism, with T. arjuna extracts should be done with caution.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/26891872/"
+          }
+        ],
+        "disclaimer": "This database reports interactions documented in curated PubMed literature. It is informational only, is not a substitute for professional medical advice, and does not provide diagnoses, dosages or treatment recommendations. Absence of a documented interaction is not evidence of safety."
+      },
+      {
+        "id": "int-karela-insulin",
+        "pair_kind": "ayurvedic_allopathic",
+        "status": "interaction_found",
+        "interaction_type": "potentiation",
+        "severity": "minor",
+        "severity_basis": "derived_from_curated_trigger_group",
+        "description": "Curated PubMed evidence records potentiation interaction language for Karela and Insulin in 1 abstract(s) (PMID 40306528), each confirmed by manual curator review.",
+        "mechanism": null,
+        "clinical_significance": null,
+        "recommended_action": null,
+        "evidence_level": "limited",
+        "evidence_basis": "1 curator-confirmed sentence(s) across 1 distinct PMID(s); 'moderate' requires at least 3 distinct PMIDs, otherwise 'limited'",
+        "source": "curator_confirmed_from_pubmed_abstracts; data/processed/verified_interactions.json",
+        "source_url": null,
+        "last_verified": "2026-09-30",
+        "medicine_a": {
+          "id": "drug-insulin",
+          "name": "Insulin",
+          "category": "allopathic",
+          "medicine_type": "drug",
+          "generic_name": "Insulin",
+          "scientific_name": null,
+          "drug_class": "Antidiabetics"
+        },
+        "medicine_b": {
+          "id": "herb-karela",
+          "name": "Karela",
+          "category": "ayurvedic",
+          "medicine_type": "herb",
+          "generic_name": null,
+          "scientific_name": "Momordica charantia",
+          "drug_class": null
+        },
+        "interaction_found": true,
+        "evidence": [
+          {
+            "pmid": "40306528",
+            "trigger_matched": "synergistic",
+            "trigger_group": "potentiation",
+            "negated": false,
+            "confidence": "human_verified",
+            "verdict": "confirmed",
+            "evidence_sentence": "Synergistic action of a Momordica charantia-abundant peptide with insulin regulates blood glucose metabolism in db/db mice via a novel second-hit mechanism on insulin receptor activation. Diabetes is a global health challenge, often managed with insulin therapy.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/40306528/"
+          },
+          {
+            "pmid": "36641593",
+            "trigger_matched": "synergistic",
+            "trigger_group": "potentiation",
+            "negated": false,
+            "confidence": "auto_extracted",
+            "verdict": "rejected",
+            "evidence_sentence": "Modulation of Insulin Resistance by Silybum marianum Leaves, and its Synergistic Efficacy with Gymnema sylvestre, Momordica charantia, Trigonella-foenum graecum Against Protein Tyrosine Phosphatase 1B. Prolonged insulin resistance is considered one of the reasons for Type 2 Diabetes Mellitus.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/36641593/"
+          },
+          {
+            "pmid": "38500279",
+            "trigger_matched": "potentiation",
+            "trigger_group": "potentiation",
+            "negated": false,
+            "confidence": "auto_extracted",
+            "verdict": "rejected",
+            "evidence_sentence": "A systematic literature search was conducted to identify relevant studies exploring the mechanisms of action, various formulations, and clinical outcomes of herbal nanoformulations in diabetes management. Herbal nanoformulations exert their anti-diabetic effects through multiple mechanisms, including enhanced bioavailability, improved tissue targeting, and potentiation of insulin signaling pathways. Various herbal ingredients, such as bitter melon, fenugreek, and Gymnema sylvestre, have been encapsulated into nanocarriers, like liposomes, polymeric nanoparticles, and solid lipid nanoparticles, to enhance their therapeutic potential.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/38500279/"
+          }
+        ],
+        "disclaimer": "This database reports interactions documented in curated PubMed literature. It is informational only, is not a substitute for professional medical advice, and does not provide diagnoses, dosages or treatment recommendations. Absence of a documented interaction is not evidence of safety."
+      },
+      {
+        "id": "int-turmeric-amlodipine",
+        "pair_kind": "ayurvedic_allopathic",
+        "status": "interaction_found",
+        "interaction_type": "general_interaction",
+        "severity": "minor",
+        "severity_basis": "derived_from_curated_trigger_group",
+        "description": "Curated PubMed evidence records general_interaction interaction language for Turmeric and Amlodipine in 1 abstract(s) (PMID 34958609), each confirmed by manual curator review.",
+        "mechanism": null,
+        "clinical_significance": null,
+        "recommended_action": null,
+        "evidence_level": "limited",
+        "evidence_basis": "2 curator-confirmed sentence(s) across 1 distinct PMID(s); 'moderate' requires at least 3 distinct PMIDs, otherwise 'limited'",
+        "source": "curator_confirmed_from_pubmed_abstracts; data/processed/verified_interactions.json",
+        "source_url": null,
+        "last_verified": "2026-09-30",
+        "medicine_a": {
+          "id": "drug-amlodipine",
+          "name": "Amlodipine",
+          "category": "allopathic",
+          "medicine_type": "drug",
+          "generic_name": "Amlodipine",
+          "scientific_name": null,
+          "drug_class": "Cardiovascular"
+        },
+        "medicine_b": {
+          "id": "herb-turmeric",
+          "name": "Turmeric",
+          "category": "ayurvedic",
+          "medicine_type": "herb",
+          "generic_name": null,
+          "scientific_name": "Curcuma longa",
+          "drug_class": null
+        },
+        "interaction_found": true,
+        "evidence": [
+          {
+            "pmid": "34958609",
+            "trigger_matched": "drug interaction",
+            "trigger_group": "general_interaction",
+            "negated": false,
+            "confidence": "human_verified",
+            "verdict": "confirmed",
+            "evidence_sentence": "Herb-drug interaction: pharmacokinetics and pharmacodynamics of anti-hypertensive drug amlodipine besylate in presence of Lepidium sativum and Curcuma longa. Effects of Lepidium sativum and Curcuma longa were investigated on pharmacokinetics and pharmacodynamics of antihypertensive drug (amlodipine).Hypertensive rats were treated with amlodipine, Lepidium sativum, Lepidium sativum + amlodipine, Curcuma longa and Curcuma longa + amlodipine, and their blood pressures were measured.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/34958609/"
+          },
+          {
+            "pmid": "34958609",
+            "trigger_matched": "herb-drug interaction",
+            "trigger_group": "general_interaction",
+            "negated": false,
+            "confidence": "human_verified",
+            "verdict": "confirmed",
+            "evidence_sentence": "Herb-drug interaction: pharmacokinetics and pharmacodynamics of anti-hypertensive drug amlodipine besylate in presence of Lepidium sativum and Curcuma longa. Effects of Lepidium sativum and Curcuma longa were investigated on pharmacokinetics and pharmacodynamics of antihypertensive drug (amlodipine).Hypertensive rats were treated with amlodipine, Lepidium sativum, Lepidium sativum + amlodipine, Curcuma longa and Curcuma longa + amlodipine, and their blood pressures were measured.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/34958609/"
+          }
+        ],
+        "disclaimer": "This database reports interactions documented in curated PubMed literature. It is informational only, is not a substitute for professional medical advice, and does not provide diagnoses, dosages or treatment recommendations. Absence of a documented interaction is not evidence of safety."
+      },
+      {
+        "id": "int-turmeric-digoxin",
+        "pair_kind": "ayurvedic_allopathic",
+        "status": "interaction_found",
+        "interaction_type": "general_interaction",
+        "severity": "minor",
+        "severity_basis": "derived_from_curated_trigger_group",
+        "description": "Curated PubMed evidence records general_interaction interaction language for Turmeric and Digoxin in 1 abstract(s) (PMID 23064285), each confirmed by manual curator review.",
+        "mechanism": null,
+        "clinical_significance": null,
+        "recommended_action": null,
+        "evidence_level": "limited",
+        "evidence_basis": "2 curator-confirmed sentence(s) across 1 distinct PMID(s); 'moderate' requires at least 3 distinct PMIDs, otherwise 'limited'",
+        "source": "curator_confirmed_from_pubmed_abstracts; data/processed/verified_interactions.json",
+        "source_url": null,
+        "last_verified": "2026-09-30",
+        "medicine_a": {
+          "id": "drug-digoxin",
+          "name": "Digoxin",
+          "category": "allopathic",
+          "medicine_type": "drug",
+          "generic_name": "Digoxin",
+          "scientific_name": null,
+          "drug_class": "Cardiovascular"
+        },
+        "medicine_b": {
+          "id": "herb-turmeric",
+          "name": "Turmeric",
+          "category": "ayurvedic",
+          "medicine_type": "herb",
+          "generic_name": null,
+          "scientific_name": "Curcuma longa",
+          "drug_class": null
+        },
+        "interaction_found": true,
+        "evidence": [
+          {
+            "pmid": "23064285",
+            "trigger_matched": "drug interaction",
+            "trigger_group": "general_interaction",
+            "negated": false,
+            "confidence": "human_verified",
+            "verdict": "confirmed",
+            "evidence_sentence": "P-glycoprotein mediated efflux in Caco-2 cell monolayers: the influence of herbals on digoxin transport. Several herbal medicines are concomitantly used with conventional medicines with a resultant increase in the recognition of herb-drug interactions. The phytomedicines Vernonia amygdalina Delile (VA), family Asteraceae; Azadiractha indica A. Juss (NL), family Meliaceae; Morinda lucida Benth (MLB), family Rubiaceae; Cymbopogon citratus Stapf (LG), family Poaceae; Curcuma longa L. (CUR), family Zingiberaceae; Carica papaya L. (CP), family Caricaceae and Tapinanthus sessilifolius Blume (ML), family Loranthaceae are used in African traditional medicine for the treatment of malaria.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/23064285/"
+          },
+          {
+            "pmid": "23064285",
+            "trigger_matched": "herb-drug interaction",
+            "trigger_group": "general_interaction",
+            "negated": false,
+            "confidence": "human_verified",
+            "verdict": "confirmed",
+            "evidence_sentence": "P-glycoprotein mediated efflux in Caco-2 cell monolayers: the influence of herbals on digoxin transport. Several herbal medicines are concomitantly used with conventional medicines with a resultant increase in the recognition of herb-drug interactions. The phytomedicines Vernonia amygdalina Delile (VA), family Asteraceae; Azadiractha indica A. Juss (NL), family Meliaceae; Morinda lucida Benth (MLB), family Rubiaceae; Cymbopogon citratus Stapf (LG), family Poaceae; Curcuma longa L. (CUR), family Zingiberaceae; Carica papaya L. (CP), family Caricaceae and Tapinanthus sessilifolius Blume (ML), family Loranthaceae are used in African traditional medicine for the treatment of malaria.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/23064285/"
+          }
+        ],
+        "disclaimer": "This database reports interactions documented in curated PubMed literature. It is informational only, is not a substitute for professional medical advice, and does not provide diagnoses, dosages or treatment recommendations. Absence of a documented interaction is not evidence of safety."
+      },
+      {
+        "id": "int-turmeric-metformin",
+        "pair_kind": "ayurvedic_allopathic",
+        "status": "interaction_found",
+        "interaction_type": "general_interaction",
+        "severity": "minor",
+        "severity_basis": "derived_from_curated_trigger_group",
+        "description": "Curated PubMed evidence records general_interaction interaction language for Turmeric and Metformin in 1 abstract(s) (PMID 29518605), each confirmed by manual curator review.",
+        "mechanism": null,
+        "clinical_significance": null,
+        "recommended_action": null,
+        "evidence_level": "limited",
+        "evidence_basis": "2 curator-confirmed sentence(s) across 1 distinct PMID(s); 'moderate' requires at least 3 distinct PMIDs, otherwise 'limited'",
+        "source": "curator_confirmed_from_pubmed_abstracts; data/processed/verified_interactions.json",
+        "source_url": null,
+        "last_verified": "2026-09-30",
+        "medicine_a": {
+          "id": "drug-metformin",
+          "name": "Metformin",
+          "category": "allopathic",
+          "medicine_type": "drug",
+          "generic_name": "Metformin",
+          "scientific_name": null,
+          "drug_class": "Antidiabetics"
+        },
+        "medicine_b": {
+          "id": "herb-turmeric",
+          "name": "Turmeric",
+          "category": "ayurvedic",
+          "medicine_type": "herb",
+          "generic_name": null,
+          "scientific_name": "Curcuma longa",
+          "drug_class": null
+        },
+        "interaction_found": true,
+        "evidence": [
+          {
+            "pmid": "29518605",
+            "trigger_matched": "drug interaction",
+            "trigger_group": "general_interaction",
+            "negated": false,
+            "confidence": "human_verified",
+            "verdict": "confirmed",
+            "evidence_sentence": "Herb-drug interaction of Nisha Amalaki and Curcuminoids with metformin in normal and diabetic condition: A disease system approach. Nisha Amalaki (NA), formulation with Curcuma longa Linn (Turmeric, Haridra, Nisha in Sanskrit; Family: Zingiberaceae) and Phyllanthus emblica Linn (Indian gooseberry, Amlaki in Sanskrit; Family: Phyllanthaceae) which is described for various diseases including diabetes in ayurvedic texts and Nighantus.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/29518605/"
+          },
+          {
+            "pmid": "29518605",
+            "trigger_matched": "herb-drug interaction",
+            "trigger_group": "general_interaction",
+            "negated": false,
+            "confidence": "human_verified",
+            "verdict": "confirmed",
+            "evidence_sentence": "Herb-drug interaction of Nisha Amalaki and Curcuminoids with metformin in normal and diabetic condition: A disease system approach. Nisha Amalaki (NA), formulation with Curcuma longa Linn (Turmeric, Haridra, Nisha in Sanskrit; Family: Zingiberaceae) and Phyllanthus emblica Linn (Indian gooseberry, Amlaki in Sanskrit; Family: Phyllanthaceae) which is described for various diseases including diabetes in ayurvedic texts and Nighantus.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/29518605/"
+          }
+        ],
+        "disclaimer": "This database reports interactions documented in curated PubMed literature. It is informational only, is not a substitute for professional medical advice, and does not provide diagnoses, dosages or treatment recommendations. Absence of a documented interaction is not evidence of safety."
+      }
+    ],
+    "disclaimer": "This database reports interactions documented in curated PubMed literature. It is informational only, is not a substitute for professional medical advice, and does not provide diagnoses, dosages or treatment recommendations. Absence of a documented interaction is not evidence of safety."
+  }
+}

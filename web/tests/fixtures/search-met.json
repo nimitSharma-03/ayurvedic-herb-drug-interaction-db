@@ -1,0 +1,48 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/medicines/search?q=met",
+    "body": null
+  },
+  "status": 200,
+  "response": {
+    "query": "met",
+    "category": "all",
+    "count": 3,
+    "results": [
+      {
+        "id": "drug-metformin",
+        "name": "Metformin",
+        "category": "allopathic",
+        "medicine_type": "drug",
+        "generic_name": "Metformin",
+        "scientific_name": null,
+        "drug_class": "Antidiabetics",
+        "evidence_level": null,
+        "matched_on": "name_prefix"
+      },
+      {
+        "id": "drug-metoprolol",
+        "name": "Metoprolol",
+        "category": "allopathic",
+        "medicine_type": "drug",
+        "generic_name": "Metoprolol",
+        "scientific_name": null,
+        "drug_class": "Cardiovascular",
+        "evidence_level": null,
+        "matched_on": "name_prefix"
+      },
+      {
+        "id": "herb-fenugreek",
+        "name": "Fenugreek",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "generic_name": null,
+        "scientific_name": "Trigonella foenum-graecum",
+        "drug_class": null,
+        "evidence_level": null,
+        "matched_on": "alias_prefix"
+      }
+    ]
+  }
+}

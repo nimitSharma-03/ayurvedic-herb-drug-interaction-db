@@ -1,0 +1,71 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/medicines/drug-metformin",
+    "body": null
+  },
+  "status": 200,
+  "response": {
+    "id": "drug-metformin",
+    "name": "Metformin",
+    "category": "allopathic",
+    "medicine_type": "drug",
+    "generic_name": "Metformin",
+    "scientific_name": null,
+    "drug_class": "Antidiabetics",
+    "description": null,
+    "evidence_level": null,
+    "pregnancy_information": null,
+    "breastfeeding_information": null,
+    "active_ingredients": [
+      "Metformin"
+    ],
+    "common_uses": [],
+    "traditional_uses": [],
+    "side_effects": [],
+    "contraindications": [],
+    "precautions": [],
+    "aliases": [
+      {
+        "alias": "Metformin hydrochloride",
+        "alias_type": "generic_name"
+      },
+      {
+        "alias": "Dimethylbiguanide",
+        "alias_type": "synonym"
+      },
+      {
+        "alias": "Metformin HCl",
+        "alias_type": "synonym"
+      }
+    ],
+    "sources": [
+      {
+        "source": "data/reference/drug_classes.csv (project reference table, frozen scope)",
+        "source_url": null,
+        "last_verified": "2026-09-16"
+      }
+    ],
+    "data_completeness": {
+      "documented_fields": [
+        "active_ingredients"
+      ],
+      "undocumented_fields": [
+        "description",
+        "common_uses",
+        "traditional_uses",
+        "side_effects",
+        "contraindications",
+        "precautions",
+        "pregnancy_information",
+        "breastfeeding_information",
+        "evidence_level"
+      ],
+      "note": "Undocumented fields are absent from this project's sources. An empty value means no information was available, not a negative finding."
+    },
+    "interaction_summary": {
+      "interaction_found": 2,
+      "no_documented_interaction": 38
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/conditions",
+    "body": null
+  },
+  "status": 200,
+  "response": {
+    "count": 6,
+    "results": [
+      {
+        "condition_id": "type_2_diabetes",
+        "name": "Type 2 diabetes",
+        "drug_classes": [
+          "Antidiabetics"
+        ]
+      },
+      {
+        "condition_id": "hypertension",
+        "name": "High blood pressure",
+        "drug_classes": [
+          "Cardiovascular"
+        ]
+      },
+      {
+        "condition_id": "heart_failure",
+        "name": "Heart failure",
+        "drug_classes": [
+          "Cardiovascular"
+        ]
+      },
+      {
+        "condition_id": "atrial_fibrillation",
+        "name": "Atrial fibrillation (irregular heartbeat)",
+        "drug_classes": [
+          "Cardiovascular",
+          "Anticoagulants"
+        ]
+      },
+      {
+        "condition_id": "venous_thromboembolism",
+        "name": "Blood clot in a vein (DVT or pulmonary embolism)",
+        "drug_classes": [
+          "Anticoagulants"
+        ]
+      },
+      {
+        "condition_id": "secondary_cardiovascular_prevention",
+        "name": "Prevention of a further heart attack or stroke",
+        "drug_classes": [
+          "Anticoagulants",
+          "Cardiovascular"
+        ]
+      }
+    ],
+    "note": "The conditions this database covers, derived from what its 13 conventional drugs and 3 drug classes are recorded for. Anything else is out of scope."
+  }
+}

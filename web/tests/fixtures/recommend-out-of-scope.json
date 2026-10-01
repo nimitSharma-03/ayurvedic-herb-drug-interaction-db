@@ -1,0 +1,66 @@
+{
+  "request": {
+    "method": "POST",
+    "path": "/recommend",
+    "body": {
+      "text": "I have a headache"
+    }
+  },
+  "status": 200,
+  "response": {
+    "status": "out_of_scope",
+    "disclaimer": "This is information, not medical advice. It is generated from a research database that has not been reviewed by a clinician, and it is not a prescription or a diagnosis. Talk to a doctor or pharmacist before taking anything here, and do not start or stop a prescribed medicine on the basis of this response.",
+    "detected_conditions": [],
+    "note": "This database only covers the conditions its 40 Ayurvedic herbs and 13 conventional drugs are recorded for. What you described is outside that, so no options are listed rather than a guess being offered.",
+    "supported_conditions": [
+      {
+        "condition_id": "type_2_diabetes",
+        "name": "Type 2 diabetes",
+        "drug_classes": [
+          "Antidiabetics"
+        ]
+      },
+      {
+        "condition_id": "hypertension",
+        "name": "High blood pressure",
+        "drug_classes": [
+          "Cardiovascular"
+        ]
+      },
+      {
+        "condition_id": "heart_failure",
+        "name": "Heart failure",
+        "drug_classes": [
+          "Cardiovascular"
+        ]
+      },
+      {
+        "condition_id": "atrial_fibrillation",
+        "name": "Atrial fibrillation (irregular heartbeat)",
+        "drug_classes": [
+          "Cardiovascular",
+          "Anticoagulants"
+        ]
+      },
+      {
+        "condition_id": "venous_thromboembolism",
+        "name": "Blood clot in a vein (DVT or pulmonary embolism)",
+        "drug_classes": [
+          "Anticoagulants"
+        ]
+      },
+      {
+        "condition_id": "secondary_cardiovascular_prevention",
+        "name": "Prevention of a further heart attack or stroke",
+        "drug_classes": [
+          "Anticoagulants",
+          "Cardiovascular"
+        ]
+      }
+    ],
+    "ayurvedic_options": [],
+    "allopathic_options": [],
+    "combination_warnings": [],
+    "caution_notes": []
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/medicines/herb-nope",
+    "body": null
+  },
+  "status": 404,
+  "response": {
+    "error": {
+      "code": "medicine_not_found",
+      "message": "No medicine with id 'herb-nope'."
+    }
+  }
+}

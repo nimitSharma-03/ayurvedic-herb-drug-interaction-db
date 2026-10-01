@@ -1,0 +1,489 @@
+{
+  "request": {
+    "method": "POST",
+    "path": "/recommend",
+    "body": {
+      "text": "I have a blood clot in my leg",
+      "current_medicines": [
+        "Warfarin"
+      ]
+    }
+  },
+  "status": 200,
+  "response": {
+    "status": "results",
+    "disclaimer": "This is information, not medical advice. It is generated from a research database that has not been reviewed by a clinician, and it is not a prescription or a diagnosis. Talk to a doctor or pharmacist before taking anything here, and do not start or stop a prescribed medicine on the basis of this response.",
+    "detected_conditions": [
+      {
+        "condition_id": "venous_thromboembolism",
+        "confidence": 0.9691,
+        "source": "classifier",
+        "name": "Blood clot in a vein (DVT or pulmonary embolism)"
+      }
+    ],
+    "ayurvedic_options": [
+      {
+        "medicine_id": "herb-garlic",
+        "name": "Garlic",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "scientific_name": "Allium sativum",
+        "drug_class": null,
+        "use_kind": "traditional_use",
+        "evidence_level": "preclinical",
+        "pros": "Laboratory and animal work shows reduced platelet clumping.",
+        "cons": "No evidence that it prevents or treats a clot in people.",
+        "cautions": "Does not replace an anticoagulant; taken with one, bleeding risk rises markedly.",
+        "source_type": "repo_abstract",
+        "source_note": "PMID 11834913 and PMID 13678230 (platelet and antithrombotic activity); warfarin interaction curator-confirmed in this project (PMID 10675182)",
+        "uses": "Classical use of lashuna as a warming herb that moves the blood.",
+        "common_side_effects": [],
+        "tags": [
+          "antiplatelet",
+          "hypotensive",
+          "hypoglycemic",
+          "cyp_inducer"
+        ],
+        "reviewed": false,
+        "condition_id": "venous_thromboembolism",
+        "condition_name": "Blood clot in a vein (DVT or pulmonary embolism)"
+      },
+      {
+        "medicine_id": "herb-ginger",
+        "name": "Ginger",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "scientific_name": "Zingiber officinale",
+        "drug_class": null,
+        "use_kind": "traditional_use",
+        "evidence_level": "preclinical",
+        "pros": "Human platelet studies show gingerols reduce platelet aggregation in the laboratory.",
+        "cons": "No clinical evidence for preventing or treating a clot.",
+        "cautions": "Does not replace an anticoagulant and may add to bleeding risk with blood thinners.",
+        "source_type": "repo_abstract",
+        "source_note": "PMID 11553371; PMID 14693173",
+        "uses": "Classical use of ardraka for digestion and for vata disorders.",
+        "common_side_effects": [],
+        "tags": [
+          "antiplatelet",
+          "hypoglycemic"
+        ],
+        "reviewed": false,
+        "condition_id": "venous_thromboembolism",
+        "condition_name": "Blood clot in a vein (DVT or pulmonary embolism)"
+      },
+      {
+        "medicine_id": "herb-turmeric",
+        "name": "Turmeric",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "scientific_name": "Curcuma longa",
+        "drug_class": null,
+        "use_kind": "traditional_use",
+        "evidence_level": "preclinical",
+        "pros": "Laboratory work shows curcuminoids inhibit platelet activation.",
+        "cons": "No clinical clot evidence, and curcumin is poorly absorbed on its own.",
+        "cautions": "Does not replace an anticoagulant; may add to bleeding risk and slow drug breakdown.",
+        "source_type": "repo_abstract",
+        "source_note": "PMID 16112857; PMID 20158382",
+        "uses": "Classical use of haridra as an anti-inflammatory herb that moves the blood.",
+        "common_side_effects": [],
+        "tags": [
+          "antiplatelet",
+          "cyp_inhibitor",
+          "pgp_modulator"
+        ],
+        "reviewed": false,
+        "condition_id": "venous_thromboembolism",
+        "condition_name": "Blood clot in a vein (DVT or pulmonary embolism)"
+      }
+    ],
+    "allopathic_options": [
+      {
+        "medicine_id": "drug-heparin",
+        "name": "Heparin",
+        "category": "allopathic",
+        "medicine_type": "drug",
+        "scientific_name": null,
+        "drug_class": "Anticoagulants",
+        "use_kind": "conventional_use",
+        "evidence_level": "clinical",
+        "pros": "Works within hours, so it is used when fast anticoagulation is needed.",
+        "cons": "Injection only, usually in hospital; needs monitoring; bleeding risk.",
+        "cautions": "Must not be used by anyone who has had heparin-induced low platelets.",
+        "source_type": "fetched_source",
+        "source_note": "openFDA SPL label, set_id 02fb700d-a28c-4d45-b78d-382dc0d5986c effective 20250926 (data/raw/openfda_labels.json)",
+        "uses": "Treating and preventing clots in the veins and in the lungs, given by injection.",
+        "common_side_effects": [
+          "bleeding",
+          "bruising at the injection site",
+          "low platelet count"
+        ],
+        "tags": [
+          "anticoagulant_effect"
+        ],
+        "reviewed": false,
+        "condition_id": "venous_thromboembolism",
+        "condition_name": "Blood clot in a vein (DVT or pulmonary embolism)"
+      },
+      {
+        "medicine_id": "drug-warfarin",
+        "name": "Warfarin",
+        "category": "allopathic",
+        "medicine_type": "drug",
+        "scientific_name": null,
+        "drug_class": "Anticoagulants",
+        "use_kind": "conventional_use",
+        "evidence_level": "clinical",
+        "pros": "Decades of outcome evidence; effect can be measured and adjusted by a blood test.",
+        "cons": "Needs regular blood tests; many food and medicine interactions; bleeding risk.",
+        "cautions": "Carries a bleeding warning; not used in pregnancy except for mechanical heart valves.",
+        "source_type": "fetched_source",
+        "source_note": "openFDA SPL label, set_id 0cbce382-9c88-4f58-ae0f-532a841e8f95 effective 20250617 (data/raw/openfda_labels.json)",
+        "uses": "Treating and preventing clots in the veins and in the lungs.",
+        "common_side_effects": [
+          "bleeding",
+          "bruising",
+          "rarely tissue damage from skin blood-vessel clots"
+        ],
+        "tags": [
+          "anticoagulant_effect",
+          "cyp_substrate",
+          "narrow_therapeutic_index"
+        ],
+        "reviewed": false,
+        "condition_id": "venous_thromboembolism",
+        "condition_name": "Blood clot in a vein (DVT or pulmonary embolism)"
+      }
+    ],
+    "combination_warnings": [
+      {
+        "level": "literature_verified",
+        "label": "Literature-verified",
+        "medicine_a": "Garlic",
+        "medicine_b": "Warfarin",
+        "reason": "Curated PubMed evidence records risk_increase interaction language for Garlic and Warfarin in 4 abstract(s) (PMID 10675182, 15916450, 19719333, 21919844), each confirmed by manual curator review.",
+        "severity": "moderate",
+        "against_current_medicine": true,
+        "citations": [
+          {
+            "pmid": "10675182",
+            "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/10675182/"
+          },
+          {
+            "pmid": "15916450",
+            "evidence_sentence": "Cases have been published reporting enhanced anticoagulation and bleeding when patients on long-term warfarin therapy also took Salvia miltiorrhiza (danshen). Allium sativum (garlic) decreased the area under the plasma concentration-time curve (AUC) and maximum plasma concentration of saquinavir, but not ritonavir and paracetamol (acetaminophen), in volunteers. A. sativum increased the clotting time and international normalised ratio of warfarin and caused hypoglycaemia when taken with chlorpropamide.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/15916450/"
+          },
+          {
+            "pmid": "19719333",
+            "evidence_sentence": "Kava (Piper methysticum) increases the clearance of chlorzoxazone (a CYP2E1 substrate) and may interact with alprazolam, levodopa and paroxetine. Garlic (Allium sativum) interacts with chlorpropamide, fluindione, ritonavir and warfarin; it also reduces plasma concentrations of chlorzoxazone (a CYP2E1 probe). Echinacea might affect the clearance of caffeine (a CYP1A2 probe) and midazolam (a CYP3A4 probe).",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/19719333/"
+          },
+          {
+            "pmid": "19719333",
+            "evidence_sentence": "Garlic (Allium sativum) interacts with chlorpropamide, fluindione, ritonavir and warfarin; it also reduces plasma concentrations of chlorzoxazone (a CYP2E1 probe). Echinacea might affect the clearance of caffeine (a CYP1A2 probe) and midazolam (a CYP3A4 probe). No interactions have been reported for saw palmetto (Serenoa repens).",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/19719333/"
+          },
+          {
+            "pmid": "19719333",
+            "evidence_sentence": "Ginseng (Panax ginseng) may interact with phenelzine and warfarin. Kava (Piper methysticum) increases the clearance of chlorzoxazone (a CYP2E1 substrate) and may interact with alprazolam, levodopa and paroxetine. Garlic (Allium sativum) interacts with chlorpropamide, fluindione, ritonavir and warfarin; it also reduces plasma concentrations of chlorzoxazone (a CYP2E1 probe).",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/19719333/"
+          },
+          {
+            "pmid": "21919844",
+            "evidence_sentence": "Herbal medicines that are reported to interact with drugs include garlic (Allium sativum), ginger (Zingiber officinale), ginkgo (Ginkgo biloba), ginseng (Panax ginseng), and St. John's wort (Hypericum perforatum). For example, garlic has been shown to increase the clotting time and international normalized ratio (INR) of warfarin, cause hypoglycaemia when taken with chlorpropamide, and reduce the area under the plasma concentration-time curve (AUC) and maximum concentration of saquinavir in humans. Similarly, case reports have demonstrated that ginkgo may potentiate bleeding when combined with warfarin or aspirin, increases blood pressure when combined with thiazide diuretics, and has even led to a coma when combined with trazodone, a serotonin antagonist and reuptake inhibitor used to treat depression.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/21919844/"
+          }
+        ],
+        "rules": []
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Ginger",
+        "medicine_b": "Warfarin",
+        "reason": "One makes platelets less sticky while the other slows clotting, so bleeding risk adds up.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": true,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-002",
+            "tags": [
+              "anticoagulant_effect",
+              "antiplatelet"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Heparin",
+        "medicine_b": "Warfarin",
+        "reason": "Both slow the clotting process, so the risk of serious bleeding rises.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": true,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-030",
+            "tags": [
+              "anticoagulant_effect",
+              "anticoagulant_effect"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Turmeric",
+        "medicine_b": "Warfarin",
+        "reason": "One makes platelets less sticky while the other slows clotting, so bleeding risk adds up. A small rise in a medicine with a narrow safety margin can reach a harmful level. A transport change can shift the level of a medicine whose safe range is narrow. Slowing the liver enzyme that clears the medicine can let its blood level climb.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": true,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-002",
+            "tags": [
+              "anticoagulant_effect",
+              "antiplatelet"
+            ],
+            "level": "high"
+          },
+          {
+            "rule_id": "rule-005",
+            "tags": [
+              "cyp_inhibitor",
+              "narrow_therapeutic_index"
+            ],
+            "level": "high"
+          },
+          {
+            "rule_id": "rule-007",
+            "tags": [
+              "narrow_therapeutic_index",
+              "pgp_modulator"
+            ],
+            "level": "high"
+          },
+          {
+            "rule_id": "rule-008",
+            "tags": [
+              "cyp_inhibitor",
+              "cyp_substrate"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "literature_verified",
+        "label": "Literature-verified",
+        "medicine_a": "Garlic",
+        "medicine_b": "Warfarin",
+        "reason": "Curated PubMed evidence records risk_increase interaction language for Garlic and Warfarin in 4 abstract(s) (PMID 10675182, 15916450, 19719333, 21919844), each confirmed by manual curator review.",
+        "severity": "moderate",
+        "against_current_medicine": false,
+        "citations": [
+          {
+            "pmid": "10675182",
+            "evidence_sentence": "Concurrent use of herbs may mimic, magnify, or oppose the effect of drugs. Plausible cases of herb-drug interactions include: bleeding when warfarin is combined with ginkgo (Ginkgo biloba), garlic (Allium sativum), dong quai (Angelica sinensis), or danshen (Salvia miltiorrhiza); mild serotonin syndrome in patients who mix St John's wort (Hypericum perforatum) with serotonin-reuptake inhibitors; decreased bioavailability of digoxin, theophylline, cyclosporin, and phenprocoumon when these drugs are combined with St John's wort; induction of mania in depressed patients who mix antidepressants and Panax ginseng; exacerbation of extrapyramidal effects with neuroleptic drugs and betel nut (Areca catechu); increased risk of hypertension when tricyclic antidepressants are combined with yohimbine (Pausinystalia yohimbe); potentiation of oral and topical corticosteroids by liquorice (Glycyrrhiza glabra); decreased blood concentrations of prednisolone when taken with the Chinese herbal product xaio chai hu tang (sho-salko-to); and decreased concentrations of phenytoin when combined with the Ayurvedic syrup shankhapushpi. Anthranoid-containing plants (including senna [Cassia senna] and cascara [Rhamnus purshiana]) and soluble fibres (including guar gum and psyllium) can decrease the absorption of drugs.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/10675182/"
+          },
+          {
+            "pmid": "15916450",
+            "evidence_sentence": "Cases have been published reporting enhanced anticoagulation and bleeding when patients on long-term warfarin therapy also took Salvia miltiorrhiza (danshen). Allium sativum (garlic) decreased the area under the plasma concentration-time curve (AUC) and maximum plasma concentration of saquinavir, but not ritonavir and paracetamol (acetaminophen), in volunteers. A. sativum increased the clotting time and international normalised ratio of warfarin and caused hypoglycaemia when taken with chlorpropamide.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/15916450/"
+          },
+          {
+            "pmid": "19719333",
+            "evidence_sentence": "Kava (Piper methysticum) increases the clearance of chlorzoxazone (a CYP2E1 substrate) and may interact with alprazolam, levodopa and paroxetine. Garlic (Allium sativum) interacts with chlorpropamide, fluindione, ritonavir and warfarin; it also reduces plasma concentrations of chlorzoxazone (a CYP2E1 probe). Echinacea might affect the clearance of caffeine (a CYP1A2 probe) and midazolam (a CYP3A4 probe).",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/19719333/"
+          },
+          {
+            "pmid": "19719333",
+            "evidence_sentence": "Garlic (Allium sativum) interacts with chlorpropamide, fluindione, ritonavir and warfarin; it also reduces plasma concentrations of chlorzoxazone (a CYP2E1 probe). Echinacea might affect the clearance of caffeine (a CYP1A2 probe) and midazolam (a CYP3A4 probe). No interactions have been reported for saw palmetto (Serenoa repens).",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/19719333/"
+          },
+          {
+            "pmid": "19719333",
+            "evidence_sentence": "Ginseng (Panax ginseng) may interact with phenelzine and warfarin. Kava (Piper methysticum) increases the clearance of chlorzoxazone (a CYP2E1 substrate) and may interact with alprazolam, levodopa and paroxetine. Garlic (Allium sativum) interacts with chlorpropamide, fluindione, ritonavir and warfarin; it also reduces plasma concentrations of chlorzoxazone (a CYP2E1 probe).",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/19719333/"
+          },
+          {
+            "pmid": "21919844",
+            "evidence_sentence": "Herbal medicines that are reported to interact with drugs include garlic (Allium sativum), ginger (Zingiber officinale), ginkgo (Ginkgo biloba), ginseng (Panax ginseng), and St. John's wort (Hypericum perforatum). For example, garlic has been shown to increase the clotting time and international normalized ratio (INR) of warfarin, cause hypoglycaemia when taken with chlorpropamide, and reduce the area under the plasma concentration-time curve (AUC) and maximum concentration of saquinavir in humans. Similarly, case reports have demonstrated that ginkgo may potentiate bleeding when combined with warfarin or aspirin, increases blood pressure when combined with thiazide diuretics, and has even led to a coma when combined with trazodone, a serotonin antagonist and reuptake inhibitor used to treat depression.",
+            "source_url": "https://pubmed.ncbi.nlm.nih.gov/21919844/"
+          }
+        ],
+        "rules": []
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Garlic",
+        "medicine_b": "Heparin",
+        "reason": "One makes platelets less sticky while the other slows clotting, so bleeding risk adds up.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-002",
+            "tags": [
+              "anticoagulant_effect",
+              "antiplatelet"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Ginger",
+        "medicine_b": "Heparin",
+        "reason": "One makes platelets less sticky while the other slows clotting, so bleeding risk adds up.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-002",
+            "tags": [
+              "anticoagulant_effect",
+              "antiplatelet"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Ginger",
+        "medicine_b": "Warfarin",
+        "reason": "One makes platelets less sticky while the other slows clotting, so bleeding risk adds up.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-002",
+            "tags": [
+              "anticoagulant_effect",
+              "antiplatelet"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Turmeric",
+        "medicine_b": "Heparin",
+        "reason": "One makes platelets less sticky while the other slows clotting, so bleeding risk adds up.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-002",
+            "tags": [
+              "anticoagulant_effect",
+              "antiplatelet"
+            ],
+            "level": "high"
+          }
+        ]
+      },
+      {
+        "level": "mechanism_based",
+        "label": "Mechanism-based caution (not literature-verified)",
+        "medicine_a": "Turmeric",
+        "medicine_b": "Warfarin",
+        "reason": "One makes platelets less sticky while the other slows clotting, so bleeding risk adds up. A small rise in a medicine with a narrow safety margin can reach a harmful level. A transport change can shift the level of a medicine whose safe range is narrow. Slowing the liver enzyme that clears the medicine can let its blood level climb.",
+        "severity": null,
+        "caution_level": "high",
+        "against_current_medicine": false,
+        "citations": [],
+        "rules": [
+          {
+            "rule_id": "rule-002",
+            "tags": [
+              "anticoagulant_effect",
+              "antiplatelet"
+            ],
+            "level": "high"
+          },
+          {
+            "rule_id": "rule-005",
+            "tags": [
+              "cyp_inhibitor",
+              "narrow_therapeutic_index"
+            ],
+            "level": "high"
+          },
+          {
+            "rule_id": "rule-007",
+            "tags": [
+              "narrow_therapeutic_index",
+              "pgp_modulator"
+            ],
+            "level": "high"
+          },
+          {
+            "rule_id": "rule-008",
+            "tags": [
+              "cyp_inhibitor",
+              "cyp_substrate"
+            ],
+            "level": "high"
+          }
+        ]
+      }
+    ],
+    "combination_summary": {
+      "pairs_checked": 10,
+      "warnings_listed": 10,
+      "pairs_with_no_finding_not_listed": 0,
+      "note": "Checked: every suggested herb against every suggested drug, and every suggestion against each medicine you said you already take. Suggestion pairs with no documented interaction and no mechanism rule are counted here rather than listed. Absence of a listing is not a safety claim."
+    },
+    "caution_notes": [
+      "Warfarin is listed as an option below and you have said you already take it. Do not add a second source of it.",
+      "Conditions were detected by a classifier trained on synthetic phrasings, so it can misread wording nobody anticipated. Check the detected conditions before relying on the options."
+    ],
+    "current_medicines": {
+      "resolved": [
+        {
+          "query": "Warfarin",
+          "medicine_id": "drug-warfarin",
+          "name": "Warfarin",
+          "medicine_type": "drug",
+          "category": "allopathic",
+          "drug_class": "Anticoagulants",
+          "resolved_as": "medicine"
+        }
+      ],
+      "drug_classes": [],
+      "unresolved": [],
+      "ambiguous": []
+    },
+    "evidence_note": "Every option here is unreviewed research data: `reviewed` is false on all of them and `source_type` says where each came from. Only warnings with level 'literature_verified' rest on a published finding."
+  }
+}

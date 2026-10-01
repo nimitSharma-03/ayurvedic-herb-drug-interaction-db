@@ -6,8 +6,13 @@ Reads ml/artifacts/condition_classifier.json (so it scores exactly what the API
 will run, through hdi/classify.py) against ml/data/test.jsonl, and writes:
 
   ml/reports/eval.md                per-class scores, macro-F1, confusion matrix
+  ml/reports/metrics.json           the same scores, machine-readable
   ml/reports/confusion_matrix.csv   the same matrix as data
   ml/reports/confusion_matrix.png   the same matrix as a figure
+
+eval.md is for a reader; metrics.json is for a program. Both are written from
+the same computed scores in one pass, so they can never disagree. Anything that
+wants to display these numbers reads the JSON rather than parsing the prose.
 
 The test set is synthetic: both splits were written by hand in
 ml/make_dataset.py from disjoint template and phrase pools. A score here says
@@ -34,6 +39,7 @@ from ml.train import load_jsonl, per_class_scores, predicted_sets  # noqa: E402
 
 DATA_DIR = ROOT / "ml" / "data"
 REPORT_DIR = ROOT / "ml" / "reports"
+METRICS_PATH = REPORT_DIR / "metrics.json"
 OUT_OF_SCOPE = "out_of_scope"
 MULTIPLE = "multiple_conditions"
 
@@ -130,6 +136,59 @@ def write_confusion_png(path, labels, columns, matrix):
     return None
 
 
+def metrics_payload(
+    scores, macro, confusion_parts, multi, metadata, n_rows, threshold, classes
+):
+    """The same scores as `report`, shaped for a program rather than a reader.
+
+    Written so nothing has to parse eval.md to display these numbers. The
+    validation macro-F1 comes from the artifact's own metadata, written by
+    ml/train.py when it tuned the threshold, because it is measured on a split
+    this script never sees.
+    """
+    labels, columns, matrix = confusion_parts
+    return {
+        "model": (
+            "TF-IDF (word 1-2 grams, sublinear tf, l2) + one-vs-rest logistic "
+            "regression with balanced class weights"
+        ),
+        "test_set": "ml/data/test.jsonl",
+        "test_set_is_synthetic": True,
+        "test_set_caveat": (
+            "Both splits were written by hand in ml/make_dataset.py from disjoint "
+            "template and phrase pools, so these scores measure generalization from "
+            "one set of invented phrasings to another. They overstate real-world "
+            "performance, and the model has never seen a real user's words."
+        ),
+        "rows_scored": n_rows,
+        "threshold": threshold,
+        "macro_f1_test": round(macro, 4),
+        "macro_f1_validation": metadata.get("validation_macro_f1"),
+        "target_macro_f1": TARGET_MACRO_F1,
+        "target_met": macro >= TARGET_MACRO_F1,
+        "training_rows": metadata.get("training_rows"),
+        "validation_rows": metadata.get("validation_rows"),
+        "vocabulary_size": metadata.get("vocabulary_size"),
+        "classes": list(classes),
+        "per_class": [
+            {
+                "class": name,
+                "precision": round(score["precision"], 4),
+                "recall": round(score["recall"], 4),
+                "f1": round(score["f1"], 4),
+                "support": score["support"],
+            }
+            for name, score in scores.items()
+        ],
+        "multi_condition_rows": multi,
+        "confusion_matrix": {
+            "rows": labels,
+            "columns": columns,
+            "counts": [[matrix[t][c] for c in columns] for t in labels],
+        },
+    }
+
+
 def report(scores, macro, confusion_parts, multi, metadata, png_problem, n_rows, threshold):
     labels, columns, matrix = confusion_parts
     lines = [
@@ -193,6 +252,9 @@ def report(scores, macro, confusion_parts, multi, metadata, png_problem, n_rows,
 
     lines += [
         "",
+        "Every number above is also written machine-readably to `metrics.json`, which is",
+        "what `GET /stats` serves. Nothing re-derives these scores from this prose.",
+        "",
         "Also written as data in `confusion_matrix.csv`"
         + (
             ", and as a figure in `confusion_matrix.png`."
@@ -248,6 +310,18 @@ def evaluate(artifact_path=None):
     write_confusion_csv(REPORT_DIR / "confusion_matrix.csv", *confusion_parts)
     png_problem = write_confusion_png(REPORT_DIR / "confusion_matrix.png", *confusion_parts)
 
+    METRICS_PATH.write_text(
+        json.dumps(
+            metrics_payload(
+                scores, macro, confusion_parts, multi, classifier.metadata,
+                len(rows), classifier.threshold, classes,
+            ),
+            indent=2,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
     (REPORT_DIR / "eval.md").write_text(
         report(
             scores, macro, confusion_parts, multi, classifier.metadata,
@@ -264,6 +338,7 @@ def evaluate(artifact_path=None):
     if png_problem:
         print(f"confusion_matrix.png not written: {png_problem}", file=sys.stderr)
     print(f"wrote {(REPORT_DIR / 'eval.md').relative_to(ROOT)}")
+    print(f"wrote {METRICS_PATH.relative_to(ROOT)}")
     return macro
 
 

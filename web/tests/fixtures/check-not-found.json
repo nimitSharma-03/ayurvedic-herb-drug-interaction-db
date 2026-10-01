@@ -1,0 +1,18 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/interactions/check?medicine_a=Paracetamol&medicine_b=Turmeric",
+    "body": null
+  },
+  "status": 404,
+  "response": {
+    "status": "medicine_not_found",
+    "error": {
+      "code": "medicine_not_found",
+      "message": "No medicine matched 'Paracetamol'.",
+      "side": "medicine_a",
+      "query": "Paracetamol"
+    },
+    "disclaimer": "This database reports interactions documented in curated PubMed literature. It is informational only, is not a substitute for professional medical advice, and does not provide diagnoses, dosages or treatment recommendations. Absence of a documented interaction is not evidence of safety."
+  }
+}

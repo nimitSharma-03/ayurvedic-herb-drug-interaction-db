@@ -1,0 +1,25 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/",
+    "body": null
+  },
+  "status": 200,
+  "response": {
+    "service": "ayurveda-hdi",
+    "endpoints": [
+      "GET /health",
+      "GET /medicines",
+      "GET /medicines/search?q=",
+      "GET /medicines/{id}",
+      "GET /medicines/{id}/interactions",
+      "GET /interactions/check?medicine_a=&medicine_b=",
+      "POST /interactions/check",
+      "GET /interactions/documented",
+      "GET /health-topics",
+      "GET /health-topics/lookup?topic=",
+      "GET /conditions",
+      "POST /recommend"
+    ]
+  }
+}
