@@ -1,11 +1,14 @@
 # Backend API — medicine information and interaction checking
 
 Read-only JSON API over the project's curated herb–drug interaction data. It
-answers three kinds of question:
+answers four kinds of question:
 
 - what is this medicine? (Ayurvedic/herbal and allopathic/conventional)
 - do these two medicines have a documented interaction?
 - what interacts with this medicine?
+- given a health problem described in plain text, what options exist and what
+  should not be combined? (`POST /recommend` — see
+  [RECOMMEND_API.md](RECOMMEND_API.md))
 
 Everything it serves is derived from files already in this repository. The
 backend adds no medical content of its own: see
@@ -22,11 +25,21 @@ Tests:
 
 ```
 python -m unittest tests.test_normalize tests.test_backend    # backend, ~1s
-python -m unittest discover -s tests                          # everything, ~10s
+python -m unittest tests.test_recommend                       # /recommend, ~2s
+python -m unittest discover -s tests                          # everything, ~20s
+```
+
+Validate the reference files on their own, before seeding:
+
+```
+python -m hdi.validate_reference
 ```
 
 No new dependencies: the backend uses only the standard library (`sqlite3`,
-`http.server`). `requirements.txt` is unchanged.
+`http.server`). `requirements.txt` is unchanged. The condition classifier behind
+`/recommend` is trained offline (`requirements-ml.txt`) and exported to JSON;
+`hdi/classify.py` evaluates it with the standard library, so serving still needs
+nothing installed.
 
 ## Architecture
 
@@ -40,7 +53,9 @@ data/processed/hdi.db         disposable read model, indexed
         |
         v
 hdi/catalog.py  hdi/interactions.py  hdi/topics.py     service layer
+hdi/knowledge.py  hdi/safety.py  hdi/recommend.py
         |
+        |  ml/artifacts/condition_classifier.json      (read by hdi/classify.py)
         v
 hdi/api.py                    routes: validate -> service -> JSON
 ```
@@ -51,8 +66,12 @@ for what the API needs from it: indexes on the fields searches hit, and
 parameterized queries. `hdi.db` is gitignored and can be deleted and rebuilt at
 any time.
 
-Query lookups are pure database reads. No model, network call or LLM sits on
-the request path, and `tests.test_backend.SecurityTest` asserts that.
+Query lookups are pure database reads. No network call or LLM sits on the
+request path, and `tests.test_backend.SecurityTest` plus
+`tests.test_recommend.ServiceIsolationTest` assert that. `/recommend` evaluates
+one exported model — a JSON file of TF-IDF weights and logistic-regression
+coefficients, read by `hdi/classify.py` using the standard library. There is no
+pickle, no model runtime and nothing to download at startup.
 
 ## Data model
 
@@ -83,9 +102,16 @@ one. Populating one never populates the other.
 
 ### `medicine_aliases`
 
-134 rows from the reference tables: every herb's botanical name and every listed
-synonym (`Ashwagandha` ← `Withania somnifera`, `Indian Ginseng`, `Winter
-Cherry`, `Asgandh`).
+208 rows: 134 from the reference tables (every herb's botanical name and every
+listed synonym — `Ashwagandha` ← `Withania somnifera`, `Indian Ginseng`, `Winter
+Cherry`, `Asgandh`) plus 74 from `data/reference/medicine_aliases.csv`, which
+holds the drugs' generic synonyms and 49 brand names.
+
+Brand names carry `alias_type = 'brand_name'` and are **matching-only**. They are
+recorded so a user can type what is printed on their strip, and
+`hdi.catalog.PRIVATE_ALIAS_TYPES` strips them from every response body, including
+this endpoint's `aliases` list. Naming a commercial product in a health answer is
+a step towards recommending one, so resolution uses them and output never does.
 
 Identity between two names is **only** ever expressed here, never inferred.
 `hdi.normalize.normalize_name` folds case, accents and punctuation and nothing
@@ -139,11 +165,75 @@ and a rejection is not verification of an interaction.
 Topic → medicine associations, tagged `conventional_use`, `traditional_use` or
 `evidence_supported_use`, each with its own evidence level and source.
 
-**Currently empty.** `data/reference/health_topics.csv` ships with headers only:
-this project holds no sourced indication data, and generating any would be
-fabricated medical information. The table, loader and endpoints are live, so
-adding cited rows to that CSV and re-seeding enables topic lookups with no code
-change.
+48 rows, one topic per supported condition, derived by `hdi/seed.py` from
+`medicine_uses`. Nothing is invented: every row restates a `medicine_uses` row and
+carries that row's provenance. Which bucket a row lands in is decided by its
+evidence, so a traditional claim can never be read back as a conventional
+indication:
+
+| Source row | `use_type` | `evidence_level` |
+|---|---|---|
+| a drug's labelled indication | `conventional_use` | `limited` |
+| a herb use with no study behind it | `traditional_use` | `traditional` |
+| a herb use with animal work behind it | `evidence_supported_use` | `insufficient` |
+| a herb use with human work behind it | `evidence_supported_use` | `limited` |
+
+`preclinical` maps to `insufficient` because animal work is not grounds for a
+human claim, however clean the experiment. `clinical` maps to `limited`, not
+`moderate`, because the clinical rows here rest on single small trials — which is
+what `limited` means everywhere else in this project.
+
+A lookup resolves lay wordings through `condition_synonyms`, so `topic=sugar` and
+`topic=sugar ki bimari` both reach the type 2 diabetes rows. Extra hand-written
+rows can still be added to `data/reference/health_topics.csv`; an exact match on
+one of those wins over a condition synonym.
+
+With no knowledge files present the table is empty and a lookup returns
+`no_topic_data` with instructions, rather than empty lists that would read as
+"nothing applies to this topic". `tests.test_backend.EmptyTopicDataTest` covers
+that path.
+
+### `conditions`, `condition_synonyms`
+
+The 6 supported conditions and their 102 lay and Hinglish wordings, from
+`data/reference/conditions.csv`. Derived from what the 13 drugs and 3 classes are
+recorded for; anything outside this table is out of scope. `GET /conditions`
+returns the list.
+
+### `tag_vocabulary`, `medicine_tags`
+
+16 pharmacological tags (`hypoglycemic`, `antiplatelet`, `cyp_inhibitor`,
+`narrow_therapeutic_index`, …) and their assignment to medicines. A medicine's
+tags are the **union** across all of its recorded uses, because a tag describes
+the substance, not the use it was written beside.
+
+The vocabulary is closed: `hdi/validate_reference.py` fails the build on a tag
+that is not in it. A misspelled tag is worse than a missing one — the rule it was
+meant to trigger would never fire and nothing would complain.
+
+### `medicine_uses`
+
+48 rows: 28 herb-condition and 20 drug-condition, from
+`data/reference/herb_uses.csv` and `data/reference/drug_indications.csv`. Each
+carries pros, cons, cautions, tags, `source_type`, `source_note` and
+`reviewed`.
+
+`reviewed` has a `CHECK (reviewed = 0)` constraint. Nothing in this project has
+had clinical review, and `docs/PROJECT_SCOPE.md` forbids marking unreviewed data
+as reviewed, so the schema makes it impossible rather than merely discouraged.
+
+### `combination_rules`
+
+36 tag-pair rules from `data/reference/combination_rules.csv`, each with an
+`applies_to` (`herb+drug` | `herb+herb` | `drug+drug`), a one-sentence reason and
+a level. Matching is symmetric. A rule result is **always** labelled
+"Mechanism-based caution (not literature-verified)".
+
+### `class_aliases`
+
+31 lay and Hinglish names for a whole drug class ("blood thinner", "sugar ki
+dawa"). These resolve to a class rather than a medicine, so they cannot live in
+`medicine_aliases` without asserting an identity that is not there.
 
 ## Result states
 
@@ -335,9 +425,35 @@ Topic associations grouped into `conventional_use`, `traditional_use` and
 `evidence_supported_use`. Informational only: no ranking, no recommendation, no
 dosage, no diagnosis.
 
-With no topic data loaded, a lookup returns `status: no_topic_data` and explains
-how to populate it — deliberately not an empty result, which would imply
+```
+GET /health-topics/lookup?topic=Type%202%20diabetes
+GET /health-topics/lookup?topic=sugar              # lay wording, same rows
+GET /health-topics/lookup?topic=sugar%20ki%20bimari
+```
+
+Three states stay distinct: `topic_found`, `topic_not_found` (we hold topic data
+and this is not in it), and `no_topic_data` (we hold none at all, with
+instructions). The last is deliberately not an empty result, which would imply
 "nothing applies to this topic".
+
+### `GET /conditions`
+
+The supported conditions for `/recommend`, with each one's related drug classes.
+Derived from the frozen reference tables; anything else is out of scope.
+
+### `POST /recommend`
+
+Free-text health problem in; Ayurvedic and conventional options, pros and cons,
+and combination warnings out. Red-flag screening runs before anything else and
+short-circuits to an emergency response.
+
+```
+POST /recommend  {"text": "my sugar is high", "current_medicines": ["Glycomet"]}
+```
+
+Full reference, including the request and response shapes, the four statuses, the
+four warning levels, the output rules, the real classifier metrics and what still
+needs expert review: **[RECOMMEND_API.md](RECOMMEND_API.md)**.
 
 ## Validation and errors
 
@@ -350,7 +466,7 @@ Errors use `{"error": {"code": ..., "message": ...}}`.
 | 405 | `method_not_allowed` |
 | 409 | `ambiguous_medicine` |
 | 500 | `internal_error` |
-| 503 | `database_unavailable` (database not built) |
+| 503 | `database_unavailable` (database not built), `classifier_unavailable`, `knowledge_unavailable` |
 
 Validated: missing and blank required parameters, non-integer and out-of-range
 `limit`/`offset`, unknown `category` / `status` / `pair_kind`, unknown medicine,
@@ -373,6 +489,14 @@ traceback, SQL, or file path reaches the client.
 - No LLM on the request path, so no prompt can override these rules. If one is
   ever added for phrasing, it must summarize retrieved records only, and an
   `insufficient_evidence` result must stay `insufficient_evidence`.
+- The classifier `/recommend` uses is a JSON file of numbers, not a pickle or a
+  saved object graph, so loading it cannot execute code.
+- `tests.test_recommend.ServiceIsolationTest` walks the imports of every service
+  module and fails on anything outside the standard library, and asserts that two
+  identical requests produce byte-identical answers.
+- No response may carry a dose, a brand name or an unnegated safety claim;
+  `hdi/validate_reference.py` enforces that on the files and
+  `tests.test_recommend.ForbiddenOutputTest` on every string of every response.
 
 ## Indexes
 
@@ -428,9 +552,21 @@ not on the API path) reads `NCBI_EMAIL` and `NCBI_API_KEY` from `.env`; see
 | `hdi/db.py` | connections, result-state and severity vocabulary |
 | `hdi/normalize.py` | name normalization, ids, order-independent pair keys |
 | `hdi/seed.py` | reproducible build from reference and curated files |
-| `hdi/catalog.py` | medicine resolution, search, detail projection |
+| `hdi/validate_reference.py` | checks the reference CSVs before they are seeded |
+| `hdi/catalog.py` | medicine and class resolution, search, detail projection |
 | `hdi/interactions.py` | pair checks, per-medicine listings, result states |
 | `hdi/topics.py` | health-topic mapping |
+| `hdi/knowledge.py` | conditions, uses and combination rules |
+| `hdi/safety.py` | red-flag screening and caution flags |
+| `hdi/classify.py` | condition classifier inference, standard library only |
+| `hdi/recommend.py` | the recommendation service |
 | `hdi/api.py` | routing, validation, JSON responses, HTTP server |
+| `ml/make_dataset.py` | builds the synthetic classifier dataset |
+| `ml/train.py` | trains and exports the classifier |
+| `ml/evaluate.py` | per-class metrics, macro-F1, confusion matrix, report |
+| `scripts/fetch_drug_labels.py` | retrieves openFDA labels for provenance |
 | `tests/test_normalize.py` | normalization unit tests |
 | `tests/test_backend.py` | seeding, catalog, interactions, topics, API, security, end-to-end |
+| `tests/test_reference_data.py` | reference validation, seeded knowledge, topics |
+| `tests/test_recommend.py` | `/recommend` scenarios, output rules, service isolation |
+| `tests/test_classifier.py` | dataset hygiene, artifact shape, scikit-learn parity |

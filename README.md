@@ -19,13 +19,16 @@ The reference set is frozen at 40 Ayurvedic herbs, 3 conventional drug classes, 
 
 ## Project Structure
 
-- `data/reference/` — curated reference tables (e.g. herbs, drug classes)
-- `data/raw/` — raw, unmodified data pulled from external sources (e.g. PubMed abstracts)
+- `data/reference/` — curated reference tables (herbs, drug classes, conditions,
+  uses, tags, combination rules, aliases, red flags)
+- `data/raw/` — raw, unmodified data pulled from external sources (PubMed
+  abstracts, openFDA labels)
 - `data/processed/` — extraction output, curation sheet, verified interactions
 - `scripts/` — data collection scripts
 - `hdi/` — extraction, curation, and the backend data/API layer
+- `ml/` — condition-classifier dataset, training, evaluation and artifacts
 - `docs/` — curation guide and backend API reference
-- `tests/` — extraction and backend test suites
+- `tests/` — extraction, backend, reference-data, recommendation and classifier suites
 - `notes/` — working notes and curation logs
 - `web/` — front-end for browsing the database (added later)
 
@@ -58,6 +61,12 @@ Literature data is retrieved from PubMed via NCBI E-utilities (using Biopython) 
 requires an NCBI API key and a registered email address, configured through
 environment variables (see `.env.example`).
 
+Drug indication, contraindication and adverse-reaction data is retrieved from the
+openFDA drug label API (`https://api.fda.gov/drug/label.json`), which needs no
+key. Each row records the SPL `set_id` and effective date it was written from.
+Provenance for everything else, including the rows deliberately left out, is in
+[data/reference/DATA_NOTES.md](data/reference/DATA_NOTES.md).
+
 ## Pipeline
 
 | Stage | Command | Output |
@@ -66,8 +75,19 @@ environment variables (see `.env.example`).
 | Extract candidates | `python -m hdi.extract` | `data/processed/candidates.json` |
 | Build curation sheet | `python -m hdi.curate` | `data/processed/curation_sheet.csv` |
 | Ingest verdicts | `python -m hdi.curate ingest` | `data/processed/verified_interactions.json` |
+| Fetch drug labels | `python scripts/fetch_drug_labels.py` | `data/raw/openfda_labels.json` |
+| Validate reference files | `python -m hdi.validate_reference` | exits non-zero on a problem |
 | Build query database | `python -m hdi.seed` | `data/processed/hdi.db` |
 | Serve the API | `python -m hdi.api` | `http://127.0.0.1:8000` |
+
+Condition classifier (training only; the API does not need these):
+
+| Stage | Command | Output |
+|---|---|---|
+| Install training deps | `python -m pip install -r requirements-ml.txt` | |
+| Build the dataset | `python ml/make_dataset.py` | `ml/data/train.jsonl`, `test.jsonl` |
+| Train and export | `python ml/train.py` | `ml/artifacts/condition_classifier.json` |
+| Evaluate | `python ml/evaluate.py` | `ml/reports/eval.md`, confusion matrix |
 
 `python -m hdi.curate` (without `ingest`) overwrites the curation sheet and discards
 recorded verdicts — see [docs/CURATION_GUIDE.md](docs/CURATION_GUIDE.md).
@@ -82,10 +102,13 @@ python -m hdi.api           # serve on http://127.0.0.1:8000
 ```
 
 ```
-GET /medicines/search?q=ashwagandha
-GET /medicines/{id}
-GET /medicines/{id}/interactions?category=allopathic
-GET /interactions/check?medicine_a=Garlic&medicine_b=Warfarin
+GET  /medicines/search?q=ashwagandha
+GET  /medicines/{id}
+GET  /medicines/{id}/interactions?category=allopathic
+GET  /interactions/check?medicine_a=Garlic&medicine_b=Warfarin
+GET  /health-topics/lookup?topic=sugar
+GET  /conditions
+POST /recommend
 ```
 
 Interaction checks are order-independent and resolve aliases, and they
@@ -96,14 +119,49 @@ rather than filled in.
 
 Full reference: [docs/BACKEND_API.md](docs/BACKEND_API.md).
 
+## Recommendation endpoint
+
+`POST /recommend` takes a health problem described in plain text (English or
+Hinglish) and returns Ayurvedic options from the 40 herbs, conventional options
+from the 13 drugs, the pros and cons of each, and the combinations that should
+not be taken together — both among the options offered and against anything the
+user says they already take.
+
+```
+python -m hdi.seed
+python -m hdi.api
+
+curl -s -X POST http://127.0.0.1:8000/recommend \
+  -H "Content-Type: application/json" \
+  -d '{"text": "my sugar is high", "current_medicines": ["Glycomet"]}'
+```
+
+It is informational only and never a prescription. Red-flag text (chest pain,
+trouble breathing, stroke signs, suicidal thoughts and others, in English and
+Hinglish) short-circuits to an emergency response with no options listed. No
+dose, no brand name and no safety claim appears in any response. Only pairs the
+curated literature marks documented are labelled "Literature-verified";
+everything derived from pharmacological tags is labelled "Mechanism-based caution
+(not literature-verified)".
+
+Conditions are identified by a classifier trained offline and exported to JSON,
+which `hdi/classify.py` evaluates using the standard library — so serving still
+needs no dependencies, no API key and no network access.
+
+Full reference, including the real classifier metrics and what still needs expert
+review: [docs/RECOMMEND_API.md](docs/RECOMMEND_API.md).
+
 ## Tests
 
 ```
 python -m unittest tests.test_normalize tests.test_backend   # backend, ~1s
-python -m unittest discover -s tests                         # everything, ~10s
+python -m unittest tests.test_recommend                      # /recommend, ~2s
+python -m unittest discover -s tests                         # everything, ~20s
 ```
 
-The full run loads the scispaCy NER model, so it is slower than the backend-only run.
+The full run loads the scispaCy NER model, so it is slower than the backend-only
+run. The scikit-learn parity tests in `tests/test_classifier.py` skip cleanly if
+`requirements-ml.txt` is not installed, since the API does not need it.
 
 See [docs/PROJECT_SCOPE.md](docs/PROJECT_SCOPE.md) for curation rules and constraints
 that apply to this project's data and any contributions.
@@ -111,7 +169,10 @@ that apply to this project's data and any contributions.
 ## Data
 
 The herb, drug, and interaction data in this repository is research-grade: it is
-drawn and extracted from PubMed abstracts and has not been reviewed by a clinician.
+drawn and extracted from PubMed abstracts and drug labels and has **not** been
+reviewed by a clinician. Every knowledge row reports `reviewed: false`, and
+[docs/RECOMMEND_API.md](docs/RECOMMEND_API.md) lists what an expert must check
+before any of it is used for real.
 
 ## Disclaimer
 
