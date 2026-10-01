@@ -1,17 +1,17 @@
 {
   "request": {
     "method": "GET",
-    "path": "/medicines/herb-ashwagandha",
+    "path": "/medicines/herb-ashoka",
     "body": null
   },
   "status": 200,
   "response": {
-    "id": "herb-ashwagandha",
-    "name": "Ashwagandha",
+    "id": "herb-ashoka",
+    "name": "Ashoka",
     "category": "ayurvedic",
     "medicine_type": "herb",
     "generic_name": null,
-    "scientific_name": "Withania somnifera",
+    "scientific_name": "Saraca asoca",
     "drug_class": null,
     "description": null,
     "evidence_level": null,
@@ -25,27 +25,15 @@
     "precautions": [],
     "aliases": [
       {
-        "alias": "Withania somnifera",
+        "alias": "Saraca asoca",
         "alias_type": "scientific_name"
       },
       {
-        "alias": "Asgandh",
+        "alias": "Ashoka Tree",
         "alias_type": "synonym"
       },
       {
-        "alias": "Ashvagandha",
-        "alias_type": "synonym"
-      },
-      {
-        "alias": "Aswagandha",
-        "alias_type": "synonym"
-      },
-      {
-        "alias": "Indian Ginseng",
-        "alias_type": "synonym"
-      },
-      {
-        "alias": "Winter Cherry",
+        "alias": "Saraca indica",
         "alias_type": "synonym"
       }
     ],

@@ -1,0 +1,19 @@
+node_modules/
+.next/
+out/
+build/
+
+# Playwright output. Screenshots that are meant to be kept are written to
+# docs/screenshots/ by tests/e2e/screenshots.spec.ts and are committed.
+playwright-report/
+test-results/
+blob-report/
+.playwright/
+
+.env
+.env.local
+.env*.local
+
+*.tsbuildinfo
+next-env.d.ts
+.DS_Store

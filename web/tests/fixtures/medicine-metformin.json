@@ -66,6 +66,36 @@
     "interaction_summary": {
       "interaction_found": 2,
       "no_documented_interaction": 38
-    }
+    },
+    "recorded_uses": [
+      {
+        "medicine_id": "drug-metformin",
+        "name": "Metformin",
+        "category": "allopathic",
+        "medicine_type": "drug",
+        "scientific_name": null,
+        "drug_class": "Antidiabetics",
+        "use_kind": "conventional_use",
+        "evidence_level": "clinical",
+        "pros": "First-choice tablet; long safety record; does not usually cause low sugar on its own.",
+        "cons": "Stomach upset is common at first; cannot be used with poor kidney function.",
+        "cautions": "Carries a lactic acidosis warning; not used when kidney function is severely reduced.",
+        "source_type": "fetched_source",
+        "source_note": "openFDA SPL label, set_id 011de1a5-1ac0-4831-9e8d-26ec79ba2205 effective 20240821 (data/raw/openfda_labels.json)",
+        "uses": "Lowering blood sugar in type 2 diabetes, alongside diet and exercise.",
+        "common_side_effects": [
+          "nausea",
+          "diarrhoea",
+          "metallic taste",
+          "low vitamin B12 over time"
+        ],
+        "tags": [
+          "hypoglycemic"
+        ],
+        "reviewed": false,
+        "condition_id": "type_2_diabetes",
+        "condition_name": "Type 2 diabetes"
+      }
+    ]
   }
 }

@@ -1,4 +1,9 @@
 {
+  "check-aspirin-turmeric": {
+    "method": "GET",
+    "path": "/interactions/check?medicine_a=Aspirin&medicine_b=Turmeric",
+    "status": 200
+  },
   "check-garlic-warfarin": {
     "method": "GET",
     "path": "/interactions/check?medicine_a=Garlic&medicine_b=Warfarin",
@@ -17,6 +22,11 @@
   "check-metformin-turmeric": {
     "method": "GET",
     "path": "/interactions/check?medicine_a=Metformin&medicine_b=Turmeric",
+    "status": 200
+  },
+  "check-no-documented": {
+    "method": "GET",
+    "path": "/interactions/check?medicine_a=Turmeric&medicine_b=Aspirin",
     "status": 200
   },
   "check-not-found": {
@@ -64,9 +74,19 @@
     "path": "/medicines/herb-ashwagandha",
     "status": 200
   },
+  "medicine-garlic": {
+    "method": "GET",
+    "path": "/medicines/herb-garlic",
+    "status": 200
+  },
   "medicine-metformin": {
     "method": "GET",
     "path": "/medicines/drug-metformin",
+    "status": 200
+  },
+  "medicine-no-uses": {
+    "method": "GET",
+    "path": "/medicines/herb-ashoka",
     "status": 200
   },
   "medicine-not-found": {
@@ -134,6 +154,11 @@
     "path": "/recommend",
     "status": 400
   },
+  "recommend-low-confidence": {
+    "method": "POST",
+    "path": "/recommend",
+    "status": 200
+  },
   "recommend-out-of-scope": {
     "method": "POST",
     "path": "/recommend",
@@ -182,6 +207,11 @@
   "search-met": {
     "method": "GET",
     "path": "/medicines/search?q=met",
+    "status": 200
+  },
+  "stats": {
+    "method": "GET",
+    "path": "/stats",
     "status": 200
   },
   "topic-sugar": {

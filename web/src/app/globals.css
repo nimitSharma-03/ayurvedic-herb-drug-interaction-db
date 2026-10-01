@@ -1,0 +1,230 @@
+@import "tailwindcss";
+
+/*
+  Design tokens.
+
+  Light is the default theme. Dark is opt-in through the header toggle, which
+  writes data-theme on <html>; the inline script in layout.tsx applies the
+  stored choice before first paint, so the page never flashes the wrong theme.
+  The system preference is deliberately not followed: the approved design calls
+  light the default, and switching on a setting the reader never chose here
+  would contradict that.
+*/
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme {
+  --color-paper: #f5f8f6;
+  --color-surface: #ffffff;
+  --color-wash: #e3f0e9;
+  --color-ink: #14231e;
+  --color-ink-2: #4b5c55;
+  --color-line: #d7e2dc;
+
+  /* Category colours. Herb green is Ayurvedic, drug indigo is allopathic. */
+  --color-herb: #1d684c;
+  --color-drug: #2e4a8a;
+
+  /* Evidence colours. Red is literature-verified, amber is mechanism-based,
+     grey is insufficient evidence. Nothing else may use them. */
+  --color-verified: #b42318;
+  --color-mechanism: #9a5800;
+  --color-insufficient: #5d6a65;
+
+  --font-heading: var(--font-lora), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-source-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  --radius-panel: 22px;
+  --radius-card: 16px;
+  --radius-card-sm: 14px;
+  --radius-field: 13px;
+
+  --shadow-soft: 0 1px 2px rgba(20, 35, 30, 0.04), 0 8px 24px rgba(20, 35, 30, 0.06);
+  --shadow-lift: 0 2px 4px rgba(20, 35, 30, 0.05), 0 16px 40px rgba(20, 35, 30, 0.1);
+
+  --ease-reveal: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root[data-theme="dark"] {
+  --color-paper: #0e1915;
+  --color-surface: #15231e;
+  --color-wash: #1a2d26;
+  --color-ink: #e4eee9;
+  --color-ink-2: #a6b6af;
+  --color-line: #25382f;
+  --color-herb: #6cc69e;
+  --color-drug: #a0b4ec;
+  --color-verified: #f28b80;
+  --color-mechanism: #e9b55e;
+  --color-insufficient: #9ca9a3;
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.3);
+  --shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.35), 0 16px 40px rgba(0, 0, 0, 0.45);
+
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    background-color: var(--color-paper);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    /* 360px is the narrowest viewport this design supports; nothing may
+       overflow it sideways. */
+    min-width: 320px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-herb);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background-color: var(--color-wash);
+    color: var(--color-ink);
+  }
+}
+
+@utility panel {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow-soft);
+}
+
+@utility card-surface {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
+}
+
+/*
+  Motion.
+
+  Each of these runs once, in response to something the reader did or to the
+  arrival of an answer. There is no looping or decorative animation anywhere,
+  and every rule below is switched off under prefers-reduced-motion at the
+  bottom of this file.
+*/
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes slide-out-right {
+  from {
+    transform: none;
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes draw-line {
+  from {
+    stroke-dashoffset: var(--line-length, 400);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-reveal {
+  animation: reveal 0.45s var(--ease-reveal) both;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease both;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s var(--ease-reveal) both;
+}
+
+.animate-slide-out-right {
+  animation: slide-out-right 0.2s ease-in both;
+}
+
+/* The combination lines draw themselves in once, so the eye follows each herb
+   to the medicine it conflicts with instead of meeting a finished tangle. */
+.draw-line {
+  stroke-dasharray: var(--line-length, 400);
+  animation: draw-line 0.7s var(--ease-reveal) both;
+}
+
+/* The search box glows on focus so the reader can see where their typing is
+   going without a border colour doing all the work. */
+.search-glow:focus-within {
+  box-shadow:
+    0 0 0 4px color-mix(in oklab, var(--color-herb) 18%, transparent),
+    var(--shadow-soft);
+  border-color: var(--color-herb);
+}
+
+.search-glow {
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .draw-line {
+    stroke-dasharray: none;
+  }
+}

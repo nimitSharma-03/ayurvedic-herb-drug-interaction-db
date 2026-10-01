@@ -58,6 +58,95 @@
     "interaction_summary": {
       "interaction_found": 2,
       "no_documented_interaction": 38
-    }
+    },
+    "recorded_uses": [
+      {
+        "medicine_id": "drug-warfarin",
+        "name": "Warfarin",
+        "category": "allopathic",
+        "medicine_type": "drug",
+        "scientific_name": null,
+        "drug_class": "Anticoagulants",
+        "use_kind": "conventional_use",
+        "evidence_level": "clinical",
+        "pros": "Proven to cut stroke risk in atrial fibrillation; dose can be guided by a blood test.",
+        "cons": "Needs regular monitoring; interacts with many foods and medicines; bleeding risk.",
+        "cautions": "Carries a bleeding warning; stopping it suddenly raises clot and stroke risk.",
+        "source_type": "fetched_source",
+        "source_note": "openFDA SPL label, set_id 0cbce382-9c88-4f58-ae0f-532a841e8f95 effective 20250617 (data/raw/openfda_labels.json)",
+        "uses": "Lowering the risk of clots and stroke caused by an irregular heartbeat.",
+        "common_side_effects": [
+          "bleeding",
+          "bruising",
+          "blood in urine or stool"
+        ],
+        "tags": [
+          "anticoagulant_effect",
+          "cyp_substrate",
+          "narrow_therapeutic_index"
+        ],
+        "reviewed": false,
+        "condition_id": "atrial_fibrillation",
+        "condition_name": "Atrial fibrillation (irregular heartbeat)"
+      },
+      {
+        "medicine_id": "drug-warfarin",
+        "name": "Warfarin",
+        "category": "allopathic",
+        "medicine_type": "drug",
+        "scientific_name": null,
+        "drug_class": "Anticoagulants",
+        "use_kind": "conventional_use",
+        "evidence_level": "clinical",
+        "pros": "Decades of outcome evidence; effect can be measured and adjusted by a blood test.",
+        "cons": "Needs regular blood tests; many food and medicine interactions; bleeding risk.",
+        "cautions": "Carries a bleeding warning; not used in pregnancy except for mechanical heart valves.",
+        "source_type": "fetched_source",
+        "source_note": "openFDA SPL label, set_id 0cbce382-9c88-4f58-ae0f-532a841e8f95 effective 20250617 (data/raw/openfda_labels.json)",
+        "uses": "Treating and preventing clots in the veins and in the lungs.",
+        "common_side_effects": [
+          "bleeding",
+          "bruising",
+          "rarely tissue damage from skin blood-vessel clots"
+        ],
+        "tags": [
+          "anticoagulant_effect",
+          "cyp_substrate",
+          "narrow_therapeutic_index"
+        ],
+        "reviewed": false,
+        "condition_id": "venous_thromboembolism",
+        "condition_name": "Blood clot in a vein (DVT or pulmonary embolism)"
+      },
+      {
+        "medicine_id": "drug-warfarin",
+        "name": "Warfarin",
+        "category": "allopathic",
+        "medicine_type": "drug",
+        "scientific_name": null,
+        "drug_class": "Anticoagulants",
+        "use_kind": "conventional_use",
+        "evidence_level": "clinical",
+        "pros": "Label-supported for reducing repeat heart attack and clot-related events.",
+        "cons": "Bleeding risk and frequent monitoring make it harder to use than antiplatelet tablets.",
+        "cautions": "Carries a bleeding warning; never start or stop it without the treating doctor.",
+        "source_type": "fetched_source",
+        "source_note": "openFDA SPL label, set_id 0cbce382-9c88-4f58-ae0f-532a841e8f95 effective 20250617 (data/raw/openfda_labels.json)",
+        "uses": "Lowering the risk of death and of a further heart attack after one has happened.",
+        "common_side_effects": [
+          "bleeding",
+          "bruising",
+          "rarely skin tissue damage"
+        ],
+        "tags": [
+          "anticoagulant_effect",
+          "cyp_substrate",
+          "narrow_therapeutic_index"
+        ],
+        "reviewed": false,
+        "condition_id": "secondary_cardiovascular_prevention",
+        "condition_name": "Prevention of a further heart attack or stroke"
+      }
+    ]
   }
 }

@@ -1,0 +1,46 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/interactions/check?medicine_a=Turmeric&medicine_b=Aspirin",
+    "body": null
+  },
+  "status": 200,
+  "response": {
+    "id": "int-turmeric-aspirin",
+    "pair_kind": "ayurvedic_allopathic",
+    "status": "no_documented_interaction",
+    "interaction_type": null,
+    "severity": "none_documented",
+    "severity_basis": null,
+    "description": "7 PubMed abstract(s) for Turmeric and Aspirin were screened and none contained interaction-trigger language. No documented interaction was found in the available sources.",
+    "mechanism": null,
+    "clinical_significance": null,
+    "recommended_action": null,
+    "evidence_level": "limited",
+    "evidence_basis": "abstracts_screened_no_interaction_language_found",
+    "source": "data/raw/raw_abstracts.json via hdi.extract",
+    "source_url": null,
+    "last_verified": "2026-09-17",
+    "medicine_a": {
+      "id": "herb-turmeric",
+      "name": "Turmeric",
+      "category": "ayurvedic",
+      "medicine_type": "herb",
+      "generic_name": null,
+      "scientific_name": "Curcuma longa",
+      "drug_class": null
+    },
+    "medicine_b": {
+      "id": "drug-aspirin",
+      "name": "Aspirin",
+      "category": "allopathic",
+      "medicine_type": "drug",
+      "generic_name": "Aspirin",
+      "scientific_name": null,
+      "drug_class": "Anticoagulants"
+    },
+    "interaction_found": false,
+    "evidence": [],
+    "disclaimer": "This database reports interactions documented in curated PubMed literature. It is informational only, is not a substitute for professional medical advice, and does not provide diagnoses, dosages or treatment recommendations. Absence of a documented interaction is not evidence of safety."
+  }
+}

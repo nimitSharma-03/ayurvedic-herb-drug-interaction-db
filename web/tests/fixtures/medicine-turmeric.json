@@ -63,6 +63,84 @@
     "interaction_summary": {
       "interaction_found": 3,
       "no_documented_interaction": 10
-    }
+    },
+    "recorded_uses": [
+      {
+        "medicine_id": "herb-turmeric",
+        "name": "Turmeric",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "scientific_name": "Curcuma longa",
+        "drug_class": null,
+        "use_kind": "traditional_use",
+        "evidence_level": "preclinical",
+        "pros": "Laboratory work shows curcuminoids inhibit platelet activation.",
+        "cons": "No clinical clot evidence, and curcumin is poorly absorbed on its own.",
+        "cautions": "Does not replace an anticoagulant; may add to bleeding risk and slow drug breakdown.",
+        "source_type": "repo_abstract",
+        "source_note": "PMID 16112857; PMID 20158382",
+        "uses": "Classical use of haridra as an anti-inflammatory herb that moves the blood.",
+        "common_side_effects": [],
+        "tags": [
+          "antiplatelet",
+          "cyp_inhibitor",
+          "pgp_modulator"
+        ],
+        "reviewed": false,
+        "condition_id": "venous_thromboembolism",
+        "condition_name": "Blood clot in a vein (DVT or pulmonary embolism)"
+      },
+      {
+        "medicine_id": "herb-turmeric",
+        "name": "Turmeric",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "scientific_name": "Curcuma longa",
+        "drug_class": null,
+        "use_kind": "traditional_use",
+        "evidence_level": "preclinical",
+        "pros": "Kitchen spice; laboratory work supports anti-inflammatory and antiplatelet actions.",
+        "cons": "No outcome evidence in heart disease, and curcumin is poorly absorbed.",
+        "cautions": "May add to bleeding risk and slow the breakdown of some heart medicines.",
+        "source_type": "repo_abstract",
+        "source_note": "PMID 16112857; PMID 20158382",
+        "uses": "Classical use of haridra as an anti-inflammatory herb.",
+        "common_side_effects": [],
+        "tags": [
+          "antiplatelet",
+          "cyp_inhibitor",
+          "pgp_modulator"
+        ],
+        "reviewed": false,
+        "condition_id": "secondary_cardiovascular_prevention",
+        "condition_name": "Prevention of a further heart attack or stroke"
+      },
+      {
+        "medicine_id": "herb-turmeric",
+        "name": "Turmeric",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "scientific_name": "Curcuma longa",
+        "drug_class": null,
+        "use_kind": "traditional_use",
+        "evidence_level": "preclinical",
+        "pros": "Everyday kitchen spice; animal and early human work suggests better glucose control.",
+        "cons": "Curcumin is poorly absorbed alone; evidence is early; can irritate the stomach.",
+        "cautions": "May slow breakdown of other medicines; a documented interaction with metformin exists.",
+        "source_type": "repo_abstract",
+        "source_note": "PMID 29518605 (curator-confirmed metformin interaction in this project); antiplatelet tag from PMID 16112857 and PMID 20158382",
+        "uses": "Classical use of haridra for prameha, inflammation and skin disorders.",
+        "common_side_effects": [],
+        "tags": [
+          "hypoglycemic",
+          "antiplatelet",
+          "cyp_inhibitor",
+          "pgp_modulator"
+        ],
+        "reviewed": false,
+        "condition_id": "type_2_diabetes",
+        "condition_name": "Type 2 diabetes"
+      }
+    ]
   }
 }

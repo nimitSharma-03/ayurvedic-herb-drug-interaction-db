@@ -19,6 +19,7 @@
       "GET /health-topics",
       "GET /health-topics/lookup?topic=",
       "GET /conditions",
+      "GET /stats",
       "POST /recommend"
     ]
   }

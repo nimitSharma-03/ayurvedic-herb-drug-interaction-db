@@ -1,0 +1,178 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/medicines/herb-garlic",
+    "body": null
+  },
+  "status": 200,
+  "response": {
+    "id": "herb-garlic",
+    "name": "Garlic",
+    "category": "ayurvedic",
+    "medicine_type": "herb",
+    "generic_name": null,
+    "scientific_name": "Allium sativum",
+    "drug_class": null,
+    "description": null,
+    "evidence_level": null,
+    "pregnancy_information": null,
+    "breastfeeding_information": null,
+    "active_ingredients": [],
+    "common_uses": [],
+    "traditional_uses": [],
+    "side_effects": [],
+    "contraindications": [],
+    "precautions": [],
+    "aliases": [
+      {
+        "alias": "Allium sativum",
+        "alias_type": "scientific_name"
+      },
+      {
+        "alias": "Lahsun",
+        "alias_type": "synonym"
+      },
+      {
+        "alias": "Lashuna",
+        "alias_type": "synonym"
+      },
+      {
+        "alias": "Lasun",
+        "alias_type": "synonym"
+      }
+    ],
+    "sources": [
+      {
+        "source": "data/reference/herbs.csv (project reference table, frozen scope)",
+        "source_url": null,
+        "last_verified": "2026-09-16"
+      }
+    ],
+    "data_completeness": {
+      "documented_fields": [],
+      "undocumented_fields": [
+        "description",
+        "common_uses",
+        "traditional_uses",
+        "side_effects",
+        "contraindications",
+        "precautions",
+        "pregnancy_information",
+        "breastfeeding_information",
+        "active_ingredients",
+        "evidence_level"
+      ],
+      "note": "Undocumented fields are absent from this project's sources. An empty value means no information was available, not a negative finding."
+    },
+    "interaction_summary": {
+      "interaction_found": 1,
+      "no_documented_interaction": 12
+    },
+    "recorded_uses": [
+      {
+        "medicine_id": "herb-garlic",
+        "name": "Garlic",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "scientific_name": "Allium sativum",
+        "drug_class": null,
+        "use_kind": "traditional_use",
+        "evidence_level": "clinical",
+        "pros": "Food-grade herb; trials and reviews report a small fall in blood pressure.",
+        "cons": "The fall is modest; smell and stomach upset are common complaints.",
+        "cautions": "Adds to blood-pressure medicines and raises bleeding risk with blood thinners.",
+        "source_type": "repo_abstract",
+        "source_note": "PMID 11834913 (review of herbs and supplements in cardiovascular disease)",
+        "uses": "Classical use of lashuna for circulatory complaints.",
+        "common_side_effects": [],
+        "tags": [
+          "hypotensive",
+          "antiplatelet",
+          "hypoglycemic",
+          "cyp_inducer"
+        ],
+        "reviewed": false,
+        "condition_id": "hypertension",
+        "condition_name": "High blood pressure"
+      },
+      {
+        "medicine_id": "herb-garlic",
+        "name": "Garlic",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "scientific_name": "Allium sativum",
+        "drug_class": null,
+        "use_kind": "traditional_use",
+        "evidence_level": "clinical",
+        "pros": "Reviews report small improvements in blood pressure and in cholesterol.",
+        "cons": "No proof that it prevents heart attacks or strokes; the effects are modest.",
+        "cautions": "Raises bleeding risk alongside antiplatelet and anticoagulant medicines.",
+        "source_type": "repo_abstract",
+        "source_note": "PMID 11834913",
+        "uses": "Classical use of lashuna for circulatory complaints.",
+        "common_side_effects": [],
+        "tags": [
+          "antiplatelet",
+          "hypotensive",
+          "hypoglycemic",
+          "cyp_inducer"
+        ],
+        "reviewed": false,
+        "condition_id": "secondary_cardiovascular_prevention",
+        "condition_name": "Prevention of a further heart attack or stroke"
+      },
+      {
+        "medicine_id": "herb-garlic",
+        "name": "Garlic",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "scientific_name": "Allium sativum",
+        "drug_class": null,
+        "use_kind": "traditional_use",
+        "evidence_level": "preclinical",
+        "pros": "Laboratory and animal work shows reduced platelet clumping.",
+        "cons": "No evidence that it prevents or treats a clot in people.",
+        "cautions": "Does not replace an anticoagulant; taken with one, bleeding risk rises markedly.",
+        "source_type": "repo_abstract",
+        "source_note": "PMID 11834913 and PMID 13678230 (platelet and antithrombotic activity); warfarin interaction curator-confirmed in this project (PMID 10675182)",
+        "uses": "Classical use of lashuna as a warming herb that moves the blood.",
+        "common_side_effects": [],
+        "tags": [
+          "antiplatelet",
+          "hypotensive",
+          "hypoglycemic",
+          "cyp_inducer"
+        ],
+        "reviewed": false,
+        "condition_id": "venous_thromboembolism",
+        "condition_name": "Blood clot in a vein (DVT or pulmonary embolism)"
+      },
+      {
+        "medicine_id": "herb-garlic",
+        "name": "Garlic",
+        "category": "ayurvedic",
+        "medicine_type": "herb",
+        "scientific_name": "Allium sativum",
+        "drug_class": null,
+        "use_kind": "traditional_use",
+        "evidence_level": "preclinical",
+        "pros": "Common food; animal studies report modest falls in blood glucose.",
+        "cons": "The effect on sugar is small and inconsistent in people; strong smell.",
+        "cautions": "Raises bleeding risk with blood thinners; a documented warfarin interaction exists.",
+        "source_type": "repo_abstract",
+        "source_note": "PMID 16801983 (glycaemic); warfarin interaction curator-confirmed in this project (PMID 10675182, 19719333, 21919844)",
+        "uses": "Classical use of lashuna as a warming herb for vata and circulatory complaints.",
+        "common_side_effects": [],
+        "tags": [
+          "hypoglycemic",
+          "antiplatelet",
+          "hypotensive",
+          "cyp_inducer"
+        ],
+        "reviewed": false,
+        "condition_id": "type_2_diabetes",
+        "condition_name": "Type 2 diabetes"
+      }
+    ]
+  }
+}
