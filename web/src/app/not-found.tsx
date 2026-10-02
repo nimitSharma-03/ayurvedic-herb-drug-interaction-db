@@ -1,21 +1,21 @@
 import Link from "next/link";
 
-import { DiscMark } from "@/components/disc-mark";
 import { Button } from "@/components/ui/button";
+import { WatchingEyes } from "@/components/watching-eyes";
 
+/**
+ * The 404: a night page, two eyes looking for what is not there, one sentence
+ * and the way back. Always dark, like the home scenes, whatever the theme.
+ */
 export default function NotFound() {
   return (
-    <div className="page-shell py-16 lg:py-24">
-      <div className="mx-auto max-w-2xl">
-        <DiscMark />
-        <h1 className="mt-8">That page is not here</h1>
-        <p className="mt-4 text-[var(--color-ink-2)]">
-          The link may be wrong, or it may name a herb or a medicine outside this
-          database.
-        </p>
+    <div className="night flex min-h-[calc(100svh-var(--nav-h))] items-center bg-[var(--color-charred)]">
+      <div className="page-shell flex flex-col items-center py-16 text-center">
+        <WatchingEyes />
+        <h1 className="mt-10">That page does not exist.</h1>
         <div className="mt-8">
           <Button asChild>
-            <Link href="/medicines">Browse the medicines</Link>
+            <Link href="/">Back to home</Link>
           </Button>
         </div>
       </div>

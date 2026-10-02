@@ -319,3 +319,30 @@ test.describe("the hero headline", () => {
   });
 });
 
+/** The 404's eyes follow the cursor, and hold still under reduced motion. */
+test.describe("the 404 eyes", () => {
+  test("are aria-hidden and look toward the cursor", async ({ page }) => {
+    await page.goto("/nowhere-at-all");
+    const eyes = page.getByTestId("watching-eyes");
+    await expect(eyes).toHaveAttribute("aria-hidden", "true");
+    await expect(page.getByRole("link", { name: "Back to home" })).toHaveAttribute("href", "/");
+
+    await page.mouse.move(5, 5);
+    await page.mouse.move(10, 10, { steps: 3 });
+    const iris = eyes.locator("svg").first().locator("g");
+    await expect.poll(() => iris.getAttribute("transform")).not.toBeNull();
+  });
+
+  test.describe("for a reader who asked for less motion", () => {
+    test.use({ reducedMotion: "reduce" });
+
+    test("hold still", async ({ page }) => {
+      await page.goto("/nowhere-at-all");
+      await page.mouse.move(5, 5);
+      await page.mouse.move(10, 10, { steps: 3 });
+      await page.waitForTimeout(400);
+      const iris = page.getByTestId("watching-eyes").locator("svg").first().locator("g");
+      expect(await iris.getAttribute("transform")).toBeNull();
+    });
+  });
+});

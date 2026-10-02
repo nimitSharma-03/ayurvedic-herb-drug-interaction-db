@@ -342,7 +342,7 @@ test.describe("a medicine page", () => {
     const response = await page.goto("/medicines/herb-not-a-real-one");
     expect(response?.status()).toBe(404);
     await expect(page.getByRole("heading", { level: 1 })).toContainText(
-      "That page is not here",
+      "That page does not exist.",
     );
   });
 
@@ -350,7 +350,7 @@ test.describe("a medicine page", () => {
     const response = await page.goto("/nowhere-at-all");
     expect(response?.status()).toBe(404);
     await expect(page.getByRole("heading", { level: 1 })).toContainText(
-      "That page is not here",
+      "That page does not exist.",
     );
   });
 });
