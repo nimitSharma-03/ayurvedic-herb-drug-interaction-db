@@ -2,6 +2,7 @@ import { expect, test } from "@playwright/test";
 
 import {
   apiGet,
+  ask,
   expectNoForbiddenOutput,
   expectNoHorizontalScroll,
   setDarkTheme,
@@ -10,7 +11,9 @@ import {
 import type { StatsResponse } from "@/lib/types";
 
 test.describe("the home page", () => {
-  test("shows the headline, the lead and both buttons", async ({ page }) => {
+  test("shows the headline, the problem form and the link to the pair check", async ({
+    page,
+  }) => {
     await page.goto("/");
     await expect(
       page.getByRole("heading", {
@@ -18,10 +21,19 @@ test.describe("the home page", () => {
         level: 1,
       }),
     ).toBeVisible();
-    await expect(page.getByRole("link", { name: "Describe a problem" }).first()).toBeVisible();
+    // The form itself, not a link to it: a reader types here without a page in
+    // between.
+    await expect(page.getByTestId("problem-text")).toBeVisible();
+    await expect(page.getByRole("button", { name: "Show options" })).toBeVisible();
     await expect(
       page.getByRole("link", { name: "Check two medicines" }).first(),
     ).toBeVisible();
+    await expectNoForbiddenOutput(page);
+  });
+
+  test("answers a problem described on the home page itself", async ({ page }) => {
+    await ask(page, "my sugar is high", [], "/");
+    await expect(page.getByTestId("results")).toBeVisible();
     await expectNoForbiddenOutput(page);
   });
 
@@ -56,56 +68,6 @@ test.describe("the home page", () => {
     await expect(strip).toContainText(String(stats.scope.herbs));
     await expect(strip).toContainText(String(stats.scope.drugs));
     await expect(strip).toContainText(String(stats.scope.conditions));
-  });
-
-  test("finds a medicine by one of its other names and says which one matched", async ({
-    page,
-  }) => {
-    // Indian Ginseng is a recorded synonym, not the medicine's own name, so a
-    // result for it proves the alias path end to end.
-    const alias = "Indian Ginseng";
-    const expected = await apiGet<{ results: { name: string; matched_on: string }[] }>(
-      `/medicines/search?q=${encodeURIComponent(alias)}`,
-    );
-    expect(expected.results.length).toBeGreaterThan(0);
-    const name = expected.results[0]!.name;
-    expect(expected.results[0]!.matched_on).toBe("exact_alias");
-    expect(name.toLowerCase()).not.toBe(alias.toLowerCase());
-
-    await page.goto("/");
-    await page.getByTestId("home-search").fill(alias);
-
-    const result = page.getByTestId("search-result").first();
-    await expect(result).toBeVisible();
-    await expect(result).toContainText(name);
-    await expect(result.getByTestId("matched-on")).toContainText(`matched ${alias}`);
-
-    await result.click();
-    await expect(page).toHaveURL(/\/medicines\/.+/);
-    await expect(page.getByRole("heading", { level: 1 })).toContainText(name);
-  });
-
-  test("says so plainly when a name is outside the database", async ({ page }) => {
-    await page.goto("/");
-    await page.getByTestId("home-search").fill("Paracetamol");
-    await expect(page.getByTestId("search-empty")).toBeVisible();
-    await expect(page.getByTestId("search-result")).toHaveCount(0);
-  });
-
-  test("the search box is reachable and usable by keyboard alone", async ({ page }) => {
-    await page.goto("/");
-    const search = page.getByTestId("home-search");
-    await search.focus();
-    await search.type("ashwa", { delay: 20 });
-    await expect(page.getByTestId("search-result").first()).toBeVisible();
-
-    await search.press("ArrowDown");
-    await expect(page.getByTestId("search-result").first()).toHaveAttribute(
-      "aria-selected",
-      "true",
-    );
-    await search.press("Enter");
-    await expect(page).toHaveURL(/\/medicines\/.+/);
   });
 
   test("the footer carries the disclaimer, the scope and the how-it-works link", async ({

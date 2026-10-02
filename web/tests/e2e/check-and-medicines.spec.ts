@@ -226,6 +226,58 @@ test.describe("browsing medicines", () => {
     await expect(page).toHaveURL(/\/medicines\/.+/);
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
   });
+
+  test("finds a medicine by one of its other names and says which one matched", async ({
+    page,
+  }) => {
+    // Indian Ginseng is a recorded synonym, not the medicine's own name, so a
+    // result for it proves the alias path end to end.
+    const alias = "Indian Ginseng";
+    const expected = await apiGet<{ results: { name: string; matched_on: string }[] }>(
+      `/medicines/search?q=${encodeURIComponent(alias)}`,
+    );
+    expect(expected.results.length).toBeGreaterThan(0);
+    const name = expected.results[0]!.name;
+    expect(expected.results[0]!.matched_on).toBe("exact_alias");
+    expect(name.toLowerCase()).not.toBe(alias.toLowerCase());
+
+    await page.goto("/medicines");
+    await page.getByTestId("medicine-search").fill(alias);
+
+    const result = page.getByTestId("search-result").first();
+    await expect(result).toBeVisible();
+    await expect(result).toContainText(name);
+    await expect(result.getByTestId("matched-on")).toContainText(`matched ${alias}`);
+
+    await result.click();
+    await expect(page).toHaveURL(/\/medicines\/.+/);
+    await expect(page.getByRole("heading", { level: 1 })).toContainText(name);
+  });
+
+  test("the search says so plainly when a name is outside the database", async ({
+    page,
+  }) => {
+    await page.goto("/medicines");
+    await page.getByTestId("medicine-search").fill("Paracetamol");
+    await expect(page.getByTestId("search-empty")).toBeVisible();
+    await expect(page.getByTestId("search-result")).toHaveCount(0);
+  });
+
+  test("the search box is reachable and usable by keyboard alone", async ({ page }) => {
+    await page.goto("/medicines");
+    const search = page.getByTestId("medicine-search");
+    await search.focus();
+    await search.type("ashwa", { delay: 20 });
+    await expect(page.getByTestId("search-result").first()).toBeVisible();
+
+    await search.press("ArrowDown");
+    await expect(page.getByTestId("search-result").first()).toHaveAttribute(
+      "aria-selected",
+      "true",
+    );
+    await search.press("Enter");
+    await expect(page).toHaveURL(/\/medicines\/.+/);
+  });
 });
 
 test.describe("a medicine page", () => {

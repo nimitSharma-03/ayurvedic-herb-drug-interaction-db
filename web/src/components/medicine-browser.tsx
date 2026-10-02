@@ -21,9 +21,9 @@ const FILTERS: { value: Filter; label: string }[] = [
  * The browse list: a herb or drug filter and a text filter over the catalogue.
  *
  * The box narrows the list already on the page by the names that are on it. It
- * is not the alias-aware search -- that one is the backend's, on the home page
- * and in the comboboxes -- and the empty state says so, so a reader who typed
- * a synonym and saw nothing knows where to look instead.
+ * is not the alias-aware search -- that one is the backend's, in the box above
+ * this list and in the comboboxes -- and the empty state says so, so a reader
+ * who typed a synonym and saw nothing knows where to look instead.
  */
 export function MedicineBrowser({ medicines }: { medicines: MedicineSummary[] }) {
   const [filter, setFilter] = React.useState<Filter>("all");
@@ -100,7 +100,7 @@ export function MedicineBrowser({ medicines }: { medicines: MedicineSummary[] })
           className="card-surface mt-4 p-5 text-sm text-[var(--color-ink-2)]"
         >
           Nothing on this list matches that. This box filters the names on the page only;
-          other names a medicine is known by are matched by the search on the home page.
+          other names a medicine is known by are matched by the search box above.
         </p>
       ) : (
         <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

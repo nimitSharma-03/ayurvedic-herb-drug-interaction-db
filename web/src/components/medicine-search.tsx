@@ -10,7 +10,7 @@ import { matchedOnLabel } from "@/lib/text";
 import { cn } from "@/lib/utils";
 
 /**
- * The home page's search box.
+ * The catalogue search box on /medicines.
  *
  * Results come from the backend's own ranking, and each one says why it
  * matched: typing "Indian Ginseng" finds Ashwagandha and the result says
@@ -86,7 +86,7 @@ export function MedicineSearch({ autoFocus = false }: { autoFocus?: boolean }) {
           }}
           onFocus={() => setOpen(true)}
           onKeyDown={onKeyDown}
-          data-testid="home-search"
+          data-testid="medicine-search"
           className="h-14 w-full min-w-0 bg-transparent text-base outline-hidden placeholder:text-[var(--color-ink-2)] sm:text-lg"
         />
         {loading ? (

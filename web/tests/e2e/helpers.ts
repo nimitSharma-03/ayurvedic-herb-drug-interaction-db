@@ -35,13 +35,19 @@ export async function setLightTheme(page: Page) {
   await expect(toggle).toHaveAttribute("data-theme-state", "light");
 }
 
-/** Fill the problem box and submit, then wait for an answer or an error. */
+/**
+ * Fill the problem box and submit, then wait for an answer or an error.
+ *
+ * `path` is where the form is being driven from: the same form is on the home
+ * page and on /ask, and both have to answer.
+ */
 export async function ask(
   page: Page,
   text: string,
   currentMedicines: string[] = [],
+  path = "/ask",
 ) {
-  await page.goto("/ask");
+  await page.goto(path);
   await page.getByTestId("problem-text").fill(text);
 
   for (const medicine of currentMedicines) {

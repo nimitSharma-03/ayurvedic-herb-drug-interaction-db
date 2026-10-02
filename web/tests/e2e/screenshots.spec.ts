@@ -63,9 +63,9 @@ scene("home", async (page) => {
   await expect(page.getByTestId("pipeline-card")).toBeVisible();
 });
 
-scene("home-search", async (page) => {
-  await page.goto("/");
-  await page.getByTestId("home-search").fill("Indian Ginseng");
+scene("medicines-search", async (page) => {
+  await page.goto("/medicines");
+  await page.getByTestId("medicine-search").fill("Indian Ginseng");
   await expect(page.getByTestId("search-result").first()).toBeVisible();
 });
 

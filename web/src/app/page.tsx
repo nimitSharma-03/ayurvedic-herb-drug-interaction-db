@@ -2,14 +2,16 @@ import Link from "next/link";
 import { FileSearch, FlaskConical, Leaf, ListChecks, Pill, Stethoscope } from "lucide-react";
 
 import { ApiUnreachable } from "@/components/api-unreachable";
+import { AskForm } from "@/components/ask-form";
 import { CountUp } from "@/components/count-up";
-import { MedicineSearch } from "@/components/medicine-search";
-import { Button } from "@/components/ui/button";
-import { loadStats } from "@/lib/server-data";
+import { loadConditions, loadStats } from "@/lib/server-data";
 import { NOT_RECORDED } from "@/lib/text";
 
 export default async function HomePage() {
-  const stats = await loadStats();
+  // The conditions come down with the counts so the form, its supported-condition
+  // chips and the pipeline card all arrive in the first response: a reader can
+  // start typing their problem here without a page in between.
+  const [stats, conditions] = await Promise.all([loadStats(), loadConditions()]);
 
   if (!stats.ok) {
     return (
@@ -51,29 +53,21 @@ export default async function HomePage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
-      <section className="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-14">
+      <section className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-14">
         <div className="animate-reveal">
           <h1 className="max-w-xl text-3xl sm:text-4xl lg:text-5xl">
             Check what your herbs and medicines do together
           </h1>
-          <p className="mt-4 max-w-xl text-lg text-[var(--color-ink-2)]">
-            Ayurvedic herbs and conventional medicines are often taken side by side. This
-            looks up what the published literature in this project actually records about
-            those combinations, and says plainly where it records nothing.
+          <p className="mt-4 max-w-xl text-[var(--color-ink-2)]">
+            Describe the problem below, or{" "}
+            <Link
+              href="/check"
+              className="font-semibold text-[var(--color-ink)] underline decoration-[var(--color-line)] underline-offset-4 hover:decoration-[var(--color-herb)]"
+            >
+              Check two medicines
+            </Link>{" "}
+            against each other if you already have both names.
           </p>
-
-          <div className="panel mt-8 p-5 sm:p-6">
-            <MedicineSearch />
-          </div>
-
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Button asChild size="lg">
-              <Link href="/ask">Describe a problem</Link>
-            </Button>
-            <Button asChild variant="secondary" size="lg">
-              <Link href="/check">Check two medicines</Link>
-            </Button>
-          </div>
         </div>
 
         <div className="flex flex-col gap-5">
@@ -139,6 +133,19 @@ export default async function HomePage() {
             />
           </div>
         </div>
+      </section>
+
+      <section className="mt-6">
+        {conditions.ok ? (
+          <AskForm
+            supportedConditions={conditions.data.results}
+            note={conditions.data.note}
+          />
+        ) : (
+          <div className="mt-8">
+            <ApiUnreachable error={conditions.error} what="the supported conditions" />
+          </div>
+        )}
       </section>
     </div>
   );

@@ -63,10 +63,10 @@ web/
     app/                     routes (App Router)
       layout.tsx             fonts, theme script, header, footer
       globals.css            the design tokens and the motion rules
-      page.tsx               /                home
+      page.tsx               /                home, with the problem form
       ask/page.tsx           /ask             describe a problem
       check/page.tsx         /check           check two medicines
-      medicines/page.tsx     /medicines       browse all of them
+      medicines/page.tsx     /medicines       search and browse all of them
       medicines/[id]/        /medicines/{id}  one medicine
       how-it-works/page.tsx  /how-it-works    the pipeline, the classifier
       not-found.tsx          404
@@ -76,11 +76,11 @@ web/
       site-header.tsx        nav and the theme toggle
       site-footer.tsx        disclaimer, scope, how-it-works link
       brand-mark.tsx         the capsule mark
-      medicine-search.tsx    the home search box (alias-aware)
+      medicine-search.tsx    the /medicines search box (alias-aware)
       medicine-combobox.tsx  one-medicine picker, for /check
       medicine-token-input.tsx   "what you already take"
       recommend-answer.tsx   every state /recommend can answer with
-      ask-form.tsx           the /ask form around it
+      ask-form.tsx           the form around it, on / and on /ask
       option-card.tsx        one option, dimmed when already taken
       warning-graph.tsx      "combinations to avoid": hubs and lines
       warning-drawer.tsx     one warning row in detail
