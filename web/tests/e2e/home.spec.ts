@@ -280,3 +280,42 @@ test.describe("the velocity band", () => {
   });
 });
 
+/**
+ * The hero headline's letters move away from the cursor. The heading is still
+ * read as one sentence, and nothing moves under reduced motion.
+ */
+test.describe("the hero headline", () => {
+  const HEADLINE = "Describe a problem. See what the literature records.";
+
+  test("is one accessible sentence whose letters drift from the cursor", async ({ page }) => {
+    await page.goto("/");
+    const heading = page.getByRole("heading", { name: HEADLINE, level: 1 });
+    await expect(heading).toHaveAttribute("aria-label", HEADLINE);
+    await expect(heading.locator("[data-letter]").first()).toBeVisible();
+    for (const word of await heading.locator(":scope > span").all()) {
+      await expect(word).toHaveAttribute("aria-hidden", "true");
+    }
+
+    const letter = heading.locator("[data-letter]").nth(3);
+    const box = (await letter.boundingBox())!;
+    await page.mouse.move(box.x + box.width / 2 + 6, box.y + box.height / 2);
+    await page.mouse.move(box.x + box.width / 2 + 4, box.y + box.height / 2, { steps: 4 });
+    await expect
+      .poll(() => letter.evaluate((node) => (node as HTMLElement).style.transform))
+      .not.toBe("");
+  });
+
+  test.describe("for a reader who asked for less motion", () => {
+    test.use({ reducedMotion: "reduce" });
+
+    test("holds still", async ({ page }) => {
+      await page.goto("/");
+      const letter = page.getByRole("heading", { level: 1 }).locator("[data-letter]").nth(3);
+      const box = (await letter.boundingBox())!;
+      await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2, { steps: 4 });
+      await page.waitForTimeout(400);
+      expect(await letter.evaluate((node) => (node as HTMLElement).style.transform)).toBe("");
+    });
+  });
+});
+

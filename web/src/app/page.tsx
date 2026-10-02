@@ -6,6 +6,7 @@ import { AskForm } from "@/components/ask-form";
 import { CountUp } from "@/components/count-up";
 import { HeroArt } from "@/components/home/hero-art";
 import { HeroParticles } from "@/components/home/hero-particles";
+import { RepelHeadline } from "@/components/home/repel-headline";
 import { SceneMotion } from "@/components/home/scene-motion";
 import { VelocityBand } from "@/components/home/velocity-band";
 import { Badge } from "@/components/ui/badge";
@@ -132,9 +133,11 @@ function Hero() {
           >
             <div className="hero-disc -translate-x-1/2 -translate-y-[74%]" />
           </div>
-          <h1 id="hero-heading" className="relative max-w-[24ch] text-balance">
-            Describe a problem. See what the literature records.
-          </h1>
+          <RepelHeadline
+            id="hero-heading"
+            className="relative max-w-[24ch] text-balance"
+            text="Describe a problem. See what the literature records."
+          />
         </div>
 
         <p className="mt-5 max-w-[52ch] text-[var(--color-ink-2)]">
