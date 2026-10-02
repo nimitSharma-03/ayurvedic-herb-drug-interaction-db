@@ -69,7 +69,7 @@ web/
       medicines/page.tsx     /medicines       search and browse all of them
       medicines/[id]/        /medicines/{id}  one medicine
       how-it-works/page.tsx  /how-it-works    the pipeline, the classifier
-      not-found.tsx          404
+      not-found.tsx          404, with the watching eyes
       error.tsx              last-resort error boundary
     components/
       ui/                    the shadcn/ui primitives actually used
@@ -79,6 +79,9 @@ web/
       home/hero-particles.tsx  loads the WebGL particle field after first paint
       home/particle-field.ts the particle field itself (three)
       home/scene-motion.tsx  parallax depth and scene reveals
+      home/velocity-band.tsx the word band that answers the scroll
+      home/repel-headline.tsx  the hero headline, letters drifting from the cursor
+      watching-eyes.tsx      the 404's eyes
       disc-mark.tsx          the small vermilion disc the quiet states carry
       medicine-search.tsx    the /medicines search box (alias-aware)
       medicine-combobox.tsx  one-medicine picker, for /check
@@ -200,6 +203,8 @@ documented) and a question mark (insufficient evidence); the evidence level on
 the right of the row carries a bar-chart icon.
 
 Motion, all of it switched off under `prefers-reduced-motion`: on the home page
+the headline's letters drift a few pixels from the cursor, the word band runs
+sideways with the scroll, and
 the disc pulses slowly, the grass and branches sway, motes drift, the hills and
 the corners move with the scroll at different depths, each scene fades up 24px
 once as it enters the viewport, and the particle field drifts (see below).
@@ -218,6 +223,7 @@ small vermilion mark, so the four scenes read as one line.
 | Scene | Ground | What it holds |
 |---|---|---|
 | 01 Describe a problem | night blue to charred | The hero. "Describe a problem. See what the literature records.", one subhead line, **Describe a problem** (vermilion) and **Check a pair** (outlined). A vermilion disc behind the top of the headline, two hills, grass and a leafy branch in both bottom corners, drifting motes, a "Scroll" cue. |
+| (band) | charred | A band of words, "Herbs · Medicines · Evidence · Curated by hand ·", in stone at Onest 300, between two hairlines. |
 | 02 Search the literature | charred | "One fixed PubMed search for every herb and drug pair." and five light numerals separated by hairlines: herbs, drugs, pairs searched, abstracts read, documented interactions (in vermilion). |
 | 03 Curated by hand | night blue | "NLP finds the sentences. A person checks each one." beside two ruled placeholder rows, one per confidence state. |
 | 04 Check a pair | night blue to charred | A vermilion ring and dot, "Pick a herb and a medicine.", the way into `/check` and `/ask`, and the disclaimer. |
@@ -263,6 +269,30 @@ charred backdrop once the reader scrolls; on every other page it is a solid
 paper or charred bar. A small vermilion dot and the wordmark "Ayurvedic HDI",
 the four links, the theme toggle, and a 2px vermilion progress line along its
 bottom edge, written straight to a transform so scrolling never re-renders it.
+
+**The headline repels the cursor.** `home/repel-headline.tsx` splits the hero
+headline into letters, server-rendered in place; within 90px of a fine pointer
+a letter eases up to 9px away and back. The `h1` carries the sentence as its
+`aria-label` and the letter spans are aria-hidden, so a screen reader reads one
+sentence. Letter centres are measured once (again on resize and when the web
+font lands), so a frame reads no layout, and the loop stops once every letter
+has settled. Off on touch screens and under reduced motion. This is the only
+place the effect is used.
+
+**The word band answers the scroll.** `home/velocity-band.tsx` sits between the
+hero and scene 02. Two identical segments are moved by an offset that wraps at
+one segment's width, so the loop has no seam; each frame the scroll velocity is
+measured and smoothed, added to a slow drift, and the direction follows the
+last scroll direction. It runs only while on screen, is aria-hidden, and is a
+still line under reduced motion.
+
+**The 404 watches.** A night page with two cream eyes whose vermilion irises
+ease toward the cursor, clamped inside the eye (`watching-eyes.tsx`); on a touch
+screen they look around on their own every couple of seconds. One sentence,
+"That page does not exist.", and **Back to home**. Still under reduced motion.
+
+**What these cost.** The band and the headline add 2.2 KB gzipped to the home
+page's first-load JavaScript (223.8 KB, from 221.6 KB).
 
 **The problem form stays on the home page,** after the scenes and in the
 site's own theme, because the home page has answered a described problem in

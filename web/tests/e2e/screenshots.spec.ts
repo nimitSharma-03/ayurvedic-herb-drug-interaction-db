@@ -231,7 +231,7 @@ scene("how-it-works", async (page) => {
 scene("not-found", async (page) => {
   await page.goto("/nowhere-at-all");
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
-    "That page is not here",
+    "That page does not exist.",
   );
 });
 
@@ -270,3 +270,29 @@ test.describe("on a phone", () => {
     });
   }
 });
+
+/** Home and the 404 at a short laptop screen and at 400px. */
+for (const viewport of [
+  { width: 1366, height: 768, tag: "1366x768" },
+  { width: 400, height: 860, tag: "400px" },
+]) {
+  test.describe(`at ${viewport.tag}`, () => {
+    test.use({ viewport: { width: viewport.width, height: viewport.height } });
+
+    for (const theme of ["light", "dark"] as const) {
+      test(`home and 404 (${theme})`, async ({ page }) => {
+        await page.goto("/");
+        if (theme === "dark") await setDarkTheme(page);
+        else await setLightTheme(page);
+        await scrollThrough(page);
+        await page.waitForTimeout(900);
+        await shoot(page, `home-${viewport.tag}`, theme);
+
+        await page.goto("/nowhere-at-all");
+        await expect(page.getByTestId("watching-eyes")).toBeVisible();
+        await page.waitForTimeout(600);
+        await shoot(page, `not-found-${viewport.tag}`, theme);
+      });
+    }
+  });
+}
