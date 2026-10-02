@@ -60,7 +60,7 @@ export function MedicineSearch({ autoFocus = false }: { autoFocus?: boolean }) {
 
   return (
     <div className="relative">
-      <label htmlFor={inputId} className="mb-2 block text-sm font-semibold">
+      <label htmlFor={inputId} className="mb-2 block text-sm font-medium">
         Search a herb or a medicine
       </label>
 
@@ -87,7 +87,7 @@ export function MedicineSearch({ autoFocus = false }: { autoFocus?: boolean }) {
           onFocus={() => setOpen(true)}
           onKeyDown={onKeyDown}
           data-testid="medicine-search"
-          className="h-14 w-full min-w-0 bg-transparent text-base outline-hidden placeholder:text-[var(--color-ink-2)] sm:text-lg"
+          className="h-13 w-full min-w-0 bg-transparent text-base outline-hidden placeholder:text-[var(--color-ink-2)]"
         />
         {loading ? (
           <Loader2
@@ -98,8 +98,8 @@ export function MedicineSearch({ autoFocus = false }: { autoFocus?: boolean }) {
       </div>
 
       <p className="mt-2 text-sm text-[var(--color-ink-2)]">
-        Names in other languages and botanical names are recognised. Brand names are
-        matched but never shown.
+        Other-language and botanical names are recognised. Brand names are matched but
+        never shown.
       </p>
 
       <div aria-live="polite" className="sr-only">
@@ -109,7 +109,7 @@ export function MedicineSearch({ autoFocus = false }: { autoFocus?: boolean }) {
       </div>
 
       {showList ? (
-        <div className="absolute z-20 mt-2 w-full overflow-hidden rounded-[var(--radius-card-sm)] border border-[var(--color-line)] bg-[var(--color-surface)] shadow-[var(--shadow-lift)]">
+        <div className="absolute z-20 mt-2 w-full overflow-hidden rounded-[var(--radius-tight)] border border-[var(--color-line)] bg-[var(--color-surface)] shadow-[var(--shadow-lift)]">
           {error ? (
             <p className="px-4 py-4 text-sm text-[var(--color-verified)]">{error.message}</p>
           ) : null}
@@ -150,7 +150,7 @@ export function MedicineSearch({ autoFocus = false }: { autoFocus?: boolean }) {
                       />
                     )}
                     <span className="min-w-0 flex-1">
-                      <span className="block truncate font-[family-name:var(--font-heading)] font-semibold">
+                      <span className="block truncate font-semibold">
                         {result.name}
                       </span>
                       <span className="block truncate text-sm text-[var(--color-ink-2)]">
@@ -158,7 +158,7 @@ export function MedicineSearch({ autoFocus = false }: { autoFocus?: boolean }) {
                         {why ? (
                           <span data-testid="matched-on">
                             {result.scientific_name || result.drug_class || result.generic_name
-                              ? " · "
+                              ? " ·"
                               : ""}
                             {why}
                           </span>

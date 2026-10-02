@@ -34,7 +34,7 @@ function CommandInput({
       <CommandPrimitive.Input
         data-slot="command-input"
         className={cn(
-          "h-11 w-full bg-transparent text-base text-[var(--color-ink)] outline-hidden placeholder:text-[var(--color-ink-2)]",
+          "h-12 w-full bg-transparent text-base text-[var(--color-ink)] outline-hidden placeholder:text-[var(--color-ink-2)]",
           className,
         )}
         {...props}
@@ -63,7 +63,7 @@ function CommandEmpty({
   return (
     <CommandPrimitive.Empty
       data-slot="command-empty"
-      className={cn("px-3 py-6 text-center text-sm text-[var(--color-ink-2)]", className)}
+      className={cn("px-4 py-7 text-center text-sm text-[var(--color-ink-2)]", className)}
       {...props}
     />
   );
@@ -77,7 +77,7 @@ function CommandGroup({
     <CommandPrimitive.Group
       data-slot="command-group"
       className={cn(
-        "[&_[cmdk-group-heading]]:px-2.5 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-semibold [&_[cmdk-group-heading]]:text-[var(--color-ink-2)]",
+        "[&_[cmdk-group-heading]]:px-2.5 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-sm [&_[cmdk-group-heading]]:font-semibold [&_[cmdk-group-heading]]:text-[var(--color-ink-2)]",
         className,
       )}
       {...props}
@@ -93,7 +93,7 @@ function CommandItem({
     <CommandPrimitive.Item
       data-slot="command-item"
       className={cn(
-        "flex cursor-pointer items-center gap-2.5 rounded-[10px] px-2.5 py-2 text-sm text-[var(--color-ink)] outline-hidden select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[selected=true]:bg-[var(--color-wash)]",
+        "flex cursor-pointer items-center gap-2.5 rounded-full px-3.5 py-2.5 text-sm text-[var(--color-ink)] outline-hidden select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[selected=true]:bg-[var(--color-wash)]",
         className,
       )}
       {...props}

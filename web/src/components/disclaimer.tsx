@@ -12,7 +12,7 @@ export function Disclaimer({ text }: { text: string }) {
   return (
     <aside
       data-testid="disclaimer"
-      className="flex gap-3 rounded-[var(--radius-card-sm)] border border-[var(--color-line)] bg-[var(--color-wash)] p-4 text-sm text-[var(--color-ink-2)]"
+      className="flex gap-3 rounded-[var(--radius-card)] border border-[var(--color-line)] bg-[var(--color-wash)] px-6 py-5 text-sm text-[var(--color-ink-2)]"
     >
       <Info className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
       <p>{text}</p>

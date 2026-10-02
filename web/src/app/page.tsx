@@ -1,22 +1,22 @@
 import Link from "next/link";
-import { FileSearch, FlaskConical, Leaf, ListChecks, Pill, Stethoscope } from "lucide-react";
 
 import { ApiUnreachable } from "@/components/api-unreachable";
 import { AskForm } from "@/components/ask-form";
 import { CountUp } from "@/components/count-up";
-import { HeroVisual } from "@/components/hero-scene";
+import { HeroIsoField } from "@/components/iso-art";
+import { Button } from "@/components/ui/button";
 import { loadConditions, loadStats } from "@/lib/server-data";
 import { NOT_RECORDED } from "@/lib/text";
 
 export default async function HomePage() {
   // The conditions come down with the counts so the form, its supported-condition
-  // chips and the pipeline card all arrive in the first response: a reader can
-  // start typing their problem here without a page in between.
+  // chips and the figures all arrive in the first response: a reader can start
+  // typing their problem here without a page in between.
   const [stats, conditions] = await Promise.all([loadStats(), loadConditions()]);
 
   if (!stats.ok) {
     return (
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+      <div className="page-shell section-pad">
         <ApiUnreachable error={stats.error} what="the pipeline counts" />
       </div>
     );
@@ -25,156 +25,139 @@ export default async function HomePage() {
   const { literature, scope } = stats.data;
 
   /**
-   * The four counts on the home card, in pipeline order. Each is a value from
-   * /stats, which counts it from this repository's own files; nothing here is
-   * written down. A count the backend reports as absent shows as absent.
+   * The four figures, in pipeline order. Each is a value from /stats, which
+   * counts it from this repository's own files; nothing here is written down.
+   * A count the backend reports as absent shows as absent.
    */
   const pipeline = [
-    {
-      label: "herb and medicine pairs searched",
-      value: literature.pairs_searched,
-      icon: FileSearch,
-    },
-    {
-      label: "abstracts read",
-      value: literature.abstracts_harvested,
-      icon: ListChecks,
-    },
-    {
-      label: "candidate sentences extracted",
-      value: literature.candidate_sentences,
-      icon: FlaskConical,
-    },
-    {
-      label: "pairs with a documented interaction",
-      value: literature.documented_pairs,
-      icon: Stethoscope,
-    },
+    { label: "pairs searched", value: literature.pairs_searched },
+    { label: "abstracts read", value: literature.abstracts_harvested },
+    { label: "candidate sentences", value: literature.candidate_sentences },
+    { label: "documented interactions", value: literature.documented_pairs },
   ];
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
-      <section className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-14">
-        <div className="animate-reveal">
-          <h1 className="max-w-xl text-3xl sm:text-4xl lg:text-5xl">
-            Check what your herbs and medicines do together
+    <>
+      {/*
+        The hero: one screen, less the header. Everything that sets a size is
+        clamped off the viewport, so a short laptop screen gives up whitespace
+        rather than a call to action.
+      */}
+      <section
+        className="hero-box relative flex items-center overflow-hidden"
+        data-testid="hero"
+      >
+        <HeroIsoField />
+
+        <div className="page-shell animate-reveal relative z-10 flex flex-col items-center text-center">
+          <h1 className="max-w-[26ch] text-balance">
+            Describe a problem. See what the literature records.
           </h1>
-          <p className="mt-4 max-w-xl text-[var(--color-ink-2)]">
-            Describe the problem below, or{" "}
-            <Link
-              href="/check"
-              className="font-semibold text-[var(--color-ink)] underline decoration-[var(--color-line)] underline-offset-4 hover:decoration-[var(--color-herb)]"
-            >
-              Check two medicines
-            </Link>{" "}
-            against each other if you already have both names.
+
+          <p className="mt-5 max-w-[52ch] text-[var(--color-ink-2)]">
+            A literature-grounded herb and medicine database, with PubMed citations on
+            every record.
           </p>
 
-          {/* The hero's visual layer. Decorative: it says in three dimensions
-              what the headline says in words, and the page reads the same with
-              it switched off. */}
-          <HeroVisual className="mt-8 h-55 sm:h-65 lg:mt-10 lg:h-80" />
-        </div>
-
-        <div className="flex flex-col gap-5">
-          <div className="panel animate-reveal p-6 sm:p-7" data-testid="pipeline-card">
-            <h2 className="text-xl">From papers to answers</h2>
-            <p className="mt-2 text-sm text-[var(--color-ink-2)]">
-              Every entry is traceable to the abstract it came from. These are the counts
-              from this project's own files.
-            </p>
-
-            <dl className="mt-6 grid grid-cols-2 gap-x-5 gap-y-6">
-              {pipeline.map(({ label, value, icon: Icon }) => (
-                <div key={label}>
-                  <dt className="flex items-center gap-1.5 text-sm text-[var(--color-ink-2)]">
-                    <Icon className="size-3.5 shrink-0" aria-hidden="true" />
-                    {label}
-                  </dt>
-                  <dd className="mt-1 font-[family-name:var(--font-heading)] text-3xl font-semibold tabular-nums">
-                    {value === null ? (
-                      <span className="text-base font-normal text-[var(--color-ink-2)]">
-                        {NOT_RECORDED}
-                      </span>
-                    ) : (
-                      <CountUp value={value} />
-                    )}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-
-            <p className="mt-6 text-sm text-[var(--color-ink-2)]">
-              Most searched pairs turned up nothing, and the database says so rather than
-              implying the combination is fine.{" "}
-              <Link
-                href="/how-it-works"
-                className="font-semibold text-[var(--color-ink)] underline decoration-[var(--color-line)] underline-offset-4 hover:decoration-[var(--color-herb)]"
-              >
-                How it works
-              </Link>
-            </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <Button asChild size="lg">
+              <Link href="/ask">Describe a problem</Link>
+            </Button>
+            <Button asChild size="lg" variant="secondary">
+              <Link href="/check">Check a pair</Link>
+            </Button>
           </div>
+        </div>
+      </section>
 
-          <div
-            className="card-surface flex flex-wrap gap-x-8 gap-y-5 p-5 sm:p-6"
+      {/* The figures, all of them from /stats. */}
+      <section className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
+        <div className="page-shell section-pad">
+          <dl
+            className="grid grid-cols-2 gap-x-8 gap-y-8 lg:grid-cols-4"
+            data-testid="pipeline-card"
+          >
+            {pipeline.map(({ label, value }) => (
+              <div key={label} className="flex flex-col-reverse">
+                <dt className="mt-1 text-sm text-[var(--color-ink-2)]">{label}</dt>
+                <dd className="text-4xl font-semibold tabular-nums">
+                  {value === null ? (
+                    <span className="text-base font-normal text-[var(--color-ink-2)]">
+                      {NOT_RECORDED}
+                    </span>
+                  ) : (
+                    <CountUp value={value} />
+                  )}
+                </dd>
+              </div>
+            ))}
+          </dl>
+
+          <dl
+            className="mt-10 grid grid-cols-2 gap-x-8 gap-y-8 border-t border-[var(--color-line)] pt-8 lg:grid-cols-4"
             data-testid="scope-strip"
           >
+            <ScopeItem value={scope.herbs} label="Ayurvedic herbs" />
             <ScopeItem
-              icon={<Leaf className="size-4 text-[var(--color-herb)]" aria-hidden="true" />}
-              value={scope.herbs}
-              label="Ayurvedic herbs"
-            />
-            <ScopeItem
-              icon={<Pill className="size-4 text-[var(--color-drug)]" aria-hidden="true" />}
               value={scope.drugs}
-              label={`conventional drugs in ${scope.drug_classes} classes`}
+              label={`conventional drugs, ${scope.drug_classes} classes`}
             />
-            <ScopeItem
-              icon={
-                <Stethoscope className="size-4 text-[var(--color-ink-2)]" aria-hidden="true" />
-              }
-              value={scope.conditions}
-              label="conditions covered"
-            />
-          </div>
+            <ScopeItem value={scope.conditions} label="conditions" />
+          </dl>
+
+          {/* Kept: without it, four figures read as "the rest of the pairs are fine". */}
+          <p className="mt-8 max-w-[70ch] text-sm text-[var(--color-ink-2)]">
+            Most searched pairs turned up nothing, which this database records as a search
+            with no finding rather than as a result.{" "}
+            <Link
+              href="/how-it-works"
+              className="font-medium text-[var(--color-ink)] underline decoration-[var(--color-line)] underline-offset-4 hover:decoration-[var(--color-primary)]"
+            >
+              How it works
+            </Link>
+          </p>
         </div>
       </section>
 
-      <section className="mt-6">
-        {conditions.ok ? (
-          <AskForm
-            supportedConditions={conditions.data.results}
-            note={conditions.data.note}
-          />
-        ) : (
-          <div className="mt-8">
-            <ApiUnreachable error={conditions.error} what="the supported conditions" />
-          </div>
-        )}
+      {/*
+        The problem form, full width: its answer lays options out in two columns
+        with a combination panel beside them.
+      */}
+      <section className="border-t border-[var(--color-line)]">
+        <div className="page-shell section-pad">
+          <h2 className="heading-rule text-2xl sm:text-[2rem]">Describe a problem</h2>
+          <p className="mt-4 max-w-[70ch] text-[var(--color-ink-2)]">
+            In your own words, in English or Hinglish. Or{" "}
+            <Link
+              href="/check"
+              className="font-medium text-[var(--color-ink)] underline decoration-[var(--color-line)] underline-offset-4 hover:decoration-[var(--color-primary)]"
+            >
+              check a pair
+            </Link>{" "}
+            if you already have both names.
+          </p>
+
+          {conditions.ok ? (
+            <AskForm
+              supportedConditions={conditions.data.results}
+              note={conditions.data.note}
+            />
+          ) : (
+            <div className="mt-8">
+              <ApiUnreachable error={conditions.error} what="the supported conditions" />
+            </div>
+          )}
+        </div>
       </section>
-    </div>
+    </>
   );
 }
 
-function ScopeItem({
-  icon,
-  value,
-  label,
-}: {
-  icon: React.ReactNode;
-  value: number;
-  label: string;
-}) {
+function ScopeItem({ value, label }: { value: number; label: string }) {
   return (
-    <div className="min-w-28">
-      <div className="flex items-center gap-1.5">
-        {icon}
-        <span className="font-[family-name:var(--font-heading)] text-2xl font-semibold tabular-nums">
-          {value}
-        </span>
-      </div>
-      <p className="mt-0.5 text-sm text-[var(--color-ink-2)]">{label}</p>
+    <div className="flex flex-col-reverse">
+      <dt className="mt-1 text-sm text-[var(--color-ink-2)]">{label}</dt>
+      <dd className="text-2xl font-semibold tabular-nums">{value}</dd>
     </div>
   );
 }

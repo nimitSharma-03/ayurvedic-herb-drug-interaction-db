@@ -47,8 +47,8 @@ export function RequestFailure({
   const offered = error.body?.supported_conditions;
   if (offered?.length) {
     return (
-      <div role="alert" className="card-surface p-5">
-        <h2 className="text-lg">That condition is not one of these</h2>
+      <div role="alert" className="card-surface p-5 sm:p-6">
+        <h2 className="text-2xl">That condition is not one of these</h2>
         <p className="mt-2 text-sm text-[var(--color-ink-2)]">{error.message}</p>
         <ConditionChips conditions={offered} onPick={onPickCondition} />
       </div>
@@ -98,11 +98,11 @@ export function Emergency({ response }: { response: RecommendResponse }) {
     <section
       role="alert"
       data-testid="emergency"
-      className="animate-reveal rounded-[var(--radius-panel)] border-2 border-[var(--color-verified)] bg-[var(--color-verified)]/8 p-5 sm:p-8"
+      className="animate-reveal rounded-[var(--radius-card)] border-2 border-[var(--color-verified)] bg-[var(--color-verified)]/8 p-6 sm:p-8"
     >
       <div className="flex items-center gap-2.5 text-[var(--color-verified)]">
         <TriangleAlert className="size-6 shrink-0" aria-hidden="true" />
-        <h2 className="text-2xl">Get medical help now</h2>
+        <h2 className="text-2xl sm:text-[2rem]">Get medical help now</h2>
       </div>
 
       <p className="mt-4 text-lg">{response.message}</p>
@@ -121,7 +121,7 @@ export function Emergency({ response }: { response: RecommendResponse }) {
       <a
         href="tel:112"
         data-testid="call-112"
-        className="mt-7 flex items-center justify-center gap-3 rounded-[var(--radius-card)] bg-[var(--color-verified)] px-6 py-5 font-[family-name:var(--font-heading)] text-2xl font-semibold text-white dark:text-[var(--color-paper)]"
+        className="mt-7 flex items-center justify-center gap-3 rounded-[var(--radius-card)] bg-[var(--color-verified)] px-6 py-5 text-2xl font-semibold text-[var(--color-on-ink)]"
       >
         <PhoneCall className="size-6" aria-hidden="true" />
         Call 112
@@ -158,10 +158,10 @@ export function NoMatch({
 
   return (
     <section
-      className="panel animate-reveal p-5 sm:p-7"
+      className="panel animate-reveal p-6 sm:p-8"
       data-testid={lowConfidence ? "low-confidence" : "out-of-scope"}
     >
-      <h2 className="text-2xl">
+      <h2 className="text-2xl sm:text-[2rem]">
         {lowConfidence
           ? "That could not be matched confidently"
           : "That is outside what this database covers"}
@@ -197,7 +197,7 @@ export function ConditionChips({
             onClick={() => onPick(condition.condition_id)}
             data-testid="condition-chip"
             data-condition-id={condition.condition_id}
-            className="rounded-full border border-[var(--color-line)] bg-[var(--color-surface)] px-4 py-2 text-sm font-semibold transition-colors hover:border-[var(--color-herb)] hover:bg-[var(--color-wash)]"
+            className="rounded-full border border-[var(--color-line)] bg-[var(--color-surface)] px-4 py-2 text-sm font-semibold transition-colors hover:border-[var(--color-primary)] hover:bg-[var(--color-wash)]"
           >
             {condition.name}
           </button>
@@ -215,7 +215,7 @@ export function Results({ response }: { response: RecommendResponse }) {
 
   return (
     <div className="animate-reveal flex flex-col gap-8" data-testid="results">
-      <section className="panel p-5 sm:p-7">
+      <section className="panel p-6 sm:p-8">
         <h2 className="text-xl">We read this as</h2>
         <ul className="mt-3 flex flex-wrap gap-2" data-testid="detected-conditions">
           {response.detected_conditions.map((condition) => (
@@ -233,10 +233,12 @@ export function Results({ response }: { response: RecommendResponse }) {
         </ul>
 
         {classifierDetected ? (
-          <p className="mt-4 text-sm text-[var(--color-ink-2)]" data-testid="classifier-note">
-            Conditions were identified by a classifier trained on written-out phrasings
-            rather than on anything a real person typed, so check them before relying on
-            what is below.
+          <p
+            className="mt-4 max-w-[70ch] text-sm text-[var(--color-ink-2)]"
+            data-testid="classifier-note"
+          >
+            Identified by a classifier trained on written-out phrasings, not on what a
+            person typed. Check them before relying on what is below.
           </p>
         ) : null}
 
@@ -245,7 +247,7 @@ export function Results({ response }: { response: RecommendResponse }) {
             {response.caution_notes.map((caution) => (
               <li
                 key={caution}
-                className="rounded-[var(--radius-card-sm)] border border-[var(--color-mechanism)]/35 bg-[var(--color-mechanism)]/8 p-3 text-sm"
+                className="rounded-[var(--radius-tight)] border border-[var(--color-mechanism)]/35 bg-[var(--color-mechanism)]/8 p-3 text-sm"
               >
                 {caution}
               </li>
@@ -259,12 +261,12 @@ export function Results({ response }: { response: RecommendResponse }) {
       </section>
 
       <section>
-        <div className="flex flex-wrap items-baseline gap-x-3">
-          <h2 className="text-2xl">Options</h2>
-          <p className="text-sm text-[var(--color-ink-2)]">{OPTION_ORDER_NOTE}</p>
-        </div>
+        <h2 className="heading-rule text-2xl sm:text-[2rem]">Options</h2>
+        <p className="mt-3 max-w-[70ch] text-sm text-[var(--color-ink-2)]">
+          {OPTION_ORDER_NOTE}
+        </p>
 
-        <div className="mt-5 grid gap-8 lg:grid-cols-2">
+        <div className="mt-6 grid gap-8 lg:grid-cols-2">
           <OptionColumn
             title="Ayurvedic options"
             accent="herb"
@@ -301,14 +303,11 @@ export function OptionColumn({
 }) {
   return (
     <div data-testid={`options-${accent}`}>
-      <h3
-        className="font-[family-name:var(--font-heading)] text-xl font-semibold"
-        style={{ color: `var(--color-${accent})` }}
-      >
+      <h3 className="text-lg" style={{ color: `var(--color-${accent})` }}>
         {title}
       </h3>
       {options.length === 0 ? (
-        <p className="mt-3 rounded-[var(--radius-card-sm)] border border-dashed border-[var(--color-line)] p-4 text-sm text-[var(--color-ink-2)]">
+        <p className="mt-3 rounded-[var(--radius-card)] border border-dashed border-[var(--color-line)] p-4 text-sm text-[var(--color-ink-2)]">
           {empty}
         </p>
       ) : (

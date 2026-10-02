@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Mono, Lora, Source_Sans_3 } from "next/font/google";
+import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -7,18 +7,18 @@ import { themeScript } from "@/components/theme-toggle";
 
 import "./globals.css";
 
-const lora = Lora({
+/**
+ * One family for everything that is read.
+ *
+ * 400 for body, 500 for labels and table headings, 600 for headings. There is
+ * no display cut: a reference tool is read rather than announced, and a second
+ * face at a heavier weight only makes the page louder than what it says.
+ */
+const plexSans = IBM_Plex_Sans({
   subsets: ["latin"],
-  weight: ["600"],
+  weight: ["400", "500", "600"],
   display: "swap",
-  variable: "--font-lora",
-});
-
-const sourceSans = Source_Sans_3({
-  subsets: ["latin"],
-  weight: ["400", "600"],
-  display: "swap",
-  variable: "--font-source-sans",
+  variable: "--font-plex-sans",
 });
 
 /** Only PMIDs are set in the mono face, so one weight is enough. */
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     template: "%s · Herb–Drug Interaction Database",
   },
   description:
-    "Look up what Ayurvedic herbs and conventional medicines do together, from curated PubMed literature. Informational only and not reviewed by a clinician.",
+    "Describe a problem and see what curated PubMed literature records for it: Ayurvedic herbs, conventional medicines, and the pairs to watch. Information only, not clinical advice.",
   robots: { index: false, follow: false },
 };
 
@@ -52,11 +52,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body
-        className={`${lora.variable} ${sourceSans.variable} ${plexMono.variable} flex min-h-dvh flex-col overflow-x-hidden`}
+        className={`${plexSans.variable} ${plexMono.variable} flex min-h-dvh flex-col overflow-x-hidden`}
       >
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:rounded-full focus:bg-[var(--color-surface)] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:shadow-[var(--shadow-soft)]"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-[var(--color-ink)] focus:px-5 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-[var(--color-on-ink)] focus:shadow-[var(--shadow-lift)]"
         >
           Skip to content
         </a>

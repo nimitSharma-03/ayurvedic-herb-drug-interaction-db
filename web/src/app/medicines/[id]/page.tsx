@@ -50,7 +50,7 @@ export default async function MedicinePage({ params }: PageProps) {
     // medicine simply is not in the frozen scope.
     if (failure.code === "medicine_not_found") notFound();
     return (
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+      <div className="page-shell py-16 lg:py-20">
         <ApiUnreachable error={failure} what="this medicine" />
       </div>
     );
@@ -65,15 +65,15 @@ export default async function MedicinePage({ params }: PageProps) {
   );
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
+    <div className="mx-auto w-full max-w-[76rem] px-4 py-12 sm:px-8 lg:py-16">
       <div className="flex flex-wrap items-start gap-x-4 gap-y-3">
         {isHerb ? (
-          <Leaf className="mt-2 size-7 shrink-0 text-[var(--color-herb)]" aria-hidden="true" />
+          <Leaf className="mt-1.5 size-6 shrink-0 text-[var(--color-herb)]" aria-hidden="true" />
         ) : (
-          <Pill className="mt-2 size-7 shrink-0 text-[var(--color-drug)]" aria-hidden="true" />
+          <Pill className="mt-1.5 size-6 shrink-0 text-[var(--color-drug)]" aria-hidden="true" />
         )}
         <div className="min-w-0">
-          <h1 className="text-3xl sm:text-4xl">{medicine.name}</h1>
+          <h1>{medicine.name}</h1>
           {medicine.scientific_name ? (
             <p className="mt-1 text-lg italic text-[var(--color-ink-2)]">
               {medicine.scientific_name}
@@ -94,7 +94,7 @@ export default async function MedicinePage({ params }: PageProps) {
         </Button>
       </div>
 
-      <section className="panel mt-8 p-5 sm:p-7">
+      <section className="panel mt-8 p-6 sm:p-8">
         <h2 className="text-xl">What this database holds</h2>
         <dl className="mt-5 grid gap-5 sm:grid-cols-2">
           <Field label="Kind" value={isHerb ? "Ayurvedic herb" : "Conventional drug"} />
@@ -116,23 +116,16 @@ export default async function MedicinePage({ params }: PageProps) {
             ) : null}
           </Field>
         </dl>
-        <p className="mt-5 text-sm text-[var(--color-ink-2)]">
-          Brand names are matched when a reader types one, and are never listed here.
-        </p>
       </section>
 
-      <section className="mt-8">
-        <h2 className="text-2xl">What it is recorded for</h2>
-        <p className="mt-2 max-w-2xl text-[var(--color-ink-2)]">
-          Each row is one sourced use, with the pros, cons and cautions written beside it.
-          None of them has been reviewed by a clinician.
-        </p>
+      <section className="mt-12">
+        <h2 className="heading-rule text-2xl sm:text-[2rem]">What it is recorded for</h2>
 
         {medicine.recorded_uses.length === 0 ? (
           <div className="mt-4">
             <EmptySection>
-              No use is recorded for this medicine in this project. That means no file here
-              sources one, not that it has none.
+              No use is recorded here. That means no file in this project sources one, not
+              that it has none.
             </EmptySection>
           </div>
         ) : (
@@ -140,11 +133,11 @@ export default async function MedicinePage({ params }: PageProps) {
             {medicine.recorded_uses.map((use) => (
               <li
                 key={`${use.condition_id}-${use.use_kind}`}
-                className="card-surface p-5"
+                className="card-surface p-6"
                 data-testid="recorded-use"
               >
                 <div className="flex flex-wrap items-center gap-2">
-                  <h3 className="mr-auto text-lg">{use.condition_name}</h3>
+                  <h3 className="mr-auto text-xl">{use.condition_name}</h3>
                   <UseEvidenceBadge level={use.evidence_level} />
                   <NotReviewedBadge />
                 </div>
@@ -179,12 +172,8 @@ export default async function MedicinePage({ params }: PageProps) {
         )}
       </section>
 
-      <section className="mt-10">
-        <h2 className="text-2xl">Documented interactions</h2>
-        <p className="mt-2 max-w-2xl text-[var(--color-ink-2)]">
-          Pairs this project's curated literature records an interaction for, with the
-          abstract each one rests on.
-        </p>
+      <section className="mt-12">
+        <h2 className="heading-rule text-2xl sm:text-[2rem]">Documented interactions</h2>
 
         {documented.length === 0 ? (
           <div className="mt-4">
@@ -204,12 +193,11 @@ export default async function MedicinePage({ params }: PageProps) {
         )}
       </section>
 
-      <section className="mt-10">
-        <h2 className="text-2xl">Pairs checked with no finding</h2>
-        <p className="mt-2 max-w-2xl text-[var(--color-ink-2)]">
-          {others.length} more pairs involving this medicine were looked at. Each says
-          which of the two it is: the literature was searched and nothing was found, or
-          there is no adequate basis to answer at all.
+      <section className="mt-12">
+        <h2 className="heading-rule text-2xl sm:text-[2rem]">Pairs checked with no finding</h2>
+        <p className="mt-4 max-w-[70ch] text-[var(--color-ink-2)]">
+          {others.length} more pairs were looked at. Each says which it is: searched and
+          nothing found, or no adequate basis to answer.
         </p>
 
         {others.length === 0 ? (
@@ -219,7 +207,7 @@ export default async function MedicinePage({ params }: PageProps) {
             </EmptySection>
           </div>
         ) : (
-          <ul className="mt-5 grid gap-3">
+          <ul className="ruled-list mt-5">
             {others.map((record) => (
               <li key={record.id ?? `${record.medicine_a.id}-${record.medicine_b.id}`}>
                 <InteractionRow record={record} self={medicine.id} compact />
@@ -229,7 +217,7 @@ export default async function MedicinePage({ params }: PageProps) {
         )}
       </section>
 
-      <section className="mt-10 flex flex-col gap-4">
+      <section className="mt-12 flex flex-col gap-4 border-t border-[var(--color-line)] pt-8">
         <Field label="Row provenance">
           {medicine.sources.length > 0 ? (
             <ul className="flex flex-col gap-1 text-sm text-[var(--color-ink-2)]">

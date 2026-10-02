@@ -4,7 +4,6 @@ import * as React from "react";
 import Link from "next/link";
 import { Leaf, Pill, Search } from "lucide-react";
 
-import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import type { MedicineSummary } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -62,7 +61,7 @@ export function MedicineBrowser({ medicines }: { medicines: MedicineSummary[] })
                 className={cn(
                   "rounded-full border px-4 py-2 text-sm font-semibold transition-colors",
                   active
-                    ? "border-[var(--color-herb)] bg-[var(--color-herb)] text-white dark:text-[var(--color-paper)]"
+                    ? "border-[var(--color-ink)] bg-[var(--color-ink)] text-[var(--color-on-ink)]"
                     : "border-[var(--color-line)] bg-[var(--color-surface)] text-[var(--color-ink-2)] hover:bg-[var(--color-wash)]",
                 )}
               >
@@ -97,46 +96,38 @@ export function MedicineBrowser({ medicines }: { medicines: MedicineSummary[] })
       {shown.length === 0 ? (
         <p
           data-testid="browse-empty"
-          className="card-surface mt-4 p-5 text-sm text-[var(--color-ink-2)]"
+          className="mt-4 border-t border-[var(--color-line)] py-6 text-sm text-[var(--color-ink-2)]"
         >
-          Nothing on this list matches that. This box filters the names on the page only;
-          other names a medicine is known by are matched by the search box above.
+          Nothing on this list matches that. This box filters the names on the page; other
+          names are matched by the search box above.
         </p>
       ) : (
-        <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="ruled-list mt-4 border-t border-[var(--color-line)]">
           {shown.map((medicine) => (
             <li key={medicine.id}>
               <Link
                 href={`/medicines/${medicine.id}`}
                 data-testid="medicine-card"
-                className="card-surface flex h-full gap-3 p-4 transition-shadow hover:shadow-[var(--shadow-lift)]"
+                className="grid grid-cols-[auto_minmax(0,1fr)] items-baseline gap-x-6 gap-y-1 py-3 transition-colors hover:bg-[var(--color-wash)] sm:grid-cols-[auto_minmax(0,14rem)_minmax(0,16rem)_minmax(0,1fr)]"
               >
                 {medicine.medicine_type === "herb" ? (
                   <Leaf
-                    className="mt-1 size-4 shrink-0 text-[var(--color-herb)]"
+                    className="size-4 shrink-0 translate-y-0.5 text-[var(--color-herb)]"
                     aria-hidden="true"
                   />
                 ) : (
                   <Pill
-                    className="mt-1 size-4 shrink-0 text-[var(--color-drug)]"
+                    className="size-4 shrink-0 translate-y-0.5 text-[var(--color-drug)]"
                     aria-hidden="true"
                   />
                 )}
-                <div className="min-w-0">
-                  <p className="font-[family-name:var(--font-heading)] font-semibold">
-                    {medicine.name}
-                  </p>
-                  {medicine.scientific_name ? (
-                    <p className="text-sm italic text-[var(--color-ink-2)]">
-                      {medicine.scientific_name}
-                    </p>
-                  ) : null}
-                  {medicine.drug_class ? (
-                    <Badge tone="drug" className="mt-2">
-                      {medicine.drug_class}
-                    </Badge>
-                  ) : null}
-                </div>
+                <span className="min-w-0 font-medium">{medicine.name}</span>
+                <span className="col-start-2 min-w-0 text-sm italic text-[var(--color-ink-2)] sm:col-start-3">
+                  {medicine.scientific_name ?? ""}
+                </span>
+                <span className="col-start-2 text-sm text-[var(--color-ink-2)] sm:col-start-4">
+                  {medicine.drug_class ?? ""}
+                </span>
               </Link>
             </li>
           ))}

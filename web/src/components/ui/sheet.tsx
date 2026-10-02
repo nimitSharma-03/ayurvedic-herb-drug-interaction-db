@@ -23,7 +23,7 @@ const SheetTitle = function SheetTitleComponent({
 }: React.ComponentProps<typeof SheetPrimitive.Title>) {
   return (
     <SheetPrimitive.Title
-      className={cn("font-[family-name:var(--font-heading)] text-xl", className)}
+      className={cn("text-2xl", className)}
       {...props}
     />
   );
@@ -55,7 +55,7 @@ function SheetContent({
       <SheetPrimitive.Content
         data-slot="sheet-content"
         className={cn(
-          "fixed inset-y-0 right-0 z-50 flex w-full max-w-[min(30rem,100vw)] animate-slide-in-right flex-col gap-5 overflow-y-auto border-l border-[var(--color-line)] bg-[var(--color-surface)] p-6 shadow-[var(--shadow-lift)] sm:rounded-l-[var(--radius-panel)]",
+          "fixed inset-y-0 right-0 z-50 flex w-full max-w-[min(30rem,100vw)] animate-slide-in-right flex-col gap-5 overflow-y-auto border-l border-[var(--color-line)] bg-[var(--color-surface)] p-6 shadow-[var(--shadow-lift)] sm:rounded-l-[var(--radius-card)]",
           className,
         )}
         {...props}

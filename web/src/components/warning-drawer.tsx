@@ -112,7 +112,7 @@ export function WarningDrawer({
                   <li
                     key={`${citation.pmid}-${index}`}
                     data-testid="drawer-citation"
-                    className="rounded-[var(--radius-card-sm)] bg-[var(--color-wash)] p-3"
+                    className="rounded-[var(--radius-tight)] bg-[var(--color-wash)] p-3"
                   >
                     <PmidLink pmid={citation.pmid} />
                     <p className="mt-2 text-sm text-[var(--color-ink-2)]">
@@ -138,7 +138,7 @@ export function WarningDrawer({
               <ul className="mt-2 flex flex-col gap-2">
                 {rulesFor(group).map((rule) => (
                   <li key={rule.rule_id} className="flex flex-wrap items-center gap-2 text-sm">
-                    <span className="font-[family-name:var(--font-mono)] text-xs">
+                    <span className="font-[family-name:var(--font-mono)] text-sm">
                       {rule.rule_id}
                     </span>
                     {[...new Set(rule.tags)].map((tag) => (

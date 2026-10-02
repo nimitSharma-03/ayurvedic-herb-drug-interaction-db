@@ -1,4 +1,4 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
 import {
   apiGet,
@@ -17,7 +17,7 @@ test.describe("the home page", () => {
     await page.goto("/");
     await expect(
       page.getByRole("heading", {
-        name: "Check what your herbs and medicines do together",
+        name: "Describe a problem. See what the literature records.",
         level: 1,
       }),
     ).toBeVisible();
@@ -25,9 +25,7 @@ test.describe("the home page", () => {
     // between.
     await expect(page.getByTestId("problem-text")).toBeVisible();
     await expect(page.getByRole("button", { name: "Show options" })).toBeVisible();
-    await expect(
-      page.getByRole("link", { name: "Check two medicines" }).first(),
-    ).toBeVisible();
+    await expect(page.getByRole("link", { name: "Check a pair" }).first()).toBeVisible();
     await expectNoForbiddenOutput(page);
   });
 
@@ -128,126 +126,99 @@ test.describe("the theme", () => {
 });
 
 /**
- * The hero visual.
+ * The hero's isometric tiles.
  *
- * It is decorative, so none of this is about what it looks like. What is worth
- * testing is everything around it: that the flat version is on screen before
- * any of it loads, that the 3D takes over when it can, that it costs nothing at
- * all on a machine that cannot draw it, and that a reader who asked for less
- * motion gets a still picture rather than a slower one.
+ * Decorative, so none of this is about what they look like. What is worth
+ * testing is that they are kept out of the accessibility tree, that they never
+ * sit between the reader and the hero's own buttons, and that nothing in the
+ * hero is drawn by anything heavier than the markup the server already sent.
  */
-test.describe("the hero visual", () => {
-  /** The 3D chunk is far larger than any other chunk this app serves, so its
-   *  size alone identifies it in the network log. */
-  const THREE_D_BYTES = 500_000;
-
-  function chunkSizes(page: Page): number[] {
-    const sizes: number[] = [];
-    page.on("response", async (response) => {
-      if (!response.url().includes("/_next/static/chunks/")) return;
-      try {
-        sizes.push((await response.body()).length);
-      } catch {
-        // Served from cache, or redirected; nothing arrived to measure.
-      }
-    });
-    return sizes;
-  }
-
-  test("the flat emblem is in the markup, before any script runs", async ({ page }) => {
-    // Every chunk blocked: whatever is on screen was sent by the server.
-    await page.route("**/_next/static/chunks/**", (route) => route.abort());
-    await page.goto("/");
-
-    const visual = page.getByTestId("hero-visual");
-    await expect(visual).toBeVisible();
-    await expect(visual).toHaveAttribute("data-hero-status", "flat");
-    await expect(visual.getByRole("img")).toBeVisible();
-    await page.unroute("**/_next/static/chunks/**");
-  });
-
-  test("the 3D scene takes over, and does not swallow the hero's own links", async ({
+test.describe("the hero's isometric tiles", () => {
+  test("are hidden from assistive technology and do not swallow the CTAs", async ({
     page,
   }) => {
     await page.goto("/");
-    const visual = page.getByTestId("hero-visual");
-    await expect(visual).toHaveAttribute("data-hero-status", "drawn", {
-      timeout: 30_000,
-    });
-    await expect(page.locator("canvas")).toBeVisible();
 
-    // The canvas is laid over the hero's text column. A reader must still be
-    // able to use what is underneath it.
-    await page.getByRole("link", { name: "Check two medicines" }).first().click();
+    const field = page.getByTestId("hero-iso-field");
+    await expect(field).toHaveAttribute("aria-hidden", "true");
+    // Pure markup: nothing here needs a canvas or a WebGL context.
+    await expect(page.locator("canvas")).toHaveCount(0);
+
+    await page
+      .getByTestId("hero")
+      .getByRole("link", { name: "Check a pair" })
+      .click();
     await expect(page).toHaveURL(/\/check$/);
   });
 
-  test("keeps orbiting once it has settled", async ({ page }) => {
-    await page.goto("/");
-    const visual = page.getByTestId("hero-visual");
-    await expect(visual).toHaveAttribute("data-hero-status", "drawn", {
-      timeout: 30_000,
-    });
-    // Past the end of the entrance, so what is compared is the idle motion.
-    await page.waitForTimeout(3500);
-
-    const canvas = page.locator("canvas");
-    const first = await canvas.screenshot();
-    await page.waitForTimeout(1200);
-    const second = await canvas.screenshot();
-    expect(Buffer.compare(first, second)).not.toBe(0);
-  });
-
-  test("downloads no 3D at all when WebGL is unavailable", async ({ page }) => {
-    await page.addInitScript(() => {
-      // Exactly what a blocklisted driver or a locked-down browser looks like.
-      const original = HTMLCanvasElement.prototype.getContext;
-      HTMLCanvasElement.prototype.getContext = function patched(
-        this: HTMLCanvasElement,
-        ...args: Parameters<typeof original>
-      ) {
-        if (String(args[0]).startsWith("webgl")) return null;
-        return original.apply(this, args);
-      } as typeof original;
-    });
-
-    const sizes = chunkSizes(page);
+  test("still compose the hero with every script blocked", async ({ page }) => {
+    // Whatever is on screen was sent by the server, tiles included.
+    await page.route("**/_next/static/chunks/**", (route) => route.abort());
     await page.goto("/");
 
-    const visual = page.getByTestId("hero-visual");
-    await expect(visual).toHaveAttribute("data-hero-status", "flat");
-    await expect(visual.getByRole("img")).toBeVisible();
-
-    // Long enough that a chunk would have arrived if one had been asked for.
-    await page.waitForTimeout(2000);
-    await expect(page.locator("canvas")).toHaveCount(0);
-    expect(
-      Math.max(0, ...sizes),
-      "three.js was downloaded by a browser that cannot use it",
-    ).toBeLessThan(THREE_D_BYTES);
-    await expectNoForbiddenOutput(page);
+    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+    await expect(page.getByTestId("hero-iso-field").locator("svg").first()).toBeVisible();
+    await page.unroute("**/_next/static/chunks/**");
   });
 
   test.describe("for a reader who asked for less motion", () => {
     test.use({ reducedMotion: "reduce" });
 
-    test("shows the settled scene and then holds completely still", async ({ page }) => {
+    test("hold completely still", async ({ page }) => {
       await page.goto("/");
-      const visual = page.getByTestId("hero-visual");
-      await expect(visual).toHaveAttribute("data-hero-status", "drawn", {
-        timeout: 30_000,
-      });
+      const field = page.getByTestId("hero-iso-field");
+      await expect(field).toBeVisible();
 
-      const canvas = page.locator("canvas");
-      const first = await canvas.screenshot();
+      const first = await field.screenshot();
       await page.waitForTimeout(1500);
-      const second = await canvas.screenshot();
+      const second = await field.screenshot();
       expect(
         Buffer.compare(first, second),
-        "the hero moved under prefers-reduced-motion",
+        "a hero tile moved under prefers-reduced-motion",
       ).toBe(0);
     });
   });
+});
+
+/**
+ * The hero is one screen.
+ *
+ * The headline and both calls to action have to be on screen before the reader
+ * scrolls, at the laptop sizes this is actually read on. Checked by asking the
+ * browser where each element is, rather than by measuring the hero box, so a
+ * change to the header height or to the type scale that pushes a button under
+ * the fold fails here.
+ */
+test.describe("the hero fits one screen", () => {
+  const laptops = [
+    { width: 1366, height: 768 },
+    { width: 1440, height: 900 },
+    { width: 1536, height: 864 },
+  ];
+
+  for (const viewport of laptops) {
+    test(`at ${viewport.width}x${viewport.height}`, async ({ page }) => {
+      await page.setViewportSize(viewport);
+      await page.goto("/");
+
+      const hero = page.getByTestId("hero");
+      const targets = [
+        hero.getByRole("heading", { level: 1 }),
+        hero.getByRole("link", { name: "Describe a problem" }),
+        hero.getByRole("link", { name: "Check a pair" }),
+      ];
+
+      expect(await page.evaluate(() => window.scrollY)).toBe(0);
+      for (const target of targets) {
+        const box = await target.boundingBox();
+        expect(box, "the element is not laid out at all").not.toBeNull();
+        expect(
+          box!.y + box!.height,
+          `${viewport.width}x${viewport.height}: the hero does not fit one screen`,
+        ).toBeLessThanOrEqual(viewport.height);
+      }
+    });
+  }
 });
 
 test.describe("narrow screens", () => {

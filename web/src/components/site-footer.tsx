@@ -16,22 +16,22 @@ export async function SiteFooter() {
   const scope = stats.ok ? stats.data.scope : null;
 
   return (
-    <footer className="mt-16 border-t border-[var(--color-line)] bg-[var(--color-surface)]">
-      <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-8 text-sm text-[var(--color-ink-2)] sm:px-6">
-        <p className="max-w-3xl">{FOOTER_DISCLAIMER}</p>
+    <footer className="border-t border-[var(--color-line)] bg-[var(--color-surface)]">
+      <div className="page-shell flex flex-col gap-2 py-8 text-sm text-[var(--color-ink-2)]">
+        <p className="max-w-[80ch]">{FOOTER_DISCLAIMER}</p>
 
         {scope ? (
-          <p>
+          <p className="max-w-[80ch]">
             Covers {scope.herbs} Ayurvedic herbs, {scope.drugs} conventional drugs across{" "}
             {scope.drug_classes} drug classes, and {scope.conditions} conditions. Nothing in
             it has been reviewed by a clinician.
           </p>
         ) : null}
 
-        <p>
+        <p className="mt-2">
           <Link
             href="/how-it-works"
-            className="font-semibold text-[var(--color-ink)] underline decoration-[var(--color-line)] underline-offset-4 hover:decoration-[var(--color-herb)]"
+            className="font-medium text-[var(--color-ink)] underline decoration-[var(--color-line)] underline-offset-4 hover:decoration-[var(--color-primary)]"
           >
             How it works
           </Link>

@@ -1,5 +1,7 @@
 import { ServerOff } from "lucide-react";
 
+import { IsoMark } from "@/components/iso-art";
+
 import type { ApiError } from "@/lib/api";
 import { UNREACHABLE_MESSAGE } from "@/lib/api";
 
@@ -28,11 +30,12 @@ export function ApiUnreachable({
     <div
       role="alert"
       data-testid="api-unreachable"
-      className="panel mx-auto flex max-w-2xl flex-col gap-3 p-6 sm:p-8"
+      className="panel mx-auto flex max-w-2xl flex-col gap-4 p-6 sm:p-8"
     >
+      <IsoMark kind="shield" tone="pink" className="size-12" />
       <div className="flex items-center gap-2.5 text-[var(--color-verified)]">
         <ServerOff className="size-5 shrink-0" aria-hidden="true" />
-        <h2 className="text-lg">
+        <h2 className="text-xl sm:text-2xl">
           {unreachable ? "The database server is not responding" : "That request did not work"}
         </h2>
       </div>
@@ -44,17 +47,16 @@ export function ApiUnreachable({
       {unreachable ? (
         <p className="text-sm text-[var(--color-ink-2)]">
           Start it with{" "}
-          <code className="rounded-sm bg-[var(--color-wash)] px-1.5 py-0.5 font-[family-name:var(--font-mono)] text-xs">
+          <code className="rounded-[var(--radius-tight)] bg-[var(--color-wash)] px-2 py-0.5 font-[family-name:var(--font-mono)] text-sm">
             python -m hdi.api
           </code>{" "}
-          from the project root, then reload this page.
+          from the project root, then reload.
         </p>
       ) : null}
 
       {what ? (
         <p className="text-sm text-[var(--color-ink-2)]">
-          Nothing is shown for {what} rather than a blank or a placeholder, because an
-          empty list here would read as a finding.
+          Nothing is shown for {what}: an empty list here would read as a finding.
         </p>
       ) : null}
     </div>

@@ -7,7 +7,7 @@ import { loadConditions } from "@/lib/server-data";
 export const metadata: Metadata = {
   title: "Describe a problem",
   description:
-    "Describe a health problem in your own words and see the Ayurvedic and conventional options this database records, plus the combinations to avoid.",
+    "Describe a problem and see the Ayurvedic and conventional options this database records for it, with the pairs to watch.",
 };
 
 export default async function AskPage() {
@@ -17,12 +17,10 @@ export default async function AskPage() {
   const conditions = await loadConditions();
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
-      <h1 className="text-3xl sm:text-4xl">Describe a problem</h1>
-      <p className="mt-3 max-w-2xl text-[var(--color-ink-2)]">
-        Write it in your own words, in English or Hinglish. This looks up what the
-        database records for the conditions it recognises, and the combinations that
-        should not be taken together. It is not a diagnosis and not a prescription.
+    <div className="page-shell py-12 lg:py-16">
+      <h1 className="heading-rule max-w-[24ch]">Describe a problem</h1>
+      <p className="mt-4 max-w-[70ch] text-[var(--color-ink-2)]">
+        In your own words, in English or Hinglish.
       </p>
 
       {conditions.ok ? (

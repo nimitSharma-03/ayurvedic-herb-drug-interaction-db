@@ -8,9 +8,14 @@ import { cn } from "@/lib/utils";
  * Pills. The colour variants map one-to-one onto the project's own vocabulary,
  * so a badge cannot say "literature-verified" in the mechanism-based colour:
  * the caller passes the level and the colour follows from it.
+ *
+ * Every tone is its own colour on a pale wash of itself, which keeps the text
+ * above 4.5:1 in both themes, and no tone is ever the only thing distinguishing
+ * one level from another -- the callers in evidence-badge.tsx pass an icon and
+ * the full wording with it.
  */
 const badgeVariants = cva(
-  "inline-flex w-fit items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-semibold whitespace-nowrap [&_svg]:size-3 [&_svg]:shrink-0",
+  "inline-flex w-fit items-center gap-1.5 rounded-full border px-3.5 py-1 text-sm font-semibold whitespace-nowrap [&_svg]:size-3.5 [&_svg]:shrink-0",
   {
     variants: {
       tone: {

@@ -30,13 +30,13 @@ export function OptionCard({ marked }: { marked: MarkedOption }) {
       data-already-taken={alreadyTaken ? "true" : "false"}
       data-medicine-id={option.medicine_id}
       className={cn(
-        "card-surface flex h-full flex-col gap-3 p-5",
+        "card-surface flex h-full flex-col gap-3 p-5 sm:p-6",
         alreadyTaken && "opacity-65",
       )}
     >
       <div className="flex flex-wrap items-start gap-2">
         <div className="mr-auto min-w-0">
-          <h3 className="font-[family-name:var(--font-heading)] text-lg font-semibold">
+          <h3 className="text-lg font-semibold">
             {option.name}
           </h3>
           {subtitle ? (
@@ -104,7 +104,7 @@ export function OptionCard({ marked }: { marked: MarkedOption }) {
       <Link
         href={`/medicines/${option.medicine_id}`}
         data-testid="option-link"
-        className="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-semibold underline decoration-[var(--color-line)] underline-offset-4 hover:decoration-[var(--color-herb)]"
+        className="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-semibold underline decoration-[var(--color-line)] underline-offset-4 hover:decoration-[var(--color-primary)]"
       >
         Everything recorded about {option.name}
         <ArrowUpRight className="size-3.5" aria-hidden="true" />

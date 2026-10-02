@@ -110,7 +110,7 @@ export function CheckPairForm() {
   return (
     <div className="mt-8">
       <form
-        className="panel flex flex-col gap-4 p-5 sm:p-6"
+        className="panel flex flex-col gap-4 p-6 sm:p-8"
         onSubmit={(event) => {
           event.preventDefault();
           void run(a, b);
@@ -152,7 +152,7 @@ export function CheckPairForm() {
           <p
             role="status"
             data-testid="same-medicine"
-            className="rounded-[var(--radius-card-sm)] border border-[var(--color-line)] bg-[var(--color-wash)] p-4 text-sm"
+            className="rounded-[var(--radius-tight)] border border-[var(--color-line)] bg-[var(--color-wash)] p-4 text-sm"
           >
             Those are the same medicine. An interaction needs two different ones.
           </p>
@@ -187,7 +187,7 @@ export function CheckPairForm() {
             {swapMatched ? (
               <p
                 data-testid="same-either-order"
-                className="rounded-[var(--radius-card-sm)] border border-[var(--color-line)] bg-[var(--color-wash)] p-3 text-sm font-semibold"
+                className="rounded-[var(--radius-tight)] border border-[var(--color-line)] bg-[var(--color-wash)] p-3 text-sm font-semibold"
               >
                 Same answer in either order.
               </p>
@@ -197,9 +197,9 @@ export function CheckPairForm() {
               <div
                 role="alert"
                 data-testid="medicine-not-found"
-                className="card-surface p-5"
+                className="card-surface p-5 sm:p-6"
               >
-                <h2 className="text-lg">That name is not in this database</h2>
+                <h2 className="text-2xl">That name is not in this database</h2>
                 <p className="mt-2 text-sm text-[var(--color-ink-2)]">
                   {answer.error.message}
                 </p>
@@ -210,7 +210,7 @@ export function CheckPairForm() {
               </div>
             ) : (
               <>
-                <h2 className="text-2xl">
+                <h2 className="text-2xl sm:text-[2rem]">
                   {asked.a} and {asked.b}
                 </h2>
                 <InteractionRow record={answer} />
@@ -218,7 +218,7 @@ export function CheckPairForm() {
                   <p
                     data-testid="insufficient-reason"
                     className={cn(
-                      "rounded-[var(--radius-card-sm)] border p-4 text-sm",
+                      "rounded-[var(--radius-tight)] border p-4 text-sm",
                       "border-[var(--color-insufficient)]/40 bg-[var(--color-insufficient)]/10 text-[var(--color-ink-2)]",
                     )}
                   >
@@ -246,8 +246,8 @@ export function CheckPairForm() {
 function CheckFailure({ error, asked }: { error: ApiError; asked: Asked | null }) {
   if (error.code === "identical_medicine") {
     return (
-      <div role="alert" data-testid="same-medicine-resolved" className="card-surface p-5">
-        <h2 className="text-lg">Those are two names for the same medicine</h2>
+      <div role="alert" data-testid="same-medicine-resolved" className="card-surface p-5 sm:p-6">
+        <h2 className="text-2xl">Those are two names for the same medicine</h2>
         <p className="mt-2 text-sm text-[var(--color-ink-2)]">{error.message}</p>
         {asked ? (
           <p className="mt-2 text-sm text-[var(--color-ink-2)]">
@@ -260,8 +260,8 @@ function CheckFailure({ error, asked }: { error: ApiError; asked: Asked | null }
 
   if (error.code === "ambiguous_medicine") {
     return (
-      <div role="alert" data-testid="ambiguous-medicine" className="card-surface p-5">
-        <h2 className="text-lg">That name matches more than one medicine</h2>
+      <div role="alert" data-testid="ambiguous-medicine" className="card-surface p-5 sm:p-6">
+        <h2 className="text-2xl">That name matches more than one medicine</h2>
         <p className="mt-2 text-sm text-[var(--color-ink-2)]">{error.message}</p>
         {error.body?.candidates?.length ? (
           <ul className="mt-3 list-inside list-disc text-sm">
@@ -275,15 +275,15 @@ function CheckFailure({ error, asked }: { error: ApiError; asked: Asked | null }
   }
 
   return (
-    <div role="alert" data-testid="check-error" className="card-surface p-5">
-      <h2 className="text-lg">
+    <div role="alert" data-testid="check-error" className="card-surface p-5 sm:p-6">
+      <h2 className="text-2xl sm:text-[2rem]">
         {error.isUnreachable ? "The database server is not responding" : "That check did not work"}
       </h2>
       <p className="mt-2 text-sm text-[var(--color-ink-2)]">{error.message}</p>
       {error.isUnreachable ? (
         <p className="mt-2 text-sm text-[var(--color-ink-2)]">
           Start it with{" "}
-          <code className="rounded-sm bg-[var(--color-wash)] px-1.5 py-0.5 font-[family-name:var(--font-mono)] text-xs">
+          <code className="rounded-sm bg-[var(--color-wash)] px-1.5 py-0.5 font-[family-name:var(--font-mono)] text-sm">
             python -m hdi.api
           </code>
           , then try again.

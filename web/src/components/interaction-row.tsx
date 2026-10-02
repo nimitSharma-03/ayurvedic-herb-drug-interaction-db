@@ -54,14 +54,14 @@ export function InteractionRow({
     <article
       data-testid="interaction-row"
       data-status={record.status}
-      className="card-surface p-4 sm:p-5"
+      className={compact ? "py-4" : "card-surface p-5 sm:p-6"}
     >
       <div className="flex flex-wrap items-center gap-2">
         <h3 className="mr-auto text-base sm:text-lg">
           {other ? (
             <Link
               href={`/medicines/${other.id}`}
-              className="underline decoration-[var(--color-line)] underline-offset-4 hover:decoration-[var(--color-herb)]"
+              className="underline decoration-[var(--color-line)] underline-offset-4 hover:decoration-[var(--color-primary)]"
             >
               {other.name}
             </Link>
@@ -99,7 +99,7 @@ export function InteractionRow({
             {record.evidence.map((row, index) => (
               <li
                 key={`${row.pmid}-${index}`}
-                className="rounded-[var(--radius-card-sm)] bg-[var(--color-wash)] p-3"
+                className="rounded-[var(--radius-tight)] bg-[var(--color-wash)] p-3"
               >
                 <div className="flex flex-wrap items-center gap-2">
                   <PmidLink pmid={row.pmid} />

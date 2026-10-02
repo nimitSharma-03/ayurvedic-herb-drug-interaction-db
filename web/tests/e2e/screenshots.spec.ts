@@ -60,15 +60,8 @@ function scene(
 
 scene("home", async (page) => {
   await page.goto("/");
+  await expect(page.getByTestId("hero")).toBeVisible();
   await expect(page.getByTestId("pipeline-card")).toBeVisible();
-  // The 3D hero is captured once it has drawn; the wait in `scene` then lets
-  // its entrance finish, so the shot is of the settled composition.
-  await expect(page.getByTestId("hero-visual")).toHaveAttribute(
-    "data-hero-status",
-    "drawn",
-    { timeout: 30_000 },
-  );
-  await page.waitForTimeout(2600);
 });
 
 scene("medicines-search", async (page) => {

@@ -138,7 +138,7 @@ export function MedicineCombobox({
                     <span className="min-w-0 flex-1">
                       <span className="block truncate font-semibold">{result.name}</span>
                       {result.scientific_name || result.drug_class || why ? (
-                        <span className="block truncate text-xs text-[var(--color-ink-2)]">
+                        <span className="block truncate text-sm text-[var(--color-ink-2)]">
                           {[result.scientific_name ?? result.drug_class, why]
                             .filter(Boolean)
                             .join(" · ")}

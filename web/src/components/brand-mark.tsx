@@ -1,64 +1,60 @@
 import { cn } from "@/lib/utils";
 
 /**
- * The brand mark: a capsule rotated about -40 degrees, its upper half herb
- * green with a leaf vein and its lower half drug indigo. One shape for the two
- * halves of the subject, which is the whole idea of the project.
- *
- * Drawn upright and rotated as a group, so the capsule's own geometry stays
- * simple and the split line between the halves stays exactly perpendicular to
- * its long axis.
+ * The brand mark: one isometric tile whose top face is split down its own short
+ * diagonal, sage on the herb side with a leaf vein and teal on the medicine
+ * side. One shape for the two halves of the subject, which is the whole idea of
+ * the project, drawn in the same projection as the hero's tiles so the mark and
+ * the hero read as one drawing.
  */
 export function BrandMark({ className }: { className?: string }) {
   return (
     <svg
-      viewBox="0 0 32 32"
-      className={cn("size-7 shrink-0", className)}
+      viewBox="0 0 120 120"
+      className={cn("size-9 shrink-0", className)}
       role="img"
-      aria-label="Capsule mark, one half a leaf and one half a tablet"
+      aria-label="An isometric tile, one half a leaf and one half a tablet"
     >
-      <g transform="rotate(-40 16 16)">
-        <clipPath id="brand-capsule">
-          <rect x="10" y="3" width="12" height="26" rx="6" />
-        </clipPath>
-        <g clipPath="url(#brand-capsule)">
-          <rect x="10" y="3" width="12" height="13" fill="var(--color-herb)" />
-          <rect x="10" y="16" width="12" height="13" fill="var(--color-drug)" />
-          {/* The leaf vein: a midrib up the herb half with two side veins. */}
-          <path
-            d="M16 14.2V5.2"
-            stroke="var(--color-surface)"
-            strokeWidth="1.1"
-            strokeLinecap="round"
-            fill="none"
-          />
-          <path
-            d="M16 8.4 18.6 6.4M16 11.4 13.4 9.4"
-            stroke="var(--color-surface)"
-            strokeWidth="1"
-            strokeLinecap="round"
-            fill="none"
-            opacity="0.85"
-          />
-        </g>
-        <rect
-          x="10"
-          y="3"
-          width="12"
-          height="26"
-          rx="6"
+      <clipPath id="brand-top-face">
+        <path d="M60 24 L104 46 L60 68 L16 46 Z" />
+      </clipPath>
+      <g clipPath="url(#brand-top-face)">
+        <rect x="16" y="24" width="44" height="44" fill="var(--color-accent-sage)" />
+        <rect x="60" y="24" width="44" height="44" fill="var(--color-accent-teal)" />
+        {/* The leaf vein, laid on the herb half in the top face's own plane. */}
+        <g
+          transform="translate(60 46) matrix(1 0.5 -1 0.5 0 0)"
           fill="none"
           stroke="var(--color-ink)"
-          strokeOpacity="0.14"
-          strokeWidth="1"
-        />
-        <path
-          d="M10 16h12"
-          stroke="var(--color-surface)"
-          strokeWidth="1.2"
-          strokeOpacity="0.9"
-        />
+          strokeOpacity="0.6"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          vectorEffect="non-scaling-stroke"
+        >
+          <path d="M-4 -15V13" />
+          <path d="M-4 -5-13 -10M-4 3-13 -2" />
+        </g>
       </g>
+
+      <path d="M16 46 L60 68 L60 86 L16 64 Z" fill="var(--color-accent-sage)" />
+      <path d="M16 46 L60 68 L60 86 L16 64 Z" fill="var(--color-ink)" opacity="0.3" />
+      <path d="M60 68 L104 46 L104 64 L60 86 Z" fill="var(--color-accent-teal)" />
+      <path d="M60 68 L104 46 L104 64 L60 86 Z" fill="var(--color-ink)" opacity="0.14" />
+
+      <path
+        d="M16 46 L60 24 L104 46 L104 64 L60 86 L16 64 Z"
+        fill="none"
+        stroke="var(--color-ink)"
+        strokeOpacity="0.22"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M60 24 L60 68"
+        stroke="var(--color-ink)"
+        strokeOpacity="0.16"
+        strokeWidth="2"
+      />
     </svg>
   );
 }

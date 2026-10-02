@@ -1,7 +1,8 @@
 "use client";
 
-import { RotateCcw, ServerOff } from "lucide-react";
+import { RotateCcw } from "lucide-react";
 
+import { IsoMark } from "@/components/iso-art";
 import { Button } from "@/components/ui/button";
 import { UNREACHABLE_MESSAGE } from "@/lib/api";
 
@@ -15,25 +16,24 @@ import { UNREACHABLE_MESSAGE } from "@/lib/api";
  */
 export default function ErrorBoundary({ reset }: { error: Error; reset: () => void }) {
   return (
-    <div className="mx-auto max-w-2xl px-4 py-20 sm:px-6">
-      <div className="flex items-center gap-2.5 text-[var(--color-verified)]">
-        <ServerOff className="size-6 shrink-0" aria-hidden="true" />
-        <h1 className="text-2xl">Something went wrong</h1>
-      </div>
-      <p className="mt-4 text-[var(--color-ink-2)]">{UNREACHABLE_MESSAGE}</p>
-      <p className="mt-3 text-sm text-[var(--color-ink-2)]">
-        Start it with{" "}
-        <code className="rounded-sm bg-[var(--color-wash)] px-1.5 py-0.5 font-[family-name:var(--font-mono)] text-xs">
-          python -m hdi.api
-        </code>{" "}
-        from the project root. If it is already running, check that the web app is
-        pointed at it.
-      </p>
-      <div className="mt-7">
-        <Button type="button" onClick={reset}>
-          <RotateCcw className="size-4" aria-hidden="true" />
-          Try again
-        </Button>
+    <div className="page-shell py-16 lg:py-24">
+      <div className="mx-auto max-w-2xl">
+        <IsoMark kind="shield" tone="pink" className="size-14" />
+        <h1 className="mt-6">Something went wrong</h1>
+        <p className="mt-4 text-[var(--color-ink-2)]">{UNREACHABLE_MESSAGE}</p>
+        <p className="mt-3 text-sm text-[var(--color-ink-2)]">
+          Start it with{" "}
+          <code className="rounded-[var(--radius-tight)] bg-[var(--color-wash)] px-2 py-0.5 font-[family-name:var(--font-mono)] text-sm">
+            python -m hdi.api
+          </code>{" "}
+          from the project root.
+        </p>
+        <div className="mt-8">
+          <Button type="button" onClick={reset}>
+            <RotateCcw className="size-4" aria-hidden="true" />
+            Try again
+          </Button>
+        </div>
       </div>
     </div>
   );

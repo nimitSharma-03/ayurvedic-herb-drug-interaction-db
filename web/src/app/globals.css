@@ -9,58 +9,117 @@
   The system preference is deliberately not followed: the approved design calls
   light the default, and switching on a setting the reader never chose here
   would contradict that.
+
+  The surface system is paper, white and a 1px hairline. The pastels are
+  accents only -- a badge, a tile, an active state -- and they are fills, never
+  text: anything set on one of them is set in ink, which is what keeps it at
+  AA. The three evidence colours are the only ones that are text colours in
+  their own right, and each clears 4.5:1 on the surface it sits on.
 */
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 @theme {
-  --color-paper: #f5f8f6;
+  --color-paper: #f7f5f0;
   --color-surface: #ffffff;
-  --color-wash: #e3f0e9;
-  --color-ink: #14231e;
-  --color-ink-2: #4b5c55;
-  --color-line: #d7e2dc;
+  --color-wash: #efecf7;
+  --color-ink: #251d5c;
+  --color-ink-2: #5b5484;
+  /* Ink at 15%, resolved against the page, so every rule in the interface is
+     the same weight whatever it sits on. */
+  --color-line: #d7d4de;
+  /* What goes on top of an ink or a verified fill. Named rather than `white`,
+     because in the dark theme the ink fill inverts and this has to invert
+     with it. */
+  --color-on-ink: #f7f5f0;
 
-  /* Category colours. Herb green is Ayurvedic, drug indigo is allopathic. */
-  --color-herb: #1d684c;
-  --color-drug: #2e4a8a;
+  --color-primary: #605ea7;
 
-  /* Evidence colours. Red is literature-verified, amber is mechanism-based,
-     grey is insufficient evidence. Nothing else may use them. */
-  --color-verified: #b42318;
-  --color-mechanism: #9a5800;
-  --color-insufficient: #5d6a65;
+  /* Accents: the isometric tiles, the focus ring, quiet chips. None of them is
+     ever a text colour. */
+  --color-accent-teal: #11c8d5;
+  --color-accent-pink: #fc79a4;
+  --color-accent-sage: #c6cdaa;
+  --color-ring: #a499ff;
 
-  --font-heading: var(--font-lora), Georgia, "Times New Roman", serif;
-  --font-sans: var(--font-source-sans), ui-sans-serif, system-ui, sans-serif;
+  /* Category colours. Sage is Ayurvedic, teal is allopathic. Both are the
+     deep end of the accent they belong to, so they can carry text. */
+  --color-herb: #5a6b34;
+  --color-drug: #0a6d75;
+
+  /* Evidence colours. Rose is literature-verified, amber is mechanism-based,
+     muted indigo is insufficient evidence. Nothing else may use them, and none
+     of them is ever the only thing saying which is which: every badge carries
+     an icon and the full wording as well. */
+  --color-verified: #a8143f;
+  --color-mechanism: #8a5410;
+  --color-insufficient: #5c5a7a;
+
+  /* One family. IBM Plex Sans at 400/500/600 sets every heading and every line
+     of body text; the mono cut is for PMIDs and identifiers, nothing else. */
+  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", monospace;
 
-  --radius-panel: 22px;
-  --radius-card: 16px;
-  --radius-card-sm: 14px;
-  --radius-field: 13px;
+  /* Pills for the controls: buttons, inputs, badges. Panels and cards take the
+     quieter radius, because a 42px corner around a block of text reads as a
+     marketing card rather than as a reference table. */
+  --radius-pill: 42px;
+  --radius-field: 42px;
+  --radius-card: 14px;
+  --radius-tight: 10px;
 
-  --shadow-soft: 0 1px 2px rgba(20, 35, 30, 0.04), 0 8px 24px rgba(20, 35, 30, 0.06);
-  --shadow-lift: 0 2px 4px rgba(20, 35, 30, 0.05), 0 16px 40px rgba(20, 35, 30, 0.1);
+  /* Max content width, centred. Everything on every page sits inside this. */
+  --container-page: 90rem;
+
+  /* Elevation is for things that float over the page and nothing else. A panel
+     in the flow is a hairline, not a shadow. */
+  --shadow-lift: 0 2px 4px rgba(37, 29, 92, 0.06), 0 16px 40px rgba(37, 29, 92, 0.14);
 
   --ease-reveal: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/*
+  The shadow an isometric tile casts. Its own token because it must stay dark
+  in both themes: tinting it with the ink token turns it into a halo in the
+  dark one, where ink is nearly white.
+*/
+:root {
+  --tile-shadow: rgba(37, 29, 92, 0.14);
+}
+
 :root[data-theme="dark"] {
-  --color-paper: #0e1915;
-  --color-surface: #15231e;
-  --color-wash: #1a2d26;
-  --color-ink: #e4eee9;
-  --color-ink-2: #a6b6af;
-  --color-line: #25382f;
-  --color-herb: #6cc69e;
-  --color-drug: #a0b4ec;
-  --color-verified: #f28b80;
+  --tile-shadow: rgba(0, 0, 0, 0.45);
+
+  --color-paper: #17123f;
+  --color-surface: #1d1849;
+  --color-wash: #262059;
+  --color-ink: #ece9ff;
+  --color-ink-2: #b6b0dd;
+  --color-line: #373159;
+  --color-on-ink: #17123f;
+  --color-primary: #a7a4e6;
+  --color-herb: #c0d184;
+  --color-drug: #67dbe4;
+  --color-verified: #ff9ebb;
   --color-mechanism: #e9b55e;
-  --color-insufficient: #9ca9a3;
-  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.3);
-  --shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.35), 0 16px 40px rgba(0, 0, 0, 0.45);
+  --color-insufficient: #a9a4c4;
+  --shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.35), 0 16px 40px rgba(0, 0, 0, 0.48);
 
   color-scheme: dark;
+}
+
+/*
+  The header's own height, so the hero below it can be exactly one screen tall.
+  Two rows below the large breakpoint, where the nav links sit on their own
+  scrolling row, and one above it. The header hard-codes the same heights.
+*/
+:root {
+  --nav-h: 7rem;
+}
+
+@media (width >= 64rem) {
+  :root {
+    --nav-h: 4rem;
+  }
 }
 
 @layer base {
@@ -85,14 +144,23 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  /*
+    Headings are the body family at 600, with a leading that still lets two
+    lines breathe. A reference tool is read, not announced, so nothing here
+    shouts: no display weight, no sub-1 leading, no heavy tracking.
+  */
   h1,
   h2,
   h3,
   h4 {
-    font-family: var(--font-heading);
     font-weight: 600;
-    letter-spacing: -0.01em;
-    line-height: 1.2;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
+    line-height: 1.1;
   }
 
   /*
@@ -115,38 +183,109 @@
     overflow-wrap: anywhere;
   }
 
+  /*
+    Focus: an ink outline with a pastel halo behind it. Two colours rather than
+    one so the ring is visible both on the off-white page and on an ink-filled
+    button, where an ink outline alone would disappear.
+  */
   :focus-visible {
-    outline: 2px solid var(--color-herb);
+    outline: 2px solid var(--color-primary);
     outline-offset: 2px;
-    border-radius: 4px;
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-ring) 45%, transparent);
   }
 
   ::selection {
-    background-color: var(--color-wash);
-    color: var(--color-ink);
+    background-color: #a499ff;
+    color: #211c4d;
   }
 }
 
+@utility tile-shadow {
+  filter: drop-shadow(0 10px 14px var(--tile-shadow));
+}
+
+/* A surface in the flow: white, a hairline, no shadow. */
 @utility panel {
   background-color: var(--color-surface);
   border: 1px solid var(--color-line);
-  border-radius: var(--radius-panel);
-  box-shadow: var(--shadow-soft);
+  border-radius: var(--radius-card);
 }
 
 @utility card-surface {
   background-color: var(--color-surface);
   border: 1px solid var(--color-line);
   border-radius: var(--radius-card);
-  box-shadow: var(--shadow-soft);
+}
+
+/*
+  A section heading with a rule under it. The rule is what separates one
+  section from the next, in place of the padding a card-based layout needs.
+*/
+@utility heading-rule {
+  border-bottom: 1px solid var(--color-line);
+  padding-bottom: 0.75rem;
+}
+
+/* A list whose rows are separated by hairlines rather than by gaps. */
+@utility ruled-list {
+  & > * + * {
+    border-top: 1px solid var(--color-line);
+  }
+}
+
+/*
+  The section rhythm, on an 8px grid: 48px, opening to 64 and then 80 on wider
+  screens. Short on purpose -- the hairlines do the separating, so the padding
+  does not have to.
+*/
+@utility section-pad {
+  padding-block: 3rem;
+
+  @media (width >= 64rem) {
+    padding-block: 4rem;
+  }
+
+  @media (width >= 80rem) {
+    padding-block: 5rem;
+  }
+}
+
+/* The centred 1440px column every page sits in. */
+@utility page-shell {
+  margin-inline: auto;
+  width: 100%;
+  max-width: var(--container-page);
+  padding-inline: 1rem;
+
+  @media (width >= 40rem) {
+    padding-inline: 2rem;
+  }
+
+  @media (width >= 80rem) {
+    padding-inline: 3rem;
+  }
+}
+
+/*
+  The hero is exactly one screen, less the header. `svh` rather than `vh` so a
+  mobile browser's retracting toolbar cannot crop the buttons, and the padding
+  comes from the viewport height so a 768px-tall laptop loses whitespace rather
+  than losing a call to action.
+*/
+@utility hero-box {
+  /* Capped as well as measured: on a tall screen a full viewport of hero is
+     mostly empty canvas, and the cap lets the first figures show below it. */
+  min-height: min(calc(100svh - var(--nav-h)), 42rem);
+  padding-block: clamp(1.5rem, 4svh, 3rem);
 }
 
 /*
   Motion.
 
-  Each of these runs once, in response to something the reader did or to the
-  arrival of an answer. There is no looping or decorative animation anywhere,
-  and every rule below is switched off under prefers-reduced-motion at the
+  Everything here runs once, in response to something the reader did or to the
+  arrival of an answer -- with one exception, the isometric tiles' bob, which
+  loops. It is decorative, aria-hidden, and the hero reads the same with it
+  stopped. Every rule below is switched off under prefers-reduced-motion at the
   bottom of this file.
 */
 @keyframes reveal {
@@ -196,6 +335,21 @@
   }
 }
 
+/*
+  The tiles' bob. Both ends of the keyframe are the resting position and the
+  drift is at the midpoint, so when prefers-reduced-motion collapses the
+  duration the tile lands where it belongs instead of stopping mid-air.
+*/
+@keyframes float-bob {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, var(--float-rise, -10px), 0);
+  }
+}
+
 .animate-reveal {
   animation: reveal 0.45s var(--ease-reveal) both;
 }
@@ -212,6 +366,11 @@
   animation: slide-out-right 0.2s ease-in both;
 }
 
+.float-bob {
+  animation: float-bob var(--float-duration, 9s) var(--float-delay, 0s) ease-in-out
+    infinite both;
+}
+
 /* The combination lines draw themselves in once, so the eye follows each herb
    to the medicine it conflicts with instead of meeting a finished tangle. */
 .draw-line {
@@ -219,13 +378,11 @@
   animation: draw-line 0.7s var(--ease-reveal) both;
 }
 
-/* The search box glows on focus so the reader can see where their typing is
+/* The search box rings on focus so the reader can see where their typing is
    going without a border colour doing all the work. */
 .search-glow:focus-within {
-  box-shadow:
-    0 0 0 4px color-mix(in oklab, var(--color-herb) 18%, transparent),
-    var(--shadow-soft);
-  border-color: var(--color-herb);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-ring) 40%, transparent);
+  border-color: var(--color-primary);
 }
 
 .search-glow {

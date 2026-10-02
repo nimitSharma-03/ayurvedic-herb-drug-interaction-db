@@ -83,7 +83,7 @@ export function AskForm({
   return (
     <div className="mt-8 flex flex-col gap-8">
       <form
-        className="panel flex flex-col gap-6 p-5 sm:p-7"
+        className="panel flex flex-col gap-6 p-6 sm:p-8"
         onSubmit={(event) => {
           event.preventDefault();
           void run();
@@ -113,17 +113,15 @@ export function AskForm({
 
         <MedicineTokenInput
           label="Medicines or herbs you already take"
-          description="Any name works, including what is printed on the strip. The answer says what it understood."
+          description="Any name works, including what is printed on the strip."
           values={current}
           onChange={setCurrent}
         />
 
         <fieldset>
-          <legend className="text-sm font-semibold">Anything that applies</legend>
-          <p className="mt-1 mb-3 text-sm text-[var(--color-ink-2)]">
-            These only add notes. Nothing is removed from the answer on their account,
-            because deciding a herb is unsuitable is a clinical judgement this database
-            has no sourced basis for.
+          <legend className="text-sm font-medium">Anything that applies</legend>
+          <p className="mt-1 mb-3 max-w-[70ch] text-sm text-[var(--color-ink-2)]">
+            These add notes. Nothing is removed from the answer on their account.
           </p>
           <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-x-8">
             {CAUTIONS.map((caution) => (

@@ -148,7 +148,7 @@ export function MedicineTokenInput({
             id={listId}
             role="listbox"
             aria-label="Suggestions"
-            className="absolute z-20 mt-2 max-h-64 w-full overflow-y-auto rounded-[var(--radius-card-sm)] border border-[var(--color-line)] bg-[var(--color-surface)] shadow-[var(--shadow-lift)]"
+            className="absolute z-20 mt-2 max-h-64 w-full overflow-y-auto rounded-[var(--radius-tight)] border border-[var(--color-line)] bg-[var(--color-surface)] shadow-[var(--shadow-lift)]"
           >
             {results.map((result) => {
               const why = matchedOnLabel(result.matched_on, term, result.name);
@@ -169,7 +169,7 @@ export function MedicineTokenInput({
                         {result.name}
                       </span>
                       {why ? (
-                        <span className="block truncate text-xs text-[var(--color-ink-2)]">
+                        <span className="block truncate text-sm text-[var(--color-ink-2)]">
                           {why}
                         </span>
                       ) : null}

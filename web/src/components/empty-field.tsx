@@ -1,3 +1,4 @@
+import { IsoMark } from "@/components/iso-art";
 import { NOT_RECORDED } from "@/lib/text";
 
 /**
@@ -42,14 +43,21 @@ export function Field({
   );
 }
 
-/** The same message for a whole section that has no rows. */
+/**
+ * The same message for a whole section that has no rows.
+ *
+ * With a tile beside it, because an empty dashed box on its own reads as
+ * something that failed to load rather than as a section this project has
+ * nothing sourced for.
+ */
 export function EmptySection({ children }: { children: React.ReactNode }) {
   return (
-    <p
+    <div
       data-testid="empty-section"
-      className="rounded-[var(--radius-card-sm)] border border-dashed border-[var(--color-line)] p-4 text-sm text-[var(--color-ink-2)]"
+      className="flex items-center gap-4 rounded-[var(--radius-card)] border border-dashed border-[var(--color-line)] px-5 py-4 text-sm text-[var(--color-ink-2)]"
     >
-      {children}
-    </p>
+      <IsoMark kind="paper" tone="sage" className="size-10" />
+      <p>{children}</p>
+    </div>
   );
 }

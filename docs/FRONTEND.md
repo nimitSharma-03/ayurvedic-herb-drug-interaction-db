@@ -75,17 +75,8 @@ web/
       ui/                    the shadcn/ui primitives actually used
       site-header.tsx        nav and the theme toggle
       site-footer.tsx        disclaimer, scope, how-it-works link
-      brand-mark.tsx         the capsule mark
-      hero-scene/            the home page's 3D hero (see below)
-        hero-visual.tsx      the wrapper: flat emblem, then the canvas over it
-        hero-emblem.tsx      the flat SVG hero: placeholder and fallback
-        hero-canvas.tsx      the canvas, loaded on its own in the browser only
-        scene.tsx            lights, materials and the composition
-        leaf-geometry.ts     the leaf, built as geometry
-        palette.ts           the design tokens, read off <html> at runtime
-        sheet.ts             the Theatre.js project, sheet and objects
-        hero-sheet.json      the baked keyframes
-        studio.ts            Theatre Studio, in development only
+      brand-mark.tsx         the isometric tile mark
+      iso-art.tsx            the isometric tiles: the hero's, and the quiet states'
       medicine-search.tsx    the /medicines search box (alias-aware)
       medicine-combobox.tsx  one-medicine picker, for /check
       medicine-token-input.tsx   "what you already take"
@@ -109,7 +100,7 @@ web/
       text.ts                shared copy and small helpers
   tests/
     fixtures/                44 real captured responses
-    unit/                    679 unit tests
+    unit/                    627 unit tests
     e2e/                     the end-to-end suite and the screenshot run
 ```
 
@@ -133,85 +124,124 @@ Light is the default. Dark is opt-in through the header toggle, stored in
 first paint, so there is no flash on load or on a navigation. The system
 preference is deliberately not followed — see **Decisions**.
 
+Paper, white and a 1px hairline. The pastels are accents only -- a badge, a
+tile, an active state -- and they are fills, never text: anything set on one of
+them is set in ink, which is what keeps it at AA. The three evidence colours are
+the only ones that are text colours in their own right, and each clears 4.5:1 on
+the surface it sits on.
+
 | Token | Light | Dark | Used for |
 |---|---|---|---|
-| `--color-paper` | `#F5F8F6` | `#0E1915` | page background |
-| `--color-surface` | `#FFFFFF` | `#15231E` | panels and cards |
-| `--color-wash` | `#E3F0E9` | `#1A2D26` | quiet fills, chips |
-| `--color-ink` | `#14231E` | `#E4EEE9` | body text |
-| `--color-ink-2` | `#4B5C55` | `#A6B6AF` | secondary text |
-| `--color-line` | `#D7E2DC` | `#25382F` | hairline borders |
-| `--color-herb` | `#1D684C` | `#6CC69E` | Ayurvedic |
-| `--color-drug` | `#2E4A8A` | `#A0B4EC` | allopathic |
-| `--color-verified` | `#B42318` | `#F28B80` | literature-verified |
-| `--color-mechanism` | `#9A5800` | `#E9B55E` | mechanism-based |
-| `--color-insufficient` | `#5D6A65` | `#9CA9A3` | insufficient evidence |
+| `--color-paper` | `#F7F5F0` | `#17123F` | page background |
+| `--color-surface` | `#FFFFFF` | `#1D1849` | panels and cards |
+| `--color-wash` | `#EFECF7` | `#262059` | quiet fills, chips |
+| `--color-ink` | `#251D5C` | `#ECE9FF` | body text, primary buttons |
+| `--color-ink-2` | `#5B5484` | `#B6B0DD` | secondary text |
+| `--color-line` | `#D7D4DE` | `#373159` | hairline rules, ink at 15% |
+| `--color-on-ink` | `#F7F5F0` | `#17123F` | type on an ink or verified fill |
+| `--color-primary` | `#605EA7` | `#A7A4E6` | links, focus, hover |
+| `--color-accent-teal` | `#11C8D5` | `#11C8D5` | tile fills |
+| `--color-accent-pink` | `#FC79A4` | `#FC79A4` | tile fills |
+| `--color-accent-sage` | `#C6CDAA` | `#C6CDAA` | tile fills |
+| `--color-ring` | `#A499FF` | `#A499FF` | focus halo |
+| `--color-herb` | `#5A6B34` | `#C0D184` | Ayurvedic |
+| `--color-drug` | `#0A6D75` | `#67DBE4` | allopathic |
+| `--color-verified` | `#A8143F` | `#FF9EBB` | literature-verified |
+| `--color-mechanism` | `#8A5410` | `#E9B55E` | mechanism-based |
+| `--color-insufficient` | `#5C5A7A` | `#A9A4C4` | insufficient evidence |
 
-Type: Lora 600 for headings and medicine names, Source Sans 3 for body, IBM Plex
-Mono for PMIDs and nothing else. Shapes: panels 22px, cards 14–16px, inputs
-13px, pills fully rounded, one soft shadow, 1px hairlines.
+Selection is `#A499FF` on `#211C4D` in both themes.
+
+Type: one family. IBM Plex Sans at 400 for body, 500 for labels and table
+headings, 600 for headings; IBM Plex Mono for PMIDs and identifiers and nothing
+else. There is no display cut and no display weight: a reference tool is read
+rather than announced. Headings set at `-0.015em` and a leading of 1.15; `h1` is
+`clamp(2rem, 4.5vw, 3.5rem)`, so 56px at most, and `h2` is 24px rising to 32.
+Body is 16px at 1.6, and nothing on a page is smaller than 14px. Only the hero
+is centred; every other heading and paragraph is left-aligned.
+
+Shapes: 42px pills for the controls -- buttons, inputs, badges -- and 14px
+(`--radius-card`) for panels and cards, because a 42px corner around a block of
+text reads as a marketing card rather than as a reference table. 10px
+(`--radius-tight`) for a block nested inside one of those. Full-width bands and
+the page edges are square.
+
+Separation is a 1px hairline, not a shadow. `panel` and `card-surface` are
+white with a rule and no elevation; `heading-rule` puts a rule under a section
+heading and `ruled-list` puts one between the rows of a list, which is what
+separates the medicine browser, the pipeline stages and the no-finding pairs in
+place of a stack of cards. `--shadow-lift` is left for the things that really do
+float over the page -- the drawer, the comboboxes -- and `--tile-shadow` for the
+isometric tiles, its own token because it has to stay dark in the dark theme,
+where the ink token is nearly white.
+
+Layout: one 1440px column (`--container-page`, the `page-shell` utility),
+centred, with a 16/32/48px gutter, on an 8px grid. `section-pad` is 48px of
+block padding, opening to 64 and then 80 on wider screens; the hairlines do the
+separating, so the padding does not have to. Reading columns are capped in
+characters (`max-w-[70ch]` and narrower), because a 1440px line of body text is
+unreadable.
 
 Motion, all of it switched off under `prefers-reduced-motion`: the home counts
 count up once when they scroll into view, the search box glows on focus, results
 reveal once, the combination lines draw themselves in as SVG strokes, the
 warning drawer slides in from the right over a blurred backdrop, page
-transitions fade, and the swap button rotates.
+transitions fade, the swap button rotates, and the hero's three tiles bob.
 
-## The hero visual
+## The hero's isometric tiles
 
-The home page hero carries a small 3D scene: a leaf and a pharmaceutical
-capsule, each on its own, travelling one circle around one shared centre. It is
-decorative. The headline says the same thing in words and the page reads the
-same with the scene switched off, which is what every piece of the design below
-is arranged around.
+The home page leads with the flow the reader came for: "Describe a problem. See
+what the literature records.", one line saying what the database is, and two
+calls to action -- **Describe a problem** first, **Check a pair** second. Behind
+them sit a faint isometric line grid and three pastel tiles. All of it is
+decorative. The headline says the whole thing in words and the page reads the
+same with every tile removed, which is what the rest of this section is arranged
+around.
 
-**What it may not say.** The two bodies stay separate and never touch. Nothing
-in the scene merges a herb and a medicine into a third object; they share only
-the centre they move around.
+**They are drawn, not fetched.** `iso-art.tsx` is inline SVG and nothing else:
+no image file, no 3D library, no runtime. One slab -- a rhombus top face and two
+side faces in a 2:1 projection -- carries five motifs: a herb leaf, a capsule, a
+cited paper, a caution shield and a confidence flag, one for each thing this
+database actually holds. Three of them float in the hero; the others mark the
+404, the error and the empty states. The side faces are the same pastel darkened
+by an ink overlay rather than by a second set of colour values, so a tile cannot
+drift away from the palette, and the motifs are projected onto the top face by
+`matrix(1, .5, -1, .5, 0, 0)`, which is exactly the transform that maps the
+square they are drawn in onto that rhombus.
 
-**It is additive, in this order.** `hero-emblem.tsx` is a flat SVG of the same
-composition and it is in the HTML the server sends, at the final size, so the
-hero is composed in the first paint and nothing moves when the canvas arrives.
-`hero-visual.tsx` layers the canvas over it and fades the emblem out only once
-the scene reports a drawn frame -- not when the chunk loads, which would blank
-the space for however long the first shader compile takes. The flat and the 3D
-compositions are laid out the same way round so that the handover is one
-picture gaining depth rather than two pictures swapping places.
+**The grid is the floor they stand on.** Two families of lines at thirty
+degrees, drawn at seven per cent and masked by a radial gradient so they fade
+out well before the edges of the hero. At that weight it reads as paper rather
+than as something to look at.
 
-**Every failure ends in the same place.** No WebGL, a chunk that never arrives,
-a context that cannot be created, scripts blocked entirely: the emblem is
-already on screen and stays. A browser that cannot draw the scene is asked
-before the chunk is requested, so it never downloads three.js to find that out,
-and an end-to-end test asserts exactly that.
+**They are in the first response.** The tiles are server-rendered markup, so the
+hero is composed in the first paint and there is nothing to wait for, nothing to
+fail, and no state where the hero is half-drawn. An end-to-end test loads the
+page with every script chunk blocked and asserts the hero is still composed.
 
-**Colours come from the tokens, not from a second palette.** `palette.ts` reads
-the custom properties off `<html>` with `getComputedStyle`, so the materials
-cannot drift from the rest of the interface and the dark theme needs no second
-set of values. The lamps are white: light is light, and tinting them with
-surface tokens turned every lamp off in the dark theme, where those tokens are
-nearly black. The one exception in both directions is the contact shadow, which
-is tinted with the ink token in the light theme and is black in the dark one,
-because the ink token inverts to a near-white there.
+**They are `aria-hidden` and take no pointer events.** The field sits behind the
+headline on its own layer, and a test clicks the hero's own call to action
+through it.
 
-**The animation is keyframe data, not code.** `hero-sheet.json` holds a
-Theatre.js sequence that drifts and fades the two pieces into place and then
-blends in the continuous orbit. It is checked in, so nothing at runtime needs
-Theatre Studio; `@theatre/studio` is a dev dependency, loaded from inside a
-branch the bundler folds away, and it is there so the timeline can be scrubbed
-against the real scene. `scripts/build-hero-sheet.mjs` (`npm run hero:sheet`)
-writes the state file from a readable timeline, and
-`tests/unit/hero-sheet.test.ts` reads it back through Theatre.js and checks it
-still moves the pieces and still ends on the settled composition.
+**Motion is given up readily.** Each tile bobs on its own period and phase. Both
+ends of the keyframe are the resting position and the drift is at the midpoint,
+so when `prefers-reduced-motion` collapses the duration -- which the one rule at
+the bottom of `globals.css` does for every animation in the app -- the tile
+lands where it belongs rather than stopping mid-air. An end-to-end test captures
+the field twice, a second and a half apart, and requires the two to be
+byte-identical.
 
-**Motion is given up readily.** Under `prefers-reduced-motion` the render loop
-is not run at all: one frame is drawn, of the settled end of the entrance, and
-an end-to-end test asserts that two captures a second and a half apart are
-byte-identical. The loop also stops whenever the visual scrolls out of the way,
-so a reader further down the page is not paying for an orbit they cannot see.
+**The hero is one screen.** `--nav-h` in `globals.css` is the header's own
+height and the hero is `min(calc(100svh - var(--nav-h)), 42rem)`, so the
+headline and both buttons are above the fold without scrolling; the headline
+size, the hero's padding and the tile offsets are all `clamp`ed off the
+viewport, so a short laptop screen gives up whitespace and headline size rather
+than a call to action. The 42rem cap is the other half of it: on a tall screen a
+full viewport of hero is mostly empty canvas, and the cap lets the first figures
+show below it. A test asserts the fit at 1366x768, 1440x900 and 1536x864. `svh`
+rather than `vh` so a mobile browser's retracting toolbar cannot crop it.
 
-**What it costs.** About 277 KB gzipped, in one chunk that is not referenced by
-the first response and is fetched after hydration; the markup the reader waits
-for grows by roughly 2 KB. Measured frame rate is in [Limitations](#limitations).
+**What it costs.** About 3 KB of markup, no JavaScript and no network request.
 
 ## How the honesty rules are enforced
 
@@ -244,7 +274,7 @@ this project is required to print.
 cd web
 npm run lint          # ESLint
 npm run typecheck     # tsc --noEmit
-npm test              # 621 unit tests (Vitest)
+npm test              # 627 unit tests (Vitest)
 npm run build         # production build
 npm run e2e           # end-to-end, needs the backend running
 npm run screenshots   # writes docs/screenshots/
@@ -290,10 +320,10 @@ conservative of the options that were open.
 | ESLint is pinned to 9.x | ESLint 10 is incompatible with the React plugin the framework's shared config bundles: it crashes on `contextOrFilename.getFilename is not a function`. 9.39.5 is what the framework's config is built against. |
 | `ml/evaluate.py` writes `metrics.json` as well as `eval.md` | `/stats` serves real classifier metrics and the only machine-readable form was the confusion matrix. Both files are written from the same computed scores in one pass, so they cannot disagree, and nothing parses the prose report. |
 | The classifier's model description says "unigrams and bigrams" | It previously read "word 1-2 grams", which the forbidden-output scan reads as a number next to a unit. The model is unchanged. |
-| The hero's 3D scene is the only looping animation in the app | `globals.css` says every other animation runs once, in response to something the reader did. This one is a deliberate exception for one decorative element: it is off under `prefers-reduced-motion`, off when scrolled away, and the page is complete without it. |
-| The flat emblem is server-rendered and the 3D fades in over it | A placeholder box would hold the space but show nothing; this holds the space *and* composes the hero before any script runs, and it doubles as the fallback for every way the 3D can fail. |
-| Theatre.js keyframes are generated by a script, not exported from Studio | Studio cannot be driven from a non-interactive build, and a state file nobody can regenerate is a file nobody can change. The timeline is readable source, the bake is reproducible, and a unit test reads the result back through Theatre.js. Hand-authoring in Studio and dropping its export over the file still works. |
-| `@theatre/r3f` is not used, only `@theatre/core` | Its published peer range is `@react-three/fiber@^8`, and fiber 8 does not support React 19. The sheet is scrubbed from the render loop instead, which also keeps the keyframed values and the idle orbit in the same frame. |
+| The hero is drawn in SVG, not in WebGL | It replaced a three.js and Theatre.js scene. The scene cost about 277 KB gzipped, more than the rest of this app's JavaScript put together, for one decorative element that had to be built twice over -- once flat for the first paint and the fallbacks, once in 3D -- and a marquee hero wants pastel shapes in the margins rather than one lit object in the middle. The tiles are markup, cost nothing and cannot fail. |
+| The hero's tiles are the only looping animation in the app | `globals.css` says every other animation runs once, in response to something the reader did. This is a deliberate exception for three decorative elements: it is off under `prefers-reduced-motion` and the page is complete without it. |
+| Results, the browse list and the pipeline are ruled rows, not cards | A card per row turns a 53-row catalogue into 53 boxes and buries the one column a reader is scanning. A hairline between rows and columns that line up is what a reference tool looks like, and it fits far more on a screen. Cards are kept where a row really is a record with its own fields: an option, a documented interaction, a recorded use. |
+| The safety line stays on the home figures, and nowhere else | Everything else around those four numbers was cut, but "most searched pairs turned up nothing" is not a description of the UI -- without it, four figures read as a claim that the remaining pairs are fine. The rest of the disclaimer is in the footer, once per page. |
 | Screenshots are a record, not a baseline | Nothing compares them to a reference image. A font-rendering difference would fail such a test and say nothing about the project. |
 | The end-to-end suite refuses to run without the backend | Otherwise a stopped backend produces a page full of "not responding" and a dozen confusing failures instead of one clear one. |
 
@@ -327,21 +357,6 @@ conservative of the options that were open.
 - **Free deployments sleep.** On the free plan the first request after a quiet
   period finds the API asleep, and the page reports it as not responding until
   it wakes. See [DEPLOY.md](DEPLOY.md).
-- **The 3D hero costs about 277 KB gzipped**, which is more than the rest of the
-  app's JavaScript put together. It is split into its own chunk that the first
-  response does not reference, it is fetched only after hydration and only by a
-  browser that can draw it, and the hero is composed without it either way --
-  but a reader on a slow connection does pay for it. It is one decorative
-  element; deleting `hero-scene/` and the one `<HeroVisual>` in `page.tsx`
-  removes the cost entirely and leaves the flat hero behind. Roughly 165 KB of
-  the total is three.js itself, which no amount of tree-shaking removes, so a
-  budget below about 200 KB is not reachable with this library at all.
-- **The hero's measured frame rate is 60 fps with a GPU and poor without one.**
-  On this machine with hardware acceleration it holds 60 fps at 1280x900 and
-  about 54 fps with the CPU throttled 4x. In headless Chromium's software
-  renderer it falls to roughly 26 fps. That is the figure a machine with a
-  blocklisted driver would see, and it is the reason the scene is small, uses no
-  shadow map and stops rendering when it is not on screen.
 - **The `web/tests/fixtures/` responses are a snapshot.** They were captured
   from a real backend and the types are checked against them, but re-seeding
   with changed reference files will make them stale. Re-capture by calling each

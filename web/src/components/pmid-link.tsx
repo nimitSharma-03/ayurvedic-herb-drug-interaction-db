@@ -15,7 +15,7 @@ export function PmidLink({ pmid, className }: { pmid: string; className?: string
       href={pubmedUrl(pmid)}
       target="_blank"
       rel="noreferrer noopener"
-      className={`inline-flex items-center gap-1 font-[family-name:var(--font-mono)] text-xs text-[var(--color-ink)] underline decoration-[var(--color-line)] underline-offset-3 hover:decoration-[var(--color-herb)] ${className ?? ""}`}
+      className={`inline-flex items-center gap-1 font-[family-name:var(--font-mono)] text-sm text-[var(--color-ink)] underline decoration-[var(--color-line)] underline-offset-3 hover:decoration-[var(--color-primary)] ${className ?? ""}`}
     >
       PMID {pmid}
       <ExternalLink className="size-3" aria-hidden="true" />

@@ -45,9 +45,9 @@ export function WarningGraph({ response }: { response: RecommendResponse }) {
   const summary: CombinationSummary | undefined = response.combination_summary;
 
   return (
-    <section className="panel p-5 sm:p-7" data-testid="warning-graph">
-      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-        <h2 className="text-2xl">Combinations to avoid</h2>
+    <section className="panel p-6 sm:p-8" data-testid="warning-graph">
+      <div className="heading-rule flex flex-wrap items-baseline gap-x-3 gap-y-1">
+        <h2 className="text-2xl sm:text-[2rem]">Combinations to avoid</h2>
         <p className="text-sm text-[var(--color-ink-2)]">
           {totals.warnings} {totals.warnings === 1 ? "warning" : "warnings"} in{" "}
           {totals.groups} {totals.groups === 1 ? "row" : "rows"}
@@ -87,7 +87,7 @@ function SummaryStat({ label, value }: { label: string; value: number }) {
   return (
     <div>
       <dt className="text-[var(--color-ink-2)]">{label}</dt>
-      <dd className="font-[family-name:var(--font-heading)] text-lg font-semibold tabular-nums">
+      <dd className="text-lg font-semibold tabular-nums">
         {value}
       </dd>
     </div>
@@ -238,7 +238,7 @@ function HubBlock({
               data-testid="warning-row"
               data-level={group.level}
               className={cn(
-                "card-surface w-full p-4 text-left transition-shadow hover:shadow-[var(--shadow-lift)]",
+                "card-surface w-full p-6 text-left transition-shadow hover:shadow-[var(--shadow-lift)]",
                 group.level === "literature_verified" &&
                   "border-[var(--color-verified)]/40",
                 group.level === "mechanism_based" && "border-[var(--color-mechanism)]/40",
@@ -247,7 +247,7 @@ function HubBlock({
               <div className="flex flex-wrap items-center gap-2">
                 <WarningLevelBadge level={group.level} label={group.label} />
                 {group.againstCurrentMedicine ? (
-                  <span className="text-xs font-semibold text-[var(--color-ink-2)]">
+                  <span className="text-sm font-semibold text-[var(--color-ink-2)]">
                     with something you already take
                   </span>
                 ) : null}
@@ -289,7 +289,7 @@ function HubBlock({
           ref={hubRef}
           data-testid="warning-hub-node"
           className={cn(
-            "inline-flex items-center gap-2 rounded-full border-2 px-4 py-2.5 font-[family-name:var(--font-heading)] font-semibold",
+            "inline-flex items-center gap-2 rounded-full border-2 px-4 py-2.5 font-semibold",
             isHerb
               ? "border-[var(--color-herb)] bg-[var(--color-herb)]/10 text-[var(--color-herb)]"
               : "border-[var(--color-drug)] bg-[var(--color-drug)]/10 text-[var(--color-drug)]",
@@ -303,7 +303,7 @@ function HubBlock({
           {hub.hub.name}
         </div>
         {hub.hub.isCurrent ? (
-          <p className="mt-1.5 text-right text-xs text-[var(--color-ink-2)]">
+          <p className="mt-1.5 text-right text-sm text-[var(--color-ink-2)]">
             you already take this
           </p>
         ) : null}

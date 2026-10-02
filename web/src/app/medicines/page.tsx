@@ -22,21 +22,20 @@ export default async function MedicinesPage() {
     list = await api.medicines({ limit: 100 });
   } catch (error) {
     return (
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+      <div className="mx-auto w-full max-w-[72rem] px-4 py-12 sm:px-8 lg:py-16">
         <ApiUnreachable error={asApiError(error)} what="the medicine list" />
       </div>
     );
   }
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
-      <h1 className="text-3xl sm:text-4xl">Medicines in this database</h1>
-      <p className="mt-3 max-w-2xl text-[var(--color-ink-2)]">
-        {list.count} in all. The set is fixed: a herb or a drug that is not here is
-        outside what this project covers, and nothing is added on the fly.
+    <div className="mx-auto w-full max-w-[72rem] px-4 py-12 sm:px-8 lg:py-16">
+      <h1 className="heading-rule">Medicines</h1>
+      <p className="mt-4 max-w-[70ch] text-[var(--color-ink-2)]">
+        {list.count} in all. The set is fixed; a name outside it has no page.
       </p>
 
-      <div className="panel mt-8 p-5 sm:p-6">
+      <div className="mt-8">
         <MedicineSearch />
       </div>
 
