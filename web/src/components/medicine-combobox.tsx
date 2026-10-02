@@ -54,7 +54,7 @@ export function MedicineCombobox({
 
   return (
     <div>
-      <span id={labelId} className="mb-1.5 block text-sm font-semibold">
+      <span id={labelId} className="mb-1.5 block text-sm font-medium">
         {label}
       </span>
       <Popover open={open} onOpenChange={setOpen}>

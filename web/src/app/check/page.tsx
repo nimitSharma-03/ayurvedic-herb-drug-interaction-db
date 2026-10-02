@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function CheckPage() {
   return (
     <div className="page-shell py-12 lg:py-16">
-      <div className="mx-auto max-w-3xl">
+      <div className="mx-auto max-w-5xl">
         <h1 className="heading-rule">Check a pair</h1>
         <p className="mt-4 text-[var(--color-ink-2)]">
           The answer is the same whichever order you put them in.

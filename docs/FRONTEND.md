@@ -75,8 +75,11 @@ web/
       ui/                    the shadcn/ui primitives actually used
       site-header.tsx        nav and the theme toggle
       site-footer.tsx        disclaimer, scope, how-it-works link
-      brand-mark.tsx         the isometric tile mark
-      iso-art.tsx            the isometric tiles: the hero's, and the quiet states'
+      home/hero-art.tsx      the hero's drawn layers: hills, grass, branches, motes
+      home/hero-particles.tsx  loads the WebGL particle field after first paint
+      home/particle-field.ts the particle field itself (three)
+      home/scene-motion.tsx  parallax depth and scene reveals
+      disc-mark.tsx          the small vermilion disc the quiet states carry
       medicine-search.tsx    the /medicines search box (alias-aware)
       medicine-combobox.tsx  one-medicine picker, for /check
       medicine-token-input.tsx   "what you already take"
@@ -100,7 +103,7 @@ web/
       text.ts                shared copy and small helpers
   tests/
     fixtures/                44 real captured responses
-    unit/                    627 unit tests
+    unit/                    645 unit tests
     e2e/                     the end-to-end suite and the screenshot run
 ```
 
@@ -119,129 +122,185 @@ See [.env.example](../web/.env.example).
 
 ## Design tokens
 
-Light is the default. Dark is opt-in through the header toggle, stored in
-`localStorage` and applied by a blocking inline script in `<head>` before the
-first paint, so there is no flash on load or on a navigation. The system
-preference is deliberately not followed — see **Decisions**.
+Light is the default for every page a reader works in -- `/ask`, `/check`,
+`/medicines`, a medicine page, `/how-it-works`. Dark is opt-in through the
+header toggle, stored in `localStorage` and applied by a blocking inline script
+in `<head>` before the first paint, so there is no flash on load or on a
+navigation. The system preference is deliberately not followed -- see
+**Decisions**.
 
-Paper, white and a 1px hairline. The pastels are accents only -- a badge, a
-tile, an active state -- and they are fills, never text: anything set on one of
-them is set in ink, which is what keeps it at AA. The three evidence colours are
-the only ones that are text colours in their own right, and each clears 4.5:1 on
-the surface it sits on.
+The home page's four scenes are the exception: they are night scenes by design
+and always dark. They sit inside `.night`, a class that carries exactly the
+dark theme's token values, so anything rendered in a scene looks as it would in
+the dark theme. The `dark:` variant matches inside `.night` too.
 
-| Token | Light | Dark | Used for |
+Paper, ink and a 1px hairline. Vermilion is the one accent and is used
+sparingly: the hero's disc, the primary button, an active state, the scroll
+progress line, the chapter marks. The three evidence colours are the only other
+text colours, and each clears 4.5:1 on the surface it sits on.
+
+| Token | Light | Dark / `.night` | Used for |
 |---|---|---|---|
-| `--color-paper` | `#F7F5F0` | `#17123F` | page background |
-| `--color-surface` | `#FFFFFF` | `#1D1849` | panels and cards |
-| `--color-wash` | `#EFECF7` | `#262059` | quiet fills, chips |
-| `--color-ink` | `#251D5C` | `#ECE9FF` | body text, primary buttons |
-| `--color-ink-2` | `#5B5484` | `#B6B0DD` | secondary text |
-| `--color-line` | `#D7D4DE` | `#373159` | hairline rules, ink at 15% |
-| `--color-on-ink` | `#F7F5F0` | `#17123F` | type on an ink or verified fill |
-| `--color-primary` | `#605EA7` | `#A7A4E6` | links, focus, hover |
-| `--color-accent-teal` | `#11C8D5` | `#11C8D5` | tile fills |
-| `--color-accent-pink` | `#FC79A4` | `#FC79A4` | tile fills |
-| `--color-accent-sage` | `#C6CDAA` | `#C6CDAA` | tile fills |
-| `--color-ring` | `#A499FF` | `#A499FF` | focus halo |
-| `--color-herb` | `#5A6B34` | `#C0D184` | Ayurvedic |
-| `--color-drug` | `#0A6D75` | `#67DBE4` | allopathic |
-| `--color-verified` | `#A8143F` | `#FF9EBB` | literature-verified |
-| `--color-mechanism` | `#8A5410` | `#E9B55E` | mechanism-based |
-| `--color-insufficient` | `#5C5A7A` | `#A9A4C4` | insufficient evidence |
+| `--color-paper` | `#F4F1EA` | `#0D0B0A` | page background |
+| `--color-surface` | `#FBFAF6` | `#161311` | panels and cards |
+| `--color-wash` | `#EBE7DE` | `#1F1B18` | quiet fills, chips |
+| `--color-ink` | `#14110F` | `#F4F1EA` | body text |
+| `--color-ink-2` | `#5E5C58` | `#8A8884` | secondary text (stone) |
+| `--color-line` | `#D2CFC9` | `#302E2C` | hairline rules, ink at 15% |
+| `--color-on-ink` | `#F4F1EA` | `#0D0B0A` | type on an ink fill |
+| `--color-primary` | `#C41D16` | `#FF5C50` | vermilion as text: links, active states |
+| `--color-primary-fill` | `#E0231C` | `#E0231C` | vermilion as a fill: the primary button, the disc, the progress line |
+| `--color-on-primary` | `#FFFFFF` | `#FFFFFF` | type on the vermilion fill |
+| `--color-charred` | `#0D0B0A` | `#0D0B0A` | the scenes' near-black |
+| `--color-night` | `#0F1520` | `#0F1520` | the scenes' night blue |
+| `--color-stone` | `#8A8884` | `#8A8884` | stone, for the scenes' fixed palette |
+| `--color-herb` | `#4A6431` | `#A9C27F` | Ayurvedic |
+| `--color-drug` | `#1D5C7C` | `#84C3E3` | allopathic |
+| `--color-verified` | `#B01710` | `#FF7A6E` | literature-verified |
+| `--color-mechanism` | `#84500E` | `#E9B55E` | mechanism-based |
+| `--color-insufficient` | `#5E5C58` | `#A3A09A` | insufficient evidence |
 
-Selection is `#A499FF` on `#211C4D` in both themes.
+Contrast, measured: stone is `#8A8884` on charred (5.6:1) and night blue
+(5.2:1), and darkens to `#5E5C58` on paper (5.9:1). The vermilion fill
+`#E0231C` is 4.2:1 on paper, short of AA for body-size text, so vermilion
+*text* is a step deeper on paper (`#C41D16`, 5.3:1) and a step lighter on
+charred (`#FF5C50`, 6.5:1); white on the fill is 4.7:1. Selection is white on
+the vermilion fill in both themes. Focus is a 2px vermilion outline, offset
+2px, so it shows on a vermilion button as well as on paper.
 
-Type: one family. IBM Plex Sans at 400 for body, 500 for labels and table
-headings, 600 for headings; IBM Plex Mono for PMIDs and identifiers and nothing
-else. There is no display cut and no display weight: a reference tool is read
-rather than announced. Headings set at `-0.015em` and a leading of 1.15; `h1` is
-`clamp(2rem, 4.5vw, 3.5rem)`, so 56px at most, and `h2` is 24px rising to 32.
-Body is 16px at 1.6, and nothing on a page is smaller than 14px. Only the hero
-is centred; every other heading and paragraph is left-aligned.
+Type: Onest for everything that is read, loaded through `next/font/google` at
+300, 400, 500 and 600; IBM Plex Mono for PMIDs and identifiers and nothing
+else. Headings are weight 400 at `-0.012em`; `h1` and a scene's one line
+(`scene-heading`) are `clamp(2rem, 4vw, 2.875rem)` at a leading of 1.1. Body is
+17px at 1.6 -- weight 300 inside a night scene, 400 on the tool pages, where it
+has to carry dense reading. Chapter labels (`chapter-label`, "01 — Describe a
+problem") are tracked capitals at 14px. Nothing readable is smaller than 14px.
 
-Shapes: 42px pills for the controls -- buttons, inputs, badges -- and 14px
-(`--radius-card`) for panels and cards, because a 42px corner around a block of
-text reads as a marketing card rather than as a reference table. 10px
-(`--radius-tight`) for a block nested inside one of those. Full-width bands and
-the page edges are square.
+Shapes: 6px (`--radius-field`, `--radius-card`) for buttons, inputs, cards and
+panels, 4px (`--radius-tight`) for a block nested inside one of those. The pill
+(`--radius-pill`) is kept for small badges and nothing else. Every border is a
+1px hairline at about 15% of the ink.
 
-Separation is a 1px hairline, not a shadow. `panel` and `card-surface` are
-white with a rule and no elevation; `heading-rule` puts a rule under a section
-heading and `ruled-list` puts one between the rows of a list, which is what
-separates the medicine browser, the pipeline stages and the no-finding pairs in
-place of a stack of cards. `--shadow-lift` is left for the things that really do
-float over the page -- the drawer, the comboboxes -- and `--tile-shadow` for the
-isometric tiles, its own token because it has to stay dark in the dark theme,
-where the ink token is nearly white.
+Separation is a 1px hairline, not a shadow. `panel` and `card-surface` are a
+surface with a rule and no elevation; `heading-rule` puts a rule under a
+section heading and `ruled-list` puts one between the rows of a list, which is
+what separates the medicine browser, the pipeline stages, the pair-check result
+and the no-finding pairs. `--shadow-lift` is left for the things that really
+do float over the page -- the drawer, the comboboxes.
 
 Layout: one 1440px column (`--container-page`, the `page-shell` utility),
 centred, with a 16/32/48px gutter, on an 8px grid. `section-pad` is 48px of
-block padding, opening to 64 and then 80 on wider screens; the hairlines do the
-separating, so the padding does not have to. Reading columns are capped in
-characters (`max-w-[70ch]` and narrower), because a 1440px line of body text is
-unreadable.
+block padding, opening to 64 and then 80 on wider screens. Reading columns are
+capped in characters (`max-w-[70ch]` and narrower).
 
-Motion, all of it switched off under `prefers-reduced-motion`: the home counts
-count up once when they scroll into view, the search box glows on focus, results
-reveal once, the combination lines draw themselves in as SVG strokes, the
-warning drawer slides in from the right over a blurred backdrop, page
-transitions fade, the swap button rotates, and the hero's three tiles bob.
+Badges: every severity, status and confidence badge carries an icon as well as
+its full wording, so no state is said by colour alone. The pair check's status
+badges are a book with a tick (documented), a crossed-out search (nothing
+documented) and a question mark (insufficient evidence); the evidence level on
+the right of the row carries a bar-chart icon.
 
-## The hero's isometric tiles
+Motion, all of it switched off under `prefers-reduced-motion`: on the home page
+the disc pulses slowly, the grass and branches sway, motes drift, the hills and
+the corners move with the scroll at different depths, each scene fades up 24px
+once as it enters the viewport, and the particle field drifts (see below).
+Everywhere: the scroll progress line fills with the scroll position, the home
+counts count up once, the search box rings on focus, results reveal once, the
+combination lines draw themselves in, the warning drawer slides in, page
+transitions fade, and the swap button rotates.
 
-The home page leads with the flow the reader came for: "Describe a problem. See
-what the literature records.", one line saying what the database is, and two
-calls to action -- **Describe a problem** first, **Check a pair** second. Behind
-them sit a faint isometric line grid and three pastel tiles. All of it is
-decorative. The headline says the whole thing in words and the page reads the
-same with every tile removed, which is what the rest of this section is arranged
-around.
+## The home page's scenes
 
-**They are drawn, not fetched.** `iso-art.tsx` is inline SVG and nothing else:
-no image file, no 3D library, no runtime. One slab -- a rhombus top face and two
-side faces in a 2:1 projection -- carries five motifs: a herb leaf, a capsule, a
-cited paper, a caution shield and a confidence flag, one for each thing this
-database actually holds. Three of them float in the hero; the others mark the
-404, the error and the empty states. The side faces are the same pastel darkened
-by an ink overlay rather than by a second set of colour values, so a tile cannot
-drift away from the palette, and the motifs are projected onto the top face by
-`matrix(1, .5, -1, .5, 0, 0)`, which is exactly the transform that maps the
-square they are drawn in onto that rhombus.
+The home page is a scroll story in four scenes, one short line each, then the
+problem form. A 1px hairline runs down the left -- 96px in on a wide screen,
+48px on a tablet, 16px on a phone -- and each chapter label sits on it with a
+small vermilion mark, so the four scenes read as one line.
 
-**The grid is the floor they stand on.** Two families of lines at thirty
-degrees, drawn at seven per cent and masked by a radial gradient so they fade
-out well before the edges of the hero. At that weight it reads as paper rather
-than as something to look at.
+| Scene | Ground | What it holds |
+|---|---|---|
+| 01 Describe a problem | night blue to charred | The hero. "Describe a problem. See what the literature records.", one subhead line, **Describe a problem** (vermilion) and **Check a pair** (outlined). A vermilion disc behind the top of the headline, two hills, grass and a leafy branch in both bottom corners, drifting motes, a "Scroll" cue. |
+| 02 Search the literature | charred | "One fixed PubMed search for every herb and drug pair." and five light numerals separated by hairlines: herbs, drugs, pairs searched, abstracts read, documented interactions (in vermilion). |
+| 03 Curated by hand | night blue | "NLP finds the sentences. A person checks each one." beside two ruled placeholder rows, one per confidence state. |
+| 04 Check a pair | night blue to charred | A vermilion ring and dot, "Pick a herb and a medicine.", the way into `/check` and `/ask`, and the disclaimer. |
 
-**They are in the first response.** The tiles are server-rendered markup, so the
-hero is composed in the first paint and there is nothing to wait for, nothing to
-fail, and no state where the hero is half-drawn. An end-to-end test loads the
-page with every script chunk blocked and asserts the hero is still composed.
+**Every figure is live.** Scene 02's numbers come from the `/stats` response the
+page is rendered with; none is written in a source file, and the honesty tests
+fail if one is. The five figures are split into two groups that keep the
+existing test ids: `scope-strip` (herbs, drugs, and under them the drug-class
+and condition counts) and `pipeline-card` (pairs searched, abstracts read,
+documented interactions, and under them the candidate-sentence count). The line
+saying most searched pairs turned up nothing stays under the figures.
 
-**They are `aria-hidden` and take no pointer events.** The field sits behind the
-headline on its own layer, and a test clicks the hero's own call to action
-through it.
+**The placeholder rows name nothing.** Scene 03's rows read "[Medicine name]
+with [Herb name]" and "PubMed [PMID]". They show the two states a sentence can
+be in -- "Verified by a curator" and "Auto-extracted, not yet reviewed" (with a
+dashed border) -- not a record from the database.
 
-**Motion is given up readily.** Each tile bobs on its own period and phase. Both
-ends of the keyframe are the resting position and the drift is at the midpoint,
-so when `prefers-reduced-motion` collapses the duration -- which the one rule at
-the bottom of `globals.css` does for every animation in the app -- the tile
-lands where it belongs rather than stopping mid-air. An end-to-end test captures
-the field twice, a second and a half apart, and requires the two to be
-byte-identical.
+**The drawn layers are in the first response.** `home/hero-art.tsx` is inline
+SVG and CSS: the hills, the grass blades and the branch's leaves are generated
+from a few parameters at render time, server-side, so the hero is composed in
+the first paint with nothing to wait for. It is `aria-hidden`, takes no pointer
+events, and an end-to-end test loads the page with every script chunk blocked
+and asserts it is still drawn.
 
-**The hero is one screen.** `--nav-h` in `globals.css` is the header's own
-height and the hero is `min(calc(100svh - var(--nav-h)), 42rem)`, so the
-headline and both buttons are above the fold without scrolling; the headline
-size, the hero's padding and the tile offsets are all `clamp`ed off the
-viewport, so a short laptop screen gives up whitespace and headline size rather
-than a call to action. The 42rem cap is the other half of it: on a tall screen a
-full viewport of hero is mostly empty canvas, and the cap lets the first figures
-show below it. A test asserts the fit at 1366x768, 1440x900 and 1536x864. `svh`
-rather than `vh` so a mobile browser's retracting toolbar cannot crop it.
+**Parallax and reveals are CSS variables and classes.** `home/scene-motion.tsx`
+writes the scroll position to `--scroll` on the scenes root once per frame at
+most, and each `.parallax` layer turns it into a translate through its own
+`--depth`: the disc and the far hill trail the page, the near hill less so, and
+the foreground corners move ahead of it. Scene reveals are hidden only after
+that component has marked the document `reveal-ready`, and anything already on
+screen is marked revealed first, so with scripts off every scene is simply
+there and nothing visible blinks out.
 
-**What it costs.** About 3 KB of markup, no JavaScript and no network request.
+**The hero is one screen.** The header lies over it, transparent and in the
+night palette, and the hero pads itself by `--nav-h`; it is `clamp(34rem,
+100svh, 60rem)` tall. The disc is sized by the narrower of height and width and
+lifted so its lower edge clears the subhead, which therefore always sits on
+night, not on vermilion. A test asserts the headline and both buttons are above
+the fold at 1366x768, 1440x900 and 1536x864.
+
+**The header.** On the home page it is transparent over the hero and takes a
+charred backdrop once the reader scrolls; on every other page it is a solid
+paper or charred bar. A small vermilion dot and the wordmark "Ayurvedic HDI",
+the four links, the theme toggle, and a 2px vermilion progress line along its
+bottom edge, written straight to a transform so scrolling never re-renders it.
+
+**The problem form stays on the home page,** after the scenes and in the
+site's own theme, because the home page has answered a described problem in
+place since that was introduced, and the end-to-end suite drives it there.
+
+## The particle field (Three.js)
+
+Behind the hero headline, slow pollen and embers drift up through the night in
+vermilion and stone, and the camera eases a little toward the pointer and the
+scroll position. It is an enhancement over a hero that is already complete, so
+it is only ever added, never waited for.
+
+- **Plain `three`**, no react-three-fiber, drei or Theatre. `home/particle-field.ts`
+  imports only the eight classes it uses; one `Points` object with a small
+  shader does all of it, and the drift is computed on the GPU from one time
+  uniform, so a frame costs the CPU a few uniform writes.
+- **Loaded after first paint.** `home/hero-particles.tsx` dynamic-imports the
+  field once the browser is idle (`requestIdleCallback`, with a timeout), so
+  `three` is in its own chunk and not in the page's first JavaScript.
+- **Skipped when it should be.** Under `prefers-reduced-motion`, or when a WebGL
+  context cannot be created (probed before anything is downloaded), the field
+  never loads and the static hero -- gradient, disc, drawn layers, CSS motes --
+  is what the reader sees. Switching reduced motion on mid-visit tears it down.
+- **Cheap while it runs.** `devicePixelRatio` is capped at 1.5; the loop pauses
+  while the tab is hidden or the hero is off screen; the canvas is sized to the
+  hero, not the window.
+- **Out of the way.** The canvas is `aria-hidden` with `pointer-events: none`.
+  While it runs, the hero carries `data-webgl="on"`, which hides the CSS motes
+  so the two never double up.
+- **Cleaned up.** On unmount it stops the loop, disconnects its observers and
+  listeners, disposes the geometry, material and renderer, forces the context
+  loss and removes the canvas.
+
+**What it costs.** Measured on the production build: the home page's
+first-load JavaScript is 221.6 KB gzipped, against 222.1 KB before this theme
+-- the header, scene motion and particle loader add nothing measurable. The
+particle field is one lazily loaded chunk of 132.1 KB gzipped (536.7 KB raw),
+fetched after first paint and never under reduced motion or without WebGL.
 
 ## How the honesty rules are enforced
 
@@ -274,7 +333,7 @@ this project is required to print.
 cd web
 npm run lint          # ESLint
 npm run typecheck     # tsc --noEmit
-npm test              # 627 unit tests (Vitest)
+npm test              # 645 unit tests (Vitest)
 npm run build         # production build
 npm run e2e           # end-to-end, needs the backend running
 npm run screenshots   # writes docs/screenshots/
@@ -320,10 +379,16 @@ conservative of the options that were open.
 | ESLint is pinned to 9.x | ESLint 10 is incompatible with the React plugin the framework's shared config bundles: it crashes on `contextOrFilename.getFilename is not a function`. 9.39.5 is what the framework's config is built against. |
 | `ml/evaluate.py` writes `metrics.json` as well as `eval.md` | `/stats` serves real classifier metrics and the only machine-readable form was the confusion matrix. Both files are written from the same computed scores in one pass, so they cannot disagree, and nothing parses the prose report. |
 | The classifier's model description says "unigrams and bigrams" | It previously read "word 1-2 grams", which the forbidden-output scan reads as a number next to a unit. The model is unchanged. |
-| The hero is drawn in SVG, not in WebGL | It replaced a three.js and Theatre.js scene. The scene cost about 277 KB gzipped, more than the rest of this app's JavaScript put together, for one decorative element that had to be built twice over -- once flat for the first paint and the fallbacks, once in 3D -- and a marquee hero wants pastel shapes in the margins rather than one lit object in the middle. The tiles are markup, cost nothing and cannot fail. |
-| The hero's tiles are the only looping animation in the app | `globals.css` says every other animation runs once, in response to something the reader did. This is a deliberate exception for three decorative elements: it is off under `prefers-reduced-motion` and the page is complete without it. |
+| The particle field is the only WebGL, and it is optional | Everything the hero says is markup: the gradient, the disc, the drawn layers and the motes are in the first response. The field is 132 KB gzipped of decoration, so it loads after first paint, only with WebGL and only without reduced motion, and the page is complete without it. Plain `three` with eight named imports rather than react-three-fiber or drei, because one `Points` object with a shader needs none of their machinery. |
+| The home scenes loop; nothing else does | The disc's pulse, the sway, the motes, the scroll cue and the particle field loop. All are decorative and aria-hidden, all stop under `prefers-reduced-motion` -- the looping keyframes start and end at rest, so a collapsed animation lands where it belongs -- and every other animation in the app runs once, in response to something the reader did. |
+| The home scenes are always dark; the tool pages stay light by default | The scenes are a night scene by design, so they carry `.night` whatever the toggle says. A page a reader works in is dense and is read for longer, so it keeps paper and ink unless the reader chooses dark. |
+| Vermilion has two values for text and one for fills | The fill `#E0231C` is 4.2:1 on paper, short of AA for body-size text. Text and active states use `#C41D16` on paper and `#FF5C50` on charred; the fill keeps the exact vermilion, with white type at 4.7:1. |
+| The problem form stays on the home page, after the scenes | The home page has answered a described problem in place since that was introduced, and the end-to-end suite drives the form there. It follows the theme like every other tool rather than being forced dark. |
+| The pair check keeps "First medicine" and "Second medicine" | The pickers accept any herb or drug in either slot -- a herb-and-herb check is a real state with its own answer -- so labelling them "Herb" and "Medicine" would describe a constraint the form does not have, and a swap would put a drug under "Herb". |
+| Scene 02 shows five figures in a row and two more under them | The row is the five the scene is about. The candidate-sentence and condition counts are kept as a line under their groups because the end-to-end suite checks each figure against `/stats`, and dropping a live figure to save a line is a loss of information, not a style choice. |
+| Scene reveals hide only once the script has confirmed it can show them | A reveal that starts hidden in CSS leaves the page blank for a reader with scripts off. The script marks anything already on screen as revealed before it arms the rest, so nothing visible blinks out. |
 | Results, the browse list and the pipeline are ruled rows, not cards | A card per row turns a 53-row catalogue into 53 boxes and buries the one column a reader is scanning. A hairline between rows and columns that line up is what a reference tool looks like, and it fits far more on a screen. Cards are kept where a row really is a record with its own fields: an option, a documented interaction, a recorded use. |
-| The safety line stays on the home figures, and nowhere else | Everything else around those four numbers was cut, but "most searched pairs turned up nothing" is not a description of the UI -- without it, four figures read as a claim that the remaining pairs are fine. The rest of the disclaimer is in the footer, once per page. |
+| The safety line stays under the home figures | Everything else around the figures was cut, but "most searched pairs turned up nothing" is not a description of the UI -- without it, the figures read as a claim that the remaining pairs are fine. The short disclaimer closes scene 04 and is in the footer on every page. |
 | Screenshots are a record, not a baseline | Nothing compares them to a reference image. A font-rendering difference would fail such a test and say nothing about the project. |
 | The end-to-end suite refuses to run without the backend | Otherwise a stopped backend produces a page full of "not responding" and a dozen confusing failures instead of one clear one. |
 

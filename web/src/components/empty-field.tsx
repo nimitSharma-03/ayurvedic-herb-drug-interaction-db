@@ -1,4 +1,4 @@
-import { IsoMark } from "@/components/iso-art";
+import { DiscMark } from "@/components/disc-mark";
 import { NOT_RECORDED } from "@/lib/text";
 
 /**
@@ -46,7 +46,7 @@ export function Field({
 /**
  * The same message for a whole section that has no rows.
  *
- * With a tile beside it, because an empty dashed box on its own reads as
+ * With a small disc beside it, because an empty dashed box on its own reads as
  * something that failed to load rather than as a section this project has
  * nothing sourced for.
  */
@@ -54,9 +54,9 @@ export function EmptySection({ children }: { children: React.ReactNode }) {
   return (
     <div
       data-testid="empty-section"
-      className="flex items-center gap-4 rounded-[var(--radius-card)] border border-dashed border-[var(--color-line)] px-5 py-4 text-sm text-[var(--color-ink-2)]"
+      className="flex items-center gap-4 rounded-[var(--radius-card)] border border-dashed border-[var(--color-ink)]/25 px-5 py-4 text-sm text-[var(--color-ink-2)]"
     >
-      <IsoMark kind="paper" tone="sage" className="size-10" />
+      <DiscMark className="size-4" />
       <p>{children}</p>
     </div>
   );

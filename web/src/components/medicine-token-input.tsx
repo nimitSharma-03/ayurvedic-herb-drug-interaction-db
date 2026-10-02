@@ -93,7 +93,7 @@ export function MedicineTokenInput({
                   type="button"
                   onClick={() => remove(value)}
                   aria-label={`Remove ${value}`}
-                  className="rounded-full p-1 text-[var(--color-ink-2)] transition-colors hover:bg-[var(--color-surface)] hover:text-[var(--color-ink)]"
+                  className="rounded-[var(--radius-tight)] p-1 text-[var(--color-ink-2)] transition-colors hover:bg-[var(--color-surface)] hover:text-[var(--color-ink)]"
                 >
                   <X className="size-3.5" aria-hidden="true" />
                 </button>
@@ -136,7 +136,7 @@ export function MedicineTokenInput({
               type="button"
               onClick={() => add(term)}
               aria-label={`Add ${term.trim()}`}
-              className="rounded-full p-1.5 text-[var(--color-ink-2)] transition-colors hover:bg-[var(--color-wash)] hover:text-[var(--color-ink)]"
+              className="rounded-[var(--radius-tight)] p-1.5 text-[var(--color-ink-2)] transition-colors hover:bg-[var(--color-wash)] hover:text-[var(--color-ink)]"
             >
               <Plus className="size-4" aria-hidden="true" />
             </button>

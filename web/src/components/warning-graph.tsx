@@ -289,7 +289,7 @@ function HubBlock({
           ref={hubRef}
           data-testid="warning-hub-node"
           className={cn(
-            "inline-flex items-center gap-2 rounded-full border-2 px-4 py-2.5 font-semibold",
+            "inline-flex items-center gap-2 rounded-[var(--radius-field)] border-2 px-4 py-2.5 font-medium",
             isHerb
               ? "border-[var(--color-herb)] bg-[var(--color-herb)]/10 text-[var(--color-herb)]"
               : "border-[var(--color-drug)] bg-[var(--color-drug)]/10 text-[var(--color-drug)]",

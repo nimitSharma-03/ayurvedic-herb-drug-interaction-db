@@ -110,13 +110,15 @@ export function CheckPairForm() {
   return (
     <div className="mt-8">
       <form
-        className="panel flex flex-col gap-4 p-6 sm:p-8"
+        className="flex flex-col gap-4 border-y border-[var(--color-line)] py-6"
         onSubmit={(event) => {
           event.preventDefault();
           void run(a, b);
         }}
       >
-        <div className="grid items-end gap-4 sm:grid-cols-[1fr_auto_1fr]">
+        {/* One row on a wide screen: the two pickers, the swap between them,
+            and the check. Each picker carries its label above it. */}
+        <div className="grid items-end gap-3 md:grid-cols-[1fr_auto_1fr_auto]">
           <MedicineCombobox
             label="First medicine"
             value={a}
@@ -146,6 +148,22 @@ export function CheckPairForm() {
             onChange={setB}
             testId="pick-b"
           />
+
+          <Button
+            type="submit"
+            size="lg"
+            className="w-full md:w-auto"
+            disabled={pending || !a.trim() || !b.trim() || identical}
+          >
+            {pending ? (
+              <>
+                <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+                Checking
+              </>
+            ) : (
+              "Check this pair"
+            )}
+          </Button>
         </div>
 
         {identical ? (
@@ -157,19 +175,6 @@ export function CheckPairForm() {
             Those are the same medicine. An interaction needs two different ones.
           </p>
         ) : null}
-
-        <div>
-          <Button type="submit" size="lg" disabled={pending || !a.trim() || !b.trim() || identical}>
-            {pending ? (
-              <>
-                <Loader2 className="size-4 animate-spin" aria-hidden="true" />
-                Checking
-              </>
-            ) : (
-              "Check this pair"
-            )}
-          </Button>
-        </div>
       </form>
 
       <div aria-live="polite" className="mt-6">
@@ -187,7 +192,7 @@ export function CheckPairForm() {
             {swapMatched ? (
               <p
                 data-testid="same-either-order"
-                className="rounded-[var(--radius-tight)] border border-[var(--color-line)] bg-[var(--color-wash)] p-3 text-sm font-semibold"
+                className="rounded-[var(--radius-tight)] border border-[var(--color-line)] bg-[var(--color-wash)] p-3 text-sm font-medium"
               >
                 Same answer in either order.
               </p>
@@ -283,7 +288,7 @@ function CheckFailure({ error, asked }: { error: ApiError; asked: Asked | null }
       {error.isUnreachable ? (
         <p className="mt-2 text-sm text-[var(--color-ink-2)]">
           Start it with{" "}
-          <code className="rounded-sm bg-[var(--color-wash)] px-1.5 py-0.5 font-[family-name:var(--font-mono)] text-sm">
+          <code className="rounded-[var(--radius-tight)] bg-[var(--color-wash)] px-1.5 py-0.5 font-[family-name:var(--font-mono)] text-sm">
             python -m hdi.api
           </code>
           , then try again.

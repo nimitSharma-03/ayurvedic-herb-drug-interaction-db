@@ -126,23 +126,33 @@ test.describe("the theme", () => {
 });
 
 /**
- * The hero's isometric tiles.
+ * The hero's drawn layers and its particle field.
  *
  * Decorative, so none of this is about what they look like. What is worth
  * testing is that they are kept out of the accessibility tree, that they never
- * sit between the reader and the hero's own buttons, and that nothing in the
- * hero is drawn by anything heavier than the markup the server already sent.
+ * sit between the reader and the hero's own buttons, that the hero is composed
+ * by the server's markup alone, and that a reader who asked for less motion
+ * gets a still hero with no WebGL at all.
  */
-test.describe("the hero's isometric tiles", () => {
+test.describe("the hero's drawn layers and particle field", () => {
   test("are hidden from assistive technology and do not swallow the CTAs", async ({
     page,
   }) => {
     await page.goto("/");
 
-    const field = page.getByTestId("hero-iso-field");
-    await expect(field).toHaveAttribute("aria-hidden", "true");
-    // Pure markup: nothing here needs a canvas or a WebGL context.
-    await expect(page.locator("canvas")).toHaveCount(0);
+    const art = page.getByTestId("hero-art");
+    await expect(art).toHaveAttribute("aria-hidden", "true");
+
+    // The particle field loads once the browser is idle, if WebGL is there at
+    // all. Whatever canvas it adds must be hidden and must not take clicks.
+    await page.waitForTimeout(2500);
+    const canvases = page.locator("canvas");
+    for (let index = 0; index < (await canvases.count()); index += 1) {
+      await expect(canvases.nth(index)).toHaveAttribute("aria-hidden", "true");
+      expect(await canvases.nth(index).evaluate((node) => getComputedStyle(node).pointerEvents)).toBe(
+        "none",
+      );
+    }
 
     await page
       .getByTestId("hero")
@@ -152,30 +162,32 @@ test.describe("the hero's isometric tiles", () => {
   });
 
   test("still compose the hero with every script blocked", async ({ page }) => {
-    // Whatever is on screen was sent by the server, tiles included.
+    // Whatever is on screen was sent by the server, the drawn layers included.
     await page.route("**/_next/static/chunks/**", (route) => route.abort());
     await page.goto("/");
 
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-    await expect(page.getByTestId("hero-iso-field").locator("svg").first()).toBeVisible();
+    await expect(page.getByTestId("hero-art").locator("svg").first()).toBeVisible();
     await page.unroute("**/_next/static/chunks/**");
   });
 
   test.describe("for a reader who asked for less motion", () => {
     test.use({ reducedMotion: "reduce" });
 
-    test("hold completely still", async ({ page }) => {
+    test("hold completely still, with no canvas", async ({ page }) => {
       await page.goto("/");
-      const field = page.getByTestId("hero-iso-field");
-      await expect(field).toBeVisible();
+      const art = page.getByTestId("hero-art");
+      await expect(art).toBeVisible();
 
-      const first = await field.screenshot();
-      await page.waitForTimeout(1500);
-      const second = await field.screenshot();
+      const first = await art.screenshot();
+      await page.waitForTimeout(2500);
+      const second = await art.screenshot();
       expect(
         Buffer.compare(first, second),
-        "a hero tile moved under prefers-reduced-motion",
+        "a hero layer moved under prefers-reduced-motion",
       ).toBe(0);
+      // Past the point the particle field would have loaded: none was added.
+      await expect(page.locator("canvas")).toHaveCount(0);
     });
   });
 });

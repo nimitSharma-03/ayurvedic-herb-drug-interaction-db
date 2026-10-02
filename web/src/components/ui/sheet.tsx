@@ -62,7 +62,7 @@ function SheetContent({
       >
         {children}
         <SheetPrimitive.Close
-          className="absolute top-5 right-5 rounded-full p-1.5 text-[var(--color-ink-2)] transition-colors hover:bg-[var(--color-wash)] hover:text-[var(--color-ink)]"
+          className="absolute top-5 right-5 rounded-[var(--radius-tight)] p-1.5 text-[var(--color-ink-2)] transition-colors hover:bg-[var(--color-wash)] hover:text-[var(--color-ink)]"
           aria-label="Close"
         >
           <X className="size-5" aria-hidden="true" />

@@ -32,6 +32,22 @@ async function shoot(
 }
 
 /**
+ * Scroll the whole page and back, so every home scene has entered the viewport
+ * once and run its reveal. A full-page capture does not scroll, and without
+ * this the scenes below the fold would be captured before they appear.
+ */
+async function scrollThrough(page: Page) {
+  await page.evaluate(async () => {
+    const step = Math.max(200, Math.floor(window.innerHeight * 0.6));
+    for (let y = 0; y < document.documentElement.scrollHeight; y += step) {
+      window.scrollTo(0, y);
+      await new Promise((resolve) => setTimeout(resolve, 60));
+    }
+    window.scrollTo(0, 0);
+  });
+}
+
+/**
  * Run one scene in both themes, from a clean page each time.
  *
  * `fullPage` is turned off for the drawer, which is fixed to the viewport: a
@@ -62,6 +78,7 @@ scene("home", async (page) => {
   await page.goto("/");
   await expect(page.getByTestId("hero")).toBeVisible();
   await expect(page.getByTestId("pipeline-card")).toBeVisible();
+  await scrollThrough(page);
 });
 
 scene("medicines-search", async (page) => {
@@ -242,6 +259,7 @@ test.describe("on a phone", () => {
     test(`home and results at 360px (${theme})`, async ({ page }) => {
       await page.goto("/");
       if (theme === "dark") await setDarkTheme(page);
+      await scrollThrough(page);
       await page.waitForTimeout(900);
       await shoot(page, "mobile-home", theme);
 

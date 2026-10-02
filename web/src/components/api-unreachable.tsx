@@ -1,9 +1,6 @@
-import { ServerOff } from "lucide-react";
-
-import { IsoMark } from "@/components/iso-art";
+import { DiscMark } from "@/components/disc-mark";
 
 import type { ApiError } from "@/lib/api";
-import { UNREACHABLE_MESSAGE } from "@/lib/api";
 
 /**
  * What a page shows when the backend did not answer.
@@ -30,29 +27,24 @@ export function ApiUnreachable({
     <div
       role="alert"
       data-testid="api-unreachable"
-      className="panel mx-auto flex max-w-2xl flex-col gap-4 p-6 sm:p-8"
+      className="mx-auto flex max-w-2xl flex-col gap-4 py-6"
     >
-      <IsoMark kind="shield" tone="pink" className="size-12" />
-      <div className="flex items-center gap-2.5 text-[var(--color-verified)]">
-        <ServerOff className="size-5 shrink-0" aria-hidden="true" />
-        <h2 className="text-xl sm:text-2xl">
-          {unreachable ? "The database server is not responding" : "That request did not work"}
-        </h2>
-      </div>
-
-      <p className="text-[var(--color-ink-2)]">
-        {unreachable ? UNREACHABLE_MESSAGE : error.message}
-      </p>
+      <DiscMark />
+      <h2 className="mt-4 text-2xl sm:text-[2rem]">
+        {unreachable ? "The database server is not responding" : "That request did not work"}
+      </h2>
 
       {unreachable ? (
-        <p className="text-sm text-[var(--color-ink-2)]">
+        <p className="text-[var(--color-ink-2)]">
           Start it with{" "}
-          <code className="rounded-[var(--radius-tight)] bg-[var(--color-wash)] px-2 py-0.5 font-[family-name:var(--font-mono)] text-sm">
+          <code className="rounded-[var(--radius-tight)] border border-[var(--color-line)] px-1.5 py-0.5 font-[family-name:var(--font-mono)] text-[0.9375rem] text-[var(--color-ink)]">
             python -m hdi.api
           </code>{" "}
           from the project root, then reload.
         </p>
-      ) : null}
+      ) : (
+        <p className="text-[var(--color-ink-2)]">{error.message}</p>
+      )}
 
       {what ? (
         <p className="text-sm text-[var(--color-ink-2)]">

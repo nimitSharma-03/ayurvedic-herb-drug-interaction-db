@@ -59,9 +59,9 @@ export function MedicineBrowser({ medicines }: { medicines: MedicineSummary[] })
                 onClick={() => setFilter(option.value)}
                 data-testid={`filter-${option.value}`}
                 className={cn(
-                  "rounded-full border px-4 py-2 text-sm font-semibold transition-colors",
+                  "rounded-[var(--radius-field)] border px-4 py-2 text-sm font-medium transition-colors",
                   active
-                    ? "border-[var(--color-ink)] bg-[var(--color-ink)] text-[var(--color-on-ink)]"
+                    ? "border-[var(--color-primary)] bg-[var(--color-primary)]/8 text-[var(--color-primary)]"
                     : "border-[var(--color-line)] bg-[var(--color-surface)] text-[var(--color-ink-2)] hover:bg-[var(--color-wash)]",
                 )}
               >

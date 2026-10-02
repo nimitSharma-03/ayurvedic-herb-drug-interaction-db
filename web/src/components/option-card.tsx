@@ -36,7 +36,7 @@ export function OptionCard({ marked }: { marked: MarkedOption }) {
     >
       <div className="flex flex-wrap items-start gap-2">
         <div className="mr-auto min-w-0">
-          <h3 className="text-lg font-semibold">
+          <h3 className="text-lg font-medium">
             {option.name}
           </h3>
           {subtitle ? (

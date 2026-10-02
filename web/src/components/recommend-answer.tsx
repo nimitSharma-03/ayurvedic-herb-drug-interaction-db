@@ -197,7 +197,7 @@ export function ConditionChips({
             onClick={() => onPick(condition.condition_id)}
             data-testid="condition-chip"
             data-condition-id={condition.condition_id}
-            className="rounded-full border border-[var(--color-line)] bg-[var(--color-surface)] px-4 py-2 text-sm font-semibold transition-colors hover:border-[var(--color-primary)] hover:bg-[var(--color-wash)]"
+            className="rounded-[var(--radius-field)] border border-[var(--color-line)] bg-[var(--color-surface)] px-4 py-2 text-sm font-medium transition-colors hover:border-[var(--color-primary)]"
           >
             {condition.name}
           </button>
