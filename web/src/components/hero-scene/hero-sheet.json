@@ -1,0 +1,637 @@
+{
+  "sheetsById": {
+    "Hero": {
+      "staticOverrides": {
+        "byObject": {}
+      },
+      "sequence": {
+        "type": "PositionalSequence",
+        "subUnitsPerUnit": 30,
+        "length": 3,
+        "tracksByObject": {
+          "Leaf": {
+            "trackData": {
+              "Leaf--drift-x": {
+                "type": "BasicKeyframedTrack",
+                "__debugName": "Leaf:[\"drift\",\"x\"]",
+                "keyframes": [
+                  {
+                    "id": "Leaf--drift-x-0",
+                    "position": 0,
+                    "value": -1.7,
+                    "type": "bezier",
+                    "connectedRight": true,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "Leaf--drift-x-1",
+                    "position": 1.5,
+                    "value": 0,
+                    "type": "bezier",
+                    "connectedRight": false,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "Leaf--drift-y": {
+                "type": "BasicKeyframedTrack",
+                "__debugName": "Leaf:[\"drift\",\"y\"]",
+                "keyframes": [
+                  {
+                    "id": "Leaf--drift-y-0",
+                    "position": 0,
+                    "value": 0.78,
+                    "type": "bezier",
+                    "connectedRight": true,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "Leaf--drift-y-1",
+                    "position": 1.5,
+                    "value": 0,
+                    "type": "bezier",
+                    "connectedRight": false,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "Leaf--drift-z": {
+                "type": "BasicKeyframedTrack",
+                "__debugName": "Leaf:[\"drift\",\"z\"]",
+                "keyframes": [
+                  {
+                    "id": "Leaf--drift-z-0",
+                    "position": 0,
+                    "value": -0.9,
+                    "type": "bezier",
+                    "connectedRight": true,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "Leaf--drift-z-1",
+                    "position": 1.5,
+                    "value": 0,
+                    "type": "bezier",
+                    "connectedRight": false,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "Leaf--turn": {
+                "type": "BasicKeyframedTrack",
+                "__debugName": "Leaf:[\"turn\"]",
+                "keyframes": [
+                  {
+                    "id": "Leaf--turn-0",
+                    "position": 0,
+                    "value": -1.15,
+                    "type": "bezier",
+                    "connectedRight": true,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "Leaf--turn-1",
+                    "position": 1.6,
+                    "value": 0,
+                    "type": "bezier",
+                    "connectedRight": false,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "Leaf--scale": {
+                "type": "BasicKeyframedTrack",
+                "__debugName": "Leaf:[\"scale\"]",
+                "keyframes": [
+                  {
+                    "id": "Leaf--scale-0",
+                    "position": 0,
+                    "value": 0.72,
+                    "type": "bezier",
+                    "connectedRight": true,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "Leaf--scale-1",
+                    "position": 1.5,
+                    "value": 1,
+                    "type": "bezier",
+                    "connectedRight": false,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "Leaf--opacity": {
+                "type": "BasicKeyframedTrack",
+                "__debugName": "Leaf:[\"opacity\"]",
+                "keyframes": [
+                  {
+                    "id": "Leaf--opacity-0",
+                    "position": 0,
+                    "value": 0,
+                    "type": "bezier",
+                    "connectedRight": true,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "Leaf--opacity-1",
+                    "position": 0.8,
+                    "value": 1,
+                    "type": "bezier",
+                    "connectedRight": false,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  }
+                ]
+              }
+            },
+            "trackIdByPropPath": {
+              "[\"drift\",\"x\"]": "Leaf--drift-x",
+              "[\"drift\",\"y\"]": "Leaf--drift-y",
+              "[\"drift\",\"z\"]": "Leaf--drift-z",
+              "[\"turn\"]": "Leaf--turn",
+              "[\"scale\"]": "Leaf--scale",
+              "[\"opacity\"]": "Leaf--opacity"
+            }
+          },
+          "Capsule": {
+            "trackData": {
+              "Capsule--drift-x": {
+                "type": "BasicKeyframedTrack",
+                "__debugName": "Capsule:[\"drift\",\"x\"]",
+                "keyframes": [
+                  {
+                    "id": "Capsule--drift-x-0",
+                    "position": 0,
+                    "value": 1.7,
+                    "type": "bezier",
+                    "connectedRight": true,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "Capsule--drift-x-1",
+                    "position": 0.2,
+                    "value": 1.7,
+                    "type": "bezier",
+                    "connectedRight": true,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "Capsule--drift-x-2",
+                    "position": 1.7,
+                    "value": 0,
+                    "type": "bezier",
+                    "connectedRight": false,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "Capsule--drift-y": {
+                "type": "BasicKeyframedTrack",
+                "__debugName": "Capsule:[\"drift\",\"y\"]",
+                "keyframes": [
+                  {
+                    "id": "Capsule--drift-y-0",
+                    "position": 0,
+                    "value": -0.78,
+                    "type": "bezier",
+                    "connectedRight": true,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "Capsule--drift-y-1",
+                    "position": 0.2,
+                    "value": -0.78,
+                    "type": "bezier",
+                    "connectedRight": true,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "Capsule--drift-y-2",
+                    "position": 1.7,
+                    "value": 0,
+                    "type": "bezier",
+                    "connectedRight": false,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "Capsule--drift-z": {
+                "type": "BasicKeyframedTrack",
+                "__debugName": "Capsule:[\"drift\",\"z\"]",
+                "keyframes": [
+                  {
+                    "id": "Capsule--drift-z-0",
+                    "position": 0,
+                    "value": 0.9,
+                    "type": "bezier",
+                    "connectedRight": true,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "Capsule--drift-z-1",
+                    "position": 0.2,
+                    "value": 0.9,
+                    "type": "bezier",
+                    "connectedRight": true,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "Capsule--drift-z-2",
+                    "position": 1.7,
+                    "value": 0,
+                    "type": "bezier",
+                    "connectedRight": false,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "Capsule--turn": {
+                "type": "BasicKeyframedTrack",
+                "__debugName": "Capsule:[\"turn\"]",
+                "keyframes": [
+                  {
+                    "id": "Capsule--turn-0",
+                    "position": 0,
+                    "value": 1.15,
+                    "type": "bezier",
+                    "connectedRight": true,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "Capsule--turn-1",
+                    "position": 0.2,
+                    "value": 1.15,
+                    "type": "bezier",
+                    "connectedRight": true,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "Capsule--turn-2",
+                    "position": 1.8,
+                    "value": 0,
+                    "type": "bezier",
+                    "connectedRight": false,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "Capsule--scale": {
+                "type": "BasicKeyframedTrack",
+                "__debugName": "Capsule:[\"scale\"]",
+                "keyframes": [
+                  {
+                    "id": "Capsule--scale-0",
+                    "position": 0,
+                    "value": 0.72,
+                    "type": "bezier",
+                    "connectedRight": true,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "Capsule--scale-1",
+                    "position": 0.2,
+                    "value": 0.72,
+                    "type": "bezier",
+                    "connectedRight": true,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "Capsule--scale-2",
+                    "position": 1.7,
+                    "value": 1,
+                    "type": "bezier",
+                    "connectedRight": false,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "Capsule--opacity": {
+                "type": "BasicKeyframedTrack",
+                "__debugName": "Capsule:[\"opacity\"]",
+                "keyframes": [
+                  {
+                    "id": "Capsule--opacity-0",
+                    "position": 0,
+                    "value": 0,
+                    "type": "bezier",
+                    "connectedRight": true,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "Capsule--opacity-1",
+                    "position": 0.2,
+                    "value": 0,
+                    "type": "bezier",
+                    "connectedRight": true,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "Capsule--opacity-2",
+                    "position": 1,
+                    "value": 1,
+                    "type": "bezier",
+                    "connectedRight": false,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  }
+                ]
+              }
+            },
+            "trackIdByPropPath": {
+              "[\"drift\",\"x\"]": "Capsule--drift-x",
+              "[\"drift\",\"y\"]": "Capsule--drift-y",
+              "[\"drift\",\"z\"]": "Capsule--drift-z",
+              "[\"turn\"]": "Capsule--turn",
+              "[\"scale\"]": "Capsule--scale",
+              "[\"opacity\"]": "Capsule--opacity"
+            }
+          },
+          "Stage": {
+            "trackData": {
+              "Stage--lift": {
+                "type": "BasicKeyframedTrack",
+                "__debugName": "Stage:[\"lift\"]",
+                "keyframes": [
+                  {
+                    "id": "Stage--lift-0",
+                    "position": 0,
+                    "value": -0.5,
+                    "type": "bezier",
+                    "connectedRight": true,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "Stage--lift-1",
+                    "position": 1.6,
+                    "value": 0,
+                    "type": "bezier",
+                    "connectedRight": false,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "Stage--idle": {
+                "type": "BasicKeyframedTrack",
+                "__debugName": "Stage:[\"idle\"]",
+                "keyframes": [
+                  {
+                    "id": "Stage--idle-0",
+                    "position": 0,
+                    "value": 0,
+                    "type": "bezier",
+                    "connectedRight": true,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "Stage--idle-1",
+                    "position": 0.9,
+                    "value": 0,
+                    "type": "bezier",
+                    "connectedRight": true,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "Stage--idle-2",
+                    "position": 2.4,
+                    "value": 1,
+                    "type": "bezier",
+                    "connectedRight": false,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  }
+                ]
+              },
+              "Stage--ring": {
+                "type": "BasicKeyframedTrack",
+                "__debugName": "Stage:[\"ring\"]",
+                "keyframes": [
+                  {
+                    "id": "Stage--ring-0",
+                    "position": 0,
+                    "value": 0,
+                    "type": "bezier",
+                    "connectedRight": true,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "Stage--ring-1",
+                    "position": 0.6,
+                    "value": 0,
+                    "type": "bezier",
+                    "connectedRight": true,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  },
+                  {
+                    "id": "Stage--ring-2",
+                    "position": 2.1,
+                    "value": 1,
+                    "type": "bezier",
+                    "connectedRight": false,
+                    "handles": [
+                      0.36,
+                      1,
+                      0.22,
+                      1
+                    ]
+                  }
+                ]
+              }
+            },
+            "trackIdByPropPath": {
+              "[\"lift\"]": "Stage--lift",
+              "[\"idle\"]": "Stage--idle",
+              "[\"ring\"]": "Stage--ring"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitionVersion": "0.4.0",
+  "revisionHistory": [
+    "hero-entrance-1"
+  ]
+}

@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 
 import {
   apiGet,
@@ -124,6 +124,129 @@ test.describe("the theme", () => {
     await page.goto("/how-it-works");
     await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
     await page.unroute("**/_next/static/chunks/**");
+  });
+});
+
+/**
+ * The hero visual.
+ *
+ * It is decorative, so none of this is about what it looks like. What is worth
+ * testing is everything around it: that the flat version is on screen before
+ * any of it loads, that the 3D takes over when it can, that it costs nothing at
+ * all on a machine that cannot draw it, and that a reader who asked for less
+ * motion gets a still picture rather than a slower one.
+ */
+test.describe("the hero visual", () => {
+  /** The 3D chunk is far larger than any other chunk this app serves, so its
+   *  size alone identifies it in the network log. */
+  const THREE_D_BYTES = 500_000;
+
+  function chunkSizes(page: Page): number[] {
+    const sizes: number[] = [];
+    page.on("response", async (response) => {
+      if (!response.url().includes("/_next/static/chunks/")) return;
+      try {
+        sizes.push((await response.body()).length);
+      } catch {
+        // Served from cache, or redirected; nothing arrived to measure.
+      }
+    });
+    return sizes;
+  }
+
+  test("the flat emblem is in the markup, before any script runs", async ({ page }) => {
+    // Every chunk blocked: whatever is on screen was sent by the server.
+    await page.route("**/_next/static/chunks/**", (route) => route.abort());
+    await page.goto("/");
+
+    const visual = page.getByTestId("hero-visual");
+    await expect(visual).toBeVisible();
+    await expect(visual).toHaveAttribute("data-hero-status", "flat");
+    await expect(visual.getByRole("img")).toBeVisible();
+    await page.unroute("**/_next/static/chunks/**");
+  });
+
+  test("the 3D scene takes over, and does not swallow the hero's own links", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    const visual = page.getByTestId("hero-visual");
+    await expect(visual).toHaveAttribute("data-hero-status", "drawn", {
+      timeout: 30_000,
+    });
+    await expect(page.locator("canvas")).toBeVisible();
+
+    // The canvas is laid over the hero's text column. A reader must still be
+    // able to use what is underneath it.
+    await page.getByRole("link", { name: "Check two medicines" }).first().click();
+    await expect(page).toHaveURL(/\/check$/);
+  });
+
+  test("keeps orbiting once it has settled", async ({ page }) => {
+    await page.goto("/");
+    const visual = page.getByTestId("hero-visual");
+    await expect(visual).toHaveAttribute("data-hero-status", "drawn", {
+      timeout: 30_000,
+    });
+    // Past the end of the entrance, so what is compared is the idle motion.
+    await page.waitForTimeout(3500);
+
+    const canvas = page.locator("canvas");
+    const first = await canvas.screenshot();
+    await page.waitForTimeout(1200);
+    const second = await canvas.screenshot();
+    expect(Buffer.compare(first, second)).not.toBe(0);
+  });
+
+  test("downloads no 3D at all when WebGL is unavailable", async ({ page }) => {
+    await page.addInitScript(() => {
+      // Exactly what a blocklisted driver or a locked-down browser looks like.
+      const original = HTMLCanvasElement.prototype.getContext;
+      HTMLCanvasElement.prototype.getContext = function patched(
+        this: HTMLCanvasElement,
+        ...args: Parameters<typeof original>
+      ) {
+        if (String(args[0]).startsWith("webgl")) return null;
+        return original.apply(this, args);
+      } as typeof original;
+    });
+
+    const sizes = chunkSizes(page);
+    await page.goto("/");
+
+    const visual = page.getByTestId("hero-visual");
+    await expect(visual).toHaveAttribute("data-hero-status", "flat");
+    await expect(visual.getByRole("img")).toBeVisible();
+
+    // Long enough that a chunk would have arrived if one had been asked for.
+    await page.waitForTimeout(2000);
+    await expect(page.locator("canvas")).toHaveCount(0);
+    expect(
+      Math.max(0, ...sizes),
+      "three.js was downloaded by a browser that cannot use it",
+    ).toBeLessThan(THREE_D_BYTES);
+    await expectNoForbiddenOutput(page);
+  });
+
+  test.describe("for a reader who asked for less motion", () => {
+    test.use({ reducedMotion: "reduce" });
+
+    test("shows the settled scene and then holds completely still", async ({ page }) => {
+      await page.goto("/");
+      const visual = page.getByTestId("hero-visual");
+      await expect(visual).toHaveAttribute("data-hero-status", "drawn", {
+        timeout: 30_000,
+      });
+
+      const canvas = page.locator("canvas");
+      const first = await canvas.screenshot();
+      await page.waitForTimeout(1500);
+      const second = await canvas.screenshot();
+      expect(
+        Buffer.compare(first, second),
+        "the hero moved under prefers-reduced-motion",
+      ).toBe(0);
+    });
   });
 });
 

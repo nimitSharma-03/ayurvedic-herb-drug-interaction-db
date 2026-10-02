@@ -76,6 +76,16 @@ web/
       site-header.tsx        nav and the theme toggle
       site-footer.tsx        disclaimer, scope, how-it-works link
       brand-mark.tsx         the capsule mark
+      hero-scene/            the home page's 3D hero (see below)
+        hero-visual.tsx      the wrapper: flat emblem, then the canvas over it
+        hero-emblem.tsx      the flat SVG hero: placeholder and fallback
+        hero-canvas.tsx      the canvas, loaded on its own in the browser only
+        scene.tsx            lights, materials and the composition
+        leaf-geometry.ts     the leaf, built as geometry
+        palette.ts           the design tokens, read off <html> at runtime
+        sheet.ts             the Theatre.js project, sheet and objects
+        hero-sheet.json      the baked keyframes
+        studio.ts            Theatre Studio, in development only
       medicine-search.tsx    the /medicines search box (alias-aware)
       medicine-combobox.tsx  one-medicine picker, for /check
       medicine-token-input.tsx   "what you already take"
@@ -99,7 +109,7 @@ web/
       text.ts                shared copy and small helpers
   tests/
     fixtures/                44 real captured responses
-    unit/                    621 unit tests
+    unit/                    679 unit tests
     e2e/                     the end-to-end suite and the screenshot run
 ```
 
@@ -146,6 +156,62 @@ count up once when they scroll into view, the search box glows on focus, results
 reveal once, the combination lines draw themselves in as SVG strokes, the
 warning drawer slides in from the right over a blurred backdrop, page
 transitions fade, and the swap button rotates.
+
+## The hero visual
+
+The home page hero carries a small 3D scene: a leaf and a pharmaceutical
+capsule, each on its own, travelling one circle around one shared centre. It is
+decorative. The headline says the same thing in words and the page reads the
+same with the scene switched off, which is what every piece of the design below
+is arranged around.
+
+**What it may not say.** The two bodies stay separate and never touch. Nothing
+in the scene merges a herb and a medicine into a third object; they share only
+the centre they move around.
+
+**It is additive, in this order.** `hero-emblem.tsx` is a flat SVG of the same
+composition and it is in the HTML the server sends, at the final size, so the
+hero is composed in the first paint and nothing moves when the canvas arrives.
+`hero-visual.tsx` layers the canvas over it and fades the emblem out only once
+the scene reports a drawn frame -- not when the chunk loads, which would blank
+the space for however long the first shader compile takes. The flat and the 3D
+compositions are laid out the same way round so that the handover is one
+picture gaining depth rather than two pictures swapping places.
+
+**Every failure ends in the same place.** No WebGL, a chunk that never arrives,
+a context that cannot be created, scripts blocked entirely: the emblem is
+already on screen and stays. A browser that cannot draw the scene is asked
+before the chunk is requested, so it never downloads three.js to find that out,
+and an end-to-end test asserts exactly that.
+
+**Colours come from the tokens, not from a second palette.** `palette.ts` reads
+the custom properties off `<html>` with `getComputedStyle`, so the materials
+cannot drift from the rest of the interface and the dark theme needs no second
+set of values. The lamps are white: light is light, and tinting them with
+surface tokens turned every lamp off in the dark theme, where those tokens are
+nearly black. The one exception in both directions is the contact shadow, which
+is tinted with the ink token in the light theme and is black in the dark one,
+because the ink token inverts to a near-white there.
+
+**The animation is keyframe data, not code.** `hero-sheet.json` holds a
+Theatre.js sequence that drifts and fades the two pieces into place and then
+blends in the continuous orbit. It is checked in, so nothing at runtime needs
+Theatre Studio; `@theatre/studio` is a dev dependency, loaded from inside a
+branch the bundler folds away, and it is there so the timeline can be scrubbed
+against the real scene. `scripts/build-hero-sheet.mjs` (`npm run hero:sheet`)
+writes the state file from a readable timeline, and
+`tests/unit/hero-sheet.test.ts` reads it back through Theatre.js and checks it
+still moves the pieces and still ends on the settled composition.
+
+**Motion is given up readily.** Under `prefers-reduced-motion` the render loop
+is not run at all: one frame is drawn, of the settled end of the entrance, and
+an end-to-end test asserts that two captures a second and a half apart are
+byte-identical. The loop also stops whenever the visual scrolls out of the way,
+so a reader further down the page is not paying for an orbit they cannot see.
+
+**What it costs.** About 277 KB gzipped, in one chunk that is not referenced by
+the first response and is fetched after hydration; the markup the reader waits
+for grows by roughly 2 KB. Measured frame rate is in [Limitations](#limitations).
 
 ## How the honesty rules are enforced
 
@@ -224,6 +290,10 @@ conservative of the options that were open.
 | ESLint is pinned to 9.x | ESLint 10 is incompatible with the React plugin the framework's shared config bundles: it crashes on `contextOrFilename.getFilename is not a function`. 9.39.5 is what the framework's config is built against. |
 | `ml/evaluate.py` writes `metrics.json` as well as `eval.md` | `/stats` serves real classifier metrics and the only machine-readable form was the confusion matrix. Both files are written from the same computed scores in one pass, so they cannot disagree, and nothing parses the prose report. |
 | The classifier's model description says "unigrams and bigrams" | It previously read "word 1-2 grams", which the forbidden-output scan reads as a number next to a unit. The model is unchanged. |
+| The hero's 3D scene is the only looping animation in the app | `globals.css` says every other animation runs once, in response to something the reader did. This one is a deliberate exception for one decorative element: it is off under `prefers-reduced-motion`, off when scrolled away, and the page is complete without it. |
+| The flat emblem is server-rendered and the 3D fades in over it | A placeholder box would hold the space but show nothing; this holds the space *and* composes the hero before any script runs, and it doubles as the fallback for every way the 3D can fail. |
+| Theatre.js keyframes are generated by a script, not exported from Studio | Studio cannot be driven from a non-interactive build, and a state file nobody can regenerate is a file nobody can change. The timeline is readable source, the bake is reproducible, and a unit test reads the result back through Theatre.js. Hand-authoring in Studio and dropping its export over the file still works. |
+| `@theatre/r3f` is not used, only `@theatre/core` | Its published peer range is `@react-three/fiber@^8`, and fiber 8 does not support React 19. The sheet is scrubbed from the render loop instead, which also keeps the keyframed values and the idle orbit in the same frame. |
 | Screenshots are a record, not a baseline | Nothing compares them to a reference image. A font-rendering difference would fail such a test and say nothing about the project. |
 | The end-to-end suite refuses to run without the backend | Otherwise a stopped backend produces a page full of "not responding" and a dozen confusing failures instead of one clear one. |
 
@@ -257,6 +327,21 @@ conservative of the options that were open.
 - **Free deployments sleep.** On the free plan the first request after a quiet
   period finds the API asleep, and the page reports it as not responding until
   it wakes. See [DEPLOY.md](DEPLOY.md).
+- **The 3D hero costs about 277 KB gzipped**, which is more than the rest of the
+  app's JavaScript put together. It is split into its own chunk that the first
+  response does not reference, it is fetched only after hydration and only by a
+  browser that can draw it, and the hero is composed without it either way --
+  but a reader on a slow connection does pay for it. It is one decorative
+  element; deleting `hero-scene/` and the one `<HeroVisual>` in `page.tsx`
+  removes the cost entirely and leaves the flat hero behind. Roughly 165 KB of
+  the total is three.js itself, which no amount of tree-shaking removes, so a
+  budget below about 200 KB is not reachable with this library at all.
+- **The hero's measured frame rate is 60 fps with a GPU and poor without one.**
+  On this machine with hardware acceleration it holds 60 fps at 1280x900 and
+  about 54 fps with the CPU throttled 4x. In headless Chromium's software
+  renderer it falls to roughly 26 fps. That is the figure a machine with a
+  blocklisted driver would see, and it is the reason the scene is small, uses no
+  shadow map and stops rendering when it is not on screen.
 - **The `web/tests/fixtures/` responses are a snapshot.** They were captured
   from a real backend and the types are checked against them, but re-seeding
   with changed reference files will make them stale. Re-capture by calling each

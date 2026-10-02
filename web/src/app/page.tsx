@@ -4,6 +4,7 @@ import { FileSearch, FlaskConical, Leaf, ListChecks, Pill, Stethoscope } from "l
 import { ApiUnreachable } from "@/components/api-unreachable";
 import { AskForm } from "@/components/ask-form";
 import { CountUp } from "@/components/count-up";
+import { HeroVisual } from "@/components/hero-scene";
 import { loadConditions, loadStats } from "@/lib/server-data";
 import { NOT_RECORDED } from "@/lib/text";
 
@@ -68,6 +69,11 @@ export default async function HomePage() {
             </Link>{" "}
             against each other if you already have both names.
           </p>
+
+          {/* The hero's visual layer. Decorative: it says in three dimensions
+              what the headline says in words, and the page reads the same with
+              it switched off. */}
+          <HeroVisual className="mt-8 h-55 sm:h-65 lg:mt-10 lg:h-80" />
         </div>
 
         <div className="flex flex-col gap-5">
