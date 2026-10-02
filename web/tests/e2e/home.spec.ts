@@ -246,3 +246,37 @@ test.describe("narrow screens", () => {
     });
   }
 });
+
+/**
+ * The velocity band between the hero and the figures. Decorative: hidden from
+ * assistive technology, moving on its own, and still under reduced motion.
+ */
+test.describe("the velocity band", () => {
+  test("is aria-hidden and drifts sideways", async ({ page }) => {
+    await page.goto("/");
+    const band = page.getByTestId("velocity-band");
+    await expect(band).toHaveAttribute("aria-hidden", "true");
+    await band.scrollIntoViewIfNeeded();
+
+    const track = page.getByTestId("velocity-track");
+    const before = await track.evaluate((node) => getComputedStyle(node).transform);
+    await page.waitForTimeout(800);
+    const after = await track.evaluate((node) => getComputedStyle(node).transform);
+    expect(after).not.toBe(before);
+    await expectNoHorizontalScroll(page);
+  });
+
+  test.describe("for a reader who asked for less motion", () => {
+    test.use({ reducedMotion: "reduce" });
+
+    test("holds still", async ({ page }) => {
+      await page.goto("/");
+      const track = page.getByTestId("velocity-track");
+      await track.scrollIntoViewIfNeeded();
+      await page.mouse.wheel(0, 400);
+      await page.waitForTimeout(800);
+      expect(await track.evaluate((node) => getComputedStyle(node).transform)).toBe("none");
+    });
+  });
+});
+

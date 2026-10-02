@@ -7,6 +7,7 @@ import { CountUp } from "@/components/count-up";
 import { HeroArt } from "@/components/home/hero-art";
 import { HeroParticles } from "@/components/home/hero-particles";
 import { SceneMotion } from "@/components/home/scene-motion";
+import { VelocityBand } from "@/components/home/velocity-band";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { loadConditions, loadStats } from "@/lib/server-data";
@@ -39,6 +40,7 @@ export default async function HomePage() {
         <SceneMotion rootId={SCENES_ID} />
 
         <Hero />
+        <VelocityBand />
 
         {stats.ok ? (
           <Figures stats={stats.data} />
