@@ -4,7 +4,8 @@ import {
   ApiError,
   DEFAULT_API_URL,
   UNREACHABLE_MESSAGE,
-  WAKE_RETRIES,
+  WAKE_BUDGET_MS,
+  WAKE_RETRY_DELAY_MS,
   api,
   apiBaseUrl,
   asApiError,
@@ -199,18 +200,44 @@ describe("a sleeping host that is waking up", () => {
     });
 
   it("asks again after the 502 placeholder and returns the real answer", async () => {
+    vi.useFakeTimers();
     const conditions = fixture("conditions").response;
     fetchMock.mockResolvedValueOnce(placeholder()).mockResolvedValueOnce(jsonResponse(conditions));
-    const answer = await api.conditions();
+    const pending = api.conditions();
+    await vi.advanceTimersByTimeAsync(WAKE_RETRY_DELAY_MS);
+    const answer = await pending;
     expect(answer).toEqual(conditions);
     expect(fetchMock).toHaveBeenCalledTimes(2);
     expect(fetchMock.mock.calls[1]![0]).toBe(fetchMock.mock.calls[0]![0]);
   });
 
-  it("gives up after a bounded number of retries and says what answered", async () => {
+  it("keeps asking, spaced out, while the host answers the placeholder at once", async () => {
+    // The host may not hold a retry. Three instant asks used to burn every
+    // attempt in the first second, before a free instance had time to start.
+    vi.useFakeTimers();
+    const conditions = fixture("conditions").response;
+    fetchMock
+      .mockResolvedValueOnce(placeholder())
+      .mockResolvedValueOnce(placeholder())
+      .mockResolvedValueOnce(placeholder())
+      .mockResolvedValueOnce(placeholder())
+      .mockResolvedValueOnce(jsonResponse(conditions));
+    const pending = api.conditions();
+    await vi.advanceTimersByTimeAsync(WAKE_RETRY_DELAY_MS * 4);
+    expect(await pending).toEqual(conditions);
+    expect(fetchMock).toHaveBeenCalledTimes(5);
+  });
+
+  it("gives up once the wake budget is spent and says what answered", async () => {
+    vi.useFakeTimers();
     fetchMock.mockImplementation(() => Promise.resolve(placeholder()));
-    const error = await api.conditions().catch((caught: unknown) => caught);
-    expect(fetchMock).toHaveBeenCalledTimes(1 + WAKE_RETRIES);
+    const pending = api.conditions().catch((caught: unknown) => caught);
+    await vi.advanceTimersByTimeAsync(WAKE_BUDGET_MS + WAKE_RETRY_DELAY_MS);
+    const error = await pending;
+    expect(fetchMock.mock.calls.length).toBeGreaterThan(2);
+    expect(fetchMock.mock.calls.length).toBeLessThanOrEqual(
+      Math.ceil(WAKE_BUDGET_MS / WAKE_RETRY_DELAY_MS) + 1,
+    );
     expect((error as ApiError).kind).toBe("malformed");
     expect((error as ApiError).status).toBe(502);
     expect((error as ApiError).message).toContain("HTTP 502");

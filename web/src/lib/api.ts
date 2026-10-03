@@ -27,7 +27,8 @@
  * page (header x-render-routing: no-deploy) and holds the next request until
  * the instance is up. The first page view after an idle spell is a server
  * render whose fetch is that first request, so a gateway status with a non-JSON
- * body is retried, with a longer timeout, before anything is reported.
+ * body is retried, spaced out and for up to WAKE_BUDGET_MS, before anything is
+ * reported.
  */
 
 import type {
@@ -51,9 +52,17 @@ export const DEFAULT_TIMEOUT_MS = 15_000;
 
 /** Statuses a host's gateway answers with while the API itself is not up. */
 const WAKING_STATUSES = [502, 503, 504];
-/** Retries after a waking placeholder; the host holds the first retry. */
-export const WAKE_RETRIES = 2;
-/** A free instance takes 20 to 50 seconds to start, so a retry waits this long. */
+/**
+ * How long a request keeps asking after a waking placeholder before it reports
+ * a failure. A free instance takes 20 to 60 seconds to start, and the host does
+ * not always hold a retry: it may answer the placeholder again at once. Retrying
+ * immediately, a fixed number of times, would burn every attempt inside the
+ * first second, so the retries are spaced out and bounded by time instead.
+ */
+export const WAKE_BUDGET_MS = 120_000;
+/** The pause between asks while the host is still waking. */
+export const WAKE_RETRY_DELAY_MS = 5_000;
+/** The longest one ask may take; a host that holds the request answers when up. */
 export const WAKE_TIMEOUT_MS = 60_000;
 /** How much of a non-JSON body an error message quotes. */
 const BODY_SNIPPET_CHARS = 80;
@@ -187,6 +196,23 @@ function parseJson(text: string): unknown {
   }
 }
 
+/** Wait, ending early if the caller aborts; the next attempt then re-throws it. */
+function pause(ms: number, signal: AbortSignal | undefined): Promise<void> {
+  return new Promise((resolve) => {
+    if (signal?.aborted) {
+      resolve();
+      return;
+    }
+    const done = () => {
+      clearTimeout(timer);
+      signal?.removeEventListener("abort", done);
+      resolve();
+    };
+    const timer = setTimeout(done, ms);
+    signal?.addEventListener("abort", done);
+  });
+}
+
 function snippetOf(text: string): string {
   return text.replace(/\s+/g, " ").trim().slice(0, BODY_SNIPPET_CHARS);
 }
@@ -212,15 +238,21 @@ async function request<T>({
   let { response, text } = await send(url, init, timeoutMs, signal);
   let payload = parseJson(text);
 
-  // A sleeping host's placeholder, not the API's answer: ask again. Every
-  // route this client calls is a read, POST /recommend included, so a repeat
-  // is safe.
-  for (
-    let retry = 0;
-    retry < WAKE_RETRIES && payload === undefined && WAKING_STATUSES.includes(response.status);
-    retry++
-  ) {
-    ({ response, text } = await send(url, init, Math.max(timeoutMs, WAKE_TIMEOUT_MS), signal));
+  // A sleeping host's placeholder, not the API's answer: keep asking, with a
+  // pause between asks, until the API answers or the wake budget runs out.
+  // Every route this client calls is a read, POST /recommend included, so a
+  // repeat is safe.
+  const wakeStarted = Date.now();
+  while (payload === undefined && WAKING_STATUSES.includes(response.status)) {
+    if (WAKE_BUDGET_MS - (Date.now() - wakeStarted) <= WAKE_RETRY_DELAY_MS) break;
+    await pause(WAKE_RETRY_DELAY_MS, signal);
+    const left = WAKE_BUDGET_MS - (Date.now() - wakeStarted);
+    ({ response, text } = await send(
+      url,
+      init,
+      Math.min(Math.max(timeoutMs, WAKE_TIMEOUT_MS), left),
+      signal,
+    ));
     payload = parseJson(text);
   }
 
