@@ -1,0 +1,34 @@
+# Keeps the Render free-plan API from sleeping while people are likely to use it.
+#
+# A free Render service sleeps after 15 minutes without traffic, and the first
+# request after that gets a 502 placeholder until it has started (20 to 60 s).
+# This pings /health every 5 minutes during the window below.
+#
+# The window is deliberate. Render's free plan gives the whole workspace 750
+# instance hours a month, and a service that never sleeps uses about 744 on its
+# own. 03:00 to 17:59 UTC (08:30 to 23:29 IST) is roughly 450 hours a month,
+# which leaves room for the other services. Outside the window the API can still
+# sleep; the web app's retry (web/src/lib/api.ts) covers that case.
+#
+# GitHub only runs scheduled workflows from the default branch, which is why
+# this file lives on main even though Render deploys another branch.
+
+name: keep-api-awake
+
+on:
+  schedule:
+    - cron: "*/5 3-17 * * *"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Ping the API health endpoint
+        run: |
+          curl --fail --silent --show-error \
+            --max-time 120 --retry 3 --retry-delay 15 --retry-all-errors \
+            https://hdi-api-3cjx.onrender.com/health
