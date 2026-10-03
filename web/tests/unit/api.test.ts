@@ -4,6 +4,7 @@ import {
   ApiError,
   DEFAULT_API_URL,
   UNREACHABLE_MESSAGE,
+  WAKE_RETRIES,
   api,
   apiBaseUrl,
   asApiError,
@@ -158,10 +159,71 @@ describe("a backend that answers with something unexpected", () => {
     expect((error as ApiError).isUnreachable).toBe(false);
   });
 
+  it("quotes the status and the start of a non-JSON body, so it can be diagnosed", async () => {
+    fetchMock.mockResolvedValue(
+      new Response(`<!DOCTYPE html>\n<html>  <head>${"x".repeat(200)}`, { status: 200 }),
+    );
+    const error = await api.conditions().catch((caught: unknown) => caught);
+    expect((error as ApiError).status).toBe(200);
+    expect((error as ApiError).message).toContain("HTTP 200");
+    expect((error as ApiError).message).toContain('"<!DOCTYPE html> <html> <head>xxx');
+    expect((error as ApiError).message).not.toContain("x".repeat(81));
+    // A 200 that is not JSON is the wrong service, not a waking one.
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+
+  it("accepts a JSON body whatever its Content-Type says", async () => {
+    fetchMock.mockResolvedValue(
+      new Response(JSON.stringify(fixture("stats").response), {
+        status: 200,
+        headers: { "Content-Type": "text/html" },
+      }),
+    );
+    const stats = await api.stats();
+    expect(stats).toEqual(fixture("stats").response);
+  });
+
   it("calls an empty body malformed", async () => {
     fetchMock.mockResolvedValue(new Response("", { status: 200 }));
     const error = await api.stats().catch((caught: unknown) => caught);
     expect((error as ApiError).kind).toBe("malformed");
+  });
+});
+
+describe("a sleeping host that is waking up", () => {
+  // What Render's free plan sends for the first request to a sleeping service.
+  const placeholder = () =>
+    new Response("<!DOCTYPE html>\n<html lang=\"en\">\n  <head>", {
+      status: 502,
+      headers: { "Content-Type": "text/html; charset=utf-8", "x-render-routing": "no-deploy" },
+    });
+
+  it("asks again after the 502 placeholder and returns the real answer", async () => {
+    const conditions = fixture("conditions").response;
+    fetchMock.mockResolvedValueOnce(placeholder()).mockResolvedValueOnce(jsonResponse(conditions));
+    const answer = await api.conditions();
+    expect(answer).toEqual(conditions);
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(fetchMock.mock.calls[1]![0]).toBe(fetchMock.mock.calls[0]![0]);
+  });
+
+  it("gives up after a bounded number of retries and says what answered", async () => {
+    fetchMock.mockImplementation(() => Promise.resolve(placeholder()));
+    const error = await api.conditions().catch((caught: unknown) => caught);
+    expect(fetchMock).toHaveBeenCalledTimes(1 + WAKE_RETRIES);
+    expect((error as ApiError).kind).toBe("malformed");
+    expect((error as ApiError).status).toBe(502);
+    expect((error as ApiError).message).toContain("HTTP 502");
+    expect((error as ApiError).message).toContain("<!DOCTYPE html>");
+  });
+
+  it("does not retry a JSON 503, which is the API's own answer", async () => {
+    fetchMock.mockResolvedValue(
+      jsonResponse({ error: { code: "classifier_unavailable", message: "Not loaded." } }, 503),
+    );
+    const error = await api.recommend({ text: "x" }).catch((caught: unknown) => caught);
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect((error as ApiError).code).toBe("classifier_unavailable");
   });
 });
 

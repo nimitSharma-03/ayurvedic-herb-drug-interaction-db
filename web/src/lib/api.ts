@@ -19,6 +19,15 @@
  *                 it is carried through for the page to branch on.
  *   malformed     something answered but it was not the JSON this client asked
  *                 for, which usually means the URL points at the wrong service.
+ *                 The message carries the status and the start of the body, so
+ *                 the reader (and whoever debugs it) can see what answered.
+ *
+ * One answer is neither: a sleeping host's placeholder. Render's free plan
+ * answers the first request to a sleeping service at once with its own 502 HTML
+ * page (header x-render-routing: no-deploy) and holds the next request until
+ * the instance is up. The first page view after an idle spell is a server
+ * render whose fetch is that first request, so a gateway status with a non-JSON
+ * body is retried, with a longer timeout, before anything is reported.
  */
 
 import type {
@@ -39,6 +48,15 @@ import type {
 
 export const DEFAULT_API_URL = "http://127.0.0.1:8000";
 export const DEFAULT_TIMEOUT_MS = 15_000;
+
+/** Statuses a host's gateway answers with while the API itself is not up. */
+const WAKING_STATUSES = [502, 503, 504];
+/** Retries after a waking placeholder; the host holds the first retry. */
+export const WAKE_RETRIES = 2;
+/** A free instance takes 20 to 50 seconds to start, so a retry waits this long. */
+export const WAKE_TIMEOUT_MS = 60_000;
+/** How much of a non-JSON body an error message quotes. */
+const BODY_SNIPPET_CHARS = 80;
 
 /** The copy shown whenever the backend cannot be reached at all. */
 export const UNREACHABLE_MESSAGE =
@@ -124,31 +142,22 @@ interface RawRequest extends RequestOptions {
   body?: unknown;
 }
 
-async function request<T>({
-  method,
-  path,
-  body,
-  timeoutMs = DEFAULT_TIMEOUT_MS,
-  signal,
-  expectStatuses = [],
-}: RawRequest): Promise<T> {
-  const url = `${apiBaseUrl()}${path}`;
+/** One attempt: the response and its body, or an `unreachable` ApiError. */
+async function send(
+  url: string,
+  init: RequestInit,
+  timeoutMs: number,
+  signal: AbortSignal | undefined,
+): Promise<{ response: Response; text: string }> {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   const onAbort = () => controller.abort();
+  if (signal?.aborted) controller.abort();
   signal?.addEventListener("abort", onAbort);
 
-  let response: Response;
   try {
-    response = await fetch(url, {
-      method,
-      headers: body === undefined ? undefined : { "Content-Type": "application/json" },
-      body: body === undefined ? undefined : JSON.stringify(body),
-      signal: controller.signal,
-      // Health data changes when the database is re-seeded, and a stale count
-      // on a page about provenance would be worse than a slower page.
-      cache: "no-store",
-    });
+    const response = await fetch(url, { ...init, signal: controller.signal });
+    return { response, text: await response.text() };
   } catch (cause) {
     // A caller-initiated abort is not a failure to report; it is a superseded
     // request, and the caller is the one who knows that.
@@ -162,19 +171,65 @@ async function request<T>({
     clearTimeout(timer);
     signal?.removeEventListener("abort", onAbort);
   }
+}
 
-  const text = await response.text();
-  let payload: unknown = null;
-  if (text) {
-    try {
-      payload = JSON.parse(text) as unknown;
-    } catch {
-      throw new ApiError({
-        kind: "malformed",
-        message: `${url} answered with something that is not JSON.`,
-        status: response.status,
-      });
-    }
+/**
+ * The body parsed as JSON, null for an empty body, or undefined when it does
+ * not parse. The Content-Type header is not consulted: a body that parses is
+ * the API's answer whatever it was labelled.
+ */
+function parseJson(text: string): unknown {
+  if (!text) return null;
+  try {
+    return JSON.parse(text) as unknown;
+  } catch {
+    return undefined;
+  }
+}
+
+function snippetOf(text: string): string {
+  return text.replace(/\s+/g, " ").trim().slice(0, BODY_SNIPPET_CHARS);
+}
+
+async function request<T>({
+  method,
+  path,
+  body,
+  timeoutMs = DEFAULT_TIMEOUT_MS,
+  signal,
+  expectStatuses = [],
+}: RawRequest): Promise<T> {
+  const url = `${apiBaseUrl()}${path}`;
+  const init: RequestInit = {
+    method,
+    headers: body === undefined ? undefined : { "Content-Type": "application/json" },
+    body: body === undefined ? undefined : JSON.stringify(body),
+    // Health data changes when the database is re-seeded, and a stale count
+    // on a page about provenance would be worse than a slower page.
+    cache: "no-store",
+  };
+
+  let { response, text } = await send(url, init, timeoutMs, signal);
+  let payload = parseJson(text);
+
+  // A sleeping host's placeholder, not the API's answer: ask again. Every
+  // route this client calls is a read, POST /recommend included, so a repeat
+  // is safe.
+  for (
+    let retry = 0;
+    retry < WAKE_RETRIES && payload === undefined && WAKING_STATUSES.includes(response.status);
+    retry++
+  ) {
+    ({ response, text } = await send(url, init, Math.max(timeoutMs, WAKE_TIMEOUT_MS), signal));
+    payload = parseJson(text);
+  }
+
+  if (payload === undefined) {
+    throw new ApiError({
+      kind: "malformed",
+      message: `${url} answered HTTP ${response.status} with something that is not JSON: "${snippetOf(text)}"`,
+      status: response.status,
+    });
   }
 
   if (!response.ok && !expectStatuses.includes(response.status)) {
