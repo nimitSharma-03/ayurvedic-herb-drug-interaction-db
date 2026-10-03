@@ -592,6 +592,62 @@ class CorsOverHttpTest(unittest.TestCase):
         self.assertEqual(headers["Access-Control-Allow-Origin"], self.ORIGIN)
         self.assertEqual(json.loads(raw)["error"]["code"], "invalid_body")
 
+    def test_a_get_preflight_for_conditions_is_answered(self):
+        conn = HTTPConnection("127.0.0.1", self.port, timeout=10)
+        try:
+            conn.request(
+                "OPTIONS",
+                "/conditions",
+                headers={
+                    "Origin": self.ORIGIN,
+                    "Access-Control-Request-Method": "GET",
+                    "Access-Control-Request-Headers": "content-type",
+                },
+            )
+            response = conn.getresponse()
+            raw = response.read()
+            headers = dict(response.getheaders())
+        finally:
+            conn.close()
+        self.assertEqual(response.status, 204)
+        self.assertEqual(raw, b"")
+        self.assertEqual(headers["Access-Control-Allow-Origin"], self.ORIGIN)
+        self.assertIn("GET", headers["Access-Control-Allow-Methods"])
+        self.assertIn("content-type", headers["Access-Control-Allow-Headers"].lower())
+
+    def test_conditions_is_json_whatever_the_client_accepts(self):
+        for accept in (None, "application/json", "text/html"):
+            with self.subTest(accept=accept):
+                conn = HTTPConnection("127.0.0.1", self.port, timeout=10)
+                try:
+                    headers = {"Origin": self.ORIGIN}
+                    if accept:
+                        headers["Accept"] = accept
+                    conn.request("GET", "/conditions", headers=headers)
+                    response = conn.getresponse()
+                    raw = response.read()
+                finally:
+                    conn.close()
+                self.assertEqual(response.status, 200)
+                self.assertEqual(
+                    response.getheader("Content-Type"), "application/json; charset=utf-8"
+                )
+                self.assertEqual(response.getheader("Access-Control-Allow-Origin"), self.ORIGIN)
+                self.assertGreater(json.loads(raw)["count"], 0)
+
+    def test_an_unsupported_method_is_answered_in_json_not_html(self):
+        status, headers, raw = self.request("PUT", "/conditions", origin=self.ORIGIN)
+        self.assertEqual(status, 501)
+        self.assertEqual(headers["Content-Type"], "application/json; charset=utf-8")
+        self.assertEqual(headers["Access-Control-Allow-Origin"], self.ORIGIN)
+        self.assertEqual(json.loads(raw)["error"]["code"], "http_501")
+
+    def test_a_head_request_gets_json_headers_and_no_body(self):
+        status, headers, raw = self.request("HEAD", "/conditions")
+        self.assertEqual(status, 501)
+        self.assertEqual(headers["Content-Type"], "application/json; charset=utf-8")
+        self.assertEqual(raw, b"")
+
     def test_a_server_to_server_request_without_an_origin_still_works(self):
         status, headers, raw = self.request("GET", "/health")
         self.assertEqual(status, 200)

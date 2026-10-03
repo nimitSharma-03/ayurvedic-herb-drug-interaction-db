@@ -521,6 +521,31 @@ class _Handler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(encoded)
 
+    def send_error(self, code, message=None, explain=None):
+        """The server's own errors, as JSON rather than the base class's HTML.
+
+        These are the answers no route produces: an unsupported method (HEAD,
+        PUT, ...) or a request line that does not parse. A client that asked
+        for JSON should never have to parse an HTML page to learn that.
+        """
+        short = self.responses.get(code, ("Error",))[0]
+        encoded = json.dumps(
+            {"error": {"code": f"http_{code}", "message": message or short}}
+        ).encode("utf-8")
+        self.close_connection = True
+        self.send_response(code, message)
+        self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Content-Length", str(len(encoded)))
+        self.send_header("Connection", "close")
+        # A request line that did not parse has no headers to read an Origin from.
+        headers = getattr(self, "headers", None)
+        origin = headers.get("Origin") if headers is not None else None
+        for name, value in cors_headers(origin, self.origins).items():
+            self.send_header(name, value)
+        self.end_headers()
+        if self.command != "HEAD" and code >= 200 and code not in (204, 304):
+            self.wfile.write(encoded)
+
     def _respond(self, method, body=None):
         parsed = urlsplit(self.path)
         status, payload = handle(
